@@ -4,6 +4,11 @@
 ESPHOME_VERSION ?= $(shell cat proto/ESPHOME_VERSION 2>/dev/null || echo "unknown")
 PROTO_SRC := https://raw.githubusercontent.com/esphome/esphome
 
+# api.proto declares no package and no go_package, so the Go import path has to be
+# supplied per file at generation time.
+GO_MODULE := github.com/ygelfand/go-esphome-device
+PROTO_PKG := $(GO_MODULE)/api
+
 BUILD_DIR := bin
 
 ##@ Development
@@ -12,18 +17,22 @@ BUILD_DIR := bin
 build: ## Build all packages
 	go build ./...
 
-.PHONY: simdevice
-simdevice: ## Build the simulated device into ./bin
-	@mkdir -p $(BUILD_DIR)
-	go build -o $(BUILD_DIR)/simdevice ./cmd/simdevice
+# Simulators are separate modules so their dependencies stay out of the library.
+SIM_DIR := cmd/sim_voice_assistant
 
-.PHONY: sim
-sim: ## Run the simulated device so Home Assistant can discover it
-	go run ./cmd/simdevice $(ARGS)
+.PHONY: build-sim-va
+build-sim-va: ## Build the voice assistant simulator into ./bin
+	@mkdir -p $(BUILD_DIR)
+	cd $(SIM_DIR) && go build -o ../../$(BUILD_DIR)/sim_va .
+
+.PHONY: run-sim-va
+run-sim-va: ## Run the voice assistant simulator (make run-sim-va ARGS="-speak q.wav")
+	cd $(SIM_DIR) && go run . $(ARGS)
 
 .PHONY: test
 test: ## Run tests
 	go test ./...
+	cd $(SIM_DIR) && go test ./...
 
 .PHONY: test-race
 test-race: ## Run tests with the race detector
@@ -41,6 +50,7 @@ fmt: ## Format Go source
 .PHONY: vet
 vet: ## Run go vet
 	go vet ./...
+	cd $(SIM_DIR) && go vet ./...
 
 .PHONY: lint
 lint: ## Run golangci-lint
@@ -70,7 +80,9 @@ proto-fetch: ## Fetch api.proto from upstream ESPHome (make proto-fetch REF=2026
 .PHONY: proto-gen
 proto-gen: ## Generate Go bindings from proto/
 	protoc --proto_path=proto --go_out=api --go_opt=paths=source_relative \
-		proto/api.proto proto/api_options.proto
+		--go_opt=Mapi.proto=$(PROTO_PKG) \
+		--go_opt=Mapi_options.proto=$(PROTO_PKG) \
+		api.proto api_options.proto
 
 .PHONY: proto
 proto: proto-fetch proto-gen ## Fetch and regenerate (make proto REF=2026.7.0)

@@ -1,0 +1,225 @@
+package esphomedevice
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"log/slog"
+	"net"
+	"strconv"
+	"sync"
+
+	"google.golang.org/protobuf/proto"
+
+	"github.com/ygelfand/go-esphome-device/internal/wire"
+)
+
+type Server struct {
+	Info Info
+
+	// PSK selects the transport, and the three options serve different purposes:
+	//
+	//   a real key       authenticated Noise — production
+	//   Unprovisioned()  Noise with the reserved zero key, so Home Assistant can push a
+	//                    real one; needs aioesphomeapi 45.6.0 or newer
+	//   nil              plaintext — readable on the wire, so useful for debugging,
+	//                    but ESPHome is removing it in 2027.2.0
+	PSK *PSK
+
+	// OnSetEncryptionKey handles Home Assistant provisioning a real key over a zero-PSK
+	// connection. Leave nil to refuse, which is right when keys are installed
+	// out-of-band.
+	OnSetEncryptionKey func(PSK) error
+
+	// Addr defaults to ":6053".
+	Addr string
+
+	Handler Handler
+	Logger  *slog.Logger
+
+	mu       sync.Mutex
+	listener net.Listener
+	conns    map[*Conn]struct{}
+}
+
+func (s *Server) logger() *slog.Logger {
+	if s.Logger != nil {
+		return s.Logger
+	}
+	return slog.Default()
+}
+
+func (s *Server) addr() string {
+	if s.Addr != "" {
+		return s.Addr
+	}
+	return ":" + strconv.Itoa(DefaultPort)
+}
+
+// ListenAndServe accepts connections until ctx is cancelled or Close is called.
+func (s *Server) ListenAndServe(ctx context.Context) error {
+	if err := s.Info.validate(); err != nil {
+		return err
+	}
+
+	ln, err := net.Listen("tcp", s.addr())
+	if err != nil {
+		return err
+	}
+
+	s.mu.Lock()
+	s.listener = ln
+	s.conns = map[*Conn]struct{}{}
+	s.mu.Unlock()
+
+	return s.Serve(ctx, ln)
+}
+
+// serverBinder lets a handler wire itself up for broadcasting without the caller having
+// to remember an extra call.
+type serverBinder interface{ bindServer(*Server) }
+
+func (s *Server) Serve(ctx context.Context, ln net.Listener) error {
+	log := s.logger()
+
+	if b, ok := s.Handler.(serverBinder); ok {
+		b.bindServer(s)
+	}
+	switch {
+	case s.PSK == nil:
+		log.Warn("plaintext api: no encryption, no authentication")
+	case s.PSK.IsZero():
+		log.Warn("unprovisioned: zero-psk accepts any client")
+	}
+	log.Info("listening", "addr", ln.Addr().String(), "name", s.Info.Name)
+
+	ctx, cancel := context.WithCancel(ctx)
+	defer cancel()
+
+	// Closing the listener alone is not enough: connection goroutines sit in a blocking
+	// read, so shutdown would wait on them forever.
+	go func() {
+		<-ctx.Done()
+		_ = ln.Close()
+		s.closeConns()
+	}()
+
+	var wg sync.WaitGroup
+	defer wg.Wait()
+
+	for {
+		nc, err := ln.Accept()
+		if err != nil {
+			if ctx.Err() != nil {
+				return nil
+			}
+			return err
+		}
+
+		wg.Go(func() { s.serveConn(ctx, nc) })
+	}
+}
+
+func (s *Server) serveConn(ctx context.Context, nc net.Conn) {
+	log := s.logger().With("peer", nc.RemoteAddr().String())
+
+	var transport wire.Transport
+	if s.PSK != nil {
+		transport = wire.NewNoise(nc, s.PSK[:], s.Info.Name)
+	} else {
+		transport = wire.NewPlaintext(nc)
+	}
+
+	c := newConn(transport, s.Info, s.Handler, log, s.OnSetEncryptionKey)
+
+	s.track(c, true)
+	defer s.track(c, false)
+	defer func() { _ = c.Close() }()
+
+	if err := c.serve(ctx); err != nil && !errors.Is(err, context.Canceled) {
+		if errors.Is(err, wire.ErrPlaintextAttempted) {
+			s.logPlaintextMismatch(log)
+			return
+		}
+		log.Info("connection closed", "err", err)
+		return
+	}
+	log.Debug("connection closed")
+}
+
+func (s *Server) logPlaintextMismatch(log *slog.Logger) {
+	if s.PSK != nil && s.PSK.IsZero() {
+		log.Error("client connected in plaintext but this device is unprovisioned (zero-psk Noise). " +
+			"Home Assistant needs aioesphomeapi 45.6.0+ for zero-psk provisioning; " +
+			"otherwise set a real key, or run plaintext explicitly")
+		return
+	}
+	log.Error("client connected in plaintext but this device requires Noise; check the key in Home Assistant")
+}
+
+func (s *Server) closeConns() {
+	s.mu.Lock()
+	conns := make([]*Conn, 0, len(s.conns))
+	for c := range s.conns {
+		conns = append(conns, c)
+	}
+	s.mu.Unlock()
+
+	for _, c := range conns {
+		_ = c.Close()
+	}
+}
+
+func (s *Server) track(c *Conn, add bool) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	if s.conns == nil {
+		s.conns = map[*Conn]struct{}{}
+	}
+	if add {
+		s.conns[c] = struct{}{}
+	} else {
+		delete(s.conns, c)
+	}
+}
+
+// Broadcast sends a message to every connection that has subscribed to state updates,
+// which is how entity state is pushed.
+func (s *Server) Broadcast(msg proto.Message) error {
+	s.mu.Lock()
+	conns := make([]*Conn, 0, len(s.conns))
+	for c := range s.conns {
+		conns = append(conns, c)
+	}
+	s.mu.Unlock()
+
+	var errs []error
+	for _, c := range conns {
+		if !c.StatesSubscribed() {
+			continue
+		}
+		if err := c.Send(msg); err != nil {
+			errs = append(errs, fmt.Errorf("%s: %w", c.ClientInfo(), err))
+		}
+	}
+	return errors.Join(errs...)
+}
+
+func (s *Server) Close() error {
+	s.mu.Lock()
+	ln := s.listener
+	conns := make([]*Conn, 0, len(s.conns))
+	for c := range s.conns {
+		conns = append(conns, c)
+	}
+	s.mu.Unlock()
+
+	var errs []error
+	if ln != nil {
+		errs = append(errs, ln.Close())
+	}
+	for _, c := range conns {
+		errs = append(errs, c.Close())
+	}
+	return errors.Join(errs...)
+}
