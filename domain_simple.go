@@ -46,7 +46,50 @@ func (b *BinarySensor) describe() proto.Message {
 }
 
 func (b *BinarySensor) state() proto.Message {
-	return &api.BinarySensorStateResponse{Key: b.Key(), State: b.Get()}
+	return &api.BinarySensorStateResponse{Key: b.Key(), State: b.Get(), DeviceId: b.DeviceID}
+}
+
+// TextSensor is a string Home Assistant reads. With no unit or state class its changes appear in the
+// logbook, unlike a numeric sensor's. Home Assistant truncates a state at 255 characters.
+type TextSensor struct {
+	Base
+	DeviceClass string
+
+	mu    sync.RWMutex
+	value string
+}
+
+func (t *TextSensor) Set(v string) {
+	t.mu.Lock()
+	changed := t.value != v
+	t.value = v
+	t.mu.Unlock()
+	if changed {
+		t.publish(t.state())
+	}
+}
+
+func (t *TextSensor) Get() string {
+	t.mu.RLock()
+	defer t.mu.RUnlock()
+	return t.value
+}
+
+func (t *TextSensor) describe() proto.Message {
+	return &api.ListEntitiesTextSensorResponse{
+		ObjectId:          t.ObjectID,
+		Key:               t.Key(),
+		Name:              t.Name,
+		Icon:              t.Icon,
+		DeviceClass:       t.DeviceClass,
+		EntityCategory:    t.Category,
+		DisabledByDefault: t.DisabledByDefault,
+		DeviceId:          t.DeviceID,
+	}
+}
+
+func (t *TextSensor) state() proto.Message {
+	return &api.TextSensorStateResponse{Key: t.Key(), State: t.Get(), DeviceId: t.DeviceID}
 }
 
 // Select is a fixed list of options, used for things like the active wake word.
@@ -100,7 +143,7 @@ func (s *Select) describe() proto.Message {
 }
 
 func (s *Select) state() proto.Message {
-	return &api.SelectStateResponse{Key: s.Key(), State: s.Get()}
+	return &api.SelectStateResponse{Key: s.Key(), State: s.Get(), DeviceId: s.DeviceID}
 }
 
 // Number is a tunable scalar, used for thresholds, gain and volume.
@@ -168,7 +211,7 @@ func (n *Number) describe() proto.Message {
 }
 
 func (n *Number) state() proto.Message {
-	return &api.NumberStateResponse{Key: n.Key(), State: n.Get()}
+	return &api.NumberStateResponse{Key: n.Key(), State: n.Get(), DeviceId: n.DeviceID}
 }
 
 // Button is stateless; Home Assistant only ever presses it.

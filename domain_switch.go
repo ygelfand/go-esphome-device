@@ -65,5 +65,5 @@ func (s *Switch) describe() proto.Message {
 }
 
 func (s *Switch) state() proto.Message {
-	return &api.SwitchStateResponse{Key: s.Key(), State: s.Get()}
+	return &api.SwitchStateResponse{Key: s.Key(), State: s.Get(), DeviceId: s.DeviceID}
 }

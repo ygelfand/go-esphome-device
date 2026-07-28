@@ -69,6 +69,7 @@ func (u *Update) state() proto.Message {
 	s := u.Get()
 	return &api.UpdateStateResponse{
 		Key:            u.Key(),
+		DeviceId:       u.DeviceID,
 		CurrentVersion: s.CurrentVersion,
 		LatestVersion:  s.LatestVersion,
 		Title:          s.Title,

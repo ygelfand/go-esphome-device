@@ -300,3 +300,34 @@ func TestSubDeviceOnListing(t *testing.T) {
 		t.Errorf("device id = %d, want 3", got.GetDeviceId())
 	}
 }
+
+// State has to carry the sub-device too. Listed under one and updated under another, Home Assistant
+// cannot match the update to the entity, and the value only appears when the integration reloads.
+func TestSubDeviceOnState(t *testing.T) {
+	sel := &Select{Base: Base{ObjectID: "mixing", DeviceID: 3}, Options: []string{"a", "b"}}
+	sel.Set("a")
+
+	ents := NewEntities()
+	ents.Add(sel)
+
+	_, peer := startServer(t, ents)
+	peer.hello()
+	peer.send(&api.SubscribeStatesRequest{})
+
+	dump, ok := peer.recv().(*api.SelectStateResponse)
+	if !ok {
+		t.Fatal("expected the select in the state dump")
+	}
+	if dump.GetDeviceId() != 3 {
+		t.Errorf("dumped device id = %d, want 3", dump.GetDeviceId())
+	}
+
+	sel.Set("b")
+	pushed, ok := peer.recv().(*api.SelectStateResponse)
+	if !ok {
+		t.Fatal("expected a state push after the change")
+	}
+	if pushed.GetState() != "b" || pushed.GetDeviceId() != 3 {
+		t.Errorf("pushed %q on device %d, want \"b\" on 3", pushed.GetState(), pushed.GetDeviceId())
+	}
+}

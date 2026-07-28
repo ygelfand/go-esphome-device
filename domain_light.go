@@ -117,6 +117,7 @@ func (l *Light) state() proto.Message {
 	}
 	return &api.LightStateResponse{
 		Key:             l.Key(),
+		DeviceId:        l.DeviceID,
 		State:           s.On,
 		Brightness:      s.Brightness,
 		ColorMode:       mode,

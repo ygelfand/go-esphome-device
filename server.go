@@ -157,6 +157,13 @@ func (s *Server) logPlaintextMismatch(log *slog.Logger) {
 	log.Error("client connected in plaintext but this device requires Noise; check the key in Home Assistant")
 }
 
+// Reconnect drops every client, so Home Assistant reconnects and reads the device afresh.
+//
+// Some of what a device reports is only fetched once per connection — the voice satellite's
+// available wake words among it — and there is no message for revising it. When that changes, the
+// connection is the only lever: Home Assistant reconnects on its own, within seconds.
+func (s *Server) Reconnect() { s.closeConns() }
+
 func (s *Server) closeConns() {
 	s.mu.Lock()
 	conns := make([]*Conn, 0, len(s.conns))

@@ -246,9 +246,10 @@ func (p *MediaPlayer) state() proto.Message {
 		st = MediaPlayerIdle
 	}
 	return &api.MediaPlayerStateResponse{
-		Key:    p.Key(),
-		State:  st,
-		Volume: p.Volume(),
-		Muted:  p.Muted(),
+		Key:      p.Key(),
+		DeviceId: p.DeviceID,
+		State:    st,
+		Volume:   p.Volume(),
+		Muted:    p.Muted(),
 	}
 }
