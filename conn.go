@@ -215,7 +215,13 @@ func (c *Conn) onHello(m *api.HelloRequest) error {
 }
 
 func (c *Conn) deviceInfo() *api.DeviceInfoResponse {
+	var devices []*api.DeviceInfo
+	for _, d := range c.info.Devices {
+		devices = append(devices, &api.DeviceInfo{DeviceId: d.ID, Name: d.Name, AreaId: d.AreaID})
+	}
+
 	return &api.DeviceInfoResponse{
+		Devices:                    devices,
 		Name:                       c.info.Name,
 		FriendlyName:               c.info.FriendlyName,
 		MacAddress:                 c.info.MACAddress,

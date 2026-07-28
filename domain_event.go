@@ -38,6 +38,7 @@ func (e *Event) describe() proto.Message {
 		EventTypes:        e.Types,
 		EntityCategory:    e.Category,
 		DisabledByDefault: e.DisabledByDefault,
+		DeviceId:          e.DeviceID,
 	}
 }
 

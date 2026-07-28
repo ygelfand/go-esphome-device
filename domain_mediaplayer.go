@@ -206,6 +206,7 @@ func (p *MediaPlayer) describe() proto.Message {
 		SupportsPause:     p.SupportsPause,
 		EntityCategory:    p.Category,
 		DisabledByDefault: p.DisabledByDefault,
+		DeviceId:          p.DeviceID,
 		FeatureFlags:      uint32(p.features()),
 		SupportedFormats:  p.formats(),
 	}

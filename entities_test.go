@@ -282,3 +282,21 @@ func TestButtonHasNoState(t *testing.T) {
 	peer.send(&api.ButtonCommandRequest{Key: btn.Key()})
 	<-pressed
 }
+
+func TestSubDeviceOnListing(t *testing.T) {
+	sel := &Select{Base: Base{ObjectID: "mixing", DeviceID: 3}, Options: []string{"a"}}
+	ents := NewEntities()
+	ents.Add(sel)
+
+	_, peer := startServer(t, ents)
+	peer.hello()
+	peer.send(&api.ListEntitiesRequest{})
+
+	got, ok := peer.recv().(*api.ListEntitiesSelectResponse)
+	if !ok {
+		t.Fatal("expected the select in the listing")
+	}
+	if got.GetDeviceId() != 3 {
+		t.Errorf("device id = %d, want 3", got.GetDeviceId())
+	}
+}

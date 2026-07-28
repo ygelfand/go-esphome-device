@@ -32,6 +32,17 @@ type Info struct {
 	// VoiceFeatures advertises voice satellite capability. Leave zero on devices that
 	// aren't satellites; Home Assistant won't offer voice for them.
 	VoiceFeatures VoiceFeature
+
+	// Devices are sub-devices entities can be assigned to, by Base.DeviceID. Home Assistant shows
+	// each as its own device page under this one.
+	Devices []Device
+}
+
+// Device is a sub-device. ID must be non-zero and unique, since zero means the device itself.
+type Device struct {
+	ID     uint32
+	Name   string
+	AreaID uint32
 }
 
 func (i Info) validate() error {

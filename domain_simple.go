@@ -41,6 +41,7 @@ func (b *BinarySensor) describe() proto.Message {
 		DeviceClass:       b.DeviceClass,
 		EntityCategory:    b.Category,
 		DisabledByDefault: b.DisabledByDefault,
+		DeviceId:          b.DeviceID,
 	}
 }
 
@@ -162,6 +163,7 @@ func (n *Number) describe() proto.Message {
 		Mode:              n.Mode,
 		EntityCategory:    n.Category,
 		DisabledByDefault: n.DisabledByDefault,
+		DeviceId:          n.DeviceID,
 	}
 }
 
@@ -191,6 +193,7 @@ func (b *Button) describe() proto.Message {
 		DeviceClass:       b.DeviceClass,
 		EntityCategory:    b.Category,
 		DisabledByDefault: b.DisabledByDefault,
+		DeviceId:          b.DeviceID,
 	}
 }
 
