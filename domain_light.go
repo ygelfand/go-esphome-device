@@ -105,6 +105,7 @@ func (l *Light) describe() proto.Message {
 		Effects:             l.Effects,
 		EntityCategory:      l.Category,
 		DisabledByDefault:   l.DisabledByDefault,
+		DeviceId:            l.DeviceID,
 	}
 }
 

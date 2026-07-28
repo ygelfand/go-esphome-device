@@ -139,16 +139,32 @@ func dispatchCommand[T Entity](e *Entities, key uint32, fn func(T)) error {
 }
 
 // Chain runs handlers in order, stopping at the first error.
+//
+// It passes bindServer through to whichever handlers want it. Without that, chaining Entities with
+// anything else silently loses every state update: the server binds its handler by type, a plain
+// func is not bindable, and only the states sent on connect would ever reach Home Assistant.
 func Chain(handlers ...Handler) Handler {
-	return HandlerFunc(func(ctx context.Context, c *Conn, msg proto.Message) error {
-		for _, h := range handlers {
-			if h == nil {
-				continue
-			}
-			if err := h.Handle(ctx, c, msg); err != nil {
-				return err
-			}
+	return &chain{handlers: handlers}
+}
+
+type chain struct{ handlers []Handler }
+
+func (c *chain) Handle(ctx context.Context, conn *Conn, msg proto.Message) error {
+	for _, h := range c.handlers {
+		if h == nil {
+			continue
 		}
-		return nil
-	})
+		if err := h.Handle(ctx, conn, msg); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (c *chain) bindServer(s *Server) {
+	for _, h := range c.handlers {
+		if b, ok := h.(serverBinder); ok {
+			b.bindServer(s)
+		}
+	}
 }

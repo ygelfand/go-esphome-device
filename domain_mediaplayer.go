@@ -20,6 +20,48 @@ const (
 	MediaPlayerAnnouncing = api.MediaPlayerState_MEDIA_PLAYER_STATE_ANNOUNCING
 )
 
+// MediaPlayerFeature is what the player tells Home Assistant it can do, sent as feature_flags.
+// Home Assistant computes the entity's supported features from this, so a player that sends none
+// gets no controls in the UI. The bits are Home Assistant's MediaPlayerEntityFeature values.
+type MediaPlayerFeature uint32
+
+const (
+	MediaPlayerFeaturePause MediaPlayerFeature = 1 << iota
+	MediaPlayerFeatureSeek
+	MediaPlayerFeatureVolumeSet
+	MediaPlayerFeatureVolumeMute
+	MediaPlayerFeaturePreviousTrack
+	MediaPlayerFeatureNextTrack
+	_ // Home Assistant leaves this bit unused.
+	MediaPlayerFeatureTurnOn
+	MediaPlayerFeatureTurnOff
+	MediaPlayerFeaturePlayMedia
+	MediaPlayerFeatureVolumeStep
+	MediaPlayerFeatureSelectSource
+	MediaPlayerFeatureStop
+	MediaPlayerFeatureClearPlaylist
+	MediaPlayerFeaturePlay
+	MediaPlayerFeatureShuffleSet
+	MediaPlayerFeatureSelectSound
+	MediaPlayerFeatureBrowseMedia
+	MediaPlayerFeatureRepeatSet
+	MediaPlayerFeatureGrouping
+	MediaPlayerFeatureAnnounce
+	MediaPlayerFeatureEnqueue
+)
+
+// The commands Home Assistant can send.
+const (
+	MediaPlayerPlay       = api.MediaPlayerCommand_MEDIA_PLAYER_COMMAND_PLAY
+	MediaPlayerPause      = api.MediaPlayerCommand_MEDIA_PLAYER_COMMAND_PAUSE
+	MediaPlayerStop       = api.MediaPlayerCommand_MEDIA_PLAYER_COMMAND_STOP
+	MediaPlayerMute       = api.MediaPlayerCommand_MEDIA_PLAYER_COMMAND_MUTE
+	MediaPlayerUnmute     = api.MediaPlayerCommand_MEDIA_PLAYER_COMMAND_UNMUTE
+	MediaPlayerVolumeUp   = api.MediaPlayerCommand_MEDIA_PLAYER_COMMAND_VOLUME_UP
+	MediaPlayerVolumeDown = api.MediaPlayerCommand_MEDIA_PLAYER_COMMAND_VOLUME_DOWN
+	MediaPlayerToggle     = api.MediaPlayerCommand_MEDIA_PLAYER_COMMAND_TOGGLE
+)
+
 // MediaCommand is one media_player command. Only the fields Home Assistant set are
 // populated, indicated by the Has* flags.
 type MediaCommand struct {
@@ -38,9 +80,30 @@ type MediaCommand struct {
 	Announcement    bool
 }
 
+// MediaFormat is audio the device can play. Home Assistant converts a source to the first format
+// matching the purpose, with ffmpeg, so advertising something simple avoids needing a decoder.
+type MediaFormat struct {
+	// Format is a container or codec name as ffmpeg knows it, such as "wav" or "flac".
+	Format      string
+	SampleRate  uint32
+	Channels    uint32
+	SampleBytes uint32
+
+	// Announcement marks this as the format for announcements rather than ordinary media.
+	Announcement bool
+}
+
 type MediaPlayer struct {
 	Base
 	SupportsPause bool
+
+	// SupportedFormats is what Home Assistant should convert to. With none, it sends whatever the
+	// source happens to be.
+	SupportedFormats []MediaFormat
+
+	// Features is what Home Assistant offers in the UI. Pause is added from SupportsPause, which
+	// older versions read instead of the flags.
+	Features MediaPlayerFeature
 
 	OnCommand func(MediaCommand)
 
@@ -143,7 +206,35 @@ func (p *MediaPlayer) describe() proto.Message {
 		SupportsPause:     p.SupportsPause,
 		EntityCategory:    p.Category,
 		DisabledByDefault: p.DisabledByDefault,
+		FeatureFlags:      uint32(p.features()),
+		SupportedFormats:  p.formats(),
 	}
+}
+
+func (p *MediaPlayer) formats() []*api.MediaPlayerSupportedFormat {
+	out := make([]*api.MediaPlayerSupportedFormat, 0, len(p.SupportedFormats))
+	for _, f := range p.SupportedFormats {
+		purpose := api.MediaPlayerFormatPurpose_MEDIA_PLAYER_FORMAT_PURPOSE_DEFAULT
+		if f.Announcement {
+			purpose = api.MediaPlayerFormatPurpose_MEDIA_PLAYER_FORMAT_PURPOSE_ANNOUNCEMENT
+		}
+		out = append(out, &api.MediaPlayerSupportedFormat{
+			Format:      f.Format,
+			SampleRate:  f.SampleRate,
+			NumChannels: f.Channels,
+			SampleBytes: f.SampleBytes,
+			Purpose:     purpose,
+		})
+	}
+	return out
+}
+
+func (p *MediaPlayer) features() MediaPlayerFeature {
+	f := p.Features
+	if p.SupportsPause {
+		f |= MediaPlayerFeaturePause
+	}
+	return f
 }
 
 func (p *MediaPlayer) state() proto.Message {

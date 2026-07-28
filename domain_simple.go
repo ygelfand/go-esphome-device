@@ -94,6 +94,7 @@ func (s *Select) describe() proto.Message {
 		Options:           s.Options,
 		EntityCategory:    s.Category,
 		DisabledByDefault: s.DisabledByDefault,
+		DeviceId:          s.DeviceID,
 	}
 }
 
@@ -102,6 +103,14 @@ func (s *Select) state() proto.Message {
 }
 
 // Number is a tunable scalar, used for thresholds, gain and volume.
+// How Home Assistant presents a number. Auto lets it decide, which gives a slider for a short
+// range; Box asks for a typed value.
+const (
+	NumberAuto   = api.NumberMode_NUMBER_MODE_AUTO
+	NumberBox    = api.NumberMode_NUMBER_MODE_BOX
+	NumberSlider = api.NumberMode_NUMBER_MODE_SLIDER
+)
+
 type Number struct {
 	Base
 	Min, Max, Step float64

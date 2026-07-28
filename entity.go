@@ -35,6 +35,9 @@ type Base struct {
 	Category          EntityCategory
 	DisabledByDefault bool
 
+	// DeviceID puts the entity on one of Info.Devices rather than the device itself.
+	DeviceID uint32
+
 	mu     sync.Mutex
 	notify func(proto.Message)
 }

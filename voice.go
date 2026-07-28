@@ -113,6 +113,12 @@ type VoiceSatellite struct {
 	OnAnnounce func(Announce)
 	OnTimer    func(TimerEvent)
 
+	// OnSubscribed fires when Home Assistant starts or stops listening for voice turns. Until it
+	// has subscribed, a wake word cannot be served at all, so this is what readiness means for a
+	// satellite — and it is worth showing, since the device otherwise looks broken rather than
+	// unattached.
+	OnSubscribed func(subscribed bool)
+
 	// OnSetActiveWakeWords fires when Home Assistant changes the selection.
 	OnSetActiveWakeWords func(ids []string)
 
@@ -222,6 +228,7 @@ func (v *VoiceSatellite) Handle(ctx context.Context, c *Conn, msg proto.Message)
 	switch m := msg.(type) {
 	case *api.SubscribeVoiceAssistantRequest:
 		v.mu.Lock()
+		was := v.conn != nil
 		if m.GetSubscribe() {
 			v.conn = c
 			v.apiAudio = m.GetFlags()&uint32(api.VoiceAssistantSubscribeFlag_VOICE_ASSISTANT_SUBSCRIBE_API_AUDIO) != 0
@@ -229,7 +236,12 @@ func (v *VoiceSatellite) Handle(ctx context.Context, c *Conn, msg proto.Message)
 			v.conn = nil
 			v.turnOpen = false
 		}
+		now, notify := v.conn != nil, v.OnSubscribed
 		v.mu.Unlock()
+
+		if now != was && notify != nil {
+			notify(now)
+		}
 		return nil
 
 	case *api.VoiceAssistantResponse:
@@ -267,7 +279,13 @@ func (v *VoiceSatellite) Handle(ctx context.Context, c *Conn, msg proto.Message)
 		return nil
 
 	case *api.VoiceAssistantConfigurationRequest:
-		return c.Send(v.configuration(externalWakeWords(m)))
+		cfg := v.configuration(externalWakeWords(m))
+		c.log.Info("voice configuration requested",
+			"available", len(cfg.GetAvailableWakeWords()),
+			"active", cfg.GetActiveWakeWords(),
+			"max_active", cfg.GetMaxActiveWakeWords(),
+			"offered_by_ha", len(m.GetExternalWakeWords()))
+		return c.Send(cfg)
 
 	case *api.VoiceAssistantSetConfiguration:
 		v.ActiveWakeWords = m.GetActiveWakeWords()

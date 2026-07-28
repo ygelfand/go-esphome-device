@@ -234,6 +234,30 @@ func TestStateChangePublishesToSubscribers(t *testing.T) {
 	}
 }
 
+// A chained handler must still broadcast. The server binds by type, so a Chain that does not pass
+// bindServer through leaves Home Assistant with only the states sent on connect: a value changed on
+// the device then shows up nowhere until the integration reloads.
+func TestChainedEntitiesStillPublish(t *testing.T) {
+	ents, _, _, _, mute := testEntitySet()
+
+	_, peer := startServer(t, Chain(ents, &VoiceSatellite{}))
+	peer.hello()
+	peer.send(&api.SubscribeStatesRequest{})
+	for range 4 {
+		peer.recv()
+	}
+
+	mute.Set(true)
+
+	msg, ok := peer.recv().(*api.BinarySensorStateResponse)
+	if !ok {
+		t.Fatal("expected a BinarySensorStateResponse")
+	}
+	if !msg.GetState() {
+		t.Error("state should be true")
+	}
+}
+
 func TestButtonHasNoState(t *testing.T) {
 	pressed := make(chan struct{}, 1)
 	btn := &Button{

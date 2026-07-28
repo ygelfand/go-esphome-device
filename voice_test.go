@@ -331,3 +331,30 @@ func TestVoiceUnsubscribeStopsTurns(t *testing.T) {
 		t.Errorf("err = %v, want ErrNoSubscriber", err)
 	}
 }
+
+// A satellite cannot serve a wake word until Home Assistant has subscribed, so the transition is
+// reported rather than left to be polled.
+func TestSubscribedFiresOnChange(t *testing.T) {
+	v := &VoiceSatellite{}
+	got := make(chan bool, 4)
+	v.OnSubscribed = func(subscribed bool) { got <- subscribed }
+
+	ents := NewEntities()
+	_, peer := startServer(t, Chain(ents, v))
+	peer.hello()
+
+	peer.send(&api.SubscribeVoiceAssistantRequest{Subscribe: true})
+	if !<-got {
+		t.Error("expected a subscribe")
+	}
+
+	// Repeating it is not a change, so nothing more should arrive before the unsubscribe.
+	peer.send(&api.SubscribeVoiceAssistantRequest{Subscribe: true})
+	peer.send(&api.SubscribeVoiceAssistantRequest{Subscribe: false})
+	if <-got {
+		t.Error("expected an unsubscribe")
+	}
+	if v.Subscribed() {
+		t.Error("still subscribed after unsubscribing")
+	}
+}

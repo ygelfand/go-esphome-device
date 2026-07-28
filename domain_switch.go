@@ -60,6 +60,7 @@ func (s *Switch) describe() proto.Message {
 		AssumedState:      s.Assumed,
 		EntityCategory:    s.Category,
 		DisabledByDefault: s.DisabledByDefault,
+		DeviceId:          s.DeviceID,
 	}
 }
 
