@@ -11,6 +11,7 @@ import (
 
 	"google.golang.org/protobuf/proto"
 
+	"github.com/ygelfand/go-esphome-device/api"
 	"github.com/ygelfand/go-esphome-device/internal/wire"
 )
 
@@ -210,6 +211,42 @@ func (s *Server) Broadcast(msg proto.Message) error {
 		}
 	}
 	return errors.Join(errs...)
+}
+
+// LogsSubscribed reports whether any client is taking logs. Lines produced before one is have
+// nowhere to go, so a caller holding a backlog can wait rather than discard it.
+func (s *Server) LogsSubscribed() bool {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	for c := range s.conns {
+		if c.LogsSubscribed() {
+			return true
+		}
+	}
+	return false
+}
+
+// Log sends one line to every client that subscribed at this level or louder. A write that fails is
+// left to the read loop to notice, since logging is not worth failing anything else over.
+func (s *Server) Log(level api.LogLevel, line string) {
+	s.mu.Lock()
+	conns := make([]*Conn, 0, len(s.conns))
+	for c := range s.conns {
+		conns = append(conns, c)
+	}
+	s.mu.Unlock()
+
+	var msg *api.SubscribeLogsResponse
+	for _, c := range conns {
+		if !c.WantsLog(level) {
+			continue
+		}
+		if msg == nil {
+			msg = &api.SubscribeLogsResponse{Level: level, Message: []byte(line)}
+		}
+		_ = c.Send(msg)
+	}
 }
 
 func (s *Server) Close() error {

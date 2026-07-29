@@ -47,6 +47,7 @@ type Conn struct {
 	clientInfo     string
 	statesSubbed   bool
 	logsSubbed     bool
+	logLevel       api.LogLevel
 	helloCompleted bool
 }
 
@@ -93,6 +94,21 @@ func (c *Conn) StatesSubscribed() bool {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 	return c.statesSubbed
+}
+
+// LogsSubscribed reports whether the client asked for logs at all, whatever the level.
+func (c *Conn) LogsSubscribed() bool {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	return c.logsSubbed
+}
+
+// WantsLog reports whether the client asked for log lines at this level or quieter. The
+// levels count upwards from none, so a client that asked for INFO is not sent DEBUG.
+func (c *Conn) WantsLog(level api.LogLevel) bool {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	return c.logsSubbed && level <= c.logLevel
 }
 
 // Send encodes and writes one message.
@@ -178,6 +194,7 @@ func (c *Conn) dispatch(ctx context.Context, msg proto.Message) error {
 	case *api.SubscribeLogsRequest:
 		c.mu.Lock()
 		c.logsSubbed = true
+		c.logLevel = m.GetLevel()
 		c.mu.Unlock()
 		return nil
 
