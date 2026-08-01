@@ -8,6 +8,14 @@ import (
 	"github.com/ygelfand/go-esphome-device/api"
 )
 
+type UpdateCommand = api.UpdateCommand
+
+const (
+	UpdateNone    = api.UpdateCommand_UPDATE_COMMAND_NONE
+	UpdateInstall = api.UpdateCommand_UPDATE_COMMAND_UPDATE
+	UpdateCheck   = api.UpdateCommand_UPDATE_COMMAND_CHECK
+)
+
 // UpdateState is the firmware state reported to Home Assistant. An update is offered
 // when LatestVersion differs from CurrentVersion.
 type UpdateState struct {
@@ -28,7 +36,7 @@ type Update struct {
 	DeviceClass string
 
 	// OnCommand runs when Home Assistant asks to install or check for an update.
-	OnCommand func(api.UpdateCommand)
+	OnCommand func(UpdateCommand)
 
 	mu    sync.RWMutex
 	value UpdateState

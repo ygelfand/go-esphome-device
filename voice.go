@@ -93,8 +93,6 @@ var (
 //
 // Use it as a Handler, usually via Chain alongside Entities.
 type VoiceSatellite struct {
-	// AvailableWakeWords and ActiveWakeWords are reported to Home Assistant and shown
-	// in its UI. Changing them at runtime requires no reconnect.
 	AvailableWakeWords []WakeWord
 	ActiveWakeWords    []string
 	MaxActiveWakeWords uint32
@@ -349,7 +347,7 @@ func (v *VoiceSatellite) configuration(offered []ExternalWakeWord) *api.VoiceAss
 	}
 
 	words := v.AvailableWakeWords
-	if len(offered) > 0 && v.OnExternalWakeWords != nil {
+	if v.OnExternalWakeWords != nil {
 		if adopted := v.OnExternalWakeWords(offered); len(adopted) > 0 {
 			// Copy rather than append onto the caller's slice.
 			words = make([]WakeWord, 0, len(v.AvailableWakeWords)+len(adopted))
