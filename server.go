@@ -32,6 +32,13 @@ type Server struct {
 	// out-of-band.
 	OnSetEncryptionKey func(PSK) error
 
+	// OnSubscribed fires when a client asks for entity state, which is the first moment
+	// anything sent to it will arrive. Something the device wants to report but could not
+	// while it was alone waits for this.
+	//
+	// It fires once per connection, on that connection's read loop, so it must not block.
+	OnSubscribed func()
+
 	// Addr defaults to ":6053".
 	Addr string
 
@@ -131,7 +138,10 @@ func (s *Server) serveConn(ctx context.Context, nc net.Conn) {
 		transport = wire.NewPlaintext(nc)
 	}
 
-	c := newConn(transport, s.Info, s.Handler, log, s.OnSetEncryptionKey)
+	c := newConn(transport, s.Info, s.Handler, log, hooks{
+		setKey:     s.OnSetEncryptionKey,
+		subscribed: s.OnSubscribed,
+	})
 
 	s.track(c, true)
 	defer s.track(c, false)

@@ -34,17 +34,25 @@ func TestEntityKeysAreStableAndDistinct(t *testing.T) {
 	}
 }
 
-func TestDuplicateObjectIDPanics(t *testing.T) {
-	defer func() {
-		if recover() == nil {
-			t.Error("expected a panic on duplicate object id")
-		}
-	}()
+func TestDuplicateObjectIDIsRejected(t *testing.T) {
 	e := NewEntities()
-	e.Add(
-		&Select{Base: Base{ObjectID: "dup"}},
+	if err := e.Add(&Select{Base: Base{ObjectID: "keep"}}); err != nil {
+		t.Fatalf("Add: %v", err)
+	}
+
+	err := e.Add(
+		&Number{Base: Base{ObjectID: "dup"}},
 		&Number{Base: Base{ObjectID: "dup"}},
 	)
+	if err == nil {
+		t.Fatal("expected an error on duplicate object id")
+	}
+
+	// Nothing from the rejected call is registered, so a caller that carries on is not left with half
+	// of what it asked for.
+	if got := len(e.all()); got != 1 {
+		t.Errorf("registered %d entities after a rejected Add, want 1", got)
+	}
 }
 
 func testEntitySet() (*Entities, *Select, *Number, *Light, *BinarySensor) {

@@ -270,7 +270,9 @@ func buildEntities(log *slog.Logger) (*esphome.Entities, *esphome.MediaPlayer) {
 	})
 
 	ents := esphome.NewEntities()
-	ents.Add(ring, player, threshold, gain, mute, restart, firmware)
+	if err := ents.Add(ring, player, threshold, gain, mute, restart, firmware); err != nil {
+		fatal(err)
+	}
 
 	// Toggle the mute sensor so state pushes are visible in Home Assistant.
 	go func() {

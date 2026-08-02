@@ -26,24 +26,38 @@ func NewEntities() *Entities {
 	return &Entities{byKey: map[uint32]Entity{}}
 }
 
-// Add registers an entity. It panics on a duplicate key, which means two entities share
-// an ObjectID — always a bug, and one that silently breaks state routing.
-func (e *Entities) Add(ents ...Entity) {
+// Add registers entities. A duplicate key means two of them share an ObjectID, which silently breaks
+// state routing: whichever one Home Assistant hears about, updates from the other go nowhere. That is
+// always a bug in the caller, so nothing is registered when it happens — the set is left as it was.
+func (e *Entities) Add(ents ...Entity) error {
 	e.mu.Lock()
 	defer e.mu.Unlock()
 
+	// Checked against what is already registered and against the rest of this batch, since two of the
+	// entities handed over together can collide with each other just as easily.
+	incoming := make(map[uint32]Entity, len(ents))
 	for _, ent := range ents {
 		key := ent.Key()
-		if existing, dup := e.byKey[key]; dup {
-			panic(fmt.Sprintf("esphomedevice: duplicate entity key %d (%T and %T share an ObjectID)", key, existing, ent))
+		existing, dup := e.byKey[key]
+		if !dup {
+			existing, dup = incoming[key]
 		}
-		e.byKey[key] = ent
+		if dup {
+			return fmt.Errorf("esphomedevice: duplicate entity key %d (%T and %T share an ObjectID)",
+				key, existing, ent)
+		}
+		incoming[key] = ent
+	}
+
+	for _, ent := range ents {
+		e.byKey[ent.Key()] = ent
 		e.ordered = append(e.ordered, ent)
 
 		if n, ok := ent.(interface{ setNotifier(func(proto.Message)) }); ok {
 			n.setNotifier(e.push)
 		}
 	}
+	return nil
 }
 
 // bindServer routes entity state changes to the server's subscribers. Serve calls this

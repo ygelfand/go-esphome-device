@@ -39,7 +39,7 @@ type Conn struct {
 	info      Info
 	handler   Handler
 	log       *slog.Logger
-	onSetKey  func(PSK) error
+	hooks     hooks
 
 	wmu sync.Mutex
 
@@ -51,14 +51,21 @@ type Conn struct {
 	helloCompleted bool
 }
 
-func newConn(t wire.Transport, info Info, h Handler, log *slog.Logger, onSetKey func(PSK) error) *Conn {
-	return &Conn{transport: t, info: info, handler: h, log: log, onSetKey: onSetKey}
+// hooks are the server's callbacks, handed down so a connection can reach them without holding the
+// server itself. They run on the connection's read loop and must not block it.
+type hooks struct {
+	setKey     func(PSK) error
+	subscribed func()
+}
+
+func newConn(t wire.Transport, info Info, h Handler, log *slog.Logger, hk hooks) *Conn {
+	return &Conn{transport: t, info: info, handler: h, log: log, hooks: hk}
 }
 
 // setEncryptionKey handles Home Assistant provisioning a real key. The new key applies
 // to future connections; this one keeps its established cipher state.
 func (c *Conn) setEncryptionKey(raw []byte) bool {
-	if c.onSetKey == nil {
+	if c.hooks.setKey == nil {
 		c.log.Warn("refusing encryption key provisioning: no handler configured")
 		return false
 	}
@@ -73,7 +80,7 @@ func (c *Conn) setEncryptionKey(raw []byte) bool {
 		c.log.Warn("rejecting all-zeros key: reserved to mark a device unprovisioned")
 		return false
 	}
-	if err := c.onSetKey(k); err != nil {
+	if err := c.hooks.setKey(k); err != nil {
 		c.log.Error("storing encryption key", "err", err)
 		return false
 	}
@@ -189,6 +196,10 @@ func (c *Conn) dispatch(ctx context.Context, msg proto.Message) error {
 		c.mu.Lock()
 		c.statesSubbed = true
 		c.mu.Unlock()
+
+		if c.hooks.subscribed != nil {
+			c.hooks.subscribed()
+		}
 		return c.handle(ctx, msg)
 
 	case *api.SubscribeLogsRequest:
