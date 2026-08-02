@@ -19,6 +19,10 @@ const (
 // Entity is one Home Assistant entity exposed by the device. Implementations live in
 // this package; describe and state are unexported so the set stays closed.
 type Entity interface {
+	// Object is the identifier the entity is known by, which is what a caller holding a list of
+	// entities can say about them: Key is a hash and the rest of the interface is unexported.
+	Object() string
+
 	Key() uint32
 	describe() proto.Message
 	state() proto.Message
@@ -41,6 +45,8 @@ type Base struct {
 	mu     sync.Mutex
 	notify func(proto.Message)
 }
+
+func (b *Base) Object() string { return b.ObjectID }
 
 func (b *Base) Key() uint32 { return fnv1(b.ObjectID) }
 

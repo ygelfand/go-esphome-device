@@ -248,5 +248,6 @@ func (c *Conn) deviceInfo() *api.DeviceInfoResponse {
 		SuggestedArea:              c.info.SuggestedArea,
 		ApiEncryptionSupported:     true,
 		VoiceAssistantFeatureFlags: uint32(c.info.VoiceFeatures),
+		BluetoothProxyFeatureFlags: uint32(c.info.BluetoothFeatures),
 	}
 }

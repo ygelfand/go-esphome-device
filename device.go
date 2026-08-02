@@ -33,6 +33,10 @@ type Info struct {
 	// aren't satellites; Home Assistant won't offer voice for them.
 	VoiceFeatures VoiceFeature
 
+	// BluetoothFeatures advertises Bluetooth proxy capability. Leave zero on devices that are not
+	// proxies; Home Assistant won't register a scanner for them.
+	BluetoothFeatures BluetoothFeature
+
 	// Devices are sub-devices entities can be assigned to, by Base.DeviceID. Home Assistant shows
 	// each as its own device page under this one.
 	Devices []Device
