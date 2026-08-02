@@ -14,9 +14,9 @@ type (
 )
 
 const (
-	MediaPlayerIdle       = api.MediaPlayerState_MEDIA_PLAYER_STATE_IDLE
-	MediaPlayerPlaying    = api.MediaPlayerState_MEDIA_PLAYER_STATE_PLAYING
-	MediaPlayerPaused     = api.MediaPlayerState_MEDIA_PLAYER_STATE_PAUSED
+	MediaPlayerIdle    = api.MediaPlayerState_MEDIA_PLAYER_STATE_IDLE
+	MediaPlayerPlaying = api.MediaPlayerState_MEDIA_PLAYER_STATE_PLAYING
+	MediaPlayerPaused  = api.MediaPlayerState_MEDIA_PLAYER_STATE_PAUSED
 	// MediaPlayerAnnouncing is in the protocol, and Home Assistant has no case for it: its state
 	// mapper raises a KeyError on every update carrying it, so the entity stops updating. Report
 	// playing instead.
