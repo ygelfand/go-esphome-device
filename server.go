@@ -223,6 +223,24 @@ func (s *Server) Broadcast(msg proto.Message) error {
 	return errors.Join(errs...)
 }
 
+// FireEvent asks Home Assistant to put an event on its bus. The name is passed whole and must be
+// under the esphome domain, which is the only one Home Assistant accepts here.
+//
+// Values are strings because the wire carries no other kind. Home Assistant adds the device id
+// itself, so an event says which device it came from without being told.
+func (s *Server) FireEvent(name string, data map[string]string) error {
+	fields := make([]*api.HomeassistantServiceMap, 0, len(data))
+	for key, value := range data {
+		fields = append(fields, &api.HomeassistantServiceMap{Key: key, Value: value})
+	}
+
+	return s.Broadcast(&api.HomeassistantActionRequest{
+		Service: name,
+		IsEvent: true,
+		Data:    fields,
+	})
+}
+
 // LogsSubscribed reports whether any client is taking logs. Lines produced before one is have
 // nowhere to go, so a caller holding a backlog can wait rather than discard it.
 func (s *Server) LogsSubscribed() bool {

@@ -19,11 +19,61 @@ type Entities struct {
 	mu        sync.RWMutex
 	ordered   []Entity
 	byKey     map[uint32]Entity
+	actions   []*Action
+	byAction  map[uint32]*Action
 	broadcast func(proto.Message)
 }
 
 func NewEntities() *Entities {
-	return &Entities{byKey: map[uint32]Entity{}}
+	return &Entities{byKey: map[uint32]Entity{}, byAction: map[uint32]*Action{}}
+}
+
+// AddActions registers what Home Assistant may call. Two actions of one name would leave one of them
+// unreachable, so a duplicate registers nothing.
+func (e *Entities) AddActions(actions ...*Action) error {
+	e.mu.Lock()
+	defer e.mu.Unlock()
+
+	incoming := make(map[uint32]*Action, len(actions))
+	for _, action := range actions {
+		if action.Run == nil {
+			return fmt.Errorf("esphomedevice: action %q does nothing", action.Name)
+		}
+
+		key := action.key()
+		existing, dup := e.byAction[key]
+		if !dup {
+			existing, dup = incoming[key]
+		}
+		if dup {
+			return fmt.Errorf("esphomedevice: duplicate action name %q (already have %q)",
+				action.Name, existing.Name)
+		}
+		incoming[key] = action
+	}
+
+	for _, action := range actions {
+		e.byAction[action.key()] = action
+		e.actions = append(e.actions, action)
+	}
+	return nil
+}
+
+func (e *Entities) allActions() []*Action {
+	e.mu.RLock()
+	defer e.mu.RUnlock()
+
+	out := make([]*Action, len(e.actions))
+	copy(out, e.actions)
+	return out
+}
+
+func (e *Entities) action(key uint32) (*Action, bool) {
+	e.mu.RLock()
+	defer e.mu.RUnlock()
+
+	found, ok := e.byAction[key]
+	return found, ok
 }
 
 // Add registers entities. A duplicate key means two of them share an ObjectID, which silently breaks
@@ -100,7 +150,24 @@ func (e *Entities) Handle(ctx context.Context, c *Conn, msg proto.Message) error
 				return err
 			}
 		}
+		// Actions are listed in the same pass, before Done: Home Assistant registers whatever arrived
+		// by then and asks again only on the next connection.
+		for _, action := range e.allActions() {
+			if err := c.Send(action.describe()); err != nil {
+				return err
+			}
+		}
 		return c.Send(&api.ListEntitiesDoneResponse{})
+
+	case *api.ExecuteServiceRequest:
+		action, ok := e.action(m.GetKey())
+		if !ok {
+			return nil
+		}
+		if reply := action.call(m); reply != nil {
+			return c.Send(reply)
+		}
+		return nil
 
 	case *api.SubscribeStatesRequest:
 		for _, ent := range e.all() {
