@@ -18,12 +18,9 @@ type BinarySensor struct {
 
 func (b *BinarySensor) Set(v bool) {
 	b.mu.Lock()
-	changed := b.value != v
 	b.value = v
 	b.mu.Unlock()
-	if changed {
-		b.publish(b.state())
-	}
+	b.publish(b.state())
 }
 
 func (b *BinarySensor) Get() bool {
@@ -61,12 +58,9 @@ type TextSensor struct {
 
 func (t *TextSensor) Set(v string) {
 	t.mu.Lock()
-	changed := t.value != v
 	t.value = v
 	t.mu.Unlock()
-	if changed {
-		t.publish(t.state())
-	}
+	t.publish(t.state())
 }
 
 func (t *TextSensor) Get() string {
@@ -107,12 +101,9 @@ type Select struct {
 
 func (s *Select) Set(v string) {
 	s.mu.Lock()
-	changed := s.value != v
 	s.value = v
 	s.mu.Unlock()
-	if changed {
-		s.publish(s.state())
-	}
+	s.publish(s.state())
 }
 
 func (s *Select) Get() string {
@@ -170,12 +161,9 @@ type Number struct {
 
 func (n *Number) Set(v float32) {
 	n.mu.Lock()
-	changed := n.value != v
 	n.value = v
 	n.mu.Unlock()
-	if changed {
-		n.publish(n.state())
-	}
+	n.publish(n.state())
 }
 
 func (n *Number) Get() float32 {

@@ -118,32 +118,23 @@ type MediaPlayer struct {
 
 func (p *MediaPlayer) SetState(s MediaPlayerState) {
 	p.mu.Lock()
-	changed := p.state_ != s
 	p.state_ = s
 	p.mu.Unlock()
-	if changed {
-		p.publish(p.state())
-	}
+	p.publish(p.state())
 }
 
 func (p *MediaPlayer) SetVolume(v float32) {
 	p.mu.Lock()
-	changed := p.volume != v
 	p.volume = v
 	p.mu.Unlock()
-	if changed {
-		p.publish(p.state())
-	}
+	p.publish(p.state())
 }
 
 func (p *MediaPlayer) SetMuted(m bool) {
 	p.mu.Lock()
-	changed := p.muted != m
 	p.muted = m
 	p.mu.Unlock()
-	if changed {
-		p.publish(p.state())
-	}
+	p.publish(p.state())
 }
 
 func (p *MediaPlayer) State() MediaPlayerState {

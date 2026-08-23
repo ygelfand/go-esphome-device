@@ -28,12 +28,9 @@ type Switch struct {
 
 func (s *Switch) Set(v bool) {
 	s.mu.Lock()
-	changed := s.value != v
 	s.value = v
 	s.mu.Unlock()
-	if changed {
-		s.publish(s.state())
-	}
+	s.publish(s.state())
 }
 
 func (s *Switch) Get() bool {

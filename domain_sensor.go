@@ -46,15 +46,12 @@ const (
 	StateClassTotal
 )
 
-// Set publishes a value, and only when it differs from the last one.
+// Set publishes a value.
 func (s *Sensor) Set(v float32) {
 	s.mu.Lock()
-	changed := !s.known || s.value != v
 	s.value, s.known = v, true
 	s.mu.Unlock()
-	if changed {
-		s.publish(s.state())
-	}
+	s.publish(s.state())
 }
 
 func (s *Sensor) Get() float32 {
