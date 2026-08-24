@@ -144,7 +144,13 @@ func (b bounded) Write(p []byte) (int, error) {
 	if err := b.SetWriteDeadline(time.Now().Add(b.d)); err != nil {
 		return 0, err
 	}
-	return b.Conn.Write(p)
+	n, err := b.Conn.Write(p)
+	if err != nil {
+		// A half-written frame desynchronises the transport's nonce, so the connection cannot be
+		// reused. Closing it also stops every later write inheriting a fresh deadline.
+		_ = b.Conn.Close()
+	}
+	return n, err
 }
 
 func (s *Server) serveConn(ctx context.Context, nc net.Conn) {
