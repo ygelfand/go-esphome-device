@@ -8,6 +8,7 @@ import (
 	"net"
 	"strconv"
 	"sync"
+	"time"
 
 	"google.golang.org/protobuf/proto"
 
@@ -38,6 +39,10 @@ type Server struct {
 	//
 	// It fires once per connection, on that connection's read loop, so it must not block.
 	OnSubscribed func()
+
+	// WriteTimeout bounds one write. Zero leaves writes unbounded, so a client that stops reading
+	// blocks the write lock until TCP gives up and every other sender waits behind it.
+	WriteTimeout time.Duration
 
 	// Addr defaults to ":6053".
 	Addr string
@@ -128,8 +133,25 @@ func (s *Server) Serve(ctx context.Context, ln net.Listener) error {
 	}
 }
 
+// bounded gives every write its own deadline, which one SetWriteDeadline cannot: a deadline is a
+// point in time, not a per-call budget.
+type bounded struct {
+	net.Conn
+	d time.Duration
+}
+
+func (b bounded) Write(p []byte) (int, error) {
+	if err := b.SetWriteDeadline(time.Now().Add(b.d)); err != nil {
+		return 0, err
+	}
+	return b.Conn.Write(p)
+}
+
 func (s *Server) serveConn(ctx context.Context, nc net.Conn) {
 	log := s.logger().With("peer", nc.RemoteAddr().String())
+	if s.WriteTimeout > 0 {
+		nc = bounded{Conn: nc, d: s.WriteTimeout}
+	}
 
 	var transport wire.Transport
 	if s.PSK != nil {
