@@ -1,6 +1,7 @@
 package esphomedevice
 
 import (
+	"cmp"
 	"context"
 	"errors"
 	"fmt"
@@ -255,7 +256,7 @@ func (c *Conn) deviceInfo() *api.DeviceInfoResponse {
 		MacAddress:                 c.info.MACAddress,
 		Manufacturer:               c.info.Manufacturer,
 		Model:                      c.info.Model,
-		EsphomeVersion:             c.info.Version,
+		EsphomeVersion:             cmp.Or(c.info.ESPHomeVersion, DefaultESPHomeVersion),
 		SuggestedArea:              c.info.SuggestedArea,
 		ApiEncryptionSupported:     true,
 		VoiceAssistantFeatureFlags: uint32(c.info.VoiceFeatures),

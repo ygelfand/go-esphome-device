@@ -18,6 +18,10 @@ const (
 
 const DefaultPort = 6053
 
+// DefaultESPHomeVersion is reported when Info leaves ESPHomeVersion empty. It tracks a recent
+// release, because Home Assistant compares the reported one against minimums of its own.
+const DefaultESPHomeVersion = "2026.5.1"
+
 // Info is what a device reports in response to DeviceInfoRequest. Name is also the
 // hostname Home Assistant identifies the device by, so it must be stable.
 type Info struct {
@@ -28,6 +32,11 @@ type Info struct {
 	Model         string
 	Version       string
 	SuggestedArea string
+
+	// ESPHomeVersion is the ESPHome release to report being. It describes the protocol spoken rather
+	// than the program speaking it, which is why it is separate from Version. Empty reports
+	// DefaultESPHomeVersion.
+	ESPHomeVersion string
 
 	// VoiceFeatures advertises voice satellite capability. Leave zero on devices that
 	// aren't satellites; Home Assistant won't offer voice for them.
