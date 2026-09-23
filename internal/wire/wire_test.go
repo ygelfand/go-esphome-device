@@ -200,17 +200,29 @@ func TestNoisePlaintextAttemptedSendsReject(t *testing.T) {
 		_, _ = c2.Write([]byte{0x00, 0x05, 0x01})
 	}()
 
+	// net.Pipe is unbuffered, so the reject is read while the handshake is still writing it rather
+	// than after: reading once Handshake has returned is a deadlock, not a slow test.
+	type reply struct {
+		body []byte
+		err  error
+	}
+	replies := make(chan reply, 1)
+	go func() {
+		buf := make([]byte, 64)
+		n, err := c2.Read(buf)
+		replies <- reply{buf[:n], err}
+	}()
+
 	deviceErr := <-errc
 	if !errors.Is(deviceErr, ErrPlaintextAttempted) {
 		t.Fatalf("device err = %v, want ErrPlaintextAttempted", deviceErr)
 	}
 
-	buf := make([]byte, 64)
-	n, err := c2.Read(buf)
-	if err != nil {
-		t.Fatalf("client read: %v", err)
+	said := <-replies
+	if said.err != nil {
+		t.Fatalf("client read: %v", said.err)
 	}
-	got := buf[:n]
+	got := said.body
 	if len(got) == 0 || got[0] != noiseIndicator {
 		t.Fatalf("got %v, want packet starting with noiseIndicator (0x01)", got)
 	}
