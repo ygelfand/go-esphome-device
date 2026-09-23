@@ -34,8 +34,6 @@ func chose(t *testing.T, s *Server, first byte) wire.Transport {
 	return got
 }
 
-// Home Assistant reads the device over plaintext to add it, then opens a zero-PSK Noise connection
-// to hand a key over, so an unprovisioned server has to take both.
 func TestUnprovisionedTakesEitherTransport(t *testing.T) {
 	s := unprovisioned()
 
@@ -84,6 +82,44 @@ func TestProvisioningReachesTheHandler(t *testing.T) {
 	}
 	if stored != key {
 		t.Errorf("the handler was given %v", stored)
+	}
+}
+
+func TestKeyArrivesAsBase64(t *testing.T) {
+	var want PSK
+	for i := range want {
+		want[i] = byte(i + 1)
+	}
+
+	got, err := keyFrom([]byte(want.String()))
+	if err != nil {
+		t.Fatalf("keyFrom: %v", err)
+	}
+	if got != want {
+		t.Errorf("decoded to %v", got)
+	}
+}
+
+func TestAKeyThatIsNotBase64IsRefused(t *testing.T) {
+	var raw PSK
+	raw[0] = 0x01
+
+	for _, sent := range [][]byte{nil, []byte("nonsense"), make([]byte, 31), raw[:]} {
+		if _, err := keyFrom(sent); err == nil {
+			t.Errorf("%d bytes were accepted", len(sent))
+		}
+	}
+}
+
+func TestTheZeroKeyDecodesAndIsCaughtAsZero(t *testing.T) {
+	var zero PSK
+
+	got, err := keyFrom([]byte(zero.String()))
+	if err != nil {
+		t.Fatalf("keyFrom: %v", err)
+	}
+	if !got.IsZero() {
+		t.Error("the reserved key did not come back as zero, so nothing would refuse it")
 	}
 }
 

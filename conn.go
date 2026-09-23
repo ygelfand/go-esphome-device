@@ -64,6 +64,9 @@ func newConn(t wire.Transport, info Info, h Handler, log *slog.Logger, hk hooks)
 	return &Conn{transport: t, info: info, handler: h, log: log, hooks: hk}
 }
 
+// keyFrom reads the key out of a NoiseEncryptionSetKeyRequest, which carries it as base64.
+func keyFrom(raw []byte) (PSK, error) { return ParsePSK(string(raw)) }
+
 // setEncryptionKey handles Home Assistant provisioning a real key. The new key applies
 // to future connections; this one keeps its established cipher state.
 func (c *Conn) setEncryptionKey(raw []byte) bool {
@@ -71,13 +74,11 @@ func (c *Conn) setEncryptionKey(raw []byte) bool {
 		c.log.Warn("refusing encryption key provisioning: no handler configured")
 		return false
 	}
-	if len(raw) != 32 {
-		c.log.Warn("rejecting encryption key", "len", len(raw))
+	k, err := keyFrom(raw)
+	if err != nil {
+		c.log.Warn("rejecting encryption key", "len", len(raw), "err", err)
 		return false
 	}
-
-	var k PSK
-	copy(k[:], raw)
 	if k.IsZero() {
 		c.log.Warn("rejecting all-zeros key: reserved to mark a device unprovisioned")
 		return false

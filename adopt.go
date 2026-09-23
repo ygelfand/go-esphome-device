@@ -9,13 +9,9 @@ import (
 	"github.com/ygelfand/go-esphome-device/internal/wire"
 )
 
-// Home Assistant adopts an unprovisioned device over two connections: the config flow reads the
-// device over plaintext, then the manager opens a zero-PSK Noise one to hand a real key over. An
-// unprovisioned server takes whichever arrives, so the first byte decides.
+// An unprovisioned device is added over plaintext and provisioned over zero-PSK Noise.
 const plaintextFirst = 0x00
 
-// sniffFor is how long a connection has to say which it is. A client that opens a socket and sends
-// nothing must not hold a goroutine.
 const sniffFor = 10 * time.Second
 
 // sniffed is a connection whose first byte has been read and put back.
@@ -28,7 +24,7 @@ func (s sniffed) Read(p []byte) (int, error)  { return s.r.Read(p) }
 func (s sniffed) Write(p []byte) (int, error) { return s.c.Write(p) }
 func (s sniffed) Close() error                { return s.c.Close() }
 
-// psk is the key in use, which provisioning replaces while connections are being served.
+// psk is the key in use, which provisioning replaces.
 func (s *Server) psk() *PSK {
 	s.mu.Lock()
 	defer s.mu.Unlock()
@@ -43,8 +39,7 @@ func (s *Server) provisioned() *PSK {
 	return s.PSK
 }
 
-// setKey stores the key Home Assistant pushed and takes it into use, so the connection after this
-// one is authenticated rather than still unprovisioned.
+// setKey stores the key Home Assistant pushed and takes it into use.
 func (s *Server) setKey(k PSK) error {
 	if s.OnSetEncryptionKey != nil {
 		if err := s.OnSetEncryptionKey(k); err != nil {
@@ -58,15 +53,13 @@ func (s *Server) setKey(k PSK) error {
 	return nil
 }
 
-// adopting reports whether this server takes either transport: unprovisioned, and with somewhere to
-// put the key that arrives.
+// adopting reports whether this server takes either transport.
 func (s *Server) adopting() bool {
 	psk := s.psk()
 	return psk != nil && psk.IsZero() && s.OnSetEncryptionKey != nil
 }
 
-// transport is what to speak on a connection, chosen by the first byte where the server is waiting
-// to be adopted and by the key otherwise.
+// transport is what to speak on a connection, by the first byte while adopting and by the key after.
 func (s *Server) transport(nc net.Conn) (wire.Transport, error) {
 	psk := s.psk()
 
