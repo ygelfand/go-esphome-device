@@ -79,6 +79,9 @@ func (n *Noise) Handshake() error {
 
 	// The client opens with an empty packet, then we announce ourselves.
 	if _, err := n.readPacket(); err != nil {
+		if errors.Is(err, ErrPlaintextAttempted) || errors.Is(err, ErrBadIndicator) {
+			return n.fail(&HandshakeError{Msg: "Bad indicator byte", Err: err})
+		}
 		return err
 	}
 	hello := make([]byte, 0, len(n.name)+2)
@@ -91,6 +94,9 @@ func (n *Noise) Handshake() error {
 
 	body, err := n.readPacket()
 	if err != nil {
+		if errors.Is(err, ErrPlaintextAttempted) || errors.Is(err, ErrBadIndicator) {
+			return n.fail(&HandshakeError{Msg: "Bad indicator byte", Err: err})
+		}
 		return err
 	}
 	if len(body) == 0 {

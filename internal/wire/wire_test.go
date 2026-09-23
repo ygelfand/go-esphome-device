@@ -189,6 +189,36 @@ func TestNoiseWrongPSKReportsError(t *testing.T) {
 	}
 }
 
+func TestNoisePlaintextAttemptedSendsReject(t *testing.T) {
+	c1, c2 := pipePair(t)
+
+	device := NewNoise(c1, testPSK(), "echolocal")
+	errc := make(chan error, 1)
+	go func() { errc <- device.Handshake() }()
+
+	go func() {
+		_, _ = c2.Write([]byte{0x00, 0x05, 0x01})
+	}()
+
+	deviceErr := <-errc
+	if !errors.Is(deviceErr, ErrPlaintextAttempted) {
+		t.Fatalf("device err = %v, want ErrPlaintextAttempted", deviceErr)
+	}
+
+	buf := make([]byte, 64)
+	n, err := c2.Read(buf)
+	if err != nil {
+		t.Fatalf("client read: %v", err)
+	}
+	got := buf[:n]
+	if len(got) == 0 || got[0] != noiseIndicator {
+		t.Fatalf("got %v, want packet starting with noiseIndicator (0x01)", got)
+	}
+	if !bytes.Contains(got, []byte("Bad indicator byte")) {
+		t.Fatalf("got %q, want 'Bad indicator byte'", got)
+	}
+}
+
 func TestNoiseShortPSK(t *testing.T) {
 	c1, _ := pipePair(t)
 
