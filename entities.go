@@ -22,6 +22,10 @@ type Entities struct {
 	actions   []*Action
 	byAction  map[uint32]*Action
 	broadcast func(proto.Message)
+
+	// camera answers CameraImageRequest, which carries no key: the protocol has one camera per
+	// device, so there is nothing to look up.
+	camera *Camera
 }
 
 func NewEntities() *Entities {
@@ -102,6 +106,14 @@ func (e *Entities) Add(ents ...Entity) error {
 	for _, ent := range ents {
 		e.byKey[ent.Key()] = ent
 		e.ordered = append(e.ordered, ent)
+
+		if cam, ok := ent.(*Camera); ok {
+			if e.camera != nil {
+				return fmt.Errorf("esphomedevice: a second camera %q, and the protocol addresses only one",
+					cam.ObjectID)
+			}
+			e.camera = cam
+		}
 
 		if n, ok := ent.(interface{ setNotifier(func(proto.Message)) }); ok {
 			n.setNotifier(e.push)
@@ -202,6 +214,12 @@ func (e *Entities) Handle(ctx context.Context, c *Conn, msg proto.Message) error
 
 	case *api.UpdateCommandRequest:
 		return dispatchCommand(e, m.GetKey(), func(u *Update) { u.command(m) })
+
+	case *api.CameraImageRequest:
+		if e.camera == nil || (!m.GetSingle() && !m.GetStream()) {
+			return nil
+		}
+		return e.camera.send(c)
 	}
 	return nil
 }

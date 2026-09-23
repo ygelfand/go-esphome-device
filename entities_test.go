@@ -1,6 +1,7 @@
 package esphomedevice
 
 import (
+	"bytes"
 	"testing"
 
 	"google.golang.org/protobuf/proto"
@@ -337,5 +338,72 @@ func TestSubDeviceOnState(t *testing.T) {
 	}
 	if pushed.GetState() != "b" || pushed.GetDeviceId() != 3 {
 		t.Errorf("pushed %q on device %d, want \"b\" on 3", pushed.GetState(), pushed.GetDeviceId())
+	}
+}
+
+// A picture is bigger than a frame: the noise transport carries its length in sixteen bits, so a
+// still has to arrive in pieces with only the last one saying done.
+func TestCameraImageArrivesInPieces(t *testing.T) {
+	want := make([]byte, chunk*2+1234)
+	for i := range want {
+		want[i] = byte(i)
+	}
+
+	cam := &Camera{
+		Base:  Base{ObjectID: "camera", Name: "Camera"},
+		Image: func() ([]byte, error) { return want, nil },
+	}
+
+	ents := NewEntities()
+	if err := ents.Add(cam); err != nil {
+		t.Fatal(err)
+	}
+	_, peer := startServer(t, ents)
+	peer.hello()
+
+	peer.send(&api.CameraImageRequest{Single: true})
+
+	var got []byte
+	for pieces := 0; ; pieces++ {
+		if pieces > 8 {
+			t.Fatal("the picture never finished")
+		}
+		m, ok := peer.recv().(*api.CameraImageResponse)
+		if !ok {
+			t.Fatalf("expected an image piece, got %T", m)
+		}
+		if m.GetKey() != cam.Key() {
+			t.Errorf("piece %d has key %d, want %d", pieces, m.GetKey(), cam.Key())
+		}
+		got = append(got, m.GetData()...)
+		if m.GetDone() {
+			break
+		}
+	}
+
+	if !bytes.Equal(got, want) {
+		t.Errorf("the picture came back %d bytes, want %d", len(got), len(want))
+	}
+}
+
+// Subscribing must not cost a picture, so a camera has no state to dump.
+func TestCameraHasNoStateToDump(t *testing.T) {
+	cam := &Camera{
+		Base:  Base{ObjectID: "camera"},
+		Image: func() ([]byte, error) { t.Fatal("subscribing asked for a picture"); return nil, nil },
+	}
+	if got := cam.state(); got != nil {
+		t.Errorf("a camera has state %T", got)
+	}
+}
+
+// The request names no camera, so a device with two has no way to say which answered.
+func TestASecondCameraIsRefused(t *testing.T) {
+	ents := NewEntities()
+	if err := ents.Add(&Camera{Base: Base{ObjectID: "one"}}); err != nil {
+		t.Fatal(err)
+	}
+	if err := ents.Add(&Camera{Base: Base{ObjectID: "two"}}); err == nil {
+		t.Error("a second camera was accepted")
 	}
 }
