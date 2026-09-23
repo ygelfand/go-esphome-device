@@ -55,8 +55,9 @@ type Conn struct {
 // hooks are the server's callbacks, handed down so a connection can reach them without holding the
 // server itself. They run on the connection's read loop and must not block it.
 type hooks struct {
-	setKey     func(PSK) error
-	subscribed func()
+	setKey        func(PSK) error
+	subscribed    func()
+	provisionable bool
 }
 
 func newConn(t wire.Transport, info Info, h Handler, log *slog.Logger, hk hooks) *Conn {
@@ -259,6 +260,7 @@ func (c *Conn) deviceInfo() *api.DeviceInfoResponse {
 		EsphomeVersion:             cmp.Or(c.info.ESPHomeVersion, DefaultESPHomeVersion),
 		SuggestedArea:              c.info.SuggestedArea,
 		ApiEncryptionSupported:     true,
+		ApiEncryptionProvisionable: c.hooks.provisionable,
 		VoiceAssistantFeatureFlags: uint32(c.info.VoiceFeatures),
 		BluetoothProxyFeatureFlags: uint32(c.info.BluetoothFeatures),
 	}

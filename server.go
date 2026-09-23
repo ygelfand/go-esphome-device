@@ -167,8 +167,9 @@ func (s *Server) serveConn(ctx context.Context, nc net.Conn) {
 	}
 
 	c := newConn(transport, s.Info, s.Handler, log, hooks{
-		setKey:     s.OnSetEncryptionKey,
-		subscribed: s.OnSubscribed,
+		setKey:        s.OnSetEncryptionKey,
+		subscribed:    s.OnSubscribed,
+		provisionable: s.PSK != nil && s.PSK.IsZero() && s.OnSetEncryptionKey != nil,
 	})
 
 	s.track(c, true)
