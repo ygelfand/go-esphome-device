@@ -53,6 +53,9 @@ type Server struct {
 	mu       sync.Mutex
 	listener net.Listener
 	conns    map[*Conn]struct{}
+
+	// key is what provisioning left behind, which takes over from PSK for later connections.
+	key *PSK
 }
 
 func (s *Server) logger() *slog.Logger {
@@ -159,17 +162,16 @@ func (s *Server) serveConn(ctx context.Context, nc net.Conn) {
 		nc = bounded{Conn: nc, d: s.WriteTimeout}
 	}
 
-	var transport wire.Transport
-	if s.PSK != nil {
-		transport = wire.NewNoise(nc, s.PSK[:], s.Info.Name)
-	} else {
-		transport = wire.NewPlaintext(nc)
+	transport, err := s.transport(nc)
+	if err != nil {
+		log.Info("connection closed", "err", err)
+		return
 	}
 
 	c := newConn(transport, s.Info, s.Handler, log, hooks{
-		setKey:        s.OnSetEncryptionKey,
+		setKey:        s.setKey,
 		subscribed:    s.OnSubscribed,
-		provisionable: s.PSK != nil && s.PSK.IsZero() && s.OnSetEncryptionKey != nil,
+		provisionable: s.adopting(),
 	})
 
 	s.track(c, true)
