@@ -2,6 +2,7 @@ package esphomedevice
 
 import (
 	"bytes"
+	"errors"
 	"testing"
 
 	"google.golang.org/protobuf/proto"
@@ -383,6 +384,28 @@ func TestCameraImageArrivesInPieces(t *testing.T) {
 
 	if !bytes.Equal(got, want) {
 		t.Errorf("the picture came back %d bytes, want %d", len(got), len(want))
+	}
+}
+
+// A picture that cannot be taken is not a broken connection: Home Assistant polls every five minutes.
+func TestACameraThatCannotAnswerKeepsTheConnection(t *testing.T) {
+	cam := &Camera{
+		Base:  Base{ObjectID: "camera", Name: "Camera"},
+		Image: func() ([]byte, error) { return nil, errors.New("the camera is covered") },
+	}
+
+	ents := NewEntities()
+	if err := ents.Add(cam); err != nil {
+		t.Fatal(err)
+	}
+	_, peer := startServer(t, ents)
+	peer.hello()
+
+	peer.send(&api.CameraImageRequest{Single: true})
+
+	peer.send(&api.PingRequest{})
+	if m, ok := peer.recv().(*api.PingResponse); !ok {
+		t.Fatalf("the connection stopped answering: got %T", m)
 	}
 }
 
