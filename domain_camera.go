@@ -44,7 +44,7 @@ func (c *Camera) send(conn *Conn) error {
 
 	img, err := c.Image()
 	if err != nil {
-		return err
+		return nil
 	}
 
 	for at := 0; ; {
