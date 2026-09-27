@@ -54,11 +54,12 @@ type TextSensor struct {
 
 	mu    sync.RWMutex
 	value string
+	known bool
 }
 
 func (t *TextSensor) Set(v string) {
 	t.mu.Lock()
-	t.value = v
+	t.value, t.known = v, true
 	t.mu.Unlock()
 	t.publish(t.state())
 }
@@ -82,8 +83,86 @@ func (t *TextSensor) describe() proto.Message {
 	}
 }
 
+// state reports the value, or that there has never been one.
 func (t *TextSensor) state() proto.Message {
-	return &api.TextSensorStateResponse{Key: t.Key(), State: t.Get(), DeviceId: t.DeviceID}
+	t.mu.RLock()
+	defer t.mu.RUnlock()
+	return &api.TextSensorStateResponse{
+		Key:          t.Key(),
+		State:        t.value,
+		MissingState: !t.known,
+		DeviceId:     t.DeviceID,
+	}
+}
+
+// How Home Assistant presents a text entity.
+const (
+	TextPlain    = api.TextMode_TEXT_MODE_TEXT
+	TextPassword = api.TextMode_TEXT_MODE_PASSWORD
+)
+
+// Text is a string Home Assistant can set.
+type Text struct {
+	Base
+	MinLength, MaxLength uint32
+	Pattern              string
+	Mode                 api.TextMode
+
+	// OnCommand runs when Home Assistant sets a value. If nil the new value is applied directly; if
+	// set, the callback owns whether to call Set.
+	OnCommand func(value string)
+
+	mu    sync.RWMutex
+	value string
+	known bool
+}
+
+func (t *Text) Set(v string) {
+	t.mu.Lock()
+	t.value, t.known = v, true
+	t.mu.Unlock()
+	t.publish(t.state())
+}
+
+func (t *Text) Get() string {
+	t.mu.RLock()
+	defer t.mu.RUnlock()
+	return t.value
+}
+
+func (t *Text) command(v string) {
+	if t.OnCommand != nil {
+		t.OnCommand(v)
+		return
+	}
+	t.Set(v)
+}
+
+func (t *Text) describe() proto.Message {
+	return &api.ListEntitiesTextResponse{
+		ObjectId:          t.ObjectID,
+		Key:               t.Key(),
+		Name:              t.Name,
+		Icon:              t.Icon,
+		MinLength:         t.MinLength,
+		MaxLength:         t.MaxLength,
+		Pattern:           t.Pattern,
+		Mode:              t.Mode,
+		EntityCategory:    t.Category,
+		DisabledByDefault: t.DisabledByDefault,
+		DeviceId:          t.DeviceID,
+	}
+}
+
+func (t *Text) state() proto.Message {
+	t.mu.RLock()
+	defer t.mu.RUnlock()
+	return &api.TextStateResponse{
+		Key:          t.Key(),
+		State:        t.value,
+		MissingState: !t.known,
+		DeviceId:     t.DeviceID,
+	}
 }
 
 // Select is a fixed list of options, used for things like the active wake word.

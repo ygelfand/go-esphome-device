@@ -203,6 +203,9 @@ func (e *Entities) Handle(ctx context.Context, c *Conn, msg proto.Message) error
 	case *api.NumberCommandRequest:
 		return dispatchCommand(e, m.GetKey(), func(n *Number) { n.command(m.GetState()) })
 
+	case *api.TextCommandRequest:
+		return dispatchCommand(e, m.GetKey(), func(t *Text) { t.command(m.GetState()) })
+
 	case *api.ButtonCommandRequest:
 		return dispatchCommand(e, m.GetKey(), func(b *Button) { b.command() })
 

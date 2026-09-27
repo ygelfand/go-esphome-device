@@ -430,3 +430,73 @@ func TestASecondCameraIsRefused(t *testing.T) {
 		t.Error("a second camera was accepted")
 	}
 }
+
+func TestTextCommandInvokesCallback(t *testing.T) {
+	text := &Text{Base: Base{ObjectID: "oracle", Name: "Oracle"}}
+	got := make(chan string, 1)
+	text.OnCommand = func(v string) { got <- v }
+
+	ents := NewEntities()
+	ents.Add(text)
+	_, peer := startServer(t, ents)
+	peer.hello()
+	peer.send(&api.TextCommandRequest{Key: text.Key(), State: "https://example/creds"})
+
+	if v := <-got; v != "https://example/creds" {
+		t.Errorf("callback got %q", v)
+	}
+	if text.Get() != "" {
+		t.Errorf("state changed despite a callback being set: %q", text.Get())
+	}
+}
+
+func TestTextCommandAppliesWithoutCallback(t *testing.T) {
+	text := &Text{Base: Base{ObjectID: "oracle", Name: "Oracle"}}
+	ents := NewEntities()
+	ents.Add(text)
+	_, peer := startServer(t, ents)
+	peer.hello()
+	peer.send(&api.SubscribeStatesRequest{})
+	peer.recv()
+
+	peer.send(&api.TextCommandRequest{Key: text.Key(), State: "abc"})
+	msg, ok := peer.recv().(*api.TextStateResponse)
+	if !ok {
+		t.Fatal("expected a TextStateResponse after the command")
+	}
+	if msg.GetState() != "abc" || msg.GetMissingState() {
+		t.Errorf("state = %q missing=%v", msg.GetState(), msg.GetMissingState())
+	}
+}
+
+func TestTextsAreMissingUntilSet(t *testing.T) {
+	sensor := &TextSensor{Base: Base{ObjectID: "source"}}
+	text := &Text{Base: Base{ObjectID: "oracle"}}
+
+	if !sensor.state().(*api.TextSensorStateResponse).GetMissingState() {
+		t.Error("a text sensor never set does not say its state is missing")
+	}
+	if !text.state().(*api.TextStateResponse).GetMissingState() {
+		t.Error("a text never set does not say its state is missing")
+	}
+
+	sensor.Set("")
+	text.Set("")
+	if sensor.state().(*api.TextSensorStateResponse).GetMissingState() {
+		t.Error("a text sensor set to empty says its state is missing")
+	}
+	if text.state().(*api.TextStateResponse).GetMissingState() {
+		t.Error("a text set to empty says its state is missing")
+	}
+}
+
+func TestTextIsListed(t *testing.T) {
+	text := &Text{Base: Base{ObjectID: "oracle", Name: "Oracle"}, MaxLength: 255, Mode: TextPassword}
+	d, ok := text.describe().(*api.ListEntitiesTextResponse)
+	if !ok {
+		t.Fatalf("described as %T", text.describe())
+	}
+	if d.GetObjectId() != "oracle" || d.GetMaxLength() != 255 || d.GetMode() != TextPassword {
+		t.Errorf("described as %+v", d)
+	}
+}
