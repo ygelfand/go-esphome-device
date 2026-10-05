@@ -259,6 +259,8 @@ func (c *Conn) deviceInfo() *api.DeviceInfoResponse {
 		Manufacturer:               c.info.Manufacturer,
 		Model:                      c.info.Model,
 		EsphomeVersion:             cmp.Or(c.info.ESPHomeVersion, DefaultESPHomeVersion),
+		ProjectName:                c.info.ProjectName,
+		ProjectVersion:             c.info.Version,
 		SuggestedArea:              c.info.SuggestedArea,
 		ApiEncryptionSupported:     true,
 		ApiEncryptionProvisionable: c.hooks.provisionable,

@@ -23,6 +23,7 @@ func testInfo() Info {
 		Model:         "Echo Dot 2",
 		Version:       "test",
 		SuggestedArea: "Kitchen",
+		ProjectName:   "EchoLocal.biscuit",
 	}
 }
 
@@ -153,6 +154,12 @@ func TestDeviceInfo(t *testing.T) {
 	}
 	if resp.GetSuggestedArea() != want.SuggestedArea {
 		t.Errorf("suggested_area = %q, want %q", resp.GetSuggestedArea(), want.SuggestedArea)
+	}
+	if resp.GetProjectName() != want.ProjectName {
+		t.Errorf("project_name = %q, want %q", resp.GetProjectName(), want.ProjectName)
+	}
+	if resp.GetProjectVersion() != want.Version {
+		t.Errorf("project_version = %q, want %q", resp.GetProjectVersion(), want.Version)
 	}
 	if !resp.GetApiEncryptionSupported() {
 		t.Error("api_encryption_supported should be true")

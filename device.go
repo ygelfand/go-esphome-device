@@ -33,6 +33,9 @@ type Info struct {
 	Version       string
 	SuggestedArea string
 
+	// ProjectName is "<manufacturer>.<model>"; Home Assistant splits it at the dot into those two.
+	ProjectName string
+
 	// ESPHomeVersion is the ESPHome release to report being. It describes the protocol spoken rather
 	// than the program speaking it, which is why it is separate from Version. Empty reports
 	// DefaultESPHomeVersion.
