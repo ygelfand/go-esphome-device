@@ -191,6 +191,12 @@ func (s *Select) Get() string {
 	return s.value
 }
 
+func (s *Select) SetOptions(options []string) {
+	s.mu.Lock()
+	s.Options = options
+	s.mu.Unlock()
+}
+
 func (s *Select) command(v string) {
 	if s.OnCommand != nil {
 		s.OnCommand(v)
@@ -200,12 +206,15 @@ func (s *Select) command(v string) {
 }
 
 func (s *Select) describe() proto.Message {
+	s.mu.RLock()
+	options := s.Options
+	s.mu.RUnlock()
 	return &api.ListEntitiesSelectResponse{
 		ObjectId:          s.ObjectID,
 		Key:               s.Key(),
 		Name:              s.Name,
 		Icon:              s.Icon,
-		Options:           s.Options,
+		Options:           options,
 		EntityCategory:    s.Category,
 		DisabledByDefault: s.DisabledByDefault,
 		DeviceId:          s.DeviceID,
