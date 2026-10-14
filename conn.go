@@ -8,6 +8,7 @@ import (
 	"io"
 	"log/slog"
 	"sync"
+	"time"
 
 	"google.golang.org/protobuf/proto"
 
@@ -141,12 +142,18 @@ func (c *Conn) Send(msg proto.Message) error {
 
 func (c *Conn) Close() error { return c.transport.Close() }
 
-// leave closes the connection once the message it is handling has been answered.
+// leaveWithin is how long leave waits for the message being handled before it closes the connection
+// anyway, so a handler that never returns cannot hold a reconnect up for good.
+var leaveWithin = 5 * time.Second
+
+// leave closes the connection once the message it is handling has been answered, or after
+// leaveWithin if that takes too long.
 func (c *Conn) leave() {
 	c.mu.Lock()
 	if c.handling {
 		c.leaving = true
 		c.mu.Unlock()
+		time.AfterFunc(leaveWithin, func() { _ = c.Close() })
 		return
 	}
 	c.mu.Unlock()

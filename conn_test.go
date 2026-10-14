@@ -2,9 +2,11 @@ package esphomedevice
 
 import (
 	"context"
+	"errors"
 	"io"
 	"log/slog"
 	"net"
+	"os"
 	"testing"
 	"time"
 
@@ -250,6 +252,33 @@ func TestReconnectDuringAMessageAnswersItFirst(t *testing.T) {
 	_ = peer.conn.SetReadDeadline(time.Now().Add(5 * time.Second))
 	if _, err := peer.transport.Read(); err == nil {
 		t.Error("the connection stayed open after the reconnect")
+	}
+}
+
+func TestReconnectDuringAStuckMessageClosesInTheEnd(t *testing.T) {
+	prev := leaveWithin
+	leaveWithin = 50 * time.Millisecond
+	t.Cleanup(func() { leaveWithin = prev })
+
+	var srv *Server
+	stuck := make(chan struct{})
+	h := HandlerFunc(func(_ context.Context, c *Conn, msg proto.Message) error {
+		if _, ok := msg.(*api.ListEntitiesRequest); !ok {
+			return nil
+		}
+		srv.Reconnect()
+		<-stuck
+		return nil
+	})
+
+	srv, peer := startServer(t, h)
+	t.Cleanup(func() { close(stuck) }) // before the server's own, which waits for the handler
+	peer.hello()
+	peer.send(&api.ListEntitiesRequest{})
+
+	_ = peer.conn.SetReadDeadline(time.Now().Add(2 * time.Second))
+	if _, err := peer.transport.Read(); err == nil || errors.Is(err, os.ErrDeadlineExceeded) {
+		t.Errorf("a handler that never returned held the connection open: %v", err)
 	}
 }
 
