@@ -26,6 +26,7 @@ func testInfo() Info {
 		Version:       "test",
 		SuggestedArea: "Kitchen",
 		ProjectName:   "EchoLocal.biscuit",
+		WebserverPort: 8080,
 	}
 }
 
@@ -176,6 +177,9 @@ func TestDeviceInfo(t *testing.T) {
 	}
 	if !resp.GetApiEncryptionSupported() {
 		t.Error("api_encryption_supported should be true")
+	}
+	if resp.GetWebserverPort() != uint32(want.WebserverPort) {
+		t.Errorf("webserver_port = %d, want %d", resp.GetWebserverPort(), want.WebserverPort)
 	}
 }
 

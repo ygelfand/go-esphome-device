@@ -49,6 +49,10 @@ type Info struct {
 	// proxies; Home Assistant won't register a scanner for them.
 	BluetoothFeatures BluetoothFeature
 
+	// WebserverPort is the port of a web page the device serves, as ESPHome's web_server reports it.
+	// Home Assistant then links the device's page to http://<its address>:<port>. Zero for none.
+	WebserverPort uint16
+
 	// Devices are sub-devices entities can be assigned to, by Base.DeviceID. Home Assistant shows
 	// each as its own device page under this one.
 	Devices []Device
