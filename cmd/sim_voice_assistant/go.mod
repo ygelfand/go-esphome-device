@@ -1,6 +1,6 @@
 module github.com/ygelfand/go-esphome-device/cmd/sim_voice_assistant
 
-go 1.26
+go 1.27
 
 require (
 	github.com/ebitengine/oto/v3 v3.4.0
