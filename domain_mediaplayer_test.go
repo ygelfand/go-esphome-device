@@ -47,7 +47,7 @@ func TestMediaPlayerDescribeCarriesFeatures(t *testing.T) {
 	if msg.GetFeatureFlags() != want {
 		t.Errorf("feature_flags = %d, want %d", msg.GetFeatureFlags(), want)
 	}
-	if !msg.GetSupportsPause() {
+	if !msg.GetSupportsPause() { //nolint:staticcheck // read only from API before 1.11
 		t.Error("supports_pause = false, want true")
 	}
 }

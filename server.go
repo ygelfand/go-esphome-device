@@ -47,12 +47,15 @@ type Server struct {
 	// Addr defaults to ":6053".
 	Addr string
 
+	Dial *Dial
+
 	Handler Handler
 	Logger  *slog.Logger
 
 	mu       sync.Mutex
 	listener net.Listener
 	conns    map[*Conn]struct{}
+	dialer   *dialer
 
 	// key is what provisioning left behind, which takes over from PSK for later connections.
 	key *PSK
@@ -124,6 +127,12 @@ func (s *Server) Serve(ctx context.Context, ln net.Listener) error {
 
 	var wg sync.WaitGroup
 	defer wg.Wait()
+	defer cancel()
+
+	if s.Dial != nil {
+		s.dialer = newDialer(s, *s.Dial)
+		wg.Go(func() { s.dialer.run(ctx, &wg) })
+	}
 
 	for {
 		nc, err := ln.Accept()
@@ -159,25 +168,50 @@ func (b bounded) Write(p []byte) (int, error) {
 }
 
 func (s *Server) serveConn(ctx context.Context, nc net.Conn) {
-	log := s.logger().With("peer", nc.RemoteAddr().String())
 	if s.WriteTimeout > 0 {
 		nc = bounded{Conn: nc, d: s.WriteTimeout}
 	}
 
 	transport, err := s.transport(nc)
 	if err != nil {
-		log.Info("connection closed", "err", err)
+		s.logger().Info("connection closed", "peer", nc.RemoteAddr().String(), "err", err)
 		return
 	}
+	s.serveTransport(ctx, nc, transport, nil)
+}
 
-	c := newConn(transport, s.Info, s.Handler, log, hooks{
+func (s *Server) serveTransport(
+	ctx context.Context,
+	nc net.Conn,
+	transport wire.Transport,
+	helloed func(),
+) bool {
+	log := s.logger().With("peer", nc.RemoteAddr().String())
+	hk := hooks{
 		setKey:        s.setKey,
 		subscribed:    s.OnSubscribed,
+		helloed:       helloed,
 		provisionable: s.adopting(),
-	})
+		dialBack:      s.dialer != nil,
+	}
+	arrived := false
+	if psk := s.psk(); s.dialer != nil && psk != nil && !psk.IsZero() {
+		hk.target = func() {
+			if !arrived {
+				arrived = true
+				s.dialer.arrived(nc.RemoteAddr())
+			}
+		}
+	}
+	c := newConn(transport, s.Info, s.Handler, log, hk)
 
 	s.track(c, true)
 	defer s.track(c, false)
+	defer func() {
+		if arrived {
+			s.dialer.left()
+		}
+	}()
 	defer func() {
 		if cc, ok := s.Handler.(ConnCloser); ok {
 			cc.ConnClosed(c)
@@ -185,15 +219,17 @@ func (s *Server) serveConn(ctx context.Context, nc net.Conn) {
 	}()
 	defer func() { _ = c.Close() }()
 
-	if err := c.serve(ctx); err != nil && !errors.Is(err, context.Canceled) {
-		if errors.Is(err, wire.ErrPlaintextAttempted) {
-			s.logPlaintextMismatch(log)
-			return
-		}
+	err := c.serve(ctx)
+	authenticated := c.helloDone()
+	switch {
+	case err == nil || errors.Is(err, context.Canceled):
+		log.Debug("connection closed")
+	case errors.Is(err, wire.ErrPlaintextAttempted):
+		s.logPlaintextMismatch(log)
+	default:
 		log.Info("connection closed", "err", err)
-		return
 	}
-	log.Debug("connection closed")
+	return authenticated
 }
 
 func (s *Server) logPlaintextMismatch(log *slog.Logger) {

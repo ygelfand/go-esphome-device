@@ -59,7 +59,10 @@ type Conn struct {
 type hooks struct {
 	setKey        func(PSK) error
 	subscribed    func()
+	helloed       func()
+	target        func()
 	provisionable bool
+	dialBack      bool
 }
 
 func newConn(t wire.Transport, info Info, h Handler, log *slog.Logger, hk hooks) *Conn {
@@ -255,11 +258,23 @@ func (c *Conn) handle(ctx context.Context, msg proto.Message) error {
 	return c.handler.Handle(ctx, c, msg)
 }
 
+func (c *Conn) helloDone() bool {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	return c.helloCompleted
+}
+
 func (c *Conn) onHello(m *api.HelloRequest) error {
 	c.mu.Lock()
 	c.clientInfo = m.GetClientInfo()
 	c.helloCompleted = true
 	c.mu.Unlock()
+	if c.hooks.helloed != nil {
+		c.hooks.helloed()
+	}
+	if m.GetOutgoingConnectionTarget() && c.hooks.target != nil {
+		c.hooks.target()
+	}
 
 	c.log.Debug("hello",
 		"client", m.GetClientInfo(),
@@ -280,19 +295,20 @@ func (c *Conn) deviceInfo() *api.DeviceInfoResponse {
 	}
 
 	return &api.DeviceInfoResponse{
-		Devices:                    devices,
-		Name:                       c.info.Name,
-		FriendlyName:               c.info.FriendlyName,
-		MacAddress:                 c.info.MACAddress,
-		Manufacturer:               c.info.Manufacturer,
-		Model:                      c.info.Model,
-		EsphomeVersion:             cmp.Or(c.info.ESPHomeVersion, DefaultESPHomeVersion),
-		ProjectName:                c.info.ProjectName,
-		ProjectVersion:             c.info.Version,
-		SuggestedArea:              c.info.SuggestedArea,
-		ApiEncryptionSupported:     true,
-		ApiEncryptionProvisionable: c.hooks.provisionable,
-		VoiceAssistantFeatureFlags: uint32(c.info.VoiceFeatures),
-		BluetoothProxyFeatureFlags: uint32(c.info.BluetoothFeatures),
+		Devices:                        devices,
+		Name:                           c.info.Name,
+		FriendlyName:                   c.info.FriendlyName,
+		MacAddress:                     c.info.MACAddress,
+		Manufacturer:                   c.info.Manufacturer,
+		Model:                          c.info.Model,
+		EsphomeVersion:                 cmp.Or(c.info.ESPHomeVersion, DefaultESPHomeVersion),
+		ProjectName:                    c.info.ProjectName,
+		ProjectVersion:                 c.info.Version,
+		SuggestedArea:                  c.info.SuggestedArea,
+		ApiEncryptionSupported:         true,
+		ApiEncryptionProvisionable:     c.hooks.provisionable,
+		ApiOutgoingConnectionSupported: c.hooks.dialBack,
+		VoiceAssistantFeatureFlags:     uint32(c.info.VoiceFeatures),
+		BluetoothProxyFeatureFlags:     uint32(c.info.BluetoothFeatures),
 	}
 }

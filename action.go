@@ -16,8 +16,9 @@ import (
 // the answer as JSON and gives it to whoever called with return_response, so Answers must marshal to a
 // JSON object.
 type Action struct {
-	Name string
-	Args []Arg
+	Name        string
+	Description string
+	Args        []Arg
 
 	// Run does the work. What it returns becomes the answer; nil means there is none. An error reaches
 	// the caller as a failed action with its message.
@@ -39,8 +40,10 @@ const (
 )
 
 type Arg struct {
-	Name string
-	Type ArgType
+	Name        string
+	Type        ArgType
+	Description string
+	Example     string
 }
 
 // Call is one invocation's arguments, by name.
@@ -110,7 +113,12 @@ func (a *Action) key() uint32 { return fnv1("action:" + a.Name) }
 func (a *Action) describe() proto.Message {
 	args := make([]*api.ListEntitiesServicesArgument, 0, len(a.Args))
 	for _, arg := range a.Args {
-		args = append(args, &api.ListEntitiesServicesArgument{Name: arg.Name, Type: wireType(arg.Type)})
+		args = append(args, &api.ListEntitiesServicesArgument{
+			Name:        arg.Name,
+			Type:        wireType(arg.Type),
+			Description: arg.Description,
+			Example:     arg.Example,
+		})
 	}
 
 	answers := api.SupportsResponseType_SUPPORTS_RESPONSE_NONE
@@ -120,6 +128,7 @@ func (a *Action) describe() proto.Message {
 
 	return &api.ListEntitiesServicesResponse{
 		Name:             a.Name,
+		Description:      a.Description,
 		Key:              a.key(),
 		Args:             args,
 		SupportsResponse: answers,

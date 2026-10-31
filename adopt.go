@@ -67,7 +67,7 @@ func (s *Server) transport(nc net.Conn) (wire.Transport, error) {
 		if psk == nil {
 			return wire.NewPlaintext(nc), nil
 		}
-		return wire.NewNoise(nc, psk[:], s.Info.Name), nil
+		return wire.NewNoise(nc, psk[:], s.Info.Name, helloMAC(s.Info.MACAddress)), nil
 	}
 
 	if err := nc.SetReadDeadline(time.Now().Add(sniffFor)); err != nil {
@@ -87,5 +87,5 @@ func (s *Server) transport(nc net.Conn) (wire.Transport, error) {
 	if first[0] == plaintextFirst {
 		return wire.NewPlaintext(conn), nil
 	}
-	return wire.NewNoise(conn, psk[:], s.Info.Name), nil
+	return wire.NewNoise(conn, psk[:], s.Info.Name, helloMAC(s.Info.MACAddress)), nil
 }

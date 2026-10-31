@@ -193,11 +193,12 @@ func (p *MediaPlayer) command(m *api.MediaPlayerCommandRequest) {
 
 func (p *MediaPlayer) describe() proto.Message {
 	return &api.ListEntitiesMediaPlayerResponse{
-		ObjectId:          p.ObjectID,
-		Key:               p.Key(),
-		Name:              p.Name,
-		Icon:              p.Icon,
-		SupportsPause:     p.SupportsPause,
+		ObjectId:      p.ObjectID,
+		Key:           p.Key(),
+		Name:          p.Name,
+		Icon:          p.Icon,
+		SupportsPause: p.SupportsPause, //nolint:staticcheck // read only from API before 1.11
+
 		EntityCategory:    p.Category,
 		DisabledByDefault: p.DisabledByDefault,
 		DeviceId:          p.DeviceID,

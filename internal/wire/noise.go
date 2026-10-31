@@ -48,20 +48,42 @@ type Noise struct {
 	r    *bufio.Reader
 	psk  []byte
 	name string
+	mac  string
+
+	announced bool
 
 	enc, dec *noise.CipherState
 	wmu      sync.Mutex
 	buf      []byte
 }
 
-func NewNoise(rw io.ReadWriteCloser, psk []byte, deviceName string) *Noise {
+// The server hello carries the MAC as twelve lowercase hex digits.
+func NewNoise(rw io.ReadWriteCloser, psk []byte, deviceName, mac string) *Noise {
 	return &Noise{
 		rw:   rw,
 		r:    bufio.NewReader(rw),
 		psk:  psk,
 		name: deviceName,
+		mac:  mac,
 		buf:  make([]byte, 0, 1024),
 	}
+}
+
+func (n *Noise) Announce() error {
+	if err := n.writePacket(n.hello()); err != nil {
+		return err
+	}
+	n.announced = true
+	return nil
+}
+
+func (n *Noise) hello() []byte {
+	hello := make([]byte, 0, len(n.name)+len(n.mac)+3)
+	hello = append(hello, handshakeMsg+1) // 0x01 introduces the name
+	hello = append(hello, n.name...)
+	hello = append(hello, 0x00)
+	hello = append(hello, n.mac...)
+	return append(hello, 0x00)
 }
 
 func (n *Noise) Handshake() error {
@@ -88,12 +110,10 @@ func (n *Noise) Handshake() error {
 		}
 		return err
 	}
-	hello := make([]byte, 0, len(n.name)+2)
-	hello = append(hello, handshakeMsg+1) // 0x01 introduces the name
-	hello = append(hello, n.name...)
-	hello = append(hello, 0x00)
-	if err := n.writePacket(hello); err != nil {
-		return err
+	if !n.announced {
+		if err := n.writePacket(n.hello()); err != nil {
+			return err
+		}
 	}
 
 	body, err := n.readPacket()

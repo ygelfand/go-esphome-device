@@ -72,7 +72,7 @@ func TestNoiseHandshakeAndRoundTrip(t *testing.T) {
 	psk := testPSK()
 	c1, c2 := pipePair(t)
 
-	device := NewNoise(c1, psk, "echolocal-kitchen")
+	device := NewNoise(c1, psk, "echolocal-kitchen", testMAC)
 	errc := make(chan error, 1)
 	go func() { errc <- device.Handshake() }()
 
@@ -84,8 +84,8 @@ func TestNoiseHandshakeAndRoundTrip(t *testing.T) {
 		t.Fatalf("device handshake: %v", err)
 	}
 
-	if client.serverName != "echolocal-kitchen" {
-		t.Errorf("serverName = %q, want %q", client.serverName, "echolocal-kitchen")
+	if client.serverName != "echolocal-kitchen" || client.serverMAC != testMAC {
+		t.Errorf("hello = %q %q, want %q %q", client.serverName, client.serverMAC, "echolocal-kitchen", testMAC)
 	}
 
 	// device -> client
@@ -123,7 +123,7 @@ func TestNoiseMultipleFramesNonceOrder(t *testing.T) {
 	psk := testPSK()
 	c1, c2 := pipePair(t)
 
-	device := NewNoise(c1, psk, "echolocal")
+	device := NewNoise(c1, psk, "echolocal", testMAC)
 	errc := make(chan error, 1)
 	go func() { errc <- device.Handshake() }()
 
@@ -160,7 +160,7 @@ func TestNoiseFrameTooLarge(t *testing.T) {
 	psk := testPSK()
 	c1, c2 := pipePair(t)
 
-	device := NewNoise(c1, psk, "echolocal")
+	device := NewNoise(c1, psk, "echolocal", testMAC)
 	errc := make(chan error, 1)
 	go func() { errc <- device.Handshake() }()
 
@@ -208,7 +208,7 @@ func TestNoiseWrongPSKReportsError(t *testing.T) {
 
 	c1, c2 := pipePair(t)
 
-	device := NewNoise(c1, deviceKey, "echolocal")
+	device := NewNoise(c1, deviceKey, "echolocal", testMAC)
 	errc := make(chan error, 1)
 	go func() { errc <- device.Handshake() }()
 
@@ -236,7 +236,7 @@ func TestNoiseWrongPSKReportsError(t *testing.T) {
 func TestNoisePlaintextAttemptedSendsReject(t *testing.T) {
 	c1, c2 := pipePair(t)
 
-	device := NewNoise(c1, testPSK(), "echolocal")
+	device := NewNoise(c1, testPSK(), "echolocal", testMAC)
 	errc := make(chan error, 1)
 	go func() { errc <- device.Handshake() }()
 
@@ -278,7 +278,7 @@ func TestNoisePlaintextAttemptedSendsReject(t *testing.T) {
 func TestNoiseShortPSK(t *testing.T) {
 	c1, _ := pipePair(t)
 
-	device := NewNoise(c1, []byte("too short"), "echolocal")
+	device := NewNoise(c1, []byte("too short"), "echolocal", testMAC)
 	if err := device.Handshake(); err == nil {
 		t.Error("expected a short psk to be rejected")
 	}
@@ -287,7 +287,7 @@ func TestNoiseShortPSK(t *testing.T) {
 func TestNoiseNotReadyBeforeHandshake(t *testing.T) {
 	c1, _ := pipePair(t)
 
-	device := NewNoise(c1, testPSK(), "echolocal")
+	device := NewNoise(c1, testPSK(), "echolocal", testMAC)
 	if err := device.Write(Frame{Type: 1}); !errors.Is(err, ErrNotReady) {
 		t.Errorf("write err = %v, want ErrNotReady", err)
 	}
@@ -306,6 +306,56 @@ func pipePair(t *testing.T) (net.Conn, net.Conn) {
 	return c1, c2
 }
 
+const testMAC = "a1b2c3d4e5f6"
+
+func TestAnnouncedHelloIsNotSentTwice(t *testing.T) {
+	psk := testPSK()
+	ln, err := net.Listen("tcp", "127.0.0.1:0")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer func() { _ = ln.Close() }()
+	c2, err := net.Dial("tcp", ln.Addr().String())
+	if err != nil {
+		t.Fatal(err)
+	}
+	c1, err := ln.Accept()
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = c1.Close(); _ = c2.Close() })
+	_ = c1.SetDeadline(time.Now().Add(5 * time.Second))
+	_ = c2.SetDeadline(time.Now().Add(5 * time.Second))
+
+	device := NewNoise(c1, psk, "echolocal", testMAC)
+	errc := make(chan error, 1)
+	go func() {
+		if err := device.Announce(); err != nil {
+			errc <- err
+			return
+		}
+		errc <- device.Handshake()
+	}()
+
+	client := newTestInitiator(c2)
+	if err := client.handshake(psk); err != nil {
+		t.Fatalf("client handshake: %v", err)
+	}
+	if err := <-errc; err != nil {
+		t.Fatalf("device handshake: %v", err)
+	}
+	if client.serverMAC != testMAC {
+		t.Errorf("hello MAC = %q, want %q", client.serverMAC, testMAC)
+	}
+
+	want := Frame{Type: 7, Data: []byte("dialed")}
+	go func() { _ = device.Write(want) }()
+	got, err := client.read()
+	if err != nil || got.Type != want.Type || !bytes.Equal(got.Data, want.Data) {
+		t.Fatalf("after an announced handshake got %+v, %v; want %+v", got, err, want)
+	}
+}
+
 func testPSK() []byte {
 	psk := make([]byte, 32)
 	for i := range psk {
@@ -321,6 +371,7 @@ type testInitiator struct {
 	r          *bufio.Reader
 	enc, dec   *noise.CipherState
 	serverName string
+	serverMAC  string
 }
 
 func newTestInitiator(rw io.ReadWriteCloser) *testInitiator {
@@ -348,10 +399,11 @@ func (c *testInitiator) handshake(psk []byte) error {
 	if err != nil {
 		return err
 	}
-	if len(hello) < 2 || hello[0] != 0x01 || hello[len(hello)-1] != 0x00 {
+	parts := bytes.Split(hello[min(len(hello), 1):], []byte{0x00})
+	if len(hello) < 2 || hello[0] != 0x01 || len(parts) != 3 || len(parts[2]) != 0 {
 		return errors.New("malformed hello")
 	}
-	c.serverName = string(hello[1 : len(hello)-1])
+	c.serverName, c.serverMAC = string(parts[0]), string(parts[1])
 
 	msg, _, _, err := hs.WriteMessage([]byte{handshakeMsg}, nil)
 	if err != nil {

@@ -24,11 +24,12 @@ type Switch struct {
 
 	mu    sync.RWMutex
 	value bool
+	known bool
 }
 
 func (s *Switch) Set(v bool) {
 	s.mu.Lock()
-	s.value = v
+	s.value, s.known = v, true
 	s.mu.Unlock()
 	s.publish(s.state())
 }
@@ -62,5 +63,12 @@ func (s *Switch) describe() proto.Message {
 }
 
 func (s *Switch) state() proto.Message {
-	return &api.SwitchStateResponse{Key: s.Key(), State: s.Get(), DeviceId: s.DeviceID}
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	return &api.SwitchStateResponse{
+		Key:          s.Key(),
+		State:        s.value,
+		DeviceId:     s.DeviceID,
+		MissingState: !s.known,
+	}
 }

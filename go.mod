@@ -1,6 +1,6 @@
 module github.com/ygelfand/go-esphome-device
 
-go 1.26
+go 1.27
 
 require (
 	github.com/flynn/noise v1.1.0
