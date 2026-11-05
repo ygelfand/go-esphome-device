@@ -91,6 +91,25 @@ proto: proto-fetch proto-gen ## Fetch and regenerate (make proto REF=2026.7.0)
 proto-version: ## Show which ESPHome release the bindings track
 	@echo $(ESPHOME_VERSION)
 
+##@ Release
+
+LAST := $(shell git tag --list 'v*' --sort=-v:refname 2>/dev/null | head -1)
+NEXT := $(shell echo "$(or $(LAST),v0.0.0)" | awk -F. '{ printf "%s.%s.%d", $$1, $$2, $$3 + 1 }')
+
+.PHONY: release
+release: ## Tag and push the next patch version (make release TAG=v0.1.0 for another)
+	@$(MAKE) --no-print-directory tag TAG=$(or $(TAG),$(NEXT))
+
+.PHONY: tag
+tag:
+	@echo "$(TAG)" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+$$' || { echo "$(TAG) is not vMAJOR.MINOR.PATCH"; exit 1; }
+	@test -z "$$(git status --porcelain)" || { echo "the working tree is dirty"; exit 1; }
+	@git rev-parse -q --verify "refs/tags/$(TAG)" >/dev/null && { echo "$(TAG) already exists"; exit 1; } || true
+	@$(MAKE) --no-print-directory vet test
+	git tag -a "$(TAG)" -m "go-esphome-device $(TAG)"
+	git push origin "$(TAG)"
+	GOPROXY=https://proxy.golang.org go list -m $(GO_MODULE)@$(TAG)
+
 ##@ Help
 
 .PHONY: help
