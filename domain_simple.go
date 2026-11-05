@@ -2,11 +2,29 @@ package esphomedevice
 
 import (
 	"sync"
+	"unicode/utf8"
 
 	"google.golang.org/protobuf/proto"
 
 	"github.com/ygelfand/go-esphome-device/api"
 )
+
+// MaxState is the longest string state, in characters, Home Assistant accepts.
+const MaxState = 255
+
+func fit(s string) string {
+	if utf8.RuneCountInString(s) <= MaxState {
+		return s
+	}
+	n := 0
+	for i := range s {
+		if n == MaxState {
+			return s[:i]
+		}
+		n++
+	}
+	return s
+}
 
 type BinarySensor struct {
 	Base
@@ -47,7 +65,7 @@ func (b *BinarySensor) state() proto.Message {
 }
 
 // TextSensor is a string Home Assistant reads. With no unit or state class its changes appear in the
-// logbook, unlike a numeric sensor's. Home Assistant truncates a state at 255 characters.
+// logbook, unlike a numeric sensor's. Its state is cut to MaxState characters.
 type TextSensor struct {
 	Base
 	DeviceClass string
@@ -89,7 +107,7 @@ func (t *TextSensor) state() proto.Message {
 	defer t.mu.RUnlock()
 	return &api.TextSensorStateResponse{
 		Key:          t.Key(),
-		State:        t.value,
+		State:        fit(t.value),
 		MissingState: !t.known,
 		DeviceId:     t.DeviceID,
 	}
@@ -159,7 +177,7 @@ func (t *Text) state() proto.Message {
 	defer t.mu.RUnlock()
 	return &api.TextStateResponse{
 		Key:          t.Key(),
-		State:        t.value,
+		State:        fit(t.value),
 		MissingState: !t.known,
 		DeviceId:     t.DeviceID,
 	}

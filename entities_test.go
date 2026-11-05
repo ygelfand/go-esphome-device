@@ -3,7 +3,9 @@ package esphomedevice
 import (
 	"bytes"
 	"errors"
+	"strings"
 	"testing"
+	"unicode/utf8"
 
 	"google.golang.org/protobuf/proto"
 
@@ -500,6 +502,31 @@ func TestTextsAreMissingUntilSet(t *testing.T) {
 	}
 	if text.state().(*api.TextStateResponse).GetMissingState() {
 		t.Error("a text set to empty says its state is missing")
+	}
+}
+
+func TestTextStatesStopAtWhatHomeAssistantAccepts(t *testing.T) {
+	sensor := &TextSensor{Base: Base{ObjectID: "source"}}
+	text := &Text{Base: Base{ObjectID: "oracle"}}
+	long := strings.Repeat("é", MaxState+10)
+
+	sensor.Set(long)
+	text.Set(long)
+	for _, got := range []string{
+		sensor.state().(*api.TextSensorStateResponse).GetState(),
+		text.state().(*api.TextStateResponse).GetState(),
+	} {
+		if n := utf8.RuneCountInString(got); n != MaxState || !utf8.ValidString(got) {
+			t.Errorf("state is %d characters, valid=%v, want %d", n, utf8.ValidString(got), MaxState)
+		}
+	}
+	if sensor.Get() != long {
+		t.Error("Get no longer returns the full value")
+	}
+
+	sensor.Set("short")
+	if got := sensor.state().(*api.TextSensorStateResponse).GetState(); got != "short" {
+		t.Errorf("state = %q, want short", got)
 	}
 }
 
