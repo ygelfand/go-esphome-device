@@ -148,8 +148,11 @@ func wireType(t ArgType) api.ServiceArgType {
 	}
 }
 
-// call runs the action and builds the reply. A caller that did not ask for one gets nothing back, which
-// is what makes an action that only does something as cheap as it looks.
+// call runs the action and builds the reply. A caller that gave no call_id gets nothing back, which is
+// what makes an action that only does something as cheap as it looks. One that gave a call_id is waiting
+// for the reply, even without return_response: Home Assistant calls an action that may answer with a
+// call_id every time, and without asking for the answer only when the caller did not want it, then waits
+// for success or failure until it times out. That caller gets both, without the answer's data.
 func (a *Action) call(m *api.ExecuteServiceRequest) proto.Message {
 	named := make(map[string]*api.ExecuteServiceArgument, len(m.GetArgs()))
 	for i, arg := range m.GetArgs() {
@@ -159,7 +162,7 @@ func (a *Action) call(m *api.ExecuteServiceRequest) proto.Message {
 	}
 
 	answer, err := a.Run(Call{args: named})
-	if !m.GetReturnResponse() {
+	if m.GetCallId() == 0 {
 		return nil
 	}
 
@@ -168,7 +171,7 @@ func (a *Action) call(m *api.ExecuteServiceRequest) proto.Message {
 		reply.ErrorMessage = err.Error()
 		return reply
 	}
-	if answer == nil {
+	if answer == nil || !m.GetReturnResponse() {
 		return reply
 	}
 
