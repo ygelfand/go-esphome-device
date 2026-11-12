@@ -160,3 +160,47 @@ func TestActionWithoutRunIsRefused(t *testing.T) {
 		t.Fatal("expected an action with no Run to be refused")
 	}
 }
+
+func TestActionWithACallIDIsAlwaysAnswered(t *testing.T) {
+	fail := false
+	action := &Action{
+		Name:    "timer_start",
+		Answers: true,
+		Run: func(Call) (any, error) {
+			if fail {
+				return nil, errors.New("not a length of time")
+			}
+			return map[string]string{"id": "local:1"}, nil
+		},
+	}
+
+	ents := NewEntities()
+	if err := ents.AddActions(action); err != nil {
+		t.Fatal(err)
+	}
+
+	_, peer := startServer(t, ents)
+	peer.hello()
+
+	peer.send(&api.ExecuteServiceRequest{Key: action.key(), CallId: 9})
+	reply, ok := peer.recv().(*api.ExecuteServiceResponse)
+	if !ok {
+		t.Fatal("expected a reply to a call_id without return_response")
+	}
+	if reply.GetCallId() != 9 || !reply.GetSuccess() {
+		t.Fatalf("call_id = %d, success = %v", reply.GetCallId(), reply.GetSuccess())
+	}
+	if len(reply.GetResponseData()) != 0 {
+		t.Errorf("answered %q to a caller that did not ask for it", reply.GetResponseData())
+	}
+
+	fail = true
+	peer.send(&api.ExecuteServiceRequest{Key: action.key(), CallId: 10})
+	reply, ok = peer.recv().(*api.ExecuteServiceResponse)
+	if !ok {
+		t.Fatal("expected a reply to a failed call")
+	}
+	if reply.GetCallId() != 10 || reply.GetSuccess() || reply.GetErrorMessage() != "not a length of time" {
+		t.Errorf("call_id = %d, success = %v, error = %q", reply.GetCallId(), reply.GetSuccess(), reply.GetErrorMessage())
+	}
+}
