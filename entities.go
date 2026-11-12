@@ -178,10 +178,6 @@ func (e *Entities) Handle(ctx context.Context, c *Conn, msg proto.Message) error
 	case *api.ExecuteServiceRequest:
 		action, ok := e.action(m.GetKey())
 		if !ok {
-			// One the device no longer has: a caller waiting on its call_id is told so, not left to time out.
-			if m.GetCallId() != 0 {
-				return c.Send(&api.ExecuteServiceResponse{CallId: m.GetCallId(), ErrorMessage: "no such action"})
-			}
 			return nil
 		}
 		if reply := action.call(m); reply != nil {

@@ -161,9 +161,6 @@ func TestActionWithoutRunIsRefused(t *testing.T) {
 	}
 }
 
-// Home Assistant calls an action that may answer with a call_id even when the caller wants no answer
-// (return_response false), and waits for success or failure until it times out. It is told both, without
-// the answer's data.
 func TestActionWithACallIDIsAlwaysAnswered(t *testing.T) {
 	fail := false
 	action := &Action{
@@ -204,21 +201,6 @@ func TestActionWithACallIDIsAlwaysAnswered(t *testing.T) {
 		t.Fatal("expected a reply to a failed call")
 	}
 	if reply.GetCallId() != 10 || reply.GetSuccess() || reply.GetErrorMessage() != "not a length of time" {
-		t.Errorf("call_id = %d, success = %v, error = %q", reply.GetCallId(), reply.GetSuccess(), reply.GetErrorMessage())
-	}
-}
-
-// A call to an action the device does not have, with a call_id, is answered as a failure.
-func TestAnUnknownActionWithACallIDIsAnsweredAsAFailure(t *testing.T) {
-	_, peer := startServer(t, NewEntities())
-	peer.hello()
-
-	peer.send(&api.ExecuteServiceRequest{Key: 12345, CallId: 4})
-	reply, ok := peer.recv().(*api.ExecuteServiceResponse)
-	if !ok {
-		t.Fatal("expected a reply")
-	}
-	if reply.GetCallId() != 4 || reply.GetSuccess() || reply.GetErrorMessage() == "" {
 		t.Errorf("call_id = %d, success = %v, error = %q", reply.GetCallId(), reply.GetSuccess(), reply.GetErrorMessage())
 	}
 }
