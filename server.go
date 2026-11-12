@@ -117,17 +117,17 @@ func (s *Server) Serve(ctx context.Context, ln net.Listener) error {
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
 
-	// Closing the listener alone is not enough: connection goroutines sit in a blocking
-	// read, so shutdown would wait on them forever.
-	go func() {
-		<-ctx.Done()
-		_ = ln.Close()
-		s.closeConns()
-	}()
-
 	var wg sync.WaitGroup
 	defer wg.Wait()
 	defer cancel()
+
+	// Closing the listener alone is not enough: connection goroutines sit in a blocking
+	// read, so shutdown would wait on them forever.
+	wg.Go(func() {
+		<-ctx.Done()
+		_ = ln.Close()
+		s.closeConns()
+	})
 
 	if s.Dial != nil {
 		s.dialer = newDialer(s, *s.Dial)
