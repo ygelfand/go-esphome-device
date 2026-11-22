@@ -69,6 +69,15 @@ func NewNoise(rw io.ReadWriteCloser, psk []byte, deviceName, mac string) *Noise 
 	}
 }
 
+// Keyed reports whether the key is a provisioned one, not the reserved all-zeros key.
+func (n *Noise) Keyed() bool {
+	var acc byte
+	for _, b := range n.psk {
+		acc |= b
+	}
+	return len(n.psk) == 32 && acc != 0
+}
+
 func (n *Noise) Announce() error {
 	if err := n.writePacket(n.hello()); err != nil {
 		return err
