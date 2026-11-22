@@ -32,7 +32,10 @@ func (f HandlerFunc) Handle(ctx context.Context, c *Conn, msg proto.Message) err
 	return f(ctx, c, msg)
 }
 
-var ErrDisconnect = errors.New("esphomedevice: client disconnected")
+var (
+	ErrDisconnect    = errors.New("esphomedevice: client disconnected")
+	ErrFrameTooLarge = wire.ErrFrameTooLarge
+)
 
 // Conn is a single Home Assistant connection. Writes are safe from multiple goroutines;
 // the ESPHome transports carry a per-direction nonce, so frames must not interleave.

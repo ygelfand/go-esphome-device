@@ -3,6 +3,7 @@ package esphomedevice
 import (
 	"context"
 	"errors"
+	"fmt"
 	"io"
 	"log/slog"
 	"net"
@@ -392,5 +393,18 @@ func TestLifecycleMessagesBypassHandler(t *testing.T) {
 	case msg := <-got:
 		t.Errorf("handler should not see lifecycle messages, got %T", msg)
 	case <-time.After(200 * time.Millisecond):
+	}
+}
+
+type refusingTransport struct{ wire.Transport }
+
+func (refusingTransport) Write(wire.Frame) error {
+	return fmt.Errorf("%w: 70000 bytes", wire.ErrFrameTooLarge)
+}
+
+func TestSendReportsAMessageTooLargeForOneFrame(t *testing.T) {
+	c := &Conn{transport: refusingTransport{}}
+	if err := c.Send(&api.PingResponse{}); !errors.Is(err, ErrFrameTooLarge) {
+		t.Fatalf("send err = %v, want ErrFrameTooLarge", err)
 	}
 }
