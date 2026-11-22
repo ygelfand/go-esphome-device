@@ -97,6 +97,13 @@ func (c *Conn) setEncryptionKey(raw []byte) bool {
 	return true
 }
 
+// Encrypted reports whether the connection is Noise with a provisioned key. The reserved
+// all-zeros key encrypts too, but anyone can complete that handshake.
+func (c *Conn) Encrypted() bool {
+	k, ok := c.transport.(interface{ Keyed() bool })
+	return ok && k.Keyed()
+}
+
 // ClientInfo reports the client's self-description from HelloRequest, e.g. "Home Assistant".
 func (c *Conn) ClientInfo() string {
 	c.mu.Lock()
@@ -252,6 +259,16 @@ func (c *Conn) dispatch(ctx context.Context, msg proto.Message) error {
 
 	case *api.NoiseEncryptionSetKeyRequest:
 		return c.Send(&api.NoiseEncryptionSetKeyResponse{Success: c.setEncryptionKey(m.GetKey())})
+
+	case *api.DeviceCapabilitiesRequest:
+		return c.Send(c.capabilities())
+
+	case *api.SendspinPairingTokenRequest:
+		if c.info.Sendspin == nil {
+			// a device without Sendspin pairing never answers, as ESPHome's don't
+			return c.handle(ctx, msg)
+		}
+		return c.Send(c.sendspinToken())
 
 	default:
 		return c.handle(ctx, msg)

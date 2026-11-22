@@ -10,10 +10,12 @@ import (
 )
 
 // API version we advertise. Major mismatches make Home Assistant disconnect; minor
-// mismatches only warn.
+// mismatches only warn. From 1.15 Home Assistant asks for the device's capabilities with
+// DeviceCapabilitiesRequest instead of reading them from the device info; the connection
+// answers that itself (capabilities.go).
 const (
 	APIVersionMajor = 1
-	APIVersionMinor = 12
+	APIVersionMinor = 15
 )
 
 const DefaultPort = 6053
@@ -56,6 +58,24 @@ type Info struct {
 	// Devices are sub-devices entities can be assigned to, by Base.DeviceID. Home Assistant shows
 	// each as its own device page under this one.
 	Devices []Device
+
+	// Sendspin, when set, hands Home Assistant the device's Sendspin pairing token, so a Sendspin
+	// server Home Assistant knows (Music Assistant) can pair with the device without anyone typing
+	// the token in. It is called for each capabilities and token request. Nil for a device without
+	// a Sendspin client; Home Assistant then never asks.
+	Sendspin func() SendspinPairing
+}
+
+// SendspinPairing is what a device's Sendspin client tells Home Assistant about pairing.
+type SendspinPairing struct {
+	// ClientID is the Sendspin client id: base64url of the client's static public key. Empty
+	// until the client has started; Home Assistant asks again later.
+	ClientID string
+	// Token is the pairing token. It is a long-lived secret: it only goes out over a connection
+	// encrypted with a provisioned key, and is never logged.
+	Token string
+	// Disabled is a Sendspin client that is switched off.
+	Disabled bool
 }
 
 // Device is a sub-device. ID must be non-zero and unique, since zero means the device itself.
