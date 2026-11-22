@@ -12,6 +12,15 @@ import (
 	"github.com/flynn/noise"
 )
 
+func TestNoiseKeyed(t *testing.T) {
+	if NewNoise(nil, make([]byte, 32), "n", "m").Keyed() {
+		t.Error("the zero key counts as provisioned")
+	}
+	if !NewNoise(nil, bytes.Repeat([]byte{7}, 32), "n", "m").Keyed() {
+		t.Error("a real key does not count as provisioned")
+	}
+}
+
 func TestPlaintextRoundTrip(t *testing.T) {
 	c1, c2 := pipePair(t)
 

@@ -1,7 +1,6 @@
 package esphomedevice
 
 import (
-	"bytes"
 	"context"
 	"log/slog"
 	"net"
@@ -36,7 +35,6 @@ func TestCapabilitiesMatchTheDeviceInfo(t *testing.T) {
 	}
 }
 
-// startSendspin is startServer for a voice satellite with a Sendspin client.
 func startSendspin(t *testing.T, h Handler, p SendspinPairing) *testPeer {
 	t.Helper()
 	ln, err := net.Listen("tcp", "127.0.0.1:0")
@@ -99,7 +97,6 @@ func TestSendspinTokenWithoutSendspinGoesToTheHandler(t *testing.T) {
 	}
 }
 
-// keyed is a transport encrypted with a provisioned key, or with the zero key.
 type keyed struct {
 	wire.Transport
 	real bool
@@ -118,7 +115,10 @@ func TestSendspinTokenStatus(t *testing.T) {
 		{"zero key", false, SendspinPairing{Token: "SP:0secret"}, api.SendspinPairingTokenStatus_SENDSPIN_PAIRING_TOKEN_STATUS_ENCRYPTION_REQUIRED, ""},
 		{"ok", true, SendspinPairing{ClientID: "c", Token: "SP:0secret"}, api.SendspinPairingTokenStatus_SENDSPIN_PAIRING_TOKEN_STATUS_OK, "SP:0secret"},
 		{"not started", true, SendspinPairing{}, api.SendspinPairingTokenStatus_SENDSPIN_PAIRING_TOKEN_STATUS_NOT_READY, ""},
-		{"switched off", true, SendspinPairing{Disabled: true, Token: "SP:0secret"}, api.SendspinPairingTokenStatus_SENDSPIN_PAIRING_TOKEN_STATUS_DISABLED, ""},
+		{"switched off", true, SendspinPairing{Status: api.SendspinPairingTokenStatus_SENDSPIN_PAIRING_TOKEN_STATUS_DISABLED}, api.SendspinPairingTokenStatus_SENDSPIN_PAIRING_TOKEN_STATUS_DISABLED, ""},
+		{"switched off with a token", true, SendspinPairing{Token: "SP:0secret", Status: api.SendspinPairingTokenStatus_SENDSPIN_PAIRING_TOKEN_STATUS_DISABLED}, api.SendspinPairingTokenStatus_SENDSPIN_PAIRING_TOKEN_STATUS_OK, "SP:0secret"},
+		{"failed", true, SendspinPairing{Status: api.SendspinPairingTokenStatus_SENDSPIN_PAIRING_TOKEN_STATUS_FAILED}, api.SendspinPairingTokenStatus_SENDSPIN_PAIRING_TOKEN_STATUS_FAILED, ""},
+		{"ok without a token", true, SendspinPairing{Status: api.SendspinPairingTokenStatus_SENDSPIN_PAIRING_TOKEN_STATUS_OK}, api.SendspinPairingTokenStatus_SENDSPIN_PAIRING_TOKEN_STATUS_NOT_READY, ""},
 	} {
 		p := tc.p
 		c := newConn(keyed{real: tc.real}, Info{Sendspin: func() SendspinPairing { return p }}, nil, slog.New(slog.DiscardHandler), hooks{})
@@ -126,18 +126,5 @@ func TestSendspinTokenStatus(t *testing.T) {
 		if r.GetStatus() != tc.want || r.GetToken() != tc.token {
 			t.Errorf("%s: status %v token %q, want %v %q", tc.name, r.GetStatus(), r.GetToken(), tc.want, tc.token)
 		}
-	}
-}
-
-func TestNoiseKeyed(t *testing.T) {
-	var a, b net.Conn
-	a, b = net.Pipe()
-	defer a.Close()
-	defer b.Close()
-	if wire.NewNoise(a, make([]byte, 32), "n", "m").Keyed() {
-		t.Error("the zero key counts as provisioned")
-	}
-	if !wire.NewNoise(a, bytes.Repeat([]byte{7}, 32), "n", "m").Keyed() {
-		t.Error("a real key does not count as provisioned")
 	}
 }

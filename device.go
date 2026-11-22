@@ -7,12 +7,12 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
+
+	"github.com/ygelfand/go-esphome-device/api"
 )
 
 // API version we advertise. Major mismatches make Home Assistant disconnect; minor
-// mismatches only warn. From 1.15 Home Assistant asks for the device's capabilities with
-// DeviceCapabilitiesRequest instead of reading them from the device info; the connection
-// answers that itself (capabilities.go).
+// mismatches only warn.
 const (
 	APIVersionMajor = 1
 	APIVersionMinor = 15
@@ -59,23 +59,18 @@ type Info struct {
 	// each as its own device page under this one.
 	Devices []Device
 
-	// Sendspin, when set, hands Home Assistant the device's Sendspin pairing token, so a Sendspin
-	// server Home Assistant knows (Music Assistant) can pair with the device without anyone typing
-	// the token in. It is called for each capabilities and token request. Nil for a device without
-	// a Sendspin client; Home Assistant then never asks.
+	// Sendspin reports the Sendspin client's pairing state on each capabilities and token request.
 	Sendspin func() SendspinPairing
 }
 
-// SendspinPairing is what a device's Sendspin client tells Home Assistant about pairing.
+// SendspinPairing is the Sendspin client's pairing state.
 type SendspinPairing struct {
-	// ClientID is the Sendspin client id: base64url of the client's static public key. Empty
-	// until the client has started; Home Assistant asks again later.
+	// ClientID is base64url of the client's static public key, empty until the client starts.
 	ClientID string
-	// Token is the pairing token. It is a long-lived secret: it only goes out over a connection
-	// encrypted with a provisioned key, and is never logged.
+	// Token is the pairing token, sent only over a connection with a provisioned key.
 	Token string
-	// Disabled is a Sendspin client that is switched off.
-	Disabled bool
+	// Status is reported while Token is empty.
+	Status api.SendspinPairingTokenStatus
 }
 
 // Device is a sub-device. ID must be non-zero and unique, since zero means the device itself.

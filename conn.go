@@ -97,8 +97,7 @@ func (c *Conn) setEncryptionKey(raw []byte) bool {
 	return true
 }
 
-// Encrypted reports whether the connection is Noise with a provisioned key. The reserved
-// all-zeros key encrypts too, but anyone can complete that handshake.
+// Encrypted reports whether the connection is Noise with a provisioned key.
 func (c *Conn) Encrypted() bool {
 	k, ok := c.transport.(interface{ Keyed() bool })
 	return ok && k.Keyed()
@@ -265,7 +264,6 @@ func (c *Conn) dispatch(ctx context.Context, msg proto.Message) error {
 
 	case *api.SendspinPairingTokenRequest:
 		if c.info.Sendspin == nil {
-			// a device without Sendspin pairing never answers, as ESPHome's don't
 			return c.handle(ctx, msg)
 		}
 		return c.Send(c.sendspinToken())
