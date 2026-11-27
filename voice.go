@@ -25,7 +25,13 @@ const (
 	FeatureAnnounce          VoiceFeature = 1 << 4
 	FeatureStartConversation VoiceFeature = 1 << 5
 	FeatureMultiChannelAudio VoiceFeature = 1 << 6
+	FeatureWakeWordAudio     VoiceFeature = 1 << 7
 )
+
+// aioesphomeapi sends API audio as 1<<2, not the proto's value 1.
+const subscribeAPIAudio = uint32(api.VoiceAssistantSubscribeFlag_VOICE_ASSISTANT_SUBSCRIBE_API_AUDIO) | 1<<2
+
+const subscribeWakeWordAudio = uint32(api.VoiceAssistantSubscribeFlag_VOICE_ASSISTANT_SUBSCRIBE_WAKE_WORD_AUDIO)
 
 // DefaultVoiceFeatures matches what ESPHome always sets. The rest are conditional there:
 // Speaker when a speaker is configured, Timers when timers are, MultiChannelAudio when a
@@ -82,9 +88,19 @@ type TimerEvent struct {
 	IsActive     bool
 }
 
+// WakeWordAudio is a detection and the bytes buffered before it on audio channels 0 and 1.
+type WakeWordAudio struct {
+	ID          string
+	Probability float32
+	Cutoff      float32
+	Bytes       uint32
+	Bytes2      uint32
+}
+
 var (
-	ErrNoSubscriber   = errors.New("esphomedevice: no voice assistant subscriber")
-	ErrTurnInProgress = errors.New("esphomedevice: a voice turn is already running")
+	ErrNoSubscriber         = errors.New("esphomedevice: no voice assistant subscriber")
+	ErrTurnInProgress       = errors.New("esphomedevice: a voice turn is already running")
+	ErrWakeWordAudioUnasked = errors.New("esphomedevice: the subscriber did not ask for wake word audio")
 )
 
 // VoiceSatellite implements the device half of the voice_assistant flow. The device
@@ -128,10 +144,11 @@ type VoiceSatellite struct {
 	// goroutine — adopt on the next request instead of blocking this one.
 	OnExternalWakeWords func([]ExternalWakeWord) []WakeWord
 
-	mu       sync.Mutex
-	conn     *Conn
-	apiAudio bool
-	turnOpen bool
+	mu            sync.Mutex
+	conn          *Conn
+	apiAudio      bool
+	wakeWordAudio bool
+	turnOpen      bool
 }
 
 // Subscribed reports whether Home Assistant is listening for voice turns.
@@ -149,15 +166,50 @@ func (v *VoiceSatellite) APIAudio() bool {
 	return v.apiAudio
 }
 
+// WakeWordAudio reports whether the current subscription asked for buffered wake word audio.
+func (v *VoiceSatellite) WakeWordAudio() bool {
+	v.mu.Lock()
+	defer v.mu.Unlock()
+	return v.conn != nil && v.wakeWordAudio
+}
+
 // StartTurn tells Home Assistant a wake word fired and a turn is beginning. The device
 // decides when to call this, so any pre-flight work — such as winning an arbitration
 // claim — happens before it and is invisible to Home Assistant.
 func (v *VoiceSatellite) StartTurn(wakeWordPhrase string, settings *api.VoiceAssistantAudioSettings) error {
+	return v.start(&api.VoiceAssistantRequest{WakeWordPhrase: wakeWordPhrase}, settings, false)
+}
+
+// StartTurnFromWakeWord starts a turn whose audio, sent at once without awaiting the response, begins with w's buffer.
+func (v *VoiceSatellite) StartTurnFromWakeWord(
+	wakeWordPhrase string,
+	settings *api.VoiceAssistantAudioSettings,
+	w WakeWordAudio,
+) error {
+	return v.start(&api.VoiceAssistantRequest{
+		WakeWordPhrase:            wakeWordPhrase,
+		WakeWordId:                w.ID,
+		WakeWordAudioBytes:        w.Bytes,
+		WakeWordProbability:       w.Probability,
+		WakeWordProbabilityCutoff: w.Cutoff,
+		WakeWordAudioBytes2:       w.Bytes2,
+	}, settings, true)
+}
+
+func (v *VoiceSatellite) start(
+	req *api.VoiceAssistantRequest,
+	settings *api.VoiceAssistantAudioSettings,
+	wakeWordAudio bool,
+) error {
 	v.mu.Lock()
 	conn := v.conn
 	if conn == nil {
 		v.mu.Unlock()
 		return ErrNoSubscriber
+	}
+	if wakeWordAudio && !v.wakeWordAudio {
+		v.mu.Unlock()
+		return ErrWakeWordAudioUnasked
 	}
 	if v.turnOpen {
 		v.mu.Unlock()
@@ -169,11 +221,9 @@ func (v *VoiceSatellite) StartTurn(wakeWordPhrase string, settings *api.VoiceAss
 	if settings == nil {
 		settings = &api.VoiceAssistantAudioSettings{VolumeMultiplier: 1}
 	}
-	err := conn.Send(&api.VoiceAssistantRequest{
-		Start:          true,
-		WakeWordPhrase: wakeWordPhrase,
-		AudioSettings:  settings,
-	})
+	req.Start = true
+	req.AudioSettings = settings
+	err := conn.Send(req)
 	if err != nil {
 		v.mu.Lock()
 		v.turnOpen = false
@@ -255,7 +305,8 @@ func (v *VoiceSatellite) Handle(ctx context.Context, c *Conn, msg proto.Message)
 			return nil
 		case m.GetSubscribe():
 			v.conn = c
-			v.apiAudio = m.GetFlags()&uint32(api.VoiceAssistantSubscribeFlag_VOICE_ASSISTANT_SUBSCRIBE_API_AUDIO) != 0
+			v.apiAudio = m.GetFlags()&subscribeAPIAudio != 0
+			v.wakeWordAudio = m.GetFlags()&subscribeWakeWordAudio != 0
 		case v.conn == c:
 			v.conn = nil
 			v.turnOpen = false
@@ -286,7 +337,8 @@ func (v *VoiceSatellite) Handle(ctx context.Context, c *Conn, msg proto.Message)
 		}
 		switch ev.Type {
 		case api.VoiceAssistantEvent_VOICE_ASSISTANT_RUN_END,
-			api.VoiceAssistantEvent_VOICE_ASSISTANT_ERROR:
+			api.VoiceAssistantEvent_VOICE_ASSISTANT_ERROR,
+			api.VoiceAssistantEvent_VOICE_ASSISTANT_WAKE_WORD_REJECTED:
 			v.mu.Lock()
 			v.turnOpen = false
 			v.mu.Unlock()

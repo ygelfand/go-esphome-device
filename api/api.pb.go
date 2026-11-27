@@ -72,6 +72,52 @@ func (DisconnectReason) EnumDescriptor() ([]byte, []int) {
 	return file_api_proto_rawDescGZIP(), []int{0}
 }
 
+type DeviceRelation int32
+
+const (
+	DeviceRelation_DEVICE_RELATION_VIA   DeviceRelation = 0
+	DeviceRelation_DEVICE_RELATION_CHILD DeviceRelation = 1
+)
+
+// Enum value maps for DeviceRelation.
+var (
+	DeviceRelation_name = map[int32]string{
+		0: "DEVICE_RELATION_VIA",
+		1: "DEVICE_RELATION_CHILD",
+	}
+	DeviceRelation_value = map[string]int32{
+		"DEVICE_RELATION_VIA":   0,
+		"DEVICE_RELATION_CHILD": 1,
+	}
+)
+
+func (x DeviceRelation) Enum() *DeviceRelation {
+	p := new(DeviceRelation)
+	*p = x
+	return p
+}
+
+func (x DeviceRelation) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (DeviceRelation) Descriptor() protoreflect.EnumDescriptor {
+	return file_api_proto_enumTypes[1].Descriptor()
+}
+
+func (DeviceRelation) Type() protoreflect.EnumType {
+	return &file_api_proto_enumTypes[1]
+}
+
+func (x DeviceRelation) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use DeviceRelation.Descriptor instead.
+func (DeviceRelation) EnumDescriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{1}
+}
+
 type SerialProxyPortType int32
 
 const (
@@ -108,11 +154,11 @@ func (x SerialProxyPortType) String() string {
 }
 
 func (SerialProxyPortType) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[1].Descriptor()
+	return file_api_proto_enumTypes[2].Descriptor()
 }
 
 func (SerialProxyPortType) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[1]
+	return &file_api_proto_enumTypes[2]
 }
 
 func (x SerialProxyPortType) Number() protoreflect.EnumNumber {
@@ -121,7 +167,7 @@ func (x SerialProxyPortType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SerialProxyPortType.Descriptor instead.
 func (SerialProxyPortType) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{1}
+	return file_api_proto_rawDescGZIP(), []int{2}
 }
 
 type EntityCategory int32
@@ -157,11 +203,11 @@ func (x EntityCategory) String() string {
 }
 
 func (EntityCategory) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[2].Descriptor()
+	return file_api_proto_enumTypes[3].Descriptor()
 }
 
 func (EntityCategory) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[2]
+	return &file_api_proto_enumTypes[3]
 }
 
 func (x EntityCategory) Number() protoreflect.EnumNumber {
@@ -170,7 +216,7 @@ func (x EntityCategory) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use EntityCategory.Descriptor instead.
 func (EntityCategory) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{2}
+	return file_api_proto_rawDescGZIP(), []int{3}
 }
 
 // Deprecated in API version 1.1
@@ -206,11 +252,11 @@ func (x LegacyCoverState) String() string {
 }
 
 func (LegacyCoverState) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[3].Descriptor()
+	return file_api_proto_enumTypes[4].Descriptor()
 }
 
 func (LegacyCoverState) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[3]
+	return &file_api_proto_enumTypes[4]
 }
 
 func (x LegacyCoverState) Number() protoreflect.EnumNumber {
@@ -219,7 +265,7 @@ func (x LegacyCoverState) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LegacyCoverState.Descriptor instead.
 func (LegacyCoverState) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{3}
+	return file_api_proto_rawDescGZIP(), []int{4}
 }
 
 type CoverOperation int32
@@ -255,11 +301,11 @@ func (x CoverOperation) String() string {
 }
 
 func (CoverOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[4].Descriptor()
+	return file_api_proto_enumTypes[5].Descriptor()
 }
 
 func (CoverOperation) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[4]
+	return &file_api_proto_enumTypes[5]
 }
 
 func (x CoverOperation) Number() protoreflect.EnumNumber {
@@ -268,7 +314,7 @@ func (x CoverOperation) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use CoverOperation.Descriptor instead.
 func (CoverOperation) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{4}
+	return file_api_proto_rawDescGZIP(), []int{5}
 }
 
 // Deprecated in API version 1.1
@@ -307,11 +353,11 @@ func (x LegacyCoverCommand) String() string {
 }
 
 func (LegacyCoverCommand) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[5].Descriptor()
+	return file_api_proto_enumTypes[6].Descriptor()
 }
 
 func (LegacyCoverCommand) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[5]
+	return &file_api_proto_enumTypes[6]
 }
 
 func (x LegacyCoverCommand) Number() protoreflect.EnumNumber {
@@ -320,7 +366,7 @@ func (x LegacyCoverCommand) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LegacyCoverCommand.Descriptor instead.
 func (LegacyCoverCommand) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{5}
+	return file_api_proto_rawDescGZIP(), []int{6}
 }
 
 // Deprecated in API version 1.6 - only used in deprecated fields
@@ -359,11 +405,11 @@ func (x FanSpeed) String() string {
 }
 
 func (FanSpeed) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[6].Descriptor()
+	return file_api_proto_enumTypes[7].Descriptor()
 }
 
 func (FanSpeed) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[6]
+	return &file_api_proto_enumTypes[7]
 }
 
 func (x FanSpeed) Number() protoreflect.EnumNumber {
@@ -372,7 +418,7 @@ func (x FanSpeed) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use FanSpeed.Descriptor instead.
 func (FanSpeed) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{6}
+	return file_api_proto_rawDescGZIP(), []int{7}
 }
 
 type FanDirection int32
@@ -405,11 +451,11 @@ func (x FanDirection) String() string {
 }
 
 func (FanDirection) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[7].Descriptor()
+	return file_api_proto_enumTypes[8].Descriptor()
 }
 
 func (FanDirection) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[7]
+	return &file_api_proto_enumTypes[8]
 }
 
 func (x FanDirection) Number() protoreflect.EnumNumber {
@@ -418,7 +464,7 @@ func (x FanDirection) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use FanDirection.Descriptor instead.
 func (FanDirection) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{7}
+	return file_api_proto_rawDescGZIP(), []int{8}
 }
 
 // ==================== LIGHT ====================
@@ -479,11 +525,11 @@ func (x ColorMode) String() string {
 }
 
 func (ColorMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[8].Descriptor()
+	return file_api_proto_enumTypes[9].Descriptor()
 }
 
 func (ColorMode) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[8]
+	return &file_api_proto_enumTypes[9]
 }
 
 func (x ColorMode) Number() protoreflect.EnumNumber {
@@ -492,7 +538,7 @@ func (x ColorMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ColorMode.Descriptor instead.
 func (ColorMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{8}
+	return file_api_proto_rawDescGZIP(), []int{9}
 }
 
 // ==================== SENSOR ====================
@@ -535,11 +581,11 @@ func (x SensorStateClass) String() string {
 }
 
 func (SensorStateClass) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[9].Descriptor()
+	return file_api_proto_enumTypes[10].Descriptor()
 }
 
 func (SensorStateClass) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[9]
+	return &file_api_proto_enumTypes[10]
 }
 
 func (x SensorStateClass) Number() protoreflect.EnumNumber {
@@ -548,7 +594,7 @@ func (x SensorStateClass) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SensorStateClass.Descriptor instead.
 func (SensorStateClass) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{9}
+	return file_api_proto_rawDescGZIP(), []int{10}
 }
 
 // Deprecated in API version 1.5
@@ -587,11 +633,11 @@ func (x SensorLastResetType) String() string {
 }
 
 func (SensorLastResetType) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[10].Descriptor()
+	return file_api_proto_enumTypes[11].Descriptor()
 }
 
 func (SensorLastResetType) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[10]
+	return &file_api_proto_enumTypes[11]
 }
 
 func (x SensorLastResetType) Number() protoreflect.EnumNumber {
@@ -600,7 +646,7 @@ func (x SensorLastResetType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SensorLastResetType.Descriptor instead.
 func (SensorLastResetType) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{10}
+	return file_api_proto_rawDescGZIP(), []int{11}
 }
 
 // ==================== SUBSCRIBE LOGS ====================
@@ -652,11 +698,11 @@ func (x LogLevel) String() string {
 }
 
 func (LogLevel) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[11].Descriptor()
+	return file_api_proto_enumTypes[12].Descriptor()
 }
 
 func (LogLevel) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[11]
+	return &file_api_proto_enumTypes[12]
 }
 
 func (x LogLevel) Number() protoreflect.EnumNumber {
@@ -665,7 +711,7 @@ func (x LogLevel) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LogLevel.Descriptor instead.
 func (LogLevel) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{11}
+	return file_api_proto_rawDescGZIP(), []int{12}
 }
 
 type DSTRuleType int32
@@ -704,11 +750,11 @@ func (x DSTRuleType) String() string {
 }
 
 func (DSTRuleType) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[12].Descriptor()
+	return file_api_proto_enumTypes[13].Descriptor()
 }
 
 func (DSTRuleType) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[12]
+	return &file_api_proto_enumTypes[13]
 }
 
 func (x DSTRuleType) Number() protoreflect.EnumNumber {
@@ -717,7 +763,7 @@ func (x DSTRuleType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use DSTRuleType.Descriptor instead.
 func (DSTRuleType) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{12}
+	return file_api_proto_rawDescGZIP(), []int{13}
 }
 
 // ==================== USER-DEFINES SERVICES ====================
@@ -769,11 +815,11 @@ func (x ServiceArgType) String() string {
 }
 
 func (ServiceArgType) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[13].Descriptor()
+	return file_api_proto_enumTypes[14].Descriptor()
 }
 
 func (ServiceArgType) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[13]
+	return &file_api_proto_enumTypes[14]
 }
 
 func (x ServiceArgType) Number() protoreflect.EnumNumber {
@@ -782,7 +828,7 @@ func (x ServiceArgType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ServiceArgType.Descriptor instead.
 func (ServiceArgType) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{13}
+	return file_api_proto_rawDescGZIP(), []int{14}
 }
 
 type SupportsResponseType int32
@@ -823,11 +869,11 @@ func (x SupportsResponseType) String() string {
 }
 
 func (SupportsResponseType) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[14].Descriptor()
+	return file_api_proto_enumTypes[15].Descriptor()
 }
 
 func (SupportsResponseType) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[14]
+	return &file_api_proto_enumTypes[15]
 }
 
 func (x SupportsResponseType) Number() protoreflect.EnumNumber {
@@ -836,7 +882,7 @@ func (x SupportsResponseType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SupportsResponseType.Descriptor instead.
 func (SupportsResponseType) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{14}
+	return file_api_proto_rawDescGZIP(), []int{15}
 }
 
 // ==================== TEMPERATURE UNIT ====================
@@ -873,11 +919,11 @@ func (x TemperatureUnit) String() string {
 }
 
 func (TemperatureUnit) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[15].Descriptor()
+	return file_api_proto_enumTypes[16].Descriptor()
 }
 
 func (TemperatureUnit) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[15]
+	return &file_api_proto_enumTypes[16]
 }
 
 func (x TemperatureUnit) Number() protoreflect.EnumNumber {
@@ -886,7 +932,7 @@ func (x TemperatureUnit) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TemperatureUnit.Descriptor instead.
 func (TemperatureUnit) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{15}
+	return file_api_proto_rawDescGZIP(), []int{16}
 }
 
 // ==================== CLIMATE ====================
@@ -935,11 +981,11 @@ func (x ClimateMode) String() string {
 }
 
 func (ClimateMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[16].Descriptor()
+	return file_api_proto_enumTypes[17].Descriptor()
 }
 
 func (ClimateMode) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[16]
+	return &file_api_proto_enumTypes[17]
 }
 
 func (x ClimateMode) Number() protoreflect.EnumNumber {
@@ -948,7 +994,7 @@ func (x ClimateMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ClimateMode.Descriptor instead.
 func (ClimateMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{16}
+	return file_api_proto_rawDescGZIP(), []int{17}
 }
 
 type ClimateFanMode int32
@@ -1005,11 +1051,11 @@ func (x ClimateFanMode) String() string {
 }
 
 func (ClimateFanMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[17].Descriptor()
+	return file_api_proto_enumTypes[18].Descriptor()
 }
 
 func (ClimateFanMode) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[17]
+	return &file_api_proto_enumTypes[18]
 }
 
 func (x ClimateFanMode) Number() protoreflect.EnumNumber {
@@ -1018,7 +1064,7 @@ func (x ClimateFanMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ClimateFanMode.Descriptor instead.
 func (ClimateFanMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{17}
+	return file_api_proto_rawDescGZIP(), []int{18}
 }
 
 type ClimateSwingMode int32
@@ -1057,11 +1103,11 @@ func (x ClimateSwingMode) String() string {
 }
 
 func (ClimateSwingMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[18].Descriptor()
+	return file_api_proto_enumTypes[19].Descriptor()
 }
 
 func (ClimateSwingMode) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[18]
+	return &file_api_proto_enumTypes[19]
 }
 
 func (x ClimateSwingMode) Number() protoreflect.EnumNumber {
@@ -1070,7 +1116,7 @@ func (x ClimateSwingMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ClimateSwingMode.Descriptor instead.
 func (ClimateSwingMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{18}
+	return file_api_proto_rawDescGZIP(), []int{19}
 }
 
 type ClimateAction int32
@@ -1119,11 +1165,11 @@ func (x ClimateAction) String() string {
 }
 
 func (ClimateAction) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[19].Descriptor()
+	return file_api_proto_enumTypes[20].Descriptor()
 }
 
 func (ClimateAction) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[19]
+	return &file_api_proto_enumTypes[20]
 }
 
 func (x ClimateAction) Number() protoreflect.EnumNumber {
@@ -1132,7 +1178,7 @@ func (x ClimateAction) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ClimateAction.Descriptor instead.
 func (ClimateAction) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{19}
+	return file_api_proto_rawDescGZIP(), []int{20}
 }
 
 type ClimatePreset int32
@@ -1183,11 +1229,11 @@ func (x ClimatePreset) String() string {
 }
 
 func (ClimatePreset) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[20].Descriptor()
+	return file_api_proto_enumTypes[21].Descriptor()
 }
 
 func (ClimatePreset) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[20]
+	return &file_api_proto_enumTypes[21]
 }
 
 func (x ClimatePreset) Number() protoreflect.EnumNumber {
@@ -1196,7 +1242,7 @@ func (x ClimatePreset) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ClimatePreset.Descriptor instead.
 func (ClimatePreset) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{20}
+	return file_api_proto_rawDescGZIP(), []int{21}
 }
 
 // ==================== WATER_HEATER ====================
@@ -1245,11 +1291,11 @@ func (x WaterHeaterMode) String() string {
 }
 
 func (WaterHeaterMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[21].Descriptor()
+	return file_api_proto_enumTypes[22].Descriptor()
 }
 
 func (WaterHeaterMode) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[21]
+	return &file_api_proto_enumTypes[22]
 }
 
 func (x WaterHeaterMode) Number() protoreflect.EnumNumber {
@@ -1258,7 +1304,7 @@ func (x WaterHeaterMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WaterHeaterMode.Descriptor instead.
 func (WaterHeaterMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{21}
+	return file_api_proto_rawDescGZIP(), []int{22}
 }
 
 // Bitmask for WaterHeaterCommandRequest.has_fields
@@ -1311,11 +1357,11 @@ func (x WaterHeaterCommandHasField) String() string {
 }
 
 func (WaterHeaterCommandHasField) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[22].Descriptor()
+	return file_api_proto_enumTypes[23].Descriptor()
 }
 
 func (WaterHeaterCommandHasField) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[22]
+	return &file_api_proto_enumTypes[23]
 }
 
 func (x WaterHeaterCommandHasField) Number() protoreflect.EnumNumber {
@@ -1324,7 +1370,7 @@ func (x WaterHeaterCommandHasField) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WaterHeaterCommandHasField.Descriptor instead.
 func (WaterHeaterCommandHasField) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{22}
+	return file_api_proto_rawDescGZIP(), []int{23}
 }
 
 // ==================== NUMBER ====================
@@ -1361,11 +1407,11 @@ func (x NumberMode) String() string {
 }
 
 func (NumberMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[23].Descriptor()
+	return file_api_proto_enumTypes[24].Descriptor()
 }
 
 func (NumberMode) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[23]
+	return &file_api_proto_enumTypes[24]
 }
 
 func (x NumberMode) Number() protoreflect.EnumNumber {
@@ -1374,7 +1420,7 @@ func (x NumberMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use NumberMode.Descriptor instead.
 func (NumberMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{23}
+	return file_api_proto_rawDescGZIP(), []int{24}
 }
 
 // ==================== LOCK ====================
@@ -1426,11 +1472,11 @@ func (x LockState) String() string {
 }
 
 func (LockState) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[24].Descriptor()
+	return file_api_proto_enumTypes[25].Descriptor()
 }
 
 func (LockState) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[24]
+	return &file_api_proto_enumTypes[25]
 }
 
 func (x LockState) Number() protoreflect.EnumNumber {
@@ -1439,7 +1485,7 @@ func (x LockState) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LockState.Descriptor instead.
 func (LockState) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{24}
+	return file_api_proto_rawDescGZIP(), []int{25}
 }
 
 type LockCommand int32
@@ -1475,11 +1521,11 @@ func (x LockCommand) String() string {
 }
 
 func (LockCommand) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[25].Descriptor()
+	return file_api_proto_enumTypes[26].Descriptor()
 }
 
 func (LockCommand) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[25]
+	return &file_api_proto_enumTypes[26]
 }
 
 func (x LockCommand) Number() protoreflect.EnumNumber {
@@ -1488,7 +1534,7 @@ func (x LockCommand) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LockCommand.Descriptor instead.
 func (LockCommand) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{25}
+	return file_api_proto_rawDescGZIP(), []int{26}
 }
 
 // ==================== MEDIA PLAYER ====================
@@ -1537,11 +1583,11 @@ func (x MediaPlayerState) String() string {
 }
 
 func (MediaPlayerState) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[26].Descriptor()
+	return file_api_proto_enumTypes[27].Descriptor()
 }
 
 func (MediaPlayerState) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[26]
+	return &file_api_proto_enumTypes[27]
 }
 
 func (x MediaPlayerState) Number() protoreflect.EnumNumber {
@@ -1550,7 +1596,7 @@ func (x MediaPlayerState) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MediaPlayerState.Descriptor instead.
 func (MediaPlayerState) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{26}
+	return file_api_proto_rawDescGZIP(), []int{27}
 }
 
 type MediaPlayerCommand int32
@@ -1619,11 +1665,11 @@ func (x MediaPlayerCommand) String() string {
 }
 
 func (MediaPlayerCommand) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[27].Descriptor()
+	return file_api_proto_enumTypes[28].Descriptor()
 }
 
 func (MediaPlayerCommand) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[27]
+	return &file_api_proto_enumTypes[28]
 }
 
 func (x MediaPlayerCommand) Number() protoreflect.EnumNumber {
@@ -1632,7 +1678,7 @@ func (x MediaPlayerCommand) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MediaPlayerCommand.Descriptor instead.
 func (MediaPlayerCommand) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{27}
+	return file_api_proto_rawDescGZIP(), []int{28}
 }
 
 type MediaPlayerFormatPurpose int32
@@ -1665,11 +1711,11 @@ func (x MediaPlayerFormatPurpose) String() string {
 }
 
 func (MediaPlayerFormatPurpose) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[28].Descriptor()
+	return file_api_proto_enumTypes[29].Descriptor()
 }
 
 func (MediaPlayerFormatPurpose) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[28]
+	return &file_api_proto_enumTypes[29]
 }
 
 func (x MediaPlayerFormatPurpose) Number() protoreflect.EnumNumber {
@@ -1678,7 +1724,7 @@ func (x MediaPlayerFormatPurpose) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MediaPlayerFormatPurpose.Descriptor instead.
 func (MediaPlayerFormatPurpose) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{28}
+	return file_api_proto_rawDescGZIP(), []int{29}
 }
 
 type BluetoothDeviceRequestType int32
@@ -1727,11 +1773,11 @@ func (x BluetoothDeviceRequestType) String() string {
 }
 
 func (BluetoothDeviceRequestType) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[29].Descriptor()
+	return file_api_proto_enumTypes[30].Descriptor()
 }
 
 func (BluetoothDeviceRequestType) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[29]
+	return &file_api_proto_enumTypes[30]
 }
 
 func (x BluetoothDeviceRequestType) Number() protoreflect.EnumNumber {
@@ -1740,7 +1786,7 @@ func (x BluetoothDeviceRequestType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use BluetoothDeviceRequestType.Descriptor instead.
 func (BluetoothDeviceRequestType) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{29}
+	return file_api_proto_rawDescGZIP(), []int{30}
 }
 
 type BluetoothScannerState int32
@@ -1785,11 +1831,11 @@ func (x BluetoothScannerState) String() string {
 }
 
 func (BluetoothScannerState) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[30].Descriptor()
+	return file_api_proto_enumTypes[31].Descriptor()
 }
 
 func (BluetoothScannerState) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[30]
+	return &file_api_proto_enumTypes[31]
 }
 
 func (x BluetoothScannerState) Number() protoreflect.EnumNumber {
@@ -1798,7 +1844,7 @@ func (x BluetoothScannerState) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use BluetoothScannerState.Descriptor instead.
 func (BluetoothScannerState) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{30}
+	return file_api_proto_rawDescGZIP(), []int{31}
 }
 
 type BluetoothScannerMode int32
@@ -1831,11 +1877,11 @@ func (x BluetoothScannerMode) String() string {
 }
 
 func (BluetoothScannerMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[31].Descriptor()
+	return file_api_proto_enumTypes[32].Descriptor()
 }
 
 func (BluetoothScannerMode) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[31]
+	return &file_api_proto_enumTypes[32]
 }
 
 func (x BluetoothScannerMode) Number() protoreflect.EnumNumber {
@@ -1844,7 +1890,7 @@ func (x BluetoothScannerMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use BluetoothScannerMode.Descriptor instead.
 func (BluetoothScannerMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{31}
+	return file_api_proto_rawDescGZIP(), []int{32}
 }
 
 // ==================== VOICE ASSISTANT ====================
@@ -1853,6 +1899,8 @@ type VoiceAssistantSubscribeFlag int32
 const (
 	VoiceAssistantSubscribeFlag_VOICE_ASSISTANT_SUBSCRIBE_NONE      VoiceAssistantSubscribeFlag = 0
 	VoiceAssistantSubscribeFlag_VOICE_ASSISTANT_SUBSCRIBE_API_AUDIO VoiceAssistantSubscribeFlag = 1
+	// Not 2 or 4: aioesphomeapi sends API audio as 1 << 2
+	VoiceAssistantSubscribeFlag_VOICE_ASSISTANT_SUBSCRIBE_WAKE_WORD_AUDIO VoiceAssistantSubscribeFlag = 8
 )
 
 // Enum value maps for VoiceAssistantSubscribeFlag.
@@ -1860,10 +1908,12 @@ var (
 	VoiceAssistantSubscribeFlag_name = map[int32]string{
 		0: "VOICE_ASSISTANT_SUBSCRIBE_NONE",
 		1: "VOICE_ASSISTANT_SUBSCRIBE_API_AUDIO",
+		8: "VOICE_ASSISTANT_SUBSCRIBE_WAKE_WORD_AUDIO",
 	}
 	VoiceAssistantSubscribeFlag_value = map[string]int32{
-		"VOICE_ASSISTANT_SUBSCRIBE_NONE":      0,
-		"VOICE_ASSISTANT_SUBSCRIBE_API_AUDIO": 1,
+		"VOICE_ASSISTANT_SUBSCRIBE_NONE":            0,
+		"VOICE_ASSISTANT_SUBSCRIBE_API_AUDIO":       1,
+		"VOICE_ASSISTANT_SUBSCRIBE_WAKE_WORD_AUDIO": 8,
 	}
 )
 
@@ -1878,11 +1928,11 @@ func (x VoiceAssistantSubscribeFlag) String() string {
 }
 
 func (VoiceAssistantSubscribeFlag) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[32].Descriptor()
+	return file_api_proto_enumTypes[33].Descriptor()
 }
 
 func (VoiceAssistantSubscribeFlag) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[32]
+	return &file_api_proto_enumTypes[33]
 }
 
 func (x VoiceAssistantSubscribeFlag) Number() protoreflect.EnumNumber {
@@ -1891,7 +1941,7 @@ func (x VoiceAssistantSubscribeFlag) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use VoiceAssistantSubscribeFlag.Descriptor instead.
 func (VoiceAssistantSubscribeFlag) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{32}
+	return file_api_proto_rawDescGZIP(), []int{33}
 }
 
 type VoiceAssistantRequestFlag int32
@@ -1927,11 +1977,11 @@ func (x VoiceAssistantRequestFlag) String() string {
 }
 
 func (VoiceAssistantRequestFlag) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[33].Descriptor()
+	return file_api_proto_enumTypes[34].Descriptor()
 }
 
 func (VoiceAssistantRequestFlag) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[33]
+	return &file_api_proto_enumTypes[34]
 }
 
 func (x VoiceAssistantRequestFlag) Number() protoreflect.EnumNumber {
@@ -1940,28 +1990,29 @@ func (x VoiceAssistantRequestFlag) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use VoiceAssistantRequestFlag.Descriptor instead.
 func (VoiceAssistantRequestFlag) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{33}
+	return file_api_proto_rawDescGZIP(), []int{34}
 }
 
 type VoiceAssistantEvent int32
 
 const (
-	VoiceAssistantEvent_VOICE_ASSISTANT_ERROR            VoiceAssistantEvent = 0
-	VoiceAssistantEvent_VOICE_ASSISTANT_RUN_START        VoiceAssistantEvent = 1
-	VoiceAssistantEvent_VOICE_ASSISTANT_RUN_END          VoiceAssistantEvent = 2
-	VoiceAssistantEvent_VOICE_ASSISTANT_STT_START        VoiceAssistantEvent = 3
-	VoiceAssistantEvent_VOICE_ASSISTANT_STT_END          VoiceAssistantEvent = 4
-	VoiceAssistantEvent_VOICE_ASSISTANT_INTENT_START     VoiceAssistantEvent = 5
-	VoiceAssistantEvent_VOICE_ASSISTANT_INTENT_END       VoiceAssistantEvent = 6
-	VoiceAssistantEvent_VOICE_ASSISTANT_TTS_START        VoiceAssistantEvent = 7
-	VoiceAssistantEvent_VOICE_ASSISTANT_TTS_END          VoiceAssistantEvent = 8
-	VoiceAssistantEvent_VOICE_ASSISTANT_WAKE_WORD_START  VoiceAssistantEvent = 9
-	VoiceAssistantEvent_VOICE_ASSISTANT_WAKE_WORD_END    VoiceAssistantEvent = 10
-	VoiceAssistantEvent_VOICE_ASSISTANT_STT_VAD_START    VoiceAssistantEvent = 11
-	VoiceAssistantEvent_VOICE_ASSISTANT_STT_VAD_END      VoiceAssistantEvent = 12
-	VoiceAssistantEvent_VOICE_ASSISTANT_TTS_STREAM_START VoiceAssistantEvent = 98
-	VoiceAssistantEvent_VOICE_ASSISTANT_TTS_STREAM_END   VoiceAssistantEvent = 99
-	VoiceAssistantEvent_VOICE_ASSISTANT_INTENT_PROGRESS  VoiceAssistantEvent = 100
+	VoiceAssistantEvent_VOICE_ASSISTANT_ERROR              VoiceAssistantEvent = 0
+	VoiceAssistantEvent_VOICE_ASSISTANT_RUN_START          VoiceAssistantEvent = 1
+	VoiceAssistantEvent_VOICE_ASSISTANT_RUN_END            VoiceAssistantEvent = 2
+	VoiceAssistantEvent_VOICE_ASSISTANT_STT_START          VoiceAssistantEvent = 3
+	VoiceAssistantEvent_VOICE_ASSISTANT_STT_END            VoiceAssistantEvent = 4
+	VoiceAssistantEvent_VOICE_ASSISTANT_INTENT_START       VoiceAssistantEvent = 5
+	VoiceAssistantEvent_VOICE_ASSISTANT_INTENT_END         VoiceAssistantEvent = 6
+	VoiceAssistantEvent_VOICE_ASSISTANT_TTS_START          VoiceAssistantEvent = 7
+	VoiceAssistantEvent_VOICE_ASSISTANT_TTS_END            VoiceAssistantEvent = 8
+	VoiceAssistantEvent_VOICE_ASSISTANT_WAKE_WORD_START    VoiceAssistantEvent = 9
+	VoiceAssistantEvent_VOICE_ASSISTANT_WAKE_WORD_END      VoiceAssistantEvent = 10
+	VoiceAssistantEvent_VOICE_ASSISTANT_STT_VAD_START      VoiceAssistantEvent = 11
+	VoiceAssistantEvent_VOICE_ASSISTANT_STT_VAD_END        VoiceAssistantEvent = 12
+	VoiceAssistantEvent_VOICE_ASSISTANT_WAKE_WORD_REJECTED VoiceAssistantEvent = 13
+	VoiceAssistantEvent_VOICE_ASSISTANT_TTS_STREAM_START   VoiceAssistantEvent = 98
+	VoiceAssistantEvent_VOICE_ASSISTANT_TTS_STREAM_END     VoiceAssistantEvent = 99
+	VoiceAssistantEvent_VOICE_ASSISTANT_INTENT_PROGRESS    VoiceAssistantEvent = 100
 )
 
 // Enum value maps for VoiceAssistantEvent.
@@ -1980,27 +2031,29 @@ var (
 		10:  "VOICE_ASSISTANT_WAKE_WORD_END",
 		11:  "VOICE_ASSISTANT_STT_VAD_START",
 		12:  "VOICE_ASSISTANT_STT_VAD_END",
+		13:  "VOICE_ASSISTANT_WAKE_WORD_REJECTED",
 		98:  "VOICE_ASSISTANT_TTS_STREAM_START",
 		99:  "VOICE_ASSISTANT_TTS_STREAM_END",
 		100: "VOICE_ASSISTANT_INTENT_PROGRESS",
 	}
 	VoiceAssistantEvent_value = map[string]int32{
-		"VOICE_ASSISTANT_ERROR":            0,
-		"VOICE_ASSISTANT_RUN_START":        1,
-		"VOICE_ASSISTANT_RUN_END":          2,
-		"VOICE_ASSISTANT_STT_START":        3,
-		"VOICE_ASSISTANT_STT_END":          4,
-		"VOICE_ASSISTANT_INTENT_START":     5,
-		"VOICE_ASSISTANT_INTENT_END":       6,
-		"VOICE_ASSISTANT_TTS_START":        7,
-		"VOICE_ASSISTANT_TTS_END":          8,
-		"VOICE_ASSISTANT_WAKE_WORD_START":  9,
-		"VOICE_ASSISTANT_WAKE_WORD_END":    10,
-		"VOICE_ASSISTANT_STT_VAD_START":    11,
-		"VOICE_ASSISTANT_STT_VAD_END":      12,
-		"VOICE_ASSISTANT_TTS_STREAM_START": 98,
-		"VOICE_ASSISTANT_TTS_STREAM_END":   99,
-		"VOICE_ASSISTANT_INTENT_PROGRESS":  100,
+		"VOICE_ASSISTANT_ERROR":              0,
+		"VOICE_ASSISTANT_RUN_START":          1,
+		"VOICE_ASSISTANT_RUN_END":            2,
+		"VOICE_ASSISTANT_STT_START":          3,
+		"VOICE_ASSISTANT_STT_END":            4,
+		"VOICE_ASSISTANT_INTENT_START":       5,
+		"VOICE_ASSISTANT_INTENT_END":         6,
+		"VOICE_ASSISTANT_TTS_START":          7,
+		"VOICE_ASSISTANT_TTS_END":            8,
+		"VOICE_ASSISTANT_WAKE_WORD_START":    9,
+		"VOICE_ASSISTANT_WAKE_WORD_END":      10,
+		"VOICE_ASSISTANT_STT_VAD_START":      11,
+		"VOICE_ASSISTANT_STT_VAD_END":        12,
+		"VOICE_ASSISTANT_WAKE_WORD_REJECTED": 13,
+		"VOICE_ASSISTANT_TTS_STREAM_START":   98,
+		"VOICE_ASSISTANT_TTS_STREAM_END":     99,
+		"VOICE_ASSISTANT_INTENT_PROGRESS":    100,
 	}
 )
 
@@ -2015,11 +2068,11 @@ func (x VoiceAssistantEvent) String() string {
 }
 
 func (VoiceAssistantEvent) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[34].Descriptor()
+	return file_api_proto_enumTypes[35].Descriptor()
 }
 
 func (VoiceAssistantEvent) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[34]
+	return &file_api_proto_enumTypes[35]
 }
 
 func (x VoiceAssistantEvent) Number() protoreflect.EnumNumber {
@@ -2028,7 +2081,7 @@ func (x VoiceAssistantEvent) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use VoiceAssistantEvent.Descriptor instead.
 func (VoiceAssistantEvent) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{34}
+	return file_api_proto_rawDescGZIP(), []int{35}
 }
 
 type VoiceAssistantTimerEvent int32
@@ -2067,11 +2120,11 @@ func (x VoiceAssistantTimerEvent) String() string {
 }
 
 func (VoiceAssistantTimerEvent) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[35].Descriptor()
+	return file_api_proto_enumTypes[36].Descriptor()
 }
 
 func (VoiceAssistantTimerEvent) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[35]
+	return &file_api_proto_enumTypes[36]
 }
 
 func (x VoiceAssistantTimerEvent) Number() protoreflect.EnumNumber {
@@ -2080,7 +2133,7 @@ func (x VoiceAssistantTimerEvent) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use VoiceAssistantTimerEvent.Descriptor instead.
 func (VoiceAssistantTimerEvent) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{35}
+	return file_api_proto_rawDescGZIP(), []int{36}
 }
 
 // ==================== ALARM CONTROL PANEL ====================
@@ -2138,11 +2191,11 @@ func (x AlarmControlPanelState) String() string {
 }
 
 func (AlarmControlPanelState) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[36].Descriptor()
+	return file_api_proto_enumTypes[37].Descriptor()
 }
 
 func (AlarmControlPanelState) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[36]
+	return &file_api_proto_enumTypes[37]
 }
 
 func (x AlarmControlPanelState) Number() protoreflect.EnumNumber {
@@ -2151,7 +2204,7 @@ func (x AlarmControlPanelState) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use AlarmControlPanelState.Descriptor instead.
 func (AlarmControlPanelState) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{36}
+	return file_api_proto_rawDescGZIP(), []int{37}
 }
 
 type AlarmControlPanelStateCommand int32
@@ -2199,11 +2252,11 @@ func (x AlarmControlPanelStateCommand) String() string {
 }
 
 func (AlarmControlPanelStateCommand) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[37].Descriptor()
+	return file_api_proto_enumTypes[38].Descriptor()
 }
 
 func (AlarmControlPanelStateCommand) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[37]
+	return &file_api_proto_enumTypes[38]
 }
 
 func (x AlarmControlPanelStateCommand) Number() protoreflect.EnumNumber {
@@ -2212,7 +2265,7 @@ func (x AlarmControlPanelStateCommand) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use AlarmControlPanelStateCommand.Descriptor instead.
 func (AlarmControlPanelStateCommand) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{37}
+	return file_api_proto_rawDescGZIP(), []int{38}
 }
 
 // ===================== TEXT =====================
@@ -2246,11 +2299,11 @@ func (x TextMode) String() string {
 }
 
 func (TextMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[38].Descriptor()
+	return file_api_proto_enumTypes[39].Descriptor()
 }
 
 func (TextMode) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[38]
+	return &file_api_proto_enumTypes[39]
 }
 
 func (x TextMode) Number() protoreflect.EnumNumber {
@@ -2259,7 +2312,7 @@ func (x TextMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TextMode.Descriptor instead.
 func (TextMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{38}
+	return file_api_proto_rawDescGZIP(), []int{39}
 }
 
 type ValveOperation int32
@@ -2295,11 +2348,11 @@ func (x ValveOperation) String() string {
 }
 
 func (ValveOperation) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[39].Descriptor()
+	return file_api_proto_enumTypes[40].Descriptor()
 }
 
 func (ValveOperation) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[39]
+	return &file_api_proto_enumTypes[40]
 }
 
 func (x ValveOperation) Number() protoreflect.EnumNumber {
@@ -2308,7 +2361,7 @@ func (x ValveOperation) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ValveOperation.Descriptor instead.
 func (ValveOperation) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{39}
+	return file_api_proto_rawDescGZIP(), []int{40}
 }
 
 type UpdateCommand int32
@@ -2344,11 +2397,11 @@ func (x UpdateCommand) String() string {
 }
 
 func (UpdateCommand) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[40].Descriptor()
+	return file_api_proto_enumTypes[41].Descriptor()
 }
 
 func (UpdateCommand) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[40]
+	return &file_api_proto_enumTypes[41]
 }
 
 func (x UpdateCommand) Number() protoreflect.EnumNumber {
@@ -2357,7 +2410,7 @@ func (x UpdateCommand) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use UpdateCommand.Descriptor instead.
 func (UpdateCommand) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{40}
+	return file_api_proto_rawDescGZIP(), []int{41}
 }
 
 type ZWaveProxyRequestType int32
@@ -2393,11 +2446,11 @@ func (x ZWaveProxyRequestType) String() string {
 }
 
 func (ZWaveProxyRequestType) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[41].Descriptor()
+	return file_api_proto_enumTypes[42].Descriptor()
 }
 
 func (ZWaveProxyRequestType) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[41]
+	return &file_api_proto_enumTypes[42]
 }
 
 func (x ZWaveProxyRequestType) Number() protoreflect.EnumNumber {
@@ -2406,7 +2459,7 @@ func (x ZWaveProxyRequestType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ZWaveProxyRequestType.Descriptor instead.
 func (ZWaveProxyRequestType) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{41}
+	return file_api_proto_rawDescGZIP(), []int{42}
 }
 
 type ZWaveProxyStatus int32
@@ -2442,11 +2495,11 @@ func (x ZWaveProxyStatus) String() string {
 }
 
 func (ZWaveProxyStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[42].Descriptor()
+	return file_api_proto_enumTypes[43].Descriptor()
 }
 
 func (ZWaveProxyStatus) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[42]
+	return &file_api_proto_enumTypes[43]
 }
 
 func (x ZWaveProxyStatus) Number() protoreflect.EnumNumber {
@@ -2455,7 +2508,7 @@ func (x ZWaveProxyStatus) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ZWaveProxyStatus.Descriptor instead.
 func (ZWaveProxyStatus) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{42}
+	return file_api_proto_rawDescGZIP(), []int{43}
 }
 
 type SerialProxyParity int32
@@ -2491,11 +2544,11 @@ func (x SerialProxyParity) String() string {
 }
 
 func (SerialProxyParity) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[43].Descriptor()
+	return file_api_proto_enumTypes[44].Descriptor()
 }
 
 func (SerialProxyParity) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[43]
+	return &file_api_proto_enumTypes[44]
 }
 
 func (x SerialProxyParity) Number() protoreflect.EnumNumber {
@@ -2504,7 +2557,7 @@ func (x SerialProxyParity) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SerialProxyParity.Descriptor instead.
 func (SerialProxyParity) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{43}
+	return file_api_proto_rawDescGZIP(), []int{44}
 }
 
 type SerialProxyRequestType int32
@@ -2552,11 +2605,11 @@ func (x SerialProxyRequestType) String() string {
 }
 
 func (SerialProxyRequestType) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[44].Descriptor()
+	return file_api_proto_enumTypes[45].Descriptor()
 }
 
 func (SerialProxyRequestType) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[44]
+	return &file_api_proto_enumTypes[45]
 }
 
 func (x SerialProxyRequestType) Number() protoreflect.EnumNumber {
@@ -2565,7 +2618,7 @@ func (x SerialProxyRequestType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SerialProxyRequestType.Descriptor instead.
 func (SerialProxyRequestType) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{44}
+	return file_api_proto_rawDescGZIP(), []int{45}
 }
 
 type SerialProxyStatus int32
@@ -2613,11 +2666,11 @@ func (x SerialProxyStatus) String() string {
 }
 
 func (SerialProxyStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[45].Descriptor()
+	return file_api_proto_enumTypes[46].Descriptor()
 }
 
 func (SerialProxyStatus) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[45]
+	return &file_api_proto_enumTypes[46]
 }
 
 func (x SerialProxyStatus) Number() protoreflect.EnumNumber {
@@ -2626,7 +2679,7 @@ func (x SerialProxyStatus) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SerialProxyStatus.Descriptor instead.
 func (SerialProxyStatus) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{45}
+	return file_api_proto_rawDescGZIP(), []int{46}
 }
 
 // How a port treats the bytes passing through it. RAW is a plain byte pipe; PROTOCOL
@@ -2665,11 +2718,11 @@ func (x SerialProxyMode) String() string {
 }
 
 func (SerialProxyMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[46].Descriptor()
+	return file_api_proto_enumTypes[47].Descriptor()
 }
 
 func (SerialProxyMode) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[46]
+	return &file_api_proto_enumTypes[47]
 }
 
 func (x SerialProxyMode) Number() protoreflect.EnumNumber {
@@ -2678,7 +2731,7 @@ func (x SerialProxyMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SerialProxyMode.Descriptor instead.
 func (SerialProxyMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{46}
+	return file_api_proto_rawDescGZIP(), []int{47}
 }
 
 // Where a port's identity comes from
@@ -2715,11 +2768,11 @@ func (x SerialProxyIdentitySource) String() string {
 }
 
 func (SerialProxyIdentitySource) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[47].Descriptor()
+	return file_api_proto_enumTypes[48].Descriptor()
 }
 
 func (SerialProxyIdentitySource) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[47]
+	return &file_api_proto_enumTypes[48]
 }
 
 func (x SerialProxyIdentitySource) Number() protoreflect.EnumNumber {
@@ -2728,7 +2781,7 @@ func (x SerialProxyIdentitySource) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SerialProxyIdentitySource.Descriptor instead.
 func (SerialProxyIdentitySource) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{47}
+	return file_api_proto_rawDescGZIP(), []int{48}
 }
 
 type SerialProxyIdentityFlag int32
@@ -2764,11 +2817,11 @@ func (x SerialProxyIdentityFlag) String() string {
 }
 
 func (SerialProxyIdentityFlag) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[48].Descriptor()
+	return file_api_proto_enumTypes[49].Descriptor()
 }
 
 func (SerialProxyIdentityFlag) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[48]
+	return &file_api_proto_enumTypes[49]
 }
 
 func (x SerialProxyIdentityFlag) Number() protoreflect.EnumNumber {
@@ -2777,7 +2830,7 @@ func (x SerialProxyIdentityFlag) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SerialProxyIdentityFlag.Descriptor instead.
 func (SerialProxyIdentityFlag) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{48}
+	return file_api_proto_rawDescGZIP(), []int{49}
 }
 
 // ==================== SENDSPIN ====================
@@ -2824,11 +2877,11 @@ func (x SendspinPairingTokenStatus) String() string {
 }
 
 func (SendspinPairingTokenStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_proto_enumTypes[49].Descriptor()
+	return file_api_proto_enumTypes[50].Descriptor()
 }
 
 func (SendspinPairingTokenStatus) Type() protoreflect.EnumType {
-	return &file_api_proto_enumTypes[49]
+	return &file_api_proto_enumTypes[50]
 }
 
 func (x SendspinPairingTokenStatus) Number() protoreflect.EnumNumber {
@@ -2837,7 +2890,7 @@ func (x SendspinPairingTokenStatus) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SendspinPairingTokenStatus.Descriptor instead.
 func (SendspinPairingTokenStatus) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{49}
+	return file_api_proto_rawDescGZIP(), []int{50}
 }
 
 // Message sent at the beginning of each connection
@@ -2933,9 +2986,12 @@ type HelloResponse struct {
 	ServerInfo string `protobuf:"bytes,3,opt,name=server_info,json=serverInfo,proto3" json:"server_info,omitempty"`
 	// The name of the server (App.get_name() - device hostname)
 	// max_data_length matches ESPHOME_DEVICE_NAME_MAX_LEN (validated by validate_hostname)
-	Name          string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	Name string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	// Keepalive interval in seconds when it differs from 60; the device pings after this idle time
+	// and drops a client that has not answered within min(1.5x the interval, 300 s)
+	KeepaliveInterval uint32 `protobuf:"varint,5,opt,name=keepalive_interval,json=keepaliveInterval,proto3" json:"keepalive_interval,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *HelloResponse) Reset() {
@@ -2994,6 +3050,13 @@ func (x *HelloResponse) GetName() string {
 		return x.Name
 	}
 	return ""
+}
+
+func (x *HelloResponse) GetKeepaliveInterval() uint32 {
+	if x != nil {
+		return x.KeepaliveInterval
+	}
+	return 0
 }
 
 // DEPRECATED in ESPHome 2026.1.0 - Password authentication is no longer supported.
@@ -3339,8 +3402,9 @@ type DeviceInfo struct {
 	state    protoimpl.MessageState `protogen:"open.v1"`
 	DeviceId uint32                 `protobuf:"varint,1,opt,name=device_id,json=deviceId,proto3" json:"device_id,omitempty"`
 	// max_data_length matches core/config.FRIENDLY_NAME_MAX_LEN via DEVICE_SCHEMA
-	Name          string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	AreaId        uint32 `protobuf:"varint,3,opt,name=area_id,json=areaId,proto3" json:"area_id,omitempty"`
+	Name          string         `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	AreaId        uint32         `protobuf:"varint,3,opt,name=area_id,json=areaId,proto3" json:"area_id,omitempty"`
+	Relation      DeviceRelation `protobuf:"varint,4,opt,name=relation,proto3,enum=DeviceRelation" json:"relation,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3394,6 +3458,13 @@ func (x *DeviceInfo) GetAreaId() uint32 {
 		return x.AreaId
 	}
 	return 0
+}
+
+func (x *DeviceInfo) GetRelation() DeviceRelation {
+	if x != nil {
+		return x.Relation
+	}
+	return DeviceRelation_DEVICE_RELATION_VIA
 }
 
 type SerialProxyInfo struct {
@@ -3964,6 +4035,51 @@ func (x *ZWaveProxyCapabilities) GetHomeId() uint32 {
 	return 0
 }
 
+type StoreYamlCapabilities struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Firmware embeds its YAML, so clients can request it with get_yaml
+	Supported     bool `protobuf:"varint,1,opt,name=supported,proto3" json:"supported,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StoreYamlCapabilities) Reset() {
+	*x = StoreYamlCapabilities{}
+	mi := &file_api_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StoreYamlCapabilities) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StoreYamlCapabilities) ProtoMessage() {}
+
+func (x *StoreYamlCapabilities) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StoreYamlCapabilities.ProtoReflect.Descriptor instead.
+func (*StoreYamlCapabilities) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *StoreYamlCapabilities) GetSupported() bool {
+	if x != nil {
+		return x.Supported
+	}
+	return false
+}
+
 type WizardCapabilities struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// True when the device has a wizard configured, so DeviceWizardRequest will be answered
@@ -3974,7 +4090,7 @@ type WizardCapabilities struct {
 
 func (x *WizardCapabilities) Reset() {
 	*x = WizardCapabilities{}
-	mi := &file_api_proto_msgTypes[17]
+	mi := &file_api_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3986,7 +4102,7 @@ func (x *WizardCapabilities) String() string {
 func (*WizardCapabilities) ProtoMessage() {}
 
 func (x *WizardCapabilities) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[17]
+	mi := &file_api_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3999,7 +4115,7 @@ func (x *WizardCapabilities) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WizardCapabilities.ProtoReflect.Descriptor instead.
 func (*WizardCapabilities) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{17}
+	return file_api_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *WizardCapabilities) GetConfigured() bool {
@@ -4022,7 +4138,7 @@ type SendspinCapabilities struct {
 
 func (x *SendspinCapabilities) Reset() {
 	*x = SendspinCapabilities{}
-	mi := &file_api_proto_msgTypes[18]
+	mi := &file_api_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4034,7 +4150,7 @@ func (x *SendspinCapabilities) String() string {
 func (*SendspinCapabilities) ProtoMessage() {}
 
 func (x *SendspinCapabilities) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[18]
+	mi := &file_api_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4047,7 +4163,7 @@ func (x *SendspinCapabilities) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SendspinCapabilities.ProtoReflect.Descriptor instead.
 func (*SendspinCapabilities) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{18}
+	return file_api_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *SendspinCapabilities) GetFeatureFlags() uint32 {
@@ -4064,6 +4180,52 @@ func (x *SendspinCapabilities) GetClientId() string {
 	return ""
 }
 
+type CrashReportCapabilities struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Bitmask of CrashReportFlag. ESP32 checks BUILD_MATCHES against the build time stored with the record;
+	// ESP8266, RP2 and LibreTiny store none and assume it.
+	Flags         uint32 `protobuf:"varint,1,opt,name=flags,proto3" json:"flags,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CrashReportCapabilities) Reset() {
+	*x = CrashReportCapabilities{}
+	mi := &file_api_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CrashReportCapabilities) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CrashReportCapabilities) ProtoMessage() {}
+
+func (x *CrashReportCapabilities) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CrashReportCapabilities.ProtoReflect.Descriptor instead.
+func (*CrashReportCapabilities) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *CrashReportCapabilities) GetFlags() uint32 {
+	if x != nil {
+		return x.Flags
+	}
+	return 0
+}
+
 type DeviceCapabilitiesResponse struct {
 	state          protoimpl.MessageState      `protogen:"open.v1"`
 	BluetoothProxy *BluetoothProxyCapabilities `protobuf:"bytes,1,opt,name=bluetooth_proxy,json=bluetoothProxy,proto3" json:"bluetooth_proxy,omitempty"`
@@ -4072,13 +4234,15 @@ type DeviceCapabilitiesResponse struct {
 	SerialProxies  []*SerialProxyInfo          `protobuf:"bytes,4,rep,name=serial_proxies,json=serialProxies,proto3" json:"serial_proxies,omitempty"`
 	Wizard         *WizardCapabilities         `protobuf:"bytes,5,opt,name=wizard,proto3" json:"wizard,omitempty"`
 	Sendspin       *SendspinCapabilities       `protobuf:"bytes,6,opt,name=sendspin,proto3" json:"sendspin,omitempty"`
+	StoreYaml      *StoreYamlCapabilities      `protobuf:"bytes,7,opt,name=store_yaml,json=storeYaml,proto3" json:"store_yaml,omitempty"`
+	CrashReport    *CrashReportCapabilities    `protobuf:"bytes,8,opt,name=crash_report,json=crashReport,proto3" json:"crash_report,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
 
 func (x *DeviceCapabilitiesResponse) Reset() {
 	*x = DeviceCapabilitiesResponse{}
-	mi := &file_api_proto_msgTypes[19]
+	mi := &file_api_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4090,7 +4254,7 @@ func (x *DeviceCapabilitiesResponse) String() string {
 func (*DeviceCapabilitiesResponse) ProtoMessage() {}
 
 func (x *DeviceCapabilitiesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[19]
+	mi := &file_api_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4103,7 +4267,7 @@ func (x *DeviceCapabilitiesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeviceCapabilitiesResponse.ProtoReflect.Descriptor instead.
 func (*DeviceCapabilitiesResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{19}
+	return file_api_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *DeviceCapabilitiesResponse) GetBluetoothProxy() *BluetoothProxyCapabilities {
@@ -4148,6 +4312,20 @@ func (x *DeviceCapabilitiesResponse) GetSendspin() *SendspinCapabilities {
 	return nil
 }
 
+func (x *DeviceCapabilitiesResponse) GetStoreYaml() *StoreYamlCapabilities {
+	if x != nil {
+		return x.StoreYaml
+	}
+	return nil
+}
+
+func (x *DeviceCapabilitiesResponse) GetCrashReport() *CrashReportCapabilities {
+	if x != nil {
+		return x.CrashReport
+	}
+	return nil
+}
+
 // Asks the device for the onboarding wizard that Home Assistant presents when the
 // device is added.
 //
@@ -4166,7 +4344,7 @@ type DeviceWizardRequest struct {
 
 func (x *DeviceWizardRequest) Reset() {
 	*x = DeviceWizardRequest{}
-	mi := &file_api_proto_msgTypes[20]
+	mi := &file_api_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4178,7 +4356,7 @@ func (x *DeviceWizardRequest) String() string {
 func (*DeviceWizardRequest) ProtoMessage() {}
 
 func (x *DeviceWizardRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[20]
+	mi := &file_api_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4191,7 +4369,7 @@ func (x *DeviceWizardRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeviceWizardRequest.ProtoReflect.Descriptor instead.
 func (*DeviceWizardRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{20}
+	return file_api_proto_rawDescGZIP(), []int{22}
 }
 
 // The wizard, as UTF-8 JSON compressed into a single zstd frame. The device builds it
@@ -4200,7 +4378,8 @@ func (*DeviceWizardRequest) Descriptor() ([]byte, []int) {
 //
 //	{"version": 1,
 //	 "pages": [{"title": "...", "description": "...",
-//	   "entities": [{"key": 123, "device_id": 456, "description": "..."}],
+//	   "entities": [{"key": 123, "platform": "sensor", "device_id": 456,
+//	                 "description": "...", "role": "..."}],
 //	   "inputs": [{"key": 789, "description": "...", "multiple": true, "max_length": 1023,
 //	     "entity_filters": [{"integration": "...", "domain": ["..."],
 //	                         "device_class": ["..."], "supported_features": ["..."]}]}]}]}
@@ -4213,6 +4392,13 @@ func (*DeviceWizardRequest) Descriptor() ([]byte, []int) {
 // An entity is an entity of this device that the page shows to the user (for example to
 // turn it on or off). Its key is the key ListEntitiesResponse sends for it. Its
 // device_id is the device_id ListEntitiesResponse sends, and is left out when that is 0.
+// Its platform is the platform of the entity (sensor, switch and so on; date, time or
+// datetime for a datetime entity). A key is only unique within its platform and device, so
+// a client matches an entity by platform, device_id and key together. A client that does
+// not know platform ignores it, so the version stays 1.
+// Its role, when set, is a stable name that the device's firmware gives the entity
+// (always <component>.<name>), so a client can recognise it. The user cannot change it,
+// and no two entities of a wizard share one.
 //
 // An input is filled in by the user with the id of a Home Assistant entity. It either
 // stands for one entity of the device's homeassistant platform (sensor, binary_sensor,
@@ -4247,7 +4433,7 @@ type DeviceWizardResponse struct {
 
 func (x *DeviceWizardResponse) Reset() {
 	*x = DeviceWizardResponse{}
-	mi := &file_api_proto_msgTypes[21]
+	mi := &file_api_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4259,7 +4445,7 @@ func (x *DeviceWizardResponse) String() string {
 func (*DeviceWizardResponse) ProtoMessage() {}
 
 func (x *DeviceWizardResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[21]
+	mi := &file_api_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4272,7 +4458,7 @@ func (x *DeviceWizardResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeviceWizardResponse.ProtoReflect.Descriptor instead.
 func (*DeviceWizardResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{21}
+	return file_api_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *DeviceWizardResponse) GetData() []byte {
@@ -4306,7 +4492,7 @@ type WizardInputSetRequest struct {
 
 func (x *WizardInputSetRequest) Reset() {
 	*x = WizardInputSetRequest{}
-	mi := &file_api_proto_msgTypes[22]
+	mi := &file_api_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4318,7 +4504,7 @@ func (x *WizardInputSetRequest) String() string {
 func (*WizardInputSetRequest) ProtoMessage() {}
 
 func (x *WizardInputSetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[22]
+	mi := &file_api_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4331,7 +4517,7 @@ func (x *WizardInputSetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WizardInputSetRequest.ProtoReflect.Descriptor instead.
 func (*WizardInputSetRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{22}
+	return file_api_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *WizardInputSetRequest) GetKey() uint32 {
@@ -4356,7 +4542,7 @@ type ListEntitiesRequest struct {
 
 func (x *ListEntitiesRequest) Reset() {
 	*x = ListEntitiesRequest{}
-	mi := &file_api_proto_msgTypes[23]
+	mi := &file_api_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4368,7 +4554,7 @@ func (x *ListEntitiesRequest) String() string {
 func (*ListEntitiesRequest) ProtoMessage() {}
 
 func (x *ListEntitiesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[23]
+	mi := &file_api_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4381,7 +4567,7 @@ func (x *ListEntitiesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesRequest.ProtoReflect.Descriptor instead.
 func (*ListEntitiesRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{23}
+	return file_api_proto_rawDescGZIP(), []int{25}
 }
 
 type ListEntitiesDoneResponse struct {
@@ -4392,7 +4578,7 @@ type ListEntitiesDoneResponse struct {
 
 func (x *ListEntitiesDoneResponse) Reset() {
 	*x = ListEntitiesDoneResponse{}
-	mi := &file_api_proto_msgTypes[24]
+	mi := &file_api_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4404,7 +4590,7 @@ func (x *ListEntitiesDoneResponse) String() string {
 func (*ListEntitiesDoneResponse) ProtoMessage() {}
 
 func (x *ListEntitiesDoneResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[24]
+	mi := &file_api_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4417,7 +4603,7 @@ func (x *ListEntitiesDoneResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesDoneResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesDoneResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{24}
+	return file_api_proto_rawDescGZIP(), []int{26}
 }
 
 type SubscribeStatesRequest struct {
@@ -4428,7 +4614,7 @@ type SubscribeStatesRequest struct {
 
 func (x *SubscribeStatesRequest) Reset() {
 	*x = SubscribeStatesRequest{}
-	mi := &file_api_proto_msgTypes[25]
+	mi := &file_api_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4440,7 +4626,7 @@ func (x *SubscribeStatesRequest) String() string {
 func (*SubscribeStatesRequest) ProtoMessage() {}
 
 func (x *SubscribeStatesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[25]
+	mi := &file_api_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4453,7 +4639,196 @@ func (x *SubscribeStatesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubscribeStatesRequest.ProtoReflect.Descriptor instead.
 func (*SubscribeStatesRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{25}
+	return file_api_proto_rawDescGZIP(), []int{27}
+}
+
+// Send only when crash_report.flags has PRESENT. The report is dropped once sent.
+type CrashReportRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CrashReportRequest) Reset() {
+	*x = CrashReportRequest{}
+	mi := &file_api_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CrashReportRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CrashReportRequest) ProtoMessage() {}
+
+func (x *CrashReportRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CrashReportRequest.ProtoReflect.Descriptor instead.
+func (*CrashReportRequest) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{28}
+}
+
+type CrashReportCore struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Core          uint32                 `protobuf:"varint,1,opt,name=core,proto3" json:"core,omitempty"`
+	Backtrace     []uint32               `protobuf:"varint,2,rep,packed,name=backtrace,proto3" json:"backtrace,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CrashReportCore) Reset() {
+	*x = CrashReportCore{}
+	mi := &file_api_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CrashReportCore) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CrashReportCore) ProtoMessage() {}
+
+func (x *CrashReportCore) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CrashReportCore.ProtoReflect.Descriptor instead.
+func (*CrashReportCore) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *CrashReportCore) GetCore() uint32 {
+	if x != nil {
+		return x.Core
+	}
+	return 0
+}
+
+func (x *CrashReportCore) GetBacktrace() []uint32 {
+	if x != nil {
+		return x.Backtrace
+	}
+	return nil
+}
+
+type CrashReportResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Flags         uint32                 `protobuf:"varint,1,opt,name=flags,proto3" json:"flags,omitempty"`   // Bitmask of CrashReportFlag
+	Reason        uint32                 `protobuf:"varint,2,opt,name=reason,proto3" json:"reason,omitempty"` // CrashReason
+	Pc            uint32                 `protobuf:"varint,3,opt,name=pc,proto3" json:"pc,omitempty"`
+	Cause         uint32                 `protobuf:"varint,4,opt,name=cause,proto3" json:"cause,omitempty"`
+	FaultAddress  uint32                 `protobuf:"varint,5,opt,name=fault_address,json=faultAddress,proto3" json:"fault_address,omitempty"`
+	BuildTime     uint32                 `protobuf:"varint,6,opt,name=build_time,json=buildTime,proto3" json:"build_time,omitempty"`
+	CrashedCore   uint32                 `protobuf:"varint,7,opt,name=crashed_core,json=crashedCore,proto3" json:"crashed_core,omitempty"`
+	Cores         []*CrashReportCore     `protobuf:"bytes,8,rep,name=cores,proto3" json:"cores,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CrashReportResponse) Reset() {
+	*x = CrashReportResponse{}
+	mi := &file_api_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CrashReportResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CrashReportResponse) ProtoMessage() {}
+
+func (x *CrashReportResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CrashReportResponse.ProtoReflect.Descriptor instead.
+func (*CrashReportResponse) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *CrashReportResponse) GetFlags() uint32 {
+	if x != nil {
+		return x.Flags
+	}
+	return 0
+}
+
+func (x *CrashReportResponse) GetReason() uint32 {
+	if x != nil {
+		return x.Reason
+	}
+	return 0
+}
+
+func (x *CrashReportResponse) GetPc() uint32 {
+	if x != nil {
+		return x.Pc
+	}
+	return 0
+}
+
+func (x *CrashReportResponse) GetCause() uint32 {
+	if x != nil {
+		return x.Cause
+	}
+	return 0
+}
+
+func (x *CrashReportResponse) GetFaultAddress() uint32 {
+	if x != nil {
+		return x.FaultAddress
+	}
+	return 0
+}
+
+func (x *CrashReportResponse) GetBuildTime() uint32 {
+	if x != nil {
+		return x.BuildTime
+	}
+	return 0
+}
+
+func (x *CrashReportResponse) GetCrashedCore() uint32 {
+	if x != nil {
+		return x.CrashedCore
+	}
+	return 0
+}
+
+func (x *CrashReportResponse) GetCores() []*CrashReportCore {
+	if x != nil {
+		return x.Cores
+	}
+	return nil
 }
 
 // ==================== BINARY SENSOR ====================
@@ -4474,7 +4849,7 @@ type ListEntitiesBinarySensorResponse struct {
 
 func (x *ListEntitiesBinarySensorResponse) Reset() {
 	*x = ListEntitiesBinarySensorResponse{}
-	mi := &file_api_proto_msgTypes[26]
+	mi := &file_api_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4486,7 +4861,7 @@ func (x *ListEntitiesBinarySensorResponse) String() string {
 func (*ListEntitiesBinarySensorResponse) ProtoMessage() {}
 
 func (x *ListEntitiesBinarySensorResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[26]
+	mi := &file_api_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4499,7 +4874,7 @@ func (x *ListEntitiesBinarySensorResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesBinarySensorResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesBinarySensorResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{26}
+	return file_api_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *ListEntitiesBinarySensorResponse) GetObjectId() string {
@@ -4579,7 +4954,7 @@ type BinarySensorStateResponse struct {
 
 func (x *BinarySensorStateResponse) Reset() {
 	*x = BinarySensorStateResponse{}
-	mi := &file_api_proto_msgTypes[27]
+	mi := &file_api_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4591,7 +4966,7 @@ func (x *BinarySensorStateResponse) String() string {
 func (*BinarySensorStateResponse) ProtoMessage() {}
 
 func (x *BinarySensorStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[27]
+	mi := &file_api_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4604,7 +4979,7 @@ func (x *BinarySensorStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BinarySensorStateResponse.ProtoReflect.Descriptor instead.
 func (*BinarySensorStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{27}
+	return file_api_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *BinarySensorStateResponse) GetKey() uint32 {
@@ -4650,13 +5025,15 @@ type ListEntitiesCoverResponse struct {
 	EntityCategory    EntityCategory         `protobuf:"varint,11,opt,name=entity_category,json=entityCategory,proto3,enum=EntityCategory" json:"entity_category,omitempty"`
 	SupportsStop      bool                   `protobuf:"varint,12,opt,name=supports_stop,json=supportsStop,proto3" json:"supports_stop,omitempty"`
 	DeviceId          uint32                 `protobuf:"varint,13,opt,name=device_id,json=deviceId,proto3" json:"device_id,omitempty"`
+	SupportsStopTilt  bool                   `protobuf:"varint,14,opt,name=supports_stop_tilt,json=supportsStopTilt,proto3" json:"supports_stop_tilt,omitempty"`
+	SupportsToggle    bool                   `protobuf:"varint,15,opt,name=supports_toggle,json=supportsToggle,proto3" json:"supports_toggle,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
 
 func (x *ListEntitiesCoverResponse) Reset() {
 	*x = ListEntitiesCoverResponse{}
-	mi := &file_api_proto_msgTypes[28]
+	mi := &file_api_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4668,7 +5045,7 @@ func (x *ListEntitiesCoverResponse) String() string {
 func (*ListEntitiesCoverResponse) ProtoMessage() {}
 
 func (x *ListEntitiesCoverResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[28]
+	mi := &file_api_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4681,7 +5058,7 @@ func (x *ListEntitiesCoverResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesCoverResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesCoverResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{28}
+	return file_api_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *ListEntitiesCoverResponse) GetObjectId() string {
@@ -4768,6 +5145,20 @@ func (x *ListEntitiesCoverResponse) GetDeviceId() uint32 {
 	return 0
 }
 
+func (x *ListEntitiesCoverResponse) GetSupportsStopTilt() bool {
+	if x != nil {
+		return x.SupportsStopTilt
+	}
+	return false
+}
+
+func (x *ListEntitiesCoverResponse) GetSupportsToggle() bool {
+	if x != nil {
+		return x.SupportsToggle
+	}
+	return false
+}
+
 type CoverStateResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	Key   uint32                 `protobuf:"fixed32,1,opt,name=key,proto3" json:"key,omitempty"`
@@ -4787,7 +5178,7 @@ type CoverStateResponse struct {
 
 func (x *CoverStateResponse) Reset() {
 	*x = CoverStateResponse{}
-	mi := &file_api_proto_msgTypes[29]
+	mi := &file_api_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4799,7 +5190,7 @@ func (x *CoverStateResponse) String() string {
 func (*CoverStateResponse) ProtoMessage() {}
 
 func (x *CoverStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[29]
+	mi := &file_api_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4812,7 +5203,7 @@ func (x *CoverStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CoverStateResponse.ProtoReflect.Descriptor instead.
 func (*CoverStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{29}
+	return file_api_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *CoverStateResponse) GetKey() uint32 {
@@ -4877,13 +5268,15 @@ type CoverCommandRequest struct {
 	Tilt          float32            `protobuf:"fixed32,7,opt,name=tilt,proto3" json:"tilt,omitempty"`
 	Stop          bool               `protobuf:"varint,8,opt,name=stop,proto3" json:"stop,omitempty"`
 	DeviceId      uint32             `protobuf:"varint,9,opt,name=device_id,json=deviceId,proto3" json:"device_id,omitempty"`
+	StopTilt      bool               `protobuf:"varint,10,opt,name=stop_tilt,json=stopTilt,proto3" json:"stop_tilt,omitempty"`
+	Toggle        bool               `protobuf:"varint,11,opt,name=toggle,proto3" json:"toggle,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CoverCommandRequest) Reset() {
 	*x = CoverCommandRequest{}
-	mi := &file_api_proto_msgTypes[30]
+	mi := &file_api_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4895,7 +5288,7 @@ func (x *CoverCommandRequest) String() string {
 func (*CoverCommandRequest) ProtoMessage() {}
 
 func (x *CoverCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[30]
+	mi := &file_api_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4908,7 +5301,7 @@ func (x *CoverCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CoverCommandRequest.ProtoReflect.Descriptor instead.
 func (*CoverCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{30}
+	return file_api_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *CoverCommandRequest) GetKey() uint32 {
@@ -4976,6 +5369,20 @@ func (x *CoverCommandRequest) GetDeviceId() uint32 {
 	return 0
 }
 
+func (x *CoverCommandRequest) GetStopTilt() bool {
+	if x != nil {
+		return x.StopTilt
+	}
+	return false
+}
+
+func (x *CoverCommandRequest) GetToggle() bool {
+	if x != nil {
+		return x.Toggle
+	}
+	return false
+}
+
 // ==================== FAN ====================
 type ListEntitiesFanResponse struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
@@ -4997,7 +5404,7 @@ type ListEntitiesFanResponse struct {
 
 func (x *ListEntitiesFanResponse) Reset() {
 	*x = ListEntitiesFanResponse{}
-	mi := &file_api_proto_msgTypes[31]
+	mi := &file_api_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5009,7 +5416,7 @@ func (x *ListEntitiesFanResponse) String() string {
 func (*ListEntitiesFanResponse) ProtoMessage() {}
 
 func (x *ListEntitiesFanResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[31]
+	mi := &file_api_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5022,7 +5429,7 @@ func (x *ListEntitiesFanResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesFanResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesFanResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{31}
+	return file_api_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *ListEntitiesFanResponse) GetObjectId() string {
@@ -5128,7 +5535,7 @@ type FanStateResponse struct {
 
 func (x *FanStateResponse) Reset() {
 	*x = FanStateResponse{}
-	mi := &file_api_proto_msgTypes[32]
+	mi := &file_api_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5140,7 +5547,7 @@ func (x *FanStateResponse) String() string {
 func (*FanStateResponse) ProtoMessage() {}
 
 func (x *FanStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[32]
+	mi := &file_api_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5153,7 +5560,7 @@ func (x *FanStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FanStateResponse.ProtoReflect.Descriptor instead.
 func (*FanStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{32}
+	return file_api_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *FanStateResponse) GetKey() uint32 {
@@ -5241,7 +5648,7 @@ type FanCommandRequest struct {
 
 func (x *FanCommandRequest) Reset() {
 	*x = FanCommandRequest{}
-	mi := &file_api_proto_msgTypes[33]
+	mi := &file_api_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5253,7 +5660,7 @@ func (x *FanCommandRequest) String() string {
 func (*FanCommandRequest) ProtoMessage() {}
 
 func (x *FanCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[33]
+	mi := &file_api_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5266,7 +5673,7 @@ func (x *FanCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FanCommandRequest.ProtoReflect.Descriptor instead.
 func (*FanCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{33}
+	return file_api_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *FanCommandRequest) GetKey() uint32 {
@@ -5405,7 +5812,7 @@ type ListEntitiesLightResponse struct {
 
 func (x *ListEntitiesLightResponse) Reset() {
 	*x = ListEntitiesLightResponse{}
-	mi := &file_api_proto_msgTypes[34]
+	mi := &file_api_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5417,7 +5824,7 @@ func (x *ListEntitiesLightResponse) String() string {
 func (*ListEntitiesLightResponse) ProtoMessage() {}
 
 func (x *ListEntitiesLightResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[34]
+	mi := &file_api_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5430,7 +5837,7 @@ func (x *ListEntitiesLightResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesLightResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesLightResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{34}
+	return file_api_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *ListEntitiesLightResponse) GetObjectId() string {
@@ -5564,7 +5971,7 @@ type LightStateResponse struct {
 
 func (x *LightStateResponse) Reset() {
 	*x = LightStateResponse{}
-	mi := &file_api_proto_msgTypes[35]
+	mi := &file_api_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5576,7 +5983,7 @@ func (x *LightStateResponse) String() string {
 func (*LightStateResponse) ProtoMessage() {}
 
 func (x *LightStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[35]
+	mi := &file_api_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5589,7 +5996,7 @@ func (x *LightStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LightStateResponse.ProtoReflect.Descriptor instead.
 func (*LightStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{35}
+	return file_api_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *LightStateResponse) GetKey() uint32 {
@@ -5726,7 +6133,7 @@ type LightCommandRequest struct {
 
 func (x *LightCommandRequest) Reset() {
 	*x = LightCommandRequest{}
-	mi := &file_api_proto_msgTypes[36]
+	mi := &file_api_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5738,7 +6145,7 @@ func (x *LightCommandRequest) String() string {
 func (*LightCommandRequest) ProtoMessage() {}
 
 func (x *LightCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[36]
+	mi := &file_api_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5751,7 +6158,7 @@ func (x *LightCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LightCommandRequest.ProtoReflect.Descriptor instead.
 func (*LightCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{36}
+	return file_api_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *LightCommandRequest) GetKey() uint32 {
@@ -5975,7 +6382,7 @@ type ListEntitiesSensorResponse struct {
 
 func (x *ListEntitiesSensorResponse) Reset() {
 	*x = ListEntitiesSensorResponse{}
-	mi := &file_api_proto_msgTypes[37]
+	mi := &file_api_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5987,7 +6394,7 @@ func (x *ListEntitiesSensorResponse) String() string {
 func (*ListEntitiesSensorResponse) ProtoMessage() {}
 
 func (x *ListEntitiesSensorResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[37]
+	mi := &file_api_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6000,7 +6407,7 @@ func (x *ListEntitiesSensorResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesSensorResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesSensorResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{37}
+	return file_api_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *ListEntitiesSensorResponse) GetObjectId() string {
@@ -6109,7 +6516,7 @@ type SensorStateResponse struct {
 
 func (x *SensorStateResponse) Reset() {
 	*x = SensorStateResponse{}
-	mi := &file_api_proto_msgTypes[38]
+	mi := &file_api_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6121,7 +6528,7 @@ func (x *SensorStateResponse) String() string {
 func (*SensorStateResponse) ProtoMessage() {}
 
 func (x *SensorStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[38]
+	mi := &file_api_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6134,7 +6541,7 @@ func (x *SensorStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SensorStateResponse.ProtoReflect.Descriptor instead.
 func (*SensorStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{38}
+	return file_api_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *SensorStateResponse) GetKey() uint32 {
@@ -6183,7 +6590,7 @@ type ListEntitiesSwitchResponse struct {
 
 func (x *ListEntitiesSwitchResponse) Reset() {
 	*x = ListEntitiesSwitchResponse{}
-	mi := &file_api_proto_msgTypes[39]
+	mi := &file_api_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6195,7 +6602,7 @@ func (x *ListEntitiesSwitchResponse) String() string {
 func (*ListEntitiesSwitchResponse) ProtoMessage() {}
 
 func (x *ListEntitiesSwitchResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[39]
+	mi := &file_api_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6208,7 +6615,7 @@ func (x *ListEntitiesSwitchResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesSwitchResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesSwitchResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{39}
+	return file_api_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *ListEntitiesSwitchResponse) GetObjectId() string {
@@ -6288,7 +6695,7 @@ type SwitchStateResponse struct {
 
 func (x *SwitchStateResponse) Reset() {
 	*x = SwitchStateResponse{}
-	mi := &file_api_proto_msgTypes[40]
+	mi := &file_api_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6300,7 +6707,7 @@ func (x *SwitchStateResponse) String() string {
 func (*SwitchStateResponse) ProtoMessage() {}
 
 func (x *SwitchStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[40]
+	mi := &file_api_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6313,7 +6720,7 @@ func (x *SwitchStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SwitchStateResponse.ProtoReflect.Descriptor instead.
 func (*SwitchStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{40}
+	return file_api_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *SwitchStateResponse) GetKey() uint32 {
@@ -6355,7 +6762,7 @@ type SwitchCommandRequest struct {
 
 func (x *SwitchCommandRequest) Reset() {
 	*x = SwitchCommandRequest{}
-	mi := &file_api_proto_msgTypes[41]
+	mi := &file_api_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6367,7 +6774,7 @@ func (x *SwitchCommandRequest) String() string {
 func (*SwitchCommandRequest) ProtoMessage() {}
 
 func (x *SwitchCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[41]
+	mi := &file_api_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6380,7 +6787,7 @@ func (x *SwitchCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SwitchCommandRequest.ProtoReflect.Descriptor instead.
 func (*SwitchCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{41}
+	return file_api_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *SwitchCommandRequest) GetKey() uint32 {
@@ -6421,7 +6828,7 @@ type ListEntitiesTextSensorResponse struct {
 
 func (x *ListEntitiesTextSensorResponse) Reset() {
 	*x = ListEntitiesTextSensorResponse{}
-	mi := &file_api_proto_msgTypes[42]
+	mi := &file_api_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6433,7 +6840,7 @@ func (x *ListEntitiesTextSensorResponse) String() string {
 func (*ListEntitiesTextSensorResponse) ProtoMessage() {}
 
 func (x *ListEntitiesTextSensorResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[42]
+	mi := &file_api_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6446,7 +6853,7 @@ func (x *ListEntitiesTextSensorResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesTextSensorResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesTextSensorResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{42}
+	return file_api_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *ListEntitiesTextSensorResponse) GetObjectId() string {
@@ -6519,7 +6926,7 @@ type TextSensorStateResponse struct {
 
 func (x *TextSensorStateResponse) Reset() {
 	*x = TextSensorStateResponse{}
-	mi := &file_api_proto_msgTypes[43]
+	mi := &file_api_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6531,7 +6938,7 @@ func (x *TextSensorStateResponse) String() string {
 func (*TextSensorStateResponse) ProtoMessage() {}
 
 func (x *TextSensorStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[43]
+	mi := &file_api_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6544,7 +6951,7 @@ func (x *TextSensorStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TextSensorStateResponse.ProtoReflect.Descriptor instead.
 func (*TextSensorStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{43}
+	return file_api_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *TextSensorStateResponse) GetKey() uint32 {
@@ -6585,7 +6992,7 @@ type SubscribeLogsRequest struct {
 
 func (x *SubscribeLogsRequest) Reset() {
 	*x = SubscribeLogsRequest{}
-	mi := &file_api_proto_msgTypes[44]
+	mi := &file_api_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6597,7 +7004,7 @@ func (x *SubscribeLogsRequest) String() string {
 func (*SubscribeLogsRequest) ProtoMessage() {}
 
 func (x *SubscribeLogsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[44]
+	mi := &file_api_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6610,7 +7017,7 @@ func (x *SubscribeLogsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubscribeLogsRequest.ProtoReflect.Descriptor instead.
 func (*SubscribeLogsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{44}
+	return file_api_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *SubscribeLogsRequest) GetLevel() LogLevel {
@@ -6637,7 +7044,7 @@ type SubscribeLogsResponse struct {
 
 func (x *SubscribeLogsResponse) Reset() {
 	*x = SubscribeLogsResponse{}
-	mi := &file_api_proto_msgTypes[45]
+	mi := &file_api_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6649,7 +7056,7 @@ func (x *SubscribeLogsResponse) String() string {
 func (*SubscribeLogsResponse) ProtoMessage() {}
 
 func (x *SubscribeLogsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[45]
+	mi := &file_api_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6662,7 +7069,7 @@ func (x *SubscribeLogsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubscribeLogsResponse.ProtoReflect.Descriptor instead.
 func (*SubscribeLogsResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{45}
+	return file_api_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *SubscribeLogsResponse) GetLevel() LogLevel {
@@ -6689,7 +7096,7 @@ type NoiseEncryptionSetKeyRequest struct {
 
 func (x *NoiseEncryptionSetKeyRequest) Reset() {
 	*x = NoiseEncryptionSetKeyRequest{}
-	mi := &file_api_proto_msgTypes[46]
+	mi := &file_api_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6701,7 +7108,7 @@ func (x *NoiseEncryptionSetKeyRequest) String() string {
 func (*NoiseEncryptionSetKeyRequest) ProtoMessage() {}
 
 func (x *NoiseEncryptionSetKeyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[46]
+	mi := &file_api_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6714,7 +7121,7 @@ func (x *NoiseEncryptionSetKeyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NoiseEncryptionSetKeyRequest.ProtoReflect.Descriptor instead.
 func (*NoiseEncryptionSetKeyRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{46}
+	return file_api_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *NoiseEncryptionSetKeyRequest) GetKey() []byte {
@@ -6733,7 +7140,7 @@ type NoiseEncryptionSetKeyResponse struct {
 
 func (x *NoiseEncryptionSetKeyResponse) Reset() {
 	*x = NoiseEncryptionSetKeyResponse{}
-	mi := &file_api_proto_msgTypes[47]
+	mi := &file_api_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6745,7 +7152,7 @@ func (x *NoiseEncryptionSetKeyResponse) String() string {
 func (*NoiseEncryptionSetKeyResponse) ProtoMessage() {}
 
 func (x *NoiseEncryptionSetKeyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[47]
+	mi := &file_api_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6758,7 +7165,7 @@ func (x *NoiseEncryptionSetKeyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NoiseEncryptionSetKeyResponse.ProtoReflect.Descriptor instead.
 func (*NoiseEncryptionSetKeyResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{47}
+	return file_api_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *NoiseEncryptionSetKeyResponse) GetSuccess() bool {
@@ -6777,7 +7184,7 @@ type SubscribeHomeassistantServicesRequest struct {
 
 func (x *SubscribeHomeassistantServicesRequest) Reset() {
 	*x = SubscribeHomeassistantServicesRequest{}
-	mi := &file_api_proto_msgTypes[48]
+	mi := &file_api_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6789,7 +7196,7 @@ func (x *SubscribeHomeassistantServicesRequest) String() string {
 func (*SubscribeHomeassistantServicesRequest) ProtoMessage() {}
 
 func (x *SubscribeHomeassistantServicesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[48]
+	mi := &file_api_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6802,7 +7209,7 @@ func (x *SubscribeHomeassistantServicesRequest) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use SubscribeHomeassistantServicesRequest.ProtoReflect.Descriptor instead.
 func (*SubscribeHomeassistantServicesRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{48}
+	return file_api_proto_rawDescGZIP(), []int{53}
 }
 
 type HomeassistantServiceMap struct {
@@ -6815,7 +7222,7 @@ type HomeassistantServiceMap struct {
 
 func (x *HomeassistantServiceMap) Reset() {
 	*x = HomeassistantServiceMap{}
-	mi := &file_api_proto_msgTypes[49]
+	mi := &file_api_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6827,7 +7234,7 @@ func (x *HomeassistantServiceMap) String() string {
 func (*HomeassistantServiceMap) ProtoMessage() {}
 
 func (x *HomeassistantServiceMap) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[49]
+	mi := &file_api_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6840,7 +7247,7 @@ func (x *HomeassistantServiceMap) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HomeassistantServiceMap.ProtoReflect.Descriptor instead.
 func (*HomeassistantServiceMap) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{49}
+	return file_api_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *HomeassistantServiceMap) GetKey() string {
@@ -6873,7 +7280,7 @@ type HomeassistantActionRequest struct {
 
 func (x *HomeassistantActionRequest) Reset() {
 	*x = HomeassistantActionRequest{}
-	mi := &file_api_proto_msgTypes[50]
+	mi := &file_api_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6885,7 +7292,7 @@ func (x *HomeassistantActionRequest) String() string {
 func (*HomeassistantActionRequest) ProtoMessage() {}
 
 func (x *HomeassistantActionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[50]
+	mi := &file_api_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6898,7 +7305,7 @@ func (x *HomeassistantActionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HomeassistantActionRequest.ProtoReflect.Descriptor instead.
 func (*HomeassistantActionRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{50}
+	return file_api_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *HomeassistantActionRequest) GetService() string {
@@ -6970,7 +7377,7 @@ type HomeassistantActionResponse struct {
 
 func (x *HomeassistantActionResponse) Reset() {
 	*x = HomeassistantActionResponse{}
-	mi := &file_api_proto_msgTypes[51]
+	mi := &file_api_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6982,7 +7389,7 @@ func (x *HomeassistantActionResponse) String() string {
 func (*HomeassistantActionResponse) ProtoMessage() {}
 
 func (x *HomeassistantActionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[51]
+	mi := &file_api_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6995,7 +7402,7 @@ func (x *HomeassistantActionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HomeassistantActionResponse.ProtoReflect.Descriptor instead.
 func (*HomeassistantActionResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{51}
+	return file_api_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *HomeassistantActionResponse) GetCallId() uint32 {
@@ -7038,7 +7445,7 @@ type SubscribeHomeAssistantStatesRequest struct {
 
 func (x *SubscribeHomeAssistantStatesRequest) Reset() {
 	*x = SubscribeHomeAssistantStatesRequest{}
-	mi := &file_api_proto_msgTypes[52]
+	mi := &file_api_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7050,7 +7457,7 @@ func (x *SubscribeHomeAssistantStatesRequest) String() string {
 func (*SubscribeHomeAssistantStatesRequest) ProtoMessage() {}
 
 func (x *SubscribeHomeAssistantStatesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[52]
+	mi := &file_api_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7063,7 +7470,7 @@ func (x *SubscribeHomeAssistantStatesRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use SubscribeHomeAssistantStatesRequest.ProtoReflect.Descriptor instead.
 func (*SubscribeHomeAssistantStatesRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{52}
+	return file_api_proto_rawDescGZIP(), []int{57}
 }
 
 type SubscribeHomeAssistantStateResponse struct {
@@ -7077,7 +7484,7 @@ type SubscribeHomeAssistantStateResponse struct {
 
 func (x *SubscribeHomeAssistantStateResponse) Reset() {
 	*x = SubscribeHomeAssistantStateResponse{}
-	mi := &file_api_proto_msgTypes[53]
+	mi := &file_api_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7089,7 +7496,7 @@ func (x *SubscribeHomeAssistantStateResponse) String() string {
 func (*SubscribeHomeAssistantStateResponse) ProtoMessage() {}
 
 func (x *SubscribeHomeAssistantStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[53]
+	mi := &file_api_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7102,7 +7509,7 @@ func (x *SubscribeHomeAssistantStateResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use SubscribeHomeAssistantStateResponse.ProtoReflect.Descriptor instead.
 func (*SubscribeHomeAssistantStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{53}
+	return file_api_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *SubscribeHomeAssistantStateResponse) GetEntityId() string {
@@ -7137,7 +7544,7 @@ type HomeAssistantStateResponse struct {
 
 func (x *HomeAssistantStateResponse) Reset() {
 	*x = HomeAssistantStateResponse{}
-	mi := &file_api_proto_msgTypes[54]
+	mi := &file_api_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7149,7 +7556,7 @@ func (x *HomeAssistantStateResponse) String() string {
 func (*HomeAssistantStateResponse) ProtoMessage() {}
 
 func (x *HomeAssistantStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[54]
+	mi := &file_api_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7162,7 +7569,7 @@ func (x *HomeAssistantStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HomeAssistantStateResponse.ProtoReflect.Descriptor instead.
 func (*HomeAssistantStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{54}
+	return file_api_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *HomeAssistantStateResponse) GetEntityId() string {
@@ -7195,7 +7602,7 @@ type GetTimeRequest struct {
 
 func (x *GetTimeRequest) Reset() {
 	*x = GetTimeRequest{}
-	mi := &file_api_proto_msgTypes[55]
+	mi := &file_api_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7207,7 +7614,7 @@ func (x *GetTimeRequest) String() string {
 func (*GetTimeRequest) ProtoMessage() {}
 
 func (x *GetTimeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[55]
+	mi := &file_api_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7220,7 +7627,7 @@ func (x *GetTimeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTimeRequest.ProtoReflect.Descriptor instead.
 func (*GetTimeRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{55}
+	return file_api_proto_rawDescGZIP(), []int{60}
 }
 
 type DSTRule struct {
@@ -7237,7 +7644,7 @@ type DSTRule struct {
 
 func (x *DSTRule) Reset() {
 	*x = DSTRule{}
-	mi := &file_api_proto_msgTypes[56]
+	mi := &file_api_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7249,7 +7656,7 @@ func (x *DSTRule) String() string {
 func (*DSTRule) ProtoMessage() {}
 
 func (x *DSTRule) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[56]
+	mi := &file_api_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7262,7 +7669,7 @@ func (x *DSTRule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DSTRule.ProtoReflect.Descriptor instead.
 func (*DSTRule) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{56}
+	return file_api_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *DSTRule) GetTimeSeconds() int32 {
@@ -7319,7 +7726,7 @@ type ParsedTimezone struct {
 
 func (x *ParsedTimezone) Reset() {
 	*x = ParsedTimezone{}
-	mi := &file_api_proto_msgTypes[57]
+	mi := &file_api_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7331,7 +7738,7 @@ func (x *ParsedTimezone) String() string {
 func (*ParsedTimezone) ProtoMessage() {}
 
 func (x *ParsedTimezone) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[57]
+	mi := &file_api_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7344,7 +7751,7 @@ func (x *ParsedTimezone) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParsedTimezone.ProtoReflect.Descriptor instead.
 func (*ParsedTimezone) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{57}
+	return file_api_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *ParsedTimezone) GetStdOffsetSeconds() int32 {
@@ -7392,7 +7799,7 @@ type GetTimeResponse struct {
 
 func (x *GetTimeResponse) Reset() {
 	*x = GetTimeResponse{}
-	mi := &file_api_proto_msgTypes[58]
+	mi := &file_api_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7404,7 +7811,7 @@ func (x *GetTimeResponse) String() string {
 func (*GetTimeResponse) ProtoMessage() {}
 
 func (x *GetTimeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[58]
+	mi := &file_api_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7417,7 +7824,7 @@ func (x *GetTimeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTimeResponse.ProtoReflect.Descriptor instead.
 func (*GetTimeResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{58}
+	return file_api_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *GetTimeResponse) GetEpochSeconds() uint32 {
@@ -7443,18 +7850,22 @@ func (x *GetTimeResponse) GetParsedTimezone() *ParsedTimezone {
 }
 
 type ListEntitiesServicesArgument struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Type          ServiceArgType         `protobuf:"varint,2,opt,name=type,proto3,enum=ServiceArgType" json:"type,omitempty"`
-	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	Example       string                 `protobuf:"bytes,4,opt,name=example,proto3" json:"example,omitempty"`
+	state       protoimpl.MessageState `protogen:"open.v1"`
+	Name        string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Type        ServiceArgType         `protobuf:"varint,2,opt,name=type,proto3,enum=ServiceArgType" json:"type,omitempty"`
+	Description string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	Example     string                 `protobuf:"bytes,4,opt,name=example,proto3" json:"example,omitempty"`
+	// Advisory: ExecuteServiceRequest still requires every argument
+	Optional bool `protobuf:"varint,5,opt,name=optional,proto3" json:"optional,omitempty"`
+	// Always text: bool "true"/"false", numbers parseable as int/float; empty means no default
+	DefaultValue  string `protobuf:"bytes,6,opt,name=default_value,json=defaultValue,proto3" json:"default_value,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ListEntitiesServicesArgument) Reset() {
 	*x = ListEntitiesServicesArgument{}
-	mi := &file_api_proto_msgTypes[59]
+	mi := &file_api_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7466,7 +7877,7 @@ func (x *ListEntitiesServicesArgument) String() string {
 func (*ListEntitiesServicesArgument) ProtoMessage() {}
 
 func (x *ListEntitiesServicesArgument) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[59]
+	mi := &file_api_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7479,7 +7890,7 @@ func (x *ListEntitiesServicesArgument) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesServicesArgument.ProtoReflect.Descriptor instead.
 func (*ListEntitiesServicesArgument) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{59}
+	return file_api_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *ListEntitiesServicesArgument) GetName() string {
@@ -7510,6 +7921,20 @@ func (x *ListEntitiesServicesArgument) GetExample() string {
 	return ""
 }
 
+func (x *ListEntitiesServicesArgument) GetOptional() bool {
+	if x != nil {
+		return x.Optional
+	}
+	return false
+}
+
+func (x *ListEntitiesServicesArgument) GetDefaultValue() string {
+	if x != nil {
+		return x.DefaultValue
+	}
+	return ""
+}
+
 type ListEntitiesServicesResponse struct {
 	state            protoimpl.MessageState          `protogen:"open.v1"`
 	Name             string                          `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
@@ -7523,7 +7948,7 @@ type ListEntitiesServicesResponse struct {
 
 func (x *ListEntitiesServicesResponse) Reset() {
 	*x = ListEntitiesServicesResponse{}
-	mi := &file_api_proto_msgTypes[60]
+	mi := &file_api_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7535,7 +7960,7 @@ func (x *ListEntitiesServicesResponse) String() string {
 func (*ListEntitiesServicesResponse) ProtoMessage() {}
 
 func (x *ListEntitiesServicesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[60]
+	mi := &file_api_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7548,7 +7973,7 @@ func (x *ListEntitiesServicesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesServicesResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesServicesResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{60}
+	return file_api_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *ListEntitiesServicesResponse) GetName() string {
@@ -7604,7 +8029,7 @@ type ExecuteServiceArgument struct {
 
 func (x *ExecuteServiceArgument) Reset() {
 	*x = ExecuteServiceArgument{}
-	mi := &file_api_proto_msgTypes[61]
+	mi := &file_api_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7616,7 +8041,7 @@ func (x *ExecuteServiceArgument) String() string {
 func (*ExecuteServiceArgument) ProtoMessage() {}
 
 func (x *ExecuteServiceArgument) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[61]
+	mi := &file_api_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7629,7 +8054,7 @@ func (x *ExecuteServiceArgument) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExecuteServiceArgument.ProtoReflect.Descriptor instead.
 func (*ExecuteServiceArgument) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{61}
+	return file_api_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *ExecuteServiceArgument) GetBool_() bool {
@@ -7707,7 +8132,7 @@ type ExecuteServiceRequest struct {
 
 func (x *ExecuteServiceRequest) Reset() {
 	*x = ExecuteServiceRequest{}
-	mi := &file_api_proto_msgTypes[62]
+	mi := &file_api_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7719,7 +8144,7 @@ func (x *ExecuteServiceRequest) String() string {
 func (*ExecuteServiceRequest) ProtoMessage() {}
 
 func (x *ExecuteServiceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[62]
+	mi := &file_api_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7732,7 +8157,7 @@ func (x *ExecuteServiceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExecuteServiceRequest.ProtoReflect.Descriptor instead.
 func (*ExecuteServiceRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{62}
+	return file_api_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *ExecuteServiceRequest) GetKey() uint32 {
@@ -7776,7 +8201,7 @@ type ExecuteServiceResponse struct {
 
 func (x *ExecuteServiceResponse) Reset() {
 	*x = ExecuteServiceResponse{}
-	mi := &file_api_proto_msgTypes[63]
+	mi := &file_api_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7788,7 +8213,7 @@ func (x *ExecuteServiceResponse) String() string {
 func (*ExecuteServiceResponse) ProtoMessage() {}
 
 func (x *ExecuteServiceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[63]
+	mi := &file_api_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7801,7 +8226,7 @@ func (x *ExecuteServiceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExecuteServiceResponse.ProtoReflect.Descriptor instead.
 func (*ExecuteServiceResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{63}
+	return file_api_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *ExecuteServiceResponse) GetCallId() uint32 {
@@ -7848,7 +8273,7 @@ type ListEntitiesCameraResponse struct {
 
 func (x *ListEntitiesCameraResponse) Reset() {
 	*x = ListEntitiesCameraResponse{}
-	mi := &file_api_proto_msgTypes[64]
+	mi := &file_api_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7860,7 +8285,7 @@ func (x *ListEntitiesCameraResponse) String() string {
 func (*ListEntitiesCameraResponse) ProtoMessage() {}
 
 func (x *ListEntitiesCameraResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[64]
+	mi := &file_api_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7873,7 +8298,7 @@ func (x *ListEntitiesCameraResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesCameraResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesCameraResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{64}
+	return file_api_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *ListEntitiesCameraResponse) GetObjectId() string {
@@ -7937,7 +8362,7 @@ type CameraImageResponse struct {
 
 func (x *CameraImageResponse) Reset() {
 	*x = CameraImageResponse{}
-	mi := &file_api_proto_msgTypes[65]
+	mi := &file_api_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7949,7 +8374,7 @@ func (x *CameraImageResponse) String() string {
 func (*CameraImageResponse) ProtoMessage() {}
 
 func (x *CameraImageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[65]
+	mi := &file_api_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7962,7 +8387,7 @@ func (x *CameraImageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CameraImageResponse.ProtoReflect.Descriptor instead.
 func (*CameraImageResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{65}
+	return file_api_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *CameraImageResponse) GetKey() uint32 {
@@ -8003,7 +8428,7 @@ type CameraImageRequest struct {
 
 func (x *CameraImageRequest) Reset() {
 	*x = CameraImageRequest{}
-	mi := &file_api_proto_msgTypes[66]
+	mi := &file_api_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8015,7 +8440,7 @@ func (x *CameraImageRequest) String() string {
 func (*CameraImageRequest) ProtoMessage() {}
 
 func (x *CameraImageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[66]
+	mi := &file_api_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8028,7 +8453,7 @@ func (x *CameraImageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CameraImageRequest.ProtoReflect.Descriptor instead.
 func (*CameraImageRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{66}
+	return file_api_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *CameraImageRequest) GetSingle() bool {
@@ -8085,7 +8510,7 @@ type ListEntitiesClimateResponse struct {
 
 func (x *ListEntitiesClimateResponse) Reset() {
 	*x = ListEntitiesClimateResponse{}
-	mi := &file_api_proto_msgTypes[67]
+	mi := &file_api_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8097,7 +8522,7 @@ func (x *ListEntitiesClimateResponse) String() string {
 func (*ListEntitiesClimateResponse) ProtoMessage() {}
 
 func (x *ListEntitiesClimateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[67]
+	mi := &file_api_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8110,7 +8535,7 @@ func (x *ListEntitiesClimateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesClimateResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesClimateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{67}
+	return file_api_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *ListEntitiesClimateResponse) GetObjectId() string {
@@ -8334,7 +8759,7 @@ type ClimateStateResponse struct {
 
 func (x *ClimateStateResponse) Reset() {
 	*x = ClimateStateResponse{}
-	mi := &file_api_proto_msgTypes[68]
+	mi := &file_api_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8346,7 +8771,7 @@ func (x *ClimateStateResponse) String() string {
 func (*ClimateStateResponse) ProtoMessage() {}
 
 func (x *ClimateStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[68]
+	mi := &file_api_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8359,7 +8784,7 @@ func (x *ClimateStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClimateStateResponse.ProtoReflect.Descriptor instead.
 func (*ClimateStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{68}
+	return file_api_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *ClimateStateResponse) GetKey() uint32 {
@@ -8521,7 +8946,7 @@ type ClimateCommandRequest struct {
 
 func (x *ClimateCommandRequest) Reset() {
 	*x = ClimateCommandRequest{}
-	mi := &file_api_proto_msgTypes[69]
+	mi := &file_api_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8533,7 +8958,7 @@ func (x *ClimateCommandRequest) String() string {
 func (*ClimateCommandRequest) ProtoMessage() {}
 
 func (x *ClimateCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[69]
+	mi := &file_api_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8546,7 +8971,7 @@ func (x *ClimateCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClimateCommandRequest.ProtoReflect.Descriptor instead.
 func (*ClimateCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{69}
+	return file_api_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *ClimateCommandRequest) GetKey() uint32 {
@@ -8741,7 +9166,7 @@ type ListEntitiesWaterHeaterResponse struct {
 
 func (x *ListEntitiesWaterHeaterResponse) Reset() {
 	*x = ListEntitiesWaterHeaterResponse{}
-	mi := &file_api_proto_msgTypes[70]
+	mi := &file_api_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8753,7 +9178,7 @@ func (x *ListEntitiesWaterHeaterResponse) String() string {
 func (*ListEntitiesWaterHeaterResponse) ProtoMessage() {}
 
 func (x *ListEntitiesWaterHeaterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[70]
+	mi := &file_api_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8766,7 +9191,7 @@ func (x *ListEntitiesWaterHeaterResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesWaterHeaterResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesWaterHeaterResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{70}
+	return file_api_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *ListEntitiesWaterHeaterResponse) GetObjectId() string {
@@ -8880,7 +9305,7 @@ type WaterHeaterStateResponse struct {
 
 func (x *WaterHeaterStateResponse) Reset() {
 	*x = WaterHeaterStateResponse{}
-	mi := &file_api_proto_msgTypes[71]
+	mi := &file_api_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8892,7 +9317,7 @@ func (x *WaterHeaterStateResponse) String() string {
 func (*WaterHeaterStateResponse) ProtoMessage() {}
 
 func (x *WaterHeaterStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[71]
+	mi := &file_api_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8905,7 +9330,7 @@ func (x *WaterHeaterStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WaterHeaterStateResponse.ProtoReflect.Descriptor instead.
 func (*WaterHeaterStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{71}
+	return file_api_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *WaterHeaterStateResponse) GetKey() uint32 {
@@ -8989,7 +9414,7 @@ type WaterHeaterCommandRequest struct {
 
 func (x *WaterHeaterCommandRequest) Reset() {
 	*x = WaterHeaterCommandRequest{}
-	mi := &file_api_proto_msgTypes[72]
+	mi := &file_api_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9001,7 +9426,7 @@ func (x *WaterHeaterCommandRequest) String() string {
 func (*WaterHeaterCommandRequest) ProtoMessage() {}
 
 func (x *WaterHeaterCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[72]
+	mi := &file_api_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9014,7 +9439,7 @@ func (x *WaterHeaterCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WaterHeaterCommandRequest.ProtoReflect.Descriptor instead.
 func (*WaterHeaterCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{72}
+	return file_api_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *WaterHeaterCommandRequest) GetKey() uint32 {
@@ -9094,7 +9519,7 @@ type ListEntitiesNumberResponse struct {
 
 func (x *ListEntitiesNumberResponse) Reset() {
 	*x = ListEntitiesNumberResponse{}
-	mi := &file_api_proto_msgTypes[73]
+	mi := &file_api_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9106,7 +9531,7 @@ func (x *ListEntitiesNumberResponse) String() string {
 func (*ListEntitiesNumberResponse) ProtoMessage() {}
 
 func (x *ListEntitiesNumberResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[73]
+	mi := &file_api_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9119,7 +9544,7 @@ func (x *ListEntitiesNumberResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesNumberResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesNumberResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{73}
+	return file_api_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *ListEntitiesNumberResponse) GetObjectId() string {
@@ -9227,7 +9652,7 @@ type NumberStateResponse struct {
 
 func (x *NumberStateResponse) Reset() {
 	*x = NumberStateResponse{}
-	mi := &file_api_proto_msgTypes[74]
+	mi := &file_api_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9239,7 +9664,7 @@ func (x *NumberStateResponse) String() string {
 func (*NumberStateResponse) ProtoMessage() {}
 
 func (x *NumberStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[74]
+	mi := &file_api_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9252,7 +9677,7 @@ func (x *NumberStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NumberStateResponse.ProtoReflect.Descriptor instead.
 func (*NumberStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{74}
+	return file_api_proto_rawDescGZIP(), []int{79}
 }
 
 func (x *NumberStateResponse) GetKey() uint32 {
@@ -9294,7 +9719,7 @@ type NumberCommandRequest struct {
 
 func (x *NumberCommandRequest) Reset() {
 	*x = NumberCommandRequest{}
-	mi := &file_api_proto_msgTypes[75]
+	mi := &file_api_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9306,7 +9731,7 @@ func (x *NumberCommandRequest) String() string {
 func (*NumberCommandRequest) ProtoMessage() {}
 
 func (x *NumberCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[75]
+	mi := &file_api_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9319,7 +9744,7 @@ func (x *NumberCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NumberCommandRequest.ProtoReflect.Descriptor instead.
 func (*NumberCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{75}
+	return file_api_proto_rawDescGZIP(), []int{80}
 }
 
 func (x *NumberCommandRequest) GetKey() uint32 {
@@ -9360,7 +9785,7 @@ type ListEntitiesSelectResponse struct {
 
 func (x *ListEntitiesSelectResponse) Reset() {
 	*x = ListEntitiesSelectResponse{}
-	mi := &file_api_proto_msgTypes[76]
+	mi := &file_api_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9372,7 +9797,7 @@ func (x *ListEntitiesSelectResponse) String() string {
 func (*ListEntitiesSelectResponse) ProtoMessage() {}
 
 func (x *ListEntitiesSelectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[76]
+	mi := &file_api_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9385,7 +9810,7 @@ func (x *ListEntitiesSelectResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesSelectResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesSelectResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{76}
+	return file_api_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *ListEntitiesSelectResponse) GetObjectId() string {
@@ -9458,7 +9883,7 @@ type SelectStateResponse struct {
 
 func (x *SelectStateResponse) Reset() {
 	*x = SelectStateResponse{}
-	mi := &file_api_proto_msgTypes[77]
+	mi := &file_api_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9470,7 +9895,7 @@ func (x *SelectStateResponse) String() string {
 func (*SelectStateResponse) ProtoMessage() {}
 
 func (x *SelectStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[77]
+	mi := &file_api_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9483,7 +9908,7 @@ func (x *SelectStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SelectStateResponse.ProtoReflect.Descriptor instead.
 func (*SelectStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{77}
+	return file_api_proto_rawDescGZIP(), []int{82}
 }
 
 func (x *SelectStateResponse) GetKey() uint32 {
@@ -9525,7 +9950,7 @@ type SelectCommandRequest struct {
 
 func (x *SelectCommandRequest) Reset() {
 	*x = SelectCommandRequest{}
-	mi := &file_api_proto_msgTypes[78]
+	mi := &file_api_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9537,7 +9962,7 @@ func (x *SelectCommandRequest) String() string {
 func (*SelectCommandRequest) ProtoMessage() {}
 
 func (x *SelectCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[78]
+	mi := &file_api_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9550,7 +9975,7 @@ func (x *SelectCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SelectCommandRequest.ProtoReflect.Descriptor instead.
 func (*SelectCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{78}
+	return file_api_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *SelectCommandRequest) GetKey() uint32 {
@@ -9593,7 +10018,7 @@ type ListEntitiesSirenResponse struct {
 
 func (x *ListEntitiesSirenResponse) Reset() {
 	*x = ListEntitiesSirenResponse{}
-	mi := &file_api_proto_msgTypes[79]
+	mi := &file_api_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9605,7 +10030,7 @@ func (x *ListEntitiesSirenResponse) String() string {
 func (*ListEntitiesSirenResponse) ProtoMessage() {}
 
 func (x *ListEntitiesSirenResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[79]
+	mi := &file_api_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9618,7 +10043,7 @@ func (x *ListEntitiesSirenResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesSirenResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesSirenResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{79}
+	return file_api_proto_rawDescGZIP(), []int{84}
 }
 
 func (x *ListEntitiesSirenResponse) GetObjectId() string {
@@ -9702,7 +10127,7 @@ type SirenStateResponse struct {
 
 func (x *SirenStateResponse) Reset() {
 	*x = SirenStateResponse{}
-	mi := &file_api_proto_msgTypes[80]
+	mi := &file_api_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9714,7 +10139,7 @@ func (x *SirenStateResponse) String() string {
 func (*SirenStateResponse) ProtoMessage() {}
 
 func (x *SirenStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[80]
+	mi := &file_api_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9727,7 +10152,7 @@ func (x *SirenStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SirenStateResponse.ProtoReflect.Descriptor instead.
 func (*SirenStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{80}
+	return file_api_proto_rawDescGZIP(), []int{85}
 }
 
 func (x *SirenStateResponse) GetKey() uint32 {
@@ -9769,7 +10194,7 @@ type SirenCommandRequest struct {
 
 func (x *SirenCommandRequest) Reset() {
 	*x = SirenCommandRequest{}
-	mi := &file_api_proto_msgTypes[81]
+	mi := &file_api_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9781,7 +10206,7 @@ func (x *SirenCommandRequest) String() string {
 func (*SirenCommandRequest) ProtoMessage() {}
 
 func (x *SirenCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[81]
+	mi := &file_api_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9794,7 +10219,7 @@ func (x *SirenCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SirenCommandRequest.ProtoReflect.Descriptor instead.
 func (*SirenCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{81}
+	return file_api_proto_rawDescGZIP(), []int{86}
 }
 
 func (x *SirenCommandRequest) GetKey() uint32 {
@@ -9887,7 +10312,7 @@ type ListEntitiesLockResponse struct {
 
 func (x *ListEntitiesLockResponse) Reset() {
 	*x = ListEntitiesLockResponse{}
-	mi := &file_api_proto_msgTypes[82]
+	mi := &file_api_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9899,7 +10324,7 @@ func (x *ListEntitiesLockResponse) String() string {
 func (*ListEntitiesLockResponse) ProtoMessage() {}
 
 func (x *ListEntitiesLockResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[82]
+	mi := &file_api_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9912,7 +10337,7 @@ func (x *ListEntitiesLockResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesLockResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesLockResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{82}
+	return file_api_proto_rawDescGZIP(), []int{87}
 }
 
 func (x *ListEntitiesLockResponse) GetObjectId() string {
@@ -10003,7 +10428,7 @@ type LockStateResponse struct {
 
 func (x *LockStateResponse) Reset() {
 	*x = LockStateResponse{}
-	mi := &file_api_proto_msgTypes[83]
+	mi := &file_api_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10015,7 +10440,7 @@ func (x *LockStateResponse) String() string {
 func (*LockStateResponse) ProtoMessage() {}
 
 func (x *LockStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[83]
+	mi := &file_api_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10028,7 +10453,7 @@ func (x *LockStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LockStateResponse.ProtoReflect.Descriptor instead.
 func (*LockStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{83}
+	return file_api_proto_rawDescGZIP(), []int{88}
 }
 
 func (x *LockStateResponse) GetKey() uint32 {
@@ -10066,7 +10491,7 @@ type LockCommandRequest struct {
 
 func (x *LockCommandRequest) Reset() {
 	*x = LockCommandRequest{}
-	mi := &file_api_proto_msgTypes[84]
+	mi := &file_api_proto_msgTypes[89]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10078,7 +10503,7 @@ func (x *LockCommandRequest) String() string {
 func (*LockCommandRequest) ProtoMessage() {}
 
 func (x *LockCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[84]
+	mi := &file_api_proto_msgTypes[89]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10091,7 +10516,7 @@ func (x *LockCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LockCommandRequest.ProtoReflect.Descriptor instead.
 func (*LockCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{84}
+	return file_api_proto_rawDescGZIP(), []int{89}
 }
 
 func (x *LockCommandRequest) GetKey() uint32 {
@@ -10146,7 +10571,7 @@ type ListEntitiesButtonResponse struct {
 
 func (x *ListEntitiesButtonResponse) Reset() {
 	*x = ListEntitiesButtonResponse{}
-	mi := &file_api_proto_msgTypes[85]
+	mi := &file_api_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10158,7 +10583,7 @@ func (x *ListEntitiesButtonResponse) String() string {
 func (*ListEntitiesButtonResponse) ProtoMessage() {}
 
 func (x *ListEntitiesButtonResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[85]
+	mi := &file_api_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10171,7 +10596,7 @@ func (x *ListEntitiesButtonResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesButtonResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesButtonResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{85}
+	return file_api_proto_rawDescGZIP(), []int{90}
 }
 
 func (x *ListEntitiesButtonResponse) GetObjectId() string {
@@ -10240,7 +10665,7 @@ type ButtonCommandRequest struct {
 
 func (x *ButtonCommandRequest) Reset() {
 	*x = ButtonCommandRequest{}
-	mi := &file_api_proto_msgTypes[86]
+	mi := &file_api_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10252,7 +10677,7 @@ func (x *ButtonCommandRequest) String() string {
 func (*ButtonCommandRequest) ProtoMessage() {}
 
 func (x *ButtonCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[86]
+	mi := &file_api_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10265,7 +10690,7 @@ func (x *ButtonCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ButtonCommandRequest.ProtoReflect.Descriptor instead.
 func (*ButtonCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{86}
+	return file_api_proto_rawDescGZIP(), []int{91}
 }
 
 func (x *ButtonCommandRequest) GetKey() uint32 {
@@ -10283,19 +10708,21 @@ func (x *ButtonCommandRequest) GetDeviceId() uint32 {
 }
 
 type MediaPlayerSupportedFormat struct {
-	state         protoimpl.MessageState   `protogen:"open.v1"`
-	Format        string                   `protobuf:"bytes,1,opt,name=format,proto3" json:"format,omitempty"`
-	SampleRate    uint32                   `protobuf:"varint,2,opt,name=sample_rate,json=sampleRate,proto3" json:"sample_rate,omitempty"`
-	NumChannels   uint32                   `protobuf:"varint,3,opt,name=num_channels,json=numChannels,proto3" json:"num_channels,omitempty"`
-	Purpose       MediaPlayerFormatPurpose `protobuf:"varint,4,opt,name=purpose,proto3,enum=MediaPlayerFormatPurpose" json:"purpose,omitempty"`
-	SampleBytes   uint32                   `protobuf:"varint,5,opt,name=sample_bytes,json=sampleBytes,proto3" json:"sample_bytes,omitempty"`
+	state       protoimpl.MessageState   `protogen:"open.v1"`
+	Format      string                   `protobuf:"bytes,1,opt,name=format,proto3" json:"format,omitempty"`
+	SampleRate  uint32                   `protobuf:"varint,2,opt,name=sample_rate,json=sampleRate,proto3" json:"sample_rate,omitempty"`
+	NumChannels uint32                   `protobuf:"varint,3,opt,name=num_channels,json=numChannels,proto3" json:"num_channels,omitempty"`
+	Purpose     MediaPlayerFormatPurpose `protobuf:"varint,4,opt,name=purpose,proto3,enum=MediaPlayerFormatPurpose" json:"purpose,omitempty"`
+	SampleBytes uint32                   `protobuf:"varint,5,opt,name=sample_bytes,json=sampleBytes,proto3" json:"sample_bytes,omitempty"`
+	// Constant bitrate in kbps for lossy formats; 0 means no preference
+	Bitrate       uint32 `protobuf:"varint,6,opt,name=bitrate,proto3" json:"bitrate,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *MediaPlayerSupportedFormat) Reset() {
 	*x = MediaPlayerSupportedFormat{}
-	mi := &file_api_proto_msgTypes[87]
+	mi := &file_api_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10307,7 +10734,7 @@ func (x *MediaPlayerSupportedFormat) String() string {
 func (*MediaPlayerSupportedFormat) ProtoMessage() {}
 
 func (x *MediaPlayerSupportedFormat) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[87]
+	mi := &file_api_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10320,7 +10747,7 @@ func (x *MediaPlayerSupportedFormat) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MediaPlayerSupportedFormat.ProtoReflect.Descriptor instead.
 func (*MediaPlayerSupportedFormat) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{87}
+	return file_api_proto_rawDescGZIP(), []int{92}
 }
 
 func (x *MediaPlayerSupportedFormat) GetFormat() string {
@@ -10358,6 +10785,13 @@ func (x *MediaPlayerSupportedFormat) GetSampleBytes() uint32 {
 	return 0
 }
 
+func (x *MediaPlayerSupportedFormat) GetBitrate() uint32 {
+	if x != nil {
+		return x.Bitrate
+	}
+	return 0
+}
+
 type ListEntitiesMediaPlayerResponse struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	ObjectId          string                 `protobuf:"bytes,1,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`
@@ -10379,7 +10813,7 @@ type ListEntitiesMediaPlayerResponse struct {
 
 func (x *ListEntitiesMediaPlayerResponse) Reset() {
 	*x = ListEntitiesMediaPlayerResponse{}
-	mi := &file_api_proto_msgTypes[88]
+	mi := &file_api_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10391,7 +10825,7 @@ func (x *ListEntitiesMediaPlayerResponse) String() string {
 func (*ListEntitiesMediaPlayerResponse) ProtoMessage() {}
 
 func (x *ListEntitiesMediaPlayerResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[88]
+	mi := &file_api_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10404,7 +10838,7 @@ func (x *ListEntitiesMediaPlayerResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesMediaPlayerResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesMediaPlayerResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{88}
+	return file_api_proto_rawDescGZIP(), []int{93}
 }
 
 func (x *ListEntitiesMediaPlayerResponse) GetObjectId() string {
@@ -10491,7 +10925,7 @@ type MediaPlayerStateResponse struct {
 
 func (x *MediaPlayerStateResponse) Reset() {
 	*x = MediaPlayerStateResponse{}
-	mi := &file_api_proto_msgTypes[89]
+	mi := &file_api_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10503,7 +10937,7 @@ func (x *MediaPlayerStateResponse) String() string {
 func (*MediaPlayerStateResponse) ProtoMessage() {}
 
 func (x *MediaPlayerStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[89]
+	mi := &file_api_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10516,7 +10950,7 @@ func (x *MediaPlayerStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MediaPlayerStateResponse.ProtoReflect.Descriptor instead.
 func (*MediaPlayerStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{89}
+	return file_api_proto_rawDescGZIP(), []int{94}
 }
 
 func (x *MediaPlayerStateResponse) GetKey() uint32 {
@@ -10572,7 +11006,7 @@ type MediaPlayerCommandRequest struct {
 
 func (x *MediaPlayerCommandRequest) Reset() {
 	*x = MediaPlayerCommandRequest{}
-	mi := &file_api_proto_msgTypes[90]
+	mi := &file_api_proto_msgTypes[95]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10584,7 +11018,7 @@ func (x *MediaPlayerCommandRequest) String() string {
 func (*MediaPlayerCommandRequest) ProtoMessage() {}
 
 func (x *MediaPlayerCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[90]
+	mi := &file_api_proto_msgTypes[95]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10597,7 +11031,7 @@ func (x *MediaPlayerCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MediaPlayerCommandRequest.ProtoReflect.Descriptor instead.
 func (*MediaPlayerCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{90}
+	return file_api_proto_rawDescGZIP(), []int{95}
 }
 
 func (x *MediaPlayerCommandRequest) GetKey() uint32 {
@@ -10680,7 +11114,7 @@ type SubscribeBluetoothLEAdvertisementsRequest struct {
 
 func (x *SubscribeBluetoothLEAdvertisementsRequest) Reset() {
 	*x = SubscribeBluetoothLEAdvertisementsRequest{}
-	mi := &file_api_proto_msgTypes[91]
+	mi := &file_api_proto_msgTypes[96]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10692,7 +11126,7 @@ func (x *SubscribeBluetoothLEAdvertisementsRequest) String() string {
 func (*SubscribeBluetoothLEAdvertisementsRequest) ProtoMessage() {}
 
 func (x *SubscribeBluetoothLEAdvertisementsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[91]
+	mi := &file_api_proto_msgTypes[96]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10705,7 +11139,7 @@ func (x *SubscribeBluetoothLEAdvertisementsRequest) ProtoReflect() protoreflect.
 
 // Deprecated: Use SubscribeBluetoothLEAdvertisementsRequest.ProtoReflect.Descriptor instead.
 func (*SubscribeBluetoothLEAdvertisementsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{91}
+	return file_api_proto_rawDescGZIP(), []int{96}
 }
 
 func (x *SubscribeBluetoothLEAdvertisementsRequest) GetFlags() uint32 {
@@ -10732,7 +11166,7 @@ type BluetoothServiceData struct {
 
 func (x *BluetoothServiceData) Reset() {
 	*x = BluetoothServiceData{}
-	mi := &file_api_proto_msgTypes[92]
+	mi := &file_api_proto_msgTypes[97]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10744,7 +11178,7 @@ func (x *BluetoothServiceData) String() string {
 func (*BluetoothServiceData) ProtoMessage() {}
 
 func (x *BluetoothServiceData) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[92]
+	mi := &file_api_proto_msgTypes[97]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10757,7 +11191,7 @@ func (x *BluetoothServiceData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothServiceData.ProtoReflect.Descriptor instead.
 func (*BluetoothServiceData) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{92}
+	return file_api_proto_rawDescGZIP(), []int{97}
 }
 
 func (x *BluetoothServiceData) GetUuid() string {
@@ -10800,7 +11234,7 @@ type BluetoothLEAdvertisementResponse struct {
 
 func (x *BluetoothLEAdvertisementResponse) Reset() {
 	*x = BluetoothLEAdvertisementResponse{}
-	mi := &file_api_proto_msgTypes[93]
+	mi := &file_api_proto_msgTypes[98]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10812,7 +11246,7 @@ func (x *BluetoothLEAdvertisementResponse) String() string {
 func (*BluetoothLEAdvertisementResponse) ProtoMessage() {}
 
 func (x *BluetoothLEAdvertisementResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[93]
+	mi := &file_api_proto_msgTypes[98]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10825,7 +11259,7 @@ func (x *BluetoothLEAdvertisementResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothLEAdvertisementResponse.ProtoReflect.Descriptor instead.
 func (*BluetoothLEAdvertisementResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{93}
+	return file_api_proto_rawDescGZIP(), []int{98}
 }
 
 func (x *BluetoothLEAdvertisementResponse) GetAddress() uint64 {
@@ -10889,7 +11323,7 @@ type BluetoothLERawAdvertisement struct {
 
 func (x *BluetoothLERawAdvertisement) Reset() {
 	*x = BluetoothLERawAdvertisement{}
-	mi := &file_api_proto_msgTypes[94]
+	mi := &file_api_proto_msgTypes[99]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10901,7 +11335,7 @@ func (x *BluetoothLERawAdvertisement) String() string {
 func (*BluetoothLERawAdvertisement) ProtoMessage() {}
 
 func (x *BluetoothLERawAdvertisement) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[94]
+	mi := &file_api_proto_msgTypes[99]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10914,7 +11348,7 @@ func (x *BluetoothLERawAdvertisement) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothLERawAdvertisement.ProtoReflect.Descriptor instead.
 func (*BluetoothLERawAdvertisement) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{94}
+	return file_api_proto_rawDescGZIP(), []int{99}
 }
 
 func (x *BluetoothLERawAdvertisement) GetAddress() uint64 {
@@ -10954,7 +11388,7 @@ type BluetoothLERawAdvertisementsResponse struct {
 
 func (x *BluetoothLERawAdvertisementsResponse) Reset() {
 	*x = BluetoothLERawAdvertisementsResponse{}
-	mi := &file_api_proto_msgTypes[95]
+	mi := &file_api_proto_msgTypes[100]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10966,7 +11400,7 @@ func (x *BluetoothLERawAdvertisementsResponse) String() string {
 func (*BluetoothLERawAdvertisementsResponse) ProtoMessage() {}
 
 func (x *BluetoothLERawAdvertisementsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[95]
+	mi := &file_api_proto_msgTypes[100]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10979,7 +11413,7 @@ func (x *BluetoothLERawAdvertisementsResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use BluetoothLERawAdvertisementsResponse.ProtoReflect.Descriptor instead.
 func (*BluetoothLERawAdvertisementsResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{95}
+	return file_api_proto_rawDescGZIP(), []int{100}
 }
 
 func (x *BluetoothLERawAdvertisementsResponse) GetAdvertisements() []*BluetoothLERawAdvertisement {
@@ -11001,7 +11435,7 @@ type BluetoothDeviceRequest struct {
 
 func (x *BluetoothDeviceRequest) Reset() {
 	*x = BluetoothDeviceRequest{}
-	mi := &file_api_proto_msgTypes[96]
+	mi := &file_api_proto_msgTypes[101]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11013,7 +11447,7 @@ func (x *BluetoothDeviceRequest) String() string {
 func (*BluetoothDeviceRequest) ProtoMessage() {}
 
 func (x *BluetoothDeviceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[96]
+	mi := &file_api_proto_msgTypes[101]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11026,7 +11460,7 @@ func (x *BluetoothDeviceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothDeviceRequest.ProtoReflect.Descriptor instead.
 func (*BluetoothDeviceRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{96}
+	return file_api_proto_rawDescGZIP(), []int{101}
 }
 
 func (x *BluetoothDeviceRequest) GetAddress() uint64 {
@@ -11069,7 +11503,7 @@ type BluetoothDeviceConnectionResponse struct {
 
 func (x *BluetoothDeviceConnectionResponse) Reset() {
 	*x = BluetoothDeviceConnectionResponse{}
-	mi := &file_api_proto_msgTypes[97]
+	mi := &file_api_proto_msgTypes[102]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11081,7 +11515,7 @@ func (x *BluetoothDeviceConnectionResponse) String() string {
 func (*BluetoothDeviceConnectionResponse) ProtoMessage() {}
 
 func (x *BluetoothDeviceConnectionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[97]
+	mi := &file_api_proto_msgTypes[102]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11094,7 +11528,7 @@ func (x *BluetoothDeviceConnectionResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use BluetoothDeviceConnectionResponse.ProtoReflect.Descriptor instead.
 func (*BluetoothDeviceConnectionResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{97}
+	return file_api_proto_rawDescGZIP(), []int{102}
 }
 
 func (x *BluetoothDeviceConnectionResponse) GetAddress() uint64 {
@@ -11134,7 +11568,7 @@ type BluetoothGATTGetServicesRequest struct {
 
 func (x *BluetoothGATTGetServicesRequest) Reset() {
 	*x = BluetoothGATTGetServicesRequest{}
-	mi := &file_api_proto_msgTypes[98]
+	mi := &file_api_proto_msgTypes[103]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11146,7 +11580,7 @@ func (x *BluetoothGATTGetServicesRequest) String() string {
 func (*BluetoothGATTGetServicesRequest) ProtoMessage() {}
 
 func (x *BluetoothGATTGetServicesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[98]
+	mi := &file_api_proto_msgTypes[103]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11159,7 +11593,7 @@ func (x *BluetoothGATTGetServicesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothGATTGetServicesRequest.ProtoReflect.Descriptor instead.
 func (*BluetoothGATTGetServicesRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{98}
+	return file_api_proto_rawDescGZIP(), []int{103}
 }
 
 func (x *BluetoothGATTGetServicesRequest) GetAddress() uint64 {
@@ -11184,7 +11618,7 @@ type BluetoothGATTDescriptor struct {
 
 func (x *BluetoothGATTDescriptor) Reset() {
 	*x = BluetoothGATTDescriptor{}
-	mi := &file_api_proto_msgTypes[99]
+	mi := &file_api_proto_msgTypes[104]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11196,7 +11630,7 @@ func (x *BluetoothGATTDescriptor) String() string {
 func (*BluetoothGATTDescriptor) ProtoMessage() {}
 
 func (x *BluetoothGATTDescriptor) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[99]
+	mi := &file_api_proto_msgTypes[104]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11209,7 +11643,7 @@ func (x *BluetoothGATTDescriptor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothGATTDescriptor.ProtoReflect.Descriptor instead.
 func (*BluetoothGATTDescriptor) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{99}
+	return file_api_proto_rawDescGZIP(), []int{104}
 }
 
 func (x *BluetoothGATTDescriptor) GetUuid() []uint64 {
@@ -11250,7 +11684,7 @@ type BluetoothGATTCharacteristic struct {
 
 func (x *BluetoothGATTCharacteristic) Reset() {
 	*x = BluetoothGATTCharacteristic{}
-	mi := &file_api_proto_msgTypes[100]
+	mi := &file_api_proto_msgTypes[105]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11262,7 +11696,7 @@ func (x *BluetoothGATTCharacteristic) String() string {
 func (*BluetoothGATTCharacteristic) ProtoMessage() {}
 
 func (x *BluetoothGATTCharacteristic) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[100]
+	mi := &file_api_proto_msgTypes[105]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11275,7 +11709,7 @@ func (x *BluetoothGATTCharacteristic) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothGATTCharacteristic.ProtoReflect.Descriptor instead.
 func (*BluetoothGATTCharacteristic) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{100}
+	return file_api_proto_rawDescGZIP(), []int{105}
 }
 
 func (x *BluetoothGATTCharacteristic) GetUuid() []uint64 {
@@ -11329,7 +11763,7 @@ type BluetoothGATTService struct {
 
 func (x *BluetoothGATTService) Reset() {
 	*x = BluetoothGATTService{}
-	mi := &file_api_proto_msgTypes[101]
+	mi := &file_api_proto_msgTypes[106]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11341,7 +11775,7 @@ func (x *BluetoothGATTService) String() string {
 func (*BluetoothGATTService) ProtoMessage() {}
 
 func (x *BluetoothGATTService) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[101]
+	mi := &file_api_proto_msgTypes[106]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11354,7 +11788,7 @@ func (x *BluetoothGATTService) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothGATTService.ProtoReflect.Descriptor instead.
 func (*BluetoothGATTService) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{101}
+	return file_api_proto_rawDescGZIP(), []int{106}
 }
 
 func (x *BluetoothGATTService) GetUuid() []uint64 {
@@ -11395,7 +11829,7 @@ type BluetoothGATTGetServicesResponse struct {
 
 func (x *BluetoothGATTGetServicesResponse) Reset() {
 	*x = BluetoothGATTGetServicesResponse{}
-	mi := &file_api_proto_msgTypes[102]
+	mi := &file_api_proto_msgTypes[107]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11407,7 +11841,7 @@ func (x *BluetoothGATTGetServicesResponse) String() string {
 func (*BluetoothGATTGetServicesResponse) ProtoMessage() {}
 
 func (x *BluetoothGATTGetServicesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[102]
+	mi := &file_api_proto_msgTypes[107]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11420,7 +11854,7 @@ func (x *BluetoothGATTGetServicesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothGATTGetServicesResponse.ProtoReflect.Descriptor instead.
 func (*BluetoothGATTGetServicesResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{102}
+	return file_api_proto_rawDescGZIP(), []int{107}
 }
 
 func (x *BluetoothGATTGetServicesResponse) GetAddress() uint64 {
@@ -11446,7 +11880,7 @@ type BluetoothGATTGetServicesDoneResponse struct {
 
 func (x *BluetoothGATTGetServicesDoneResponse) Reset() {
 	*x = BluetoothGATTGetServicesDoneResponse{}
-	mi := &file_api_proto_msgTypes[103]
+	mi := &file_api_proto_msgTypes[108]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11458,7 +11892,7 @@ func (x *BluetoothGATTGetServicesDoneResponse) String() string {
 func (*BluetoothGATTGetServicesDoneResponse) ProtoMessage() {}
 
 func (x *BluetoothGATTGetServicesDoneResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[103]
+	mi := &file_api_proto_msgTypes[108]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11471,7 +11905,7 @@ func (x *BluetoothGATTGetServicesDoneResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use BluetoothGATTGetServicesDoneResponse.ProtoReflect.Descriptor instead.
 func (*BluetoothGATTGetServicesDoneResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{103}
+	return file_api_proto_rawDescGZIP(), []int{108}
 }
 
 func (x *BluetoothGATTGetServicesDoneResponse) GetAddress() uint64 {
@@ -11491,7 +11925,7 @@ type BluetoothGATTReadRequest struct {
 
 func (x *BluetoothGATTReadRequest) Reset() {
 	*x = BluetoothGATTReadRequest{}
-	mi := &file_api_proto_msgTypes[104]
+	mi := &file_api_proto_msgTypes[109]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11503,7 +11937,7 @@ func (x *BluetoothGATTReadRequest) String() string {
 func (*BluetoothGATTReadRequest) ProtoMessage() {}
 
 func (x *BluetoothGATTReadRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[104]
+	mi := &file_api_proto_msgTypes[109]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11516,7 +11950,7 @@ func (x *BluetoothGATTReadRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothGATTReadRequest.ProtoReflect.Descriptor instead.
 func (*BluetoothGATTReadRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{104}
+	return file_api_proto_rawDescGZIP(), []int{109}
 }
 
 func (x *BluetoothGATTReadRequest) GetAddress() uint64 {
@@ -11544,7 +11978,7 @@ type BluetoothGATTReadResponse struct {
 
 func (x *BluetoothGATTReadResponse) Reset() {
 	*x = BluetoothGATTReadResponse{}
-	mi := &file_api_proto_msgTypes[105]
+	mi := &file_api_proto_msgTypes[110]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11556,7 +11990,7 @@ func (x *BluetoothGATTReadResponse) String() string {
 func (*BluetoothGATTReadResponse) ProtoMessage() {}
 
 func (x *BluetoothGATTReadResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[105]
+	mi := &file_api_proto_msgTypes[110]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11569,7 +12003,7 @@ func (x *BluetoothGATTReadResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothGATTReadResponse.ProtoReflect.Descriptor instead.
 func (*BluetoothGATTReadResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{105}
+	return file_api_proto_rawDescGZIP(), []int{110}
 }
 
 func (x *BluetoothGATTReadResponse) GetAddress() uint64 {
@@ -11605,7 +12039,7 @@ type BluetoothGATTWriteRequest struct {
 
 func (x *BluetoothGATTWriteRequest) Reset() {
 	*x = BluetoothGATTWriteRequest{}
-	mi := &file_api_proto_msgTypes[106]
+	mi := &file_api_proto_msgTypes[111]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11617,7 +12051,7 @@ func (x *BluetoothGATTWriteRequest) String() string {
 func (*BluetoothGATTWriteRequest) ProtoMessage() {}
 
 func (x *BluetoothGATTWriteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[106]
+	mi := &file_api_proto_msgTypes[111]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11630,7 +12064,7 @@ func (x *BluetoothGATTWriteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothGATTWriteRequest.ProtoReflect.Descriptor instead.
 func (*BluetoothGATTWriteRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{106}
+	return file_api_proto_rawDescGZIP(), []int{111}
 }
 
 func (x *BluetoothGATTWriteRequest) GetAddress() uint64 {
@@ -11671,7 +12105,7 @@ type BluetoothGATTReadDescriptorRequest struct {
 
 func (x *BluetoothGATTReadDescriptorRequest) Reset() {
 	*x = BluetoothGATTReadDescriptorRequest{}
-	mi := &file_api_proto_msgTypes[107]
+	mi := &file_api_proto_msgTypes[112]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11683,7 +12117,7 @@ func (x *BluetoothGATTReadDescriptorRequest) String() string {
 func (*BluetoothGATTReadDescriptorRequest) ProtoMessage() {}
 
 func (x *BluetoothGATTReadDescriptorRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[107]
+	mi := &file_api_proto_msgTypes[112]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11696,7 +12130,7 @@ func (x *BluetoothGATTReadDescriptorRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use BluetoothGATTReadDescriptorRequest.ProtoReflect.Descriptor instead.
 func (*BluetoothGATTReadDescriptorRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{107}
+	return file_api_proto_rawDescGZIP(), []int{112}
 }
 
 func (x *BluetoothGATTReadDescriptorRequest) GetAddress() uint64 {
@@ -11724,7 +12158,7 @@ type BluetoothGATTWriteDescriptorRequest struct {
 
 func (x *BluetoothGATTWriteDescriptorRequest) Reset() {
 	*x = BluetoothGATTWriteDescriptorRequest{}
-	mi := &file_api_proto_msgTypes[108]
+	mi := &file_api_proto_msgTypes[113]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11736,7 +12170,7 @@ func (x *BluetoothGATTWriteDescriptorRequest) String() string {
 func (*BluetoothGATTWriteDescriptorRequest) ProtoMessage() {}
 
 func (x *BluetoothGATTWriteDescriptorRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[108]
+	mi := &file_api_proto_msgTypes[113]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11749,7 +12183,7 @@ func (x *BluetoothGATTWriteDescriptorRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use BluetoothGATTWriteDescriptorRequest.ProtoReflect.Descriptor instead.
 func (*BluetoothGATTWriteDescriptorRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{108}
+	return file_api_proto_rawDescGZIP(), []int{113}
 }
 
 func (x *BluetoothGATTWriteDescriptorRequest) GetAddress() uint64 {
@@ -11784,7 +12218,7 @@ type BluetoothGATTNotifyRequest struct {
 
 func (x *BluetoothGATTNotifyRequest) Reset() {
 	*x = BluetoothGATTNotifyRequest{}
-	mi := &file_api_proto_msgTypes[109]
+	mi := &file_api_proto_msgTypes[114]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11796,7 +12230,7 @@ func (x *BluetoothGATTNotifyRequest) String() string {
 func (*BluetoothGATTNotifyRequest) ProtoMessage() {}
 
 func (x *BluetoothGATTNotifyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[109]
+	mi := &file_api_proto_msgTypes[114]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11809,7 +12243,7 @@ func (x *BluetoothGATTNotifyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothGATTNotifyRequest.ProtoReflect.Descriptor instead.
 func (*BluetoothGATTNotifyRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{109}
+	return file_api_proto_rawDescGZIP(), []int{114}
 }
 
 func (x *BluetoothGATTNotifyRequest) GetAddress() uint64 {
@@ -11844,7 +12278,7 @@ type BluetoothGATTNotifyDataResponse struct {
 
 func (x *BluetoothGATTNotifyDataResponse) Reset() {
 	*x = BluetoothGATTNotifyDataResponse{}
-	mi := &file_api_proto_msgTypes[110]
+	mi := &file_api_proto_msgTypes[115]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11856,7 +12290,7 @@ func (x *BluetoothGATTNotifyDataResponse) String() string {
 func (*BluetoothGATTNotifyDataResponse) ProtoMessage() {}
 
 func (x *BluetoothGATTNotifyDataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[110]
+	mi := &file_api_proto_msgTypes[115]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11869,7 +12303,7 @@ func (x *BluetoothGATTNotifyDataResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothGATTNotifyDataResponse.ProtoReflect.Descriptor instead.
 func (*BluetoothGATTNotifyDataResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{110}
+	return file_api_proto_rawDescGZIP(), []int{115}
 }
 
 func (x *BluetoothGATTNotifyDataResponse) GetAddress() uint64 {
@@ -11901,7 +12335,7 @@ type SubscribeBluetoothConnectionsFreeRequest struct {
 
 func (x *SubscribeBluetoothConnectionsFreeRequest) Reset() {
 	*x = SubscribeBluetoothConnectionsFreeRequest{}
-	mi := &file_api_proto_msgTypes[111]
+	mi := &file_api_proto_msgTypes[116]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11913,7 +12347,7 @@ func (x *SubscribeBluetoothConnectionsFreeRequest) String() string {
 func (*SubscribeBluetoothConnectionsFreeRequest) ProtoMessage() {}
 
 func (x *SubscribeBluetoothConnectionsFreeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[111]
+	mi := &file_api_proto_msgTypes[116]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11926,7 +12360,7 @@ func (x *SubscribeBluetoothConnectionsFreeRequest) ProtoReflect() protoreflect.M
 
 // Deprecated: Use SubscribeBluetoothConnectionsFreeRequest.ProtoReflect.Descriptor instead.
 func (*SubscribeBluetoothConnectionsFreeRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{111}
+	return file_api_proto_rawDescGZIP(), []int{116}
 }
 
 type BluetoothConnectionsFreeResponse struct {
@@ -11940,7 +12374,7 @@ type BluetoothConnectionsFreeResponse struct {
 
 func (x *BluetoothConnectionsFreeResponse) Reset() {
 	*x = BluetoothConnectionsFreeResponse{}
-	mi := &file_api_proto_msgTypes[112]
+	mi := &file_api_proto_msgTypes[117]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11952,7 +12386,7 @@ func (x *BluetoothConnectionsFreeResponse) String() string {
 func (*BluetoothConnectionsFreeResponse) ProtoMessage() {}
 
 func (x *BluetoothConnectionsFreeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[112]
+	mi := &file_api_proto_msgTypes[117]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11965,7 +12399,7 @@ func (x *BluetoothConnectionsFreeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothConnectionsFreeResponse.ProtoReflect.Descriptor instead.
 func (*BluetoothConnectionsFreeResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{112}
+	return file_api_proto_rawDescGZIP(), []int{117}
 }
 
 func (x *BluetoothConnectionsFreeResponse) GetFree() uint32 {
@@ -12000,7 +12434,7 @@ type BluetoothGATTErrorResponse struct {
 
 func (x *BluetoothGATTErrorResponse) Reset() {
 	*x = BluetoothGATTErrorResponse{}
-	mi := &file_api_proto_msgTypes[113]
+	mi := &file_api_proto_msgTypes[118]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12012,7 +12446,7 @@ func (x *BluetoothGATTErrorResponse) String() string {
 func (*BluetoothGATTErrorResponse) ProtoMessage() {}
 
 func (x *BluetoothGATTErrorResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[113]
+	mi := &file_api_proto_msgTypes[118]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12025,7 +12459,7 @@ func (x *BluetoothGATTErrorResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothGATTErrorResponse.ProtoReflect.Descriptor instead.
 func (*BluetoothGATTErrorResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{113}
+	return file_api_proto_rawDescGZIP(), []int{118}
 }
 
 func (x *BluetoothGATTErrorResponse) GetAddress() uint64 {
@@ -12059,7 +12493,7 @@ type BluetoothGATTWriteResponse struct {
 
 func (x *BluetoothGATTWriteResponse) Reset() {
 	*x = BluetoothGATTWriteResponse{}
-	mi := &file_api_proto_msgTypes[114]
+	mi := &file_api_proto_msgTypes[119]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12071,7 +12505,7 @@ func (x *BluetoothGATTWriteResponse) String() string {
 func (*BluetoothGATTWriteResponse) ProtoMessage() {}
 
 func (x *BluetoothGATTWriteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[114]
+	mi := &file_api_proto_msgTypes[119]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12084,7 +12518,7 @@ func (x *BluetoothGATTWriteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothGATTWriteResponse.ProtoReflect.Descriptor instead.
 func (*BluetoothGATTWriteResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{114}
+	return file_api_proto_rawDescGZIP(), []int{119}
 }
 
 func (x *BluetoothGATTWriteResponse) GetAddress() uint64 {
@@ -12111,7 +12545,7 @@ type BluetoothGATTNotifyResponse struct {
 
 func (x *BluetoothGATTNotifyResponse) Reset() {
 	*x = BluetoothGATTNotifyResponse{}
-	mi := &file_api_proto_msgTypes[115]
+	mi := &file_api_proto_msgTypes[120]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12123,7 +12557,7 @@ func (x *BluetoothGATTNotifyResponse) String() string {
 func (*BluetoothGATTNotifyResponse) ProtoMessage() {}
 
 func (x *BluetoothGATTNotifyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[115]
+	mi := &file_api_proto_msgTypes[120]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12136,7 +12570,7 @@ func (x *BluetoothGATTNotifyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothGATTNotifyResponse.ProtoReflect.Descriptor instead.
 func (*BluetoothGATTNotifyResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{115}
+	return file_api_proto_rawDescGZIP(), []int{120}
 }
 
 func (x *BluetoothGATTNotifyResponse) GetAddress() uint64 {
@@ -12164,7 +12598,7 @@ type BluetoothDevicePairingResponse struct {
 
 func (x *BluetoothDevicePairingResponse) Reset() {
 	*x = BluetoothDevicePairingResponse{}
-	mi := &file_api_proto_msgTypes[116]
+	mi := &file_api_proto_msgTypes[121]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12176,7 +12610,7 @@ func (x *BluetoothDevicePairingResponse) String() string {
 func (*BluetoothDevicePairingResponse) ProtoMessage() {}
 
 func (x *BluetoothDevicePairingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[116]
+	mi := &file_api_proto_msgTypes[121]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12189,7 +12623,7 @@ func (x *BluetoothDevicePairingResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothDevicePairingResponse.ProtoReflect.Descriptor instead.
 func (*BluetoothDevicePairingResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{116}
+	return file_api_proto_rawDescGZIP(), []int{121}
 }
 
 func (x *BluetoothDevicePairingResponse) GetAddress() uint64 {
@@ -12224,7 +12658,7 @@ type BluetoothDeviceUnpairingResponse struct {
 
 func (x *BluetoothDeviceUnpairingResponse) Reset() {
 	*x = BluetoothDeviceUnpairingResponse{}
-	mi := &file_api_proto_msgTypes[117]
+	mi := &file_api_proto_msgTypes[122]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12236,7 +12670,7 @@ func (x *BluetoothDeviceUnpairingResponse) String() string {
 func (*BluetoothDeviceUnpairingResponse) ProtoMessage() {}
 
 func (x *BluetoothDeviceUnpairingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[117]
+	mi := &file_api_proto_msgTypes[122]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12249,7 +12683,7 @@ func (x *BluetoothDeviceUnpairingResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothDeviceUnpairingResponse.ProtoReflect.Descriptor instead.
 func (*BluetoothDeviceUnpairingResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{117}
+	return file_api_proto_rawDescGZIP(), []int{122}
 }
 
 func (x *BluetoothDeviceUnpairingResponse) GetAddress() uint64 {
@@ -12281,7 +12715,7 @@ type UnsubscribeBluetoothLEAdvertisementsRequest struct {
 
 func (x *UnsubscribeBluetoothLEAdvertisementsRequest) Reset() {
 	*x = UnsubscribeBluetoothLEAdvertisementsRequest{}
-	mi := &file_api_proto_msgTypes[118]
+	mi := &file_api_proto_msgTypes[123]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12293,7 +12727,7 @@ func (x *UnsubscribeBluetoothLEAdvertisementsRequest) String() string {
 func (*UnsubscribeBluetoothLEAdvertisementsRequest) ProtoMessage() {}
 
 func (x *UnsubscribeBluetoothLEAdvertisementsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[118]
+	mi := &file_api_proto_msgTypes[123]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12306,7 +12740,7 @@ func (x *UnsubscribeBluetoothLEAdvertisementsRequest) ProtoReflect() protoreflec
 
 // Deprecated: Use UnsubscribeBluetoothLEAdvertisementsRequest.ProtoReflect.Descriptor instead.
 func (*UnsubscribeBluetoothLEAdvertisementsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{118}
+	return file_api_proto_rawDescGZIP(), []int{123}
 }
 
 type BluetoothDeviceClearCacheResponse struct {
@@ -12320,7 +12754,7 @@ type BluetoothDeviceClearCacheResponse struct {
 
 func (x *BluetoothDeviceClearCacheResponse) Reset() {
 	*x = BluetoothDeviceClearCacheResponse{}
-	mi := &file_api_proto_msgTypes[119]
+	mi := &file_api_proto_msgTypes[124]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12332,7 +12766,7 @@ func (x *BluetoothDeviceClearCacheResponse) String() string {
 func (*BluetoothDeviceClearCacheResponse) ProtoMessage() {}
 
 func (x *BluetoothDeviceClearCacheResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[119]
+	mi := &file_api_proto_msgTypes[124]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12345,7 +12779,7 @@ func (x *BluetoothDeviceClearCacheResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use BluetoothDeviceClearCacheResponse.ProtoReflect.Descriptor instead.
 func (*BluetoothDeviceClearCacheResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{119}
+	return file_api_proto_rawDescGZIP(), []int{124}
 }
 
 func (x *BluetoothDeviceClearCacheResponse) GetAddress() uint64 {
@@ -12380,7 +12814,7 @@ type BluetoothScannerStateResponse struct {
 
 func (x *BluetoothScannerStateResponse) Reset() {
 	*x = BluetoothScannerStateResponse{}
-	mi := &file_api_proto_msgTypes[120]
+	mi := &file_api_proto_msgTypes[125]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12392,7 +12826,7 @@ func (x *BluetoothScannerStateResponse) String() string {
 func (*BluetoothScannerStateResponse) ProtoMessage() {}
 
 func (x *BluetoothScannerStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[120]
+	mi := &file_api_proto_msgTypes[125]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12405,7 +12839,7 @@ func (x *BluetoothScannerStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothScannerStateResponse.ProtoReflect.Descriptor instead.
 func (*BluetoothScannerStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{120}
+	return file_api_proto_rawDescGZIP(), []int{125}
 }
 
 func (x *BluetoothScannerStateResponse) GetState() BluetoothScannerState {
@@ -12438,7 +12872,7 @@ type BluetoothScannerSetModeRequest struct {
 
 func (x *BluetoothScannerSetModeRequest) Reset() {
 	*x = BluetoothScannerSetModeRequest{}
-	mi := &file_api_proto_msgTypes[121]
+	mi := &file_api_proto_msgTypes[126]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12450,7 +12884,7 @@ func (x *BluetoothScannerSetModeRequest) String() string {
 func (*BluetoothScannerSetModeRequest) ProtoMessage() {}
 
 func (x *BluetoothScannerSetModeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[121]
+	mi := &file_api_proto_msgTypes[126]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12463,7 +12897,7 @@ func (x *BluetoothScannerSetModeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BluetoothScannerSetModeRequest.ProtoReflect.Descriptor instead.
 func (*BluetoothScannerSetModeRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{121}
+	return file_api_proto_rawDescGZIP(), []int{126}
 }
 
 func (x *BluetoothScannerSetModeRequest) GetMode() BluetoothScannerMode {
@@ -12483,7 +12917,7 @@ type SubscribeVoiceAssistantRequest struct {
 
 func (x *SubscribeVoiceAssistantRequest) Reset() {
 	*x = SubscribeVoiceAssistantRequest{}
-	mi := &file_api_proto_msgTypes[122]
+	mi := &file_api_proto_msgTypes[127]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12495,7 +12929,7 @@ func (x *SubscribeVoiceAssistantRequest) String() string {
 func (*SubscribeVoiceAssistantRequest) ProtoMessage() {}
 
 func (x *SubscribeVoiceAssistantRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[122]
+	mi := &file_api_proto_msgTypes[127]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12508,7 +12942,7 @@ func (x *SubscribeVoiceAssistantRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubscribeVoiceAssistantRequest.ProtoReflect.Descriptor instead.
 func (*SubscribeVoiceAssistantRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{122}
+	return file_api_proto_rawDescGZIP(), []int{127}
 }
 
 func (x *SubscribeVoiceAssistantRequest) GetSubscribe() bool {
@@ -12536,7 +12970,7 @@ type VoiceAssistantAudioSettings struct {
 
 func (x *VoiceAssistantAudioSettings) Reset() {
 	*x = VoiceAssistantAudioSettings{}
-	mi := &file_api_proto_msgTypes[123]
+	mi := &file_api_proto_msgTypes[128]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12548,7 +12982,7 @@ func (x *VoiceAssistantAudioSettings) String() string {
 func (*VoiceAssistantAudioSettings) ProtoMessage() {}
 
 func (x *VoiceAssistantAudioSettings) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[123]
+	mi := &file_api_proto_msgTypes[128]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12561,7 +12995,7 @@ func (x *VoiceAssistantAudioSettings) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoiceAssistantAudioSettings.ProtoReflect.Descriptor instead.
 func (*VoiceAssistantAudioSettings) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{123}
+	return file_api_proto_rawDescGZIP(), []int{128}
 }
 
 func (x *VoiceAssistantAudioSettings) GetNoiseSuppressionLevel() uint32 {
@@ -12586,19 +13020,24 @@ func (x *VoiceAssistantAudioSettings) GetVolumeMultiplier() float32 {
 }
 
 type VoiceAssistantRequest struct {
-	state          protoimpl.MessageState       `protogen:"open.v1"`
-	Start          bool                         `protobuf:"varint,1,opt,name=start,proto3" json:"start,omitempty"`
-	ConversationId string                       `protobuf:"bytes,2,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
-	Flags          uint32                       `protobuf:"varint,3,opt,name=flags,proto3" json:"flags,omitempty"`
-	AudioSettings  *VoiceAssistantAudioSettings `protobuf:"bytes,4,opt,name=audio_settings,json=audioSettings,proto3" json:"audio_settings,omitempty"`
-	WakeWordPhrase string                       `protobuf:"bytes,5,opt,name=wake_word_phrase,json=wakeWordPhrase,proto3" json:"wake_word_phrase,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                     protoimpl.MessageState       `protogen:"open.v1"`
+	Start                     bool                         `protobuf:"varint,1,opt,name=start,proto3" json:"start,omitempty"`
+	ConversationId            string                       `protobuf:"bytes,2,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
+	Flags                     uint32                       `protobuf:"varint,3,opt,name=flags,proto3" json:"flags,omitempty"`
+	AudioSettings             *VoiceAssistantAudioSettings `protobuf:"bytes,4,opt,name=audio_settings,json=audioSettings,proto3" json:"audio_settings,omitempty"`
+	WakeWordPhrase            string                       `protobuf:"bytes,5,opt,name=wake_word_phrase,json=wakeWordPhrase,proto3" json:"wake_word_phrase,omitempty"`
+	WakeWordId                string                       `protobuf:"bytes,6,opt,name=wake_word_id,json=wakeWordId,proto3" json:"wake_word_id,omitempty"`
+	WakeWordAudioBytes        uint32                       `protobuf:"varint,7,opt,name=wake_word_audio_bytes,json=wakeWordAudioBytes,proto3" json:"wake_word_audio_bytes,omitempty"`
+	WakeWordProbability       float32                      `protobuf:"fixed32,8,opt,name=wake_word_probability,json=wakeWordProbability,proto3" json:"wake_word_probability,omitempty"`
+	WakeWordProbabilityCutoff float32                      `protobuf:"fixed32,9,opt,name=wake_word_probability_cutoff,json=wakeWordProbabilityCutoff,proto3" json:"wake_word_probability_cutoff,omitempty"`
+	WakeWordAudioBytes2       uint32                       `protobuf:"varint,10,opt,name=wake_word_audio_bytes2,json=wakeWordAudioBytes2,proto3" json:"wake_word_audio_bytes2,omitempty"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *VoiceAssistantRequest) Reset() {
 	*x = VoiceAssistantRequest{}
-	mi := &file_api_proto_msgTypes[124]
+	mi := &file_api_proto_msgTypes[129]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12610,7 +13049,7 @@ func (x *VoiceAssistantRequest) String() string {
 func (*VoiceAssistantRequest) ProtoMessage() {}
 
 func (x *VoiceAssistantRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[124]
+	mi := &file_api_proto_msgTypes[129]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12623,7 +13062,7 @@ func (x *VoiceAssistantRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoiceAssistantRequest.ProtoReflect.Descriptor instead.
 func (*VoiceAssistantRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{124}
+	return file_api_proto_rawDescGZIP(), []int{129}
 }
 
 func (x *VoiceAssistantRequest) GetStart() bool {
@@ -12661,6 +13100,41 @@ func (x *VoiceAssistantRequest) GetWakeWordPhrase() string {
 	return ""
 }
 
+func (x *VoiceAssistantRequest) GetWakeWordId() string {
+	if x != nil {
+		return x.WakeWordId
+	}
+	return ""
+}
+
+func (x *VoiceAssistantRequest) GetWakeWordAudioBytes() uint32 {
+	if x != nil {
+		return x.WakeWordAudioBytes
+	}
+	return 0
+}
+
+func (x *VoiceAssistantRequest) GetWakeWordProbability() float32 {
+	if x != nil {
+		return x.WakeWordProbability
+	}
+	return 0
+}
+
+func (x *VoiceAssistantRequest) GetWakeWordProbabilityCutoff() float32 {
+	if x != nil {
+		return x.WakeWordProbabilityCutoff
+	}
+	return 0
+}
+
+func (x *VoiceAssistantRequest) GetWakeWordAudioBytes2() uint32 {
+	if x != nil {
+		return x.WakeWordAudioBytes2
+	}
+	return 0
+}
+
 type VoiceAssistantResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Port          uint32                 `protobuf:"varint,1,opt,name=port,proto3" json:"port,omitempty"`
@@ -12671,7 +13145,7 @@ type VoiceAssistantResponse struct {
 
 func (x *VoiceAssistantResponse) Reset() {
 	*x = VoiceAssistantResponse{}
-	mi := &file_api_proto_msgTypes[125]
+	mi := &file_api_proto_msgTypes[130]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12683,7 +13157,7 @@ func (x *VoiceAssistantResponse) String() string {
 func (*VoiceAssistantResponse) ProtoMessage() {}
 
 func (x *VoiceAssistantResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[125]
+	mi := &file_api_proto_msgTypes[130]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12696,7 +13170,7 @@ func (x *VoiceAssistantResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoiceAssistantResponse.ProtoReflect.Descriptor instead.
 func (*VoiceAssistantResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{125}
+	return file_api_proto_rawDescGZIP(), []int{130}
 }
 
 func (x *VoiceAssistantResponse) GetPort() uint32 {
@@ -12723,7 +13197,7 @@ type VoiceAssistantEventData struct {
 
 func (x *VoiceAssistantEventData) Reset() {
 	*x = VoiceAssistantEventData{}
-	mi := &file_api_proto_msgTypes[126]
+	mi := &file_api_proto_msgTypes[131]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12735,7 +13209,7 @@ func (x *VoiceAssistantEventData) String() string {
 func (*VoiceAssistantEventData) ProtoMessage() {}
 
 func (x *VoiceAssistantEventData) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[126]
+	mi := &file_api_proto_msgTypes[131]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12748,7 +13222,7 @@ func (x *VoiceAssistantEventData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoiceAssistantEventData.ProtoReflect.Descriptor instead.
 func (*VoiceAssistantEventData) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{126}
+	return file_api_proto_rawDescGZIP(), []int{131}
 }
 
 func (x *VoiceAssistantEventData) GetName() string {
@@ -12775,7 +13249,7 @@ type VoiceAssistantEventResponse struct {
 
 func (x *VoiceAssistantEventResponse) Reset() {
 	*x = VoiceAssistantEventResponse{}
-	mi := &file_api_proto_msgTypes[127]
+	mi := &file_api_proto_msgTypes[132]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12787,7 +13261,7 @@ func (x *VoiceAssistantEventResponse) String() string {
 func (*VoiceAssistantEventResponse) ProtoMessage() {}
 
 func (x *VoiceAssistantEventResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[127]
+	mi := &file_api_proto_msgTypes[132]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12800,7 +13274,7 @@ func (x *VoiceAssistantEventResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoiceAssistantEventResponse.ProtoReflect.Descriptor instead.
 func (*VoiceAssistantEventResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{127}
+	return file_api_proto_rawDescGZIP(), []int{132}
 }
 
 func (x *VoiceAssistantEventResponse) GetEventType() VoiceAssistantEvent {
@@ -12828,7 +13302,7 @@ type VoiceAssistantAudio struct {
 
 func (x *VoiceAssistantAudio) Reset() {
 	*x = VoiceAssistantAudio{}
-	mi := &file_api_proto_msgTypes[128]
+	mi := &file_api_proto_msgTypes[133]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12840,7 +13314,7 @@ func (x *VoiceAssistantAudio) String() string {
 func (*VoiceAssistantAudio) ProtoMessage() {}
 
 func (x *VoiceAssistantAudio) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[128]
+	mi := &file_api_proto_msgTypes[133]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12853,7 +13327,7 @@ func (x *VoiceAssistantAudio) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoiceAssistantAudio.ProtoReflect.Descriptor instead.
 func (*VoiceAssistantAudio) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{128}
+	return file_api_proto_rawDescGZIP(), []int{133}
 }
 
 func (x *VoiceAssistantAudio) GetData() []byte {
@@ -12891,7 +13365,7 @@ type VoiceAssistantTimerEventResponse struct {
 
 func (x *VoiceAssistantTimerEventResponse) Reset() {
 	*x = VoiceAssistantTimerEventResponse{}
-	mi := &file_api_proto_msgTypes[129]
+	mi := &file_api_proto_msgTypes[134]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12903,7 +13377,7 @@ func (x *VoiceAssistantTimerEventResponse) String() string {
 func (*VoiceAssistantTimerEventResponse) ProtoMessage() {}
 
 func (x *VoiceAssistantTimerEventResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[129]
+	mi := &file_api_proto_msgTypes[134]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12916,7 +13390,7 @@ func (x *VoiceAssistantTimerEventResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoiceAssistantTimerEventResponse.ProtoReflect.Descriptor instead.
 func (*VoiceAssistantTimerEventResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{129}
+	return file_api_proto_rawDescGZIP(), []int{134}
 }
 
 func (x *VoiceAssistantTimerEventResponse) GetEventType() VoiceAssistantTimerEvent {
@@ -12973,7 +13447,7 @@ type VoiceAssistantAnnounceRequest struct {
 
 func (x *VoiceAssistantAnnounceRequest) Reset() {
 	*x = VoiceAssistantAnnounceRequest{}
-	mi := &file_api_proto_msgTypes[130]
+	mi := &file_api_proto_msgTypes[135]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12985,7 +13459,7 @@ func (x *VoiceAssistantAnnounceRequest) String() string {
 func (*VoiceAssistantAnnounceRequest) ProtoMessage() {}
 
 func (x *VoiceAssistantAnnounceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[130]
+	mi := &file_api_proto_msgTypes[135]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12998,7 +13472,7 @@ func (x *VoiceAssistantAnnounceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoiceAssistantAnnounceRequest.ProtoReflect.Descriptor instead.
 func (*VoiceAssistantAnnounceRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{130}
+	return file_api_proto_rawDescGZIP(), []int{135}
 }
 
 func (x *VoiceAssistantAnnounceRequest) GetMediaId() string {
@@ -13038,7 +13512,7 @@ type VoiceAssistantAnnounceFinished struct {
 
 func (x *VoiceAssistantAnnounceFinished) Reset() {
 	*x = VoiceAssistantAnnounceFinished{}
-	mi := &file_api_proto_msgTypes[131]
+	mi := &file_api_proto_msgTypes[136]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13050,7 +13524,7 @@ func (x *VoiceAssistantAnnounceFinished) String() string {
 func (*VoiceAssistantAnnounceFinished) ProtoMessage() {}
 
 func (x *VoiceAssistantAnnounceFinished) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[131]
+	mi := &file_api_proto_msgTypes[136]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13063,7 +13537,7 @@ func (x *VoiceAssistantAnnounceFinished) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoiceAssistantAnnounceFinished.ProtoReflect.Descriptor instead.
 func (*VoiceAssistantAnnounceFinished) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{131}
+	return file_api_proto_rawDescGZIP(), []int{136}
 }
 
 func (x *VoiceAssistantAnnounceFinished) GetSuccess() bool {
@@ -13084,7 +13558,7 @@ type VoiceAssistantWakeWord struct {
 
 func (x *VoiceAssistantWakeWord) Reset() {
 	*x = VoiceAssistantWakeWord{}
-	mi := &file_api_proto_msgTypes[132]
+	mi := &file_api_proto_msgTypes[137]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13096,7 +13570,7 @@ func (x *VoiceAssistantWakeWord) String() string {
 func (*VoiceAssistantWakeWord) ProtoMessage() {}
 
 func (x *VoiceAssistantWakeWord) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[132]
+	mi := &file_api_proto_msgTypes[137]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13109,7 +13583,7 @@ func (x *VoiceAssistantWakeWord) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoiceAssistantWakeWord.ProtoReflect.Descriptor instead.
 func (*VoiceAssistantWakeWord) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{132}
+	return file_api_proto_rawDescGZIP(), []int{137}
 }
 
 func (x *VoiceAssistantWakeWord) GetId() string {
@@ -13148,7 +13622,7 @@ type VoiceAssistantExternalWakeWord struct {
 
 func (x *VoiceAssistantExternalWakeWord) Reset() {
 	*x = VoiceAssistantExternalWakeWord{}
-	mi := &file_api_proto_msgTypes[133]
+	mi := &file_api_proto_msgTypes[138]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13160,7 +13634,7 @@ func (x *VoiceAssistantExternalWakeWord) String() string {
 func (*VoiceAssistantExternalWakeWord) ProtoMessage() {}
 
 func (x *VoiceAssistantExternalWakeWord) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[133]
+	mi := &file_api_proto_msgTypes[138]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13173,7 +13647,7 @@ func (x *VoiceAssistantExternalWakeWord) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoiceAssistantExternalWakeWord.ProtoReflect.Descriptor instead.
 func (*VoiceAssistantExternalWakeWord) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{133}
+	return file_api_proto_rawDescGZIP(), []int{138}
 }
 
 func (x *VoiceAssistantExternalWakeWord) GetId() string {
@@ -13234,7 +13708,7 @@ type VoiceAssistantConfigurationRequest struct {
 
 func (x *VoiceAssistantConfigurationRequest) Reset() {
 	*x = VoiceAssistantConfigurationRequest{}
-	mi := &file_api_proto_msgTypes[134]
+	mi := &file_api_proto_msgTypes[139]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13246,7 +13720,7 @@ func (x *VoiceAssistantConfigurationRequest) String() string {
 func (*VoiceAssistantConfigurationRequest) ProtoMessage() {}
 
 func (x *VoiceAssistantConfigurationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[134]
+	mi := &file_api_proto_msgTypes[139]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13259,7 +13733,7 @@ func (x *VoiceAssistantConfigurationRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use VoiceAssistantConfigurationRequest.ProtoReflect.Descriptor instead.
 func (*VoiceAssistantConfigurationRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{134}
+	return file_api_proto_rawDescGZIP(), []int{139}
 }
 
 func (x *VoiceAssistantConfigurationRequest) GetExternalWakeWords() []*VoiceAssistantExternalWakeWord {
@@ -13280,7 +13754,7 @@ type VoiceAssistantConfigurationResponse struct {
 
 func (x *VoiceAssistantConfigurationResponse) Reset() {
 	*x = VoiceAssistantConfigurationResponse{}
-	mi := &file_api_proto_msgTypes[135]
+	mi := &file_api_proto_msgTypes[140]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13292,7 +13766,7 @@ func (x *VoiceAssistantConfigurationResponse) String() string {
 func (*VoiceAssistantConfigurationResponse) ProtoMessage() {}
 
 func (x *VoiceAssistantConfigurationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[135]
+	mi := &file_api_proto_msgTypes[140]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13305,7 +13779,7 @@ func (x *VoiceAssistantConfigurationResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use VoiceAssistantConfigurationResponse.ProtoReflect.Descriptor instead.
 func (*VoiceAssistantConfigurationResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{135}
+	return file_api_proto_rawDescGZIP(), []int{140}
 }
 
 func (x *VoiceAssistantConfigurationResponse) GetAvailableWakeWords() []*VoiceAssistantWakeWord {
@@ -13338,7 +13812,7 @@ type VoiceAssistantSetConfiguration struct {
 
 func (x *VoiceAssistantSetConfiguration) Reset() {
 	*x = VoiceAssistantSetConfiguration{}
-	mi := &file_api_proto_msgTypes[136]
+	mi := &file_api_proto_msgTypes[141]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13350,7 +13824,7 @@ func (x *VoiceAssistantSetConfiguration) String() string {
 func (*VoiceAssistantSetConfiguration) ProtoMessage() {}
 
 func (x *VoiceAssistantSetConfiguration) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[136]
+	mi := &file_api_proto_msgTypes[141]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13363,7 +13837,7 @@ func (x *VoiceAssistantSetConfiguration) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoiceAssistantSetConfiguration.ProtoReflect.Descriptor instead.
 func (*VoiceAssistantSetConfiguration) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{136}
+	return file_api_proto_rawDescGZIP(), []int{141}
 }
 
 func (x *VoiceAssistantSetConfiguration) GetActiveWakeWords() []string {
@@ -13391,7 +13865,7 @@ type ListEntitiesAlarmControlPanelResponse struct {
 
 func (x *ListEntitiesAlarmControlPanelResponse) Reset() {
 	*x = ListEntitiesAlarmControlPanelResponse{}
-	mi := &file_api_proto_msgTypes[137]
+	mi := &file_api_proto_msgTypes[142]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13403,7 +13877,7 @@ func (x *ListEntitiesAlarmControlPanelResponse) String() string {
 func (*ListEntitiesAlarmControlPanelResponse) ProtoMessage() {}
 
 func (x *ListEntitiesAlarmControlPanelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[137]
+	mi := &file_api_proto_msgTypes[142]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13416,7 +13890,7 @@ func (x *ListEntitiesAlarmControlPanelResponse) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use ListEntitiesAlarmControlPanelResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesAlarmControlPanelResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{137}
+	return file_api_proto_rawDescGZIP(), []int{142}
 }
 
 func (x *ListEntitiesAlarmControlPanelResponse) GetObjectId() string {
@@ -13500,7 +13974,7 @@ type AlarmControlPanelStateResponse struct {
 
 func (x *AlarmControlPanelStateResponse) Reset() {
 	*x = AlarmControlPanelStateResponse{}
-	mi := &file_api_proto_msgTypes[138]
+	mi := &file_api_proto_msgTypes[143]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13512,7 +13986,7 @@ func (x *AlarmControlPanelStateResponse) String() string {
 func (*AlarmControlPanelStateResponse) ProtoMessage() {}
 
 func (x *AlarmControlPanelStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[138]
+	mi := &file_api_proto_msgTypes[143]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13525,7 +13999,7 @@ func (x *AlarmControlPanelStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AlarmControlPanelStateResponse.ProtoReflect.Descriptor instead.
 func (*AlarmControlPanelStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{138}
+	return file_api_proto_rawDescGZIP(), []int{143}
 }
 
 func (x *AlarmControlPanelStateResponse) GetKey() uint32 {
@@ -13561,7 +14035,7 @@ type AlarmControlPanelCommandRequest struct {
 
 func (x *AlarmControlPanelCommandRequest) Reset() {
 	*x = AlarmControlPanelCommandRequest{}
-	mi := &file_api_proto_msgTypes[139]
+	mi := &file_api_proto_msgTypes[144]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13573,7 +14047,7 @@ func (x *AlarmControlPanelCommandRequest) String() string {
 func (*AlarmControlPanelCommandRequest) ProtoMessage() {}
 
 func (x *AlarmControlPanelCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[139]
+	mi := &file_api_proto_msgTypes[144]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13586,7 +14060,7 @@ func (x *AlarmControlPanelCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AlarmControlPanelCommandRequest.ProtoReflect.Descriptor instead.
 func (*AlarmControlPanelCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{139}
+	return file_api_proto_rawDescGZIP(), []int{144}
 }
 
 func (x *AlarmControlPanelCommandRequest) GetKey() uint32 {
@@ -13636,7 +14110,7 @@ type ListEntitiesTextResponse struct {
 
 func (x *ListEntitiesTextResponse) Reset() {
 	*x = ListEntitiesTextResponse{}
-	mi := &file_api_proto_msgTypes[140]
+	mi := &file_api_proto_msgTypes[145]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13648,7 +14122,7 @@ func (x *ListEntitiesTextResponse) String() string {
 func (*ListEntitiesTextResponse) ProtoMessage() {}
 
 func (x *ListEntitiesTextResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[140]
+	mi := &file_api_proto_msgTypes[145]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13661,7 +14135,7 @@ func (x *ListEntitiesTextResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesTextResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesTextResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{140}
+	return file_api_proto_rawDescGZIP(), []int{145}
 }
 
 func (x *ListEntitiesTextResponse) GetObjectId() string {
@@ -13755,7 +14229,7 @@ type TextStateResponse struct {
 
 func (x *TextStateResponse) Reset() {
 	*x = TextStateResponse{}
-	mi := &file_api_proto_msgTypes[141]
+	mi := &file_api_proto_msgTypes[146]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13767,7 +14241,7 @@ func (x *TextStateResponse) String() string {
 func (*TextStateResponse) ProtoMessage() {}
 
 func (x *TextStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[141]
+	mi := &file_api_proto_msgTypes[146]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13780,7 +14254,7 @@ func (x *TextStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TextStateResponse.ProtoReflect.Descriptor instead.
 func (*TextStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{141}
+	return file_api_proto_rawDescGZIP(), []int{146}
 }
 
 func (x *TextStateResponse) GetKey() uint32 {
@@ -13822,7 +14296,7 @@ type TextCommandRequest struct {
 
 func (x *TextCommandRequest) Reset() {
 	*x = TextCommandRequest{}
-	mi := &file_api_proto_msgTypes[142]
+	mi := &file_api_proto_msgTypes[147]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13834,7 +14308,7 @@ func (x *TextCommandRequest) String() string {
 func (*TextCommandRequest) ProtoMessage() {}
 
 func (x *TextCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[142]
+	mi := &file_api_proto_msgTypes[147]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13847,7 +14321,7 @@ func (x *TextCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TextCommandRequest.ProtoReflect.Descriptor instead.
 func (*TextCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{142}
+	return file_api_proto_rawDescGZIP(), []int{147}
 }
 
 func (x *TextCommandRequest) GetKey() uint32 {
@@ -13887,7 +14361,7 @@ type ListEntitiesDateResponse struct {
 
 func (x *ListEntitiesDateResponse) Reset() {
 	*x = ListEntitiesDateResponse{}
-	mi := &file_api_proto_msgTypes[143]
+	mi := &file_api_proto_msgTypes[148]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13899,7 +14373,7 @@ func (x *ListEntitiesDateResponse) String() string {
 func (*ListEntitiesDateResponse) ProtoMessage() {}
 
 func (x *ListEntitiesDateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[143]
+	mi := &file_api_proto_msgTypes[148]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13912,7 +14386,7 @@ func (x *ListEntitiesDateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesDateResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesDateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{143}
+	return file_api_proto_rawDescGZIP(), []int{148}
 }
 
 func (x *ListEntitiesDateResponse) GetObjectId() string {
@@ -13980,7 +14454,7 @@ type DateStateResponse struct {
 
 func (x *DateStateResponse) Reset() {
 	*x = DateStateResponse{}
-	mi := &file_api_proto_msgTypes[144]
+	mi := &file_api_proto_msgTypes[149]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13992,7 +14466,7 @@ func (x *DateStateResponse) String() string {
 func (*DateStateResponse) ProtoMessage() {}
 
 func (x *DateStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[144]
+	mi := &file_api_proto_msgTypes[149]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14005,7 +14479,7 @@ func (x *DateStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DateStateResponse.ProtoReflect.Descriptor instead.
 func (*DateStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{144}
+	return file_api_proto_rawDescGZIP(), []int{149}
 }
 
 func (x *DateStateResponse) GetKey() uint32 {
@@ -14063,7 +14537,7 @@ type DateCommandRequest struct {
 
 func (x *DateCommandRequest) Reset() {
 	*x = DateCommandRequest{}
-	mi := &file_api_proto_msgTypes[145]
+	mi := &file_api_proto_msgTypes[150]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14075,7 +14549,7 @@ func (x *DateCommandRequest) String() string {
 func (*DateCommandRequest) ProtoMessage() {}
 
 func (x *DateCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[145]
+	mi := &file_api_proto_msgTypes[150]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14088,7 +14562,7 @@ func (x *DateCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DateCommandRequest.ProtoReflect.Descriptor instead.
 func (*DateCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{145}
+	return file_api_proto_rawDescGZIP(), []int{150}
 }
 
 func (x *DateCommandRequest) GetKey() uint32 {
@@ -14142,7 +14616,7 @@ type ListEntitiesTimeResponse struct {
 
 func (x *ListEntitiesTimeResponse) Reset() {
 	*x = ListEntitiesTimeResponse{}
-	mi := &file_api_proto_msgTypes[146]
+	mi := &file_api_proto_msgTypes[151]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14154,7 +14628,7 @@ func (x *ListEntitiesTimeResponse) String() string {
 func (*ListEntitiesTimeResponse) ProtoMessage() {}
 
 func (x *ListEntitiesTimeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[146]
+	mi := &file_api_proto_msgTypes[151]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14167,7 +14641,7 @@ func (x *ListEntitiesTimeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesTimeResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesTimeResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{146}
+	return file_api_proto_rawDescGZIP(), []int{151}
 }
 
 func (x *ListEntitiesTimeResponse) GetObjectId() string {
@@ -14235,7 +14709,7 @@ type TimeStateResponse struct {
 
 func (x *TimeStateResponse) Reset() {
 	*x = TimeStateResponse{}
-	mi := &file_api_proto_msgTypes[147]
+	mi := &file_api_proto_msgTypes[152]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14247,7 +14721,7 @@ func (x *TimeStateResponse) String() string {
 func (*TimeStateResponse) ProtoMessage() {}
 
 func (x *TimeStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[147]
+	mi := &file_api_proto_msgTypes[152]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14260,7 +14734,7 @@ func (x *TimeStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TimeStateResponse.ProtoReflect.Descriptor instead.
 func (*TimeStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{147}
+	return file_api_proto_rawDescGZIP(), []int{152}
 }
 
 func (x *TimeStateResponse) GetKey() uint32 {
@@ -14318,7 +14792,7 @@ type TimeCommandRequest struct {
 
 func (x *TimeCommandRequest) Reset() {
 	*x = TimeCommandRequest{}
-	mi := &file_api_proto_msgTypes[148]
+	mi := &file_api_proto_msgTypes[153]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14330,7 +14804,7 @@ func (x *TimeCommandRequest) String() string {
 func (*TimeCommandRequest) ProtoMessage() {}
 
 func (x *TimeCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[148]
+	mi := &file_api_proto_msgTypes[153]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14343,7 +14817,7 @@ func (x *TimeCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TimeCommandRequest.ProtoReflect.Descriptor instead.
 func (*TimeCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{148}
+	return file_api_proto_rawDescGZIP(), []int{153}
 }
 
 func (x *TimeCommandRequest) GetKey() uint32 {
@@ -14399,7 +14873,7 @@ type ListEntitiesEventResponse struct {
 
 func (x *ListEntitiesEventResponse) Reset() {
 	*x = ListEntitiesEventResponse{}
-	mi := &file_api_proto_msgTypes[149]
+	mi := &file_api_proto_msgTypes[154]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14411,7 +14885,7 @@ func (x *ListEntitiesEventResponse) String() string {
 func (*ListEntitiesEventResponse) ProtoMessage() {}
 
 func (x *ListEntitiesEventResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[149]
+	mi := &file_api_proto_msgTypes[154]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14424,7 +14898,7 @@ func (x *ListEntitiesEventResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesEventResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesEventResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{149}
+	return file_api_proto_rawDescGZIP(), []int{154}
 }
 
 func (x *ListEntitiesEventResponse) GetObjectId() string {
@@ -14501,7 +14975,7 @@ type EventResponse struct {
 
 func (x *EventResponse) Reset() {
 	*x = EventResponse{}
-	mi := &file_api_proto_msgTypes[150]
+	mi := &file_api_proto_msgTypes[155]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14513,7 +14987,7 @@ func (x *EventResponse) String() string {
 func (*EventResponse) ProtoMessage() {}
 
 func (x *EventResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[150]
+	mi := &file_api_proto_msgTypes[155]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14526,7 +15000,7 @@ func (x *EventResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EventResponse.ProtoReflect.Descriptor instead.
 func (*EventResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{150}
+	return file_api_proto_rawDescGZIP(), []int{155}
 }
 
 func (x *EventResponse) GetKey() uint32 {
@@ -14570,7 +15044,7 @@ type ListEntitiesValveResponse struct {
 
 func (x *ListEntitiesValveResponse) Reset() {
 	*x = ListEntitiesValveResponse{}
-	mi := &file_api_proto_msgTypes[151]
+	mi := &file_api_proto_msgTypes[156]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14582,7 +15056,7 @@ func (x *ListEntitiesValveResponse) String() string {
 func (*ListEntitiesValveResponse) ProtoMessage() {}
 
 func (x *ListEntitiesValveResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[151]
+	mi := &file_api_proto_msgTypes[156]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14595,7 +15069,7 @@ func (x *ListEntitiesValveResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesValveResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesValveResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{151}
+	return file_api_proto_rawDescGZIP(), []int{156}
 }
 
 func (x *ListEntitiesValveResponse) GetObjectId() string {
@@ -14687,7 +15161,7 @@ type ValveStateResponse struct {
 
 func (x *ValveStateResponse) Reset() {
 	*x = ValveStateResponse{}
-	mi := &file_api_proto_msgTypes[152]
+	mi := &file_api_proto_msgTypes[157]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14699,7 +15173,7 @@ func (x *ValveStateResponse) String() string {
 func (*ValveStateResponse) ProtoMessage() {}
 
 func (x *ValveStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[152]
+	mi := &file_api_proto_msgTypes[157]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14712,7 +15186,7 @@ func (x *ValveStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValveStateResponse.ProtoReflect.Descriptor instead.
 func (*ValveStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{152}
+	return file_api_proto_rawDescGZIP(), []int{157}
 }
 
 func (x *ValveStateResponse) GetKey() uint32 {
@@ -14756,7 +15230,7 @@ type ValveCommandRequest struct {
 
 func (x *ValveCommandRequest) Reset() {
 	*x = ValveCommandRequest{}
-	mi := &file_api_proto_msgTypes[153]
+	mi := &file_api_proto_msgTypes[158]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14768,7 +15242,7 @@ func (x *ValveCommandRequest) String() string {
 func (*ValveCommandRequest) ProtoMessage() {}
 
 func (x *ValveCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[153]
+	mi := &file_api_proto_msgTypes[158]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14781,7 +15255,7 @@ func (x *ValveCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValveCommandRequest.ProtoReflect.Descriptor instead.
 func (*ValveCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{153}
+	return file_api_proto_rawDescGZIP(), []int{158}
 }
 
 func (x *ValveCommandRequest) GetKey() uint32 {
@@ -14835,7 +15309,7 @@ type ListEntitiesDateTimeResponse struct {
 
 func (x *ListEntitiesDateTimeResponse) Reset() {
 	*x = ListEntitiesDateTimeResponse{}
-	mi := &file_api_proto_msgTypes[154]
+	mi := &file_api_proto_msgTypes[159]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14847,7 +15321,7 @@ func (x *ListEntitiesDateTimeResponse) String() string {
 func (*ListEntitiesDateTimeResponse) ProtoMessage() {}
 
 func (x *ListEntitiesDateTimeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[154]
+	mi := &file_api_proto_msgTypes[159]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14860,7 +15334,7 @@ func (x *ListEntitiesDateTimeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesDateTimeResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesDateTimeResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{154}
+	return file_api_proto_rawDescGZIP(), []int{159}
 }
 
 func (x *ListEntitiesDateTimeResponse) GetObjectId() string {
@@ -14926,7 +15400,7 @@ type DateTimeStateResponse struct {
 
 func (x *DateTimeStateResponse) Reset() {
 	*x = DateTimeStateResponse{}
-	mi := &file_api_proto_msgTypes[155]
+	mi := &file_api_proto_msgTypes[160]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14938,7 +15412,7 @@ func (x *DateTimeStateResponse) String() string {
 func (*DateTimeStateResponse) ProtoMessage() {}
 
 func (x *DateTimeStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[155]
+	mi := &file_api_proto_msgTypes[160]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14951,7 +15425,7 @@ func (x *DateTimeStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DateTimeStateResponse.ProtoReflect.Descriptor instead.
 func (*DateTimeStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{155}
+	return file_api_proto_rawDescGZIP(), []int{160}
 }
 
 func (x *DateTimeStateResponse) GetKey() uint32 {
@@ -14993,7 +15467,7 @@ type DateTimeCommandRequest struct {
 
 func (x *DateTimeCommandRequest) Reset() {
 	*x = DateTimeCommandRequest{}
-	mi := &file_api_proto_msgTypes[156]
+	mi := &file_api_proto_msgTypes[161]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15005,7 +15479,7 @@ func (x *DateTimeCommandRequest) String() string {
 func (*DateTimeCommandRequest) ProtoMessage() {}
 
 func (x *DateTimeCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[156]
+	mi := &file_api_proto_msgTypes[161]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15018,7 +15492,7 @@ func (x *DateTimeCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DateTimeCommandRequest.ProtoReflect.Descriptor instead.
 func (*DateTimeCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{156}
+	return file_api_proto_rawDescGZIP(), []int{161}
 }
 
 func (x *DateTimeCommandRequest) GetKey() uint32 {
@@ -15059,7 +15533,7 @@ type ListEntitiesUpdateResponse struct {
 
 func (x *ListEntitiesUpdateResponse) Reset() {
 	*x = ListEntitiesUpdateResponse{}
-	mi := &file_api_proto_msgTypes[157]
+	mi := &file_api_proto_msgTypes[162]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15071,7 +15545,7 @@ func (x *ListEntitiesUpdateResponse) String() string {
 func (*ListEntitiesUpdateResponse) ProtoMessage() {}
 
 func (x *ListEntitiesUpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[157]
+	mi := &file_api_proto_msgTypes[162]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15084,7 +15558,7 @@ func (x *ListEntitiesUpdateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesUpdateResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesUpdateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{157}
+	return file_api_proto_rawDescGZIP(), []int{162}
 }
 
 func (x *ListEntitiesUpdateResponse) GetObjectId() string {
@@ -15162,7 +15636,7 @@ type UpdateStateResponse struct {
 
 func (x *UpdateStateResponse) Reset() {
 	*x = UpdateStateResponse{}
-	mi := &file_api_proto_msgTypes[158]
+	mi := &file_api_proto_msgTypes[163]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15174,7 +15648,7 @@ func (x *UpdateStateResponse) String() string {
 func (*UpdateStateResponse) ProtoMessage() {}
 
 func (x *UpdateStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[158]
+	mi := &file_api_proto_msgTypes[163]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15187,7 +15661,7 @@ func (x *UpdateStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateStateResponse.ProtoReflect.Descriptor instead.
 func (*UpdateStateResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{158}
+	return file_api_proto_rawDescGZIP(), []int{163}
 }
 
 func (x *UpdateStateResponse) GetKey() uint32 {
@@ -15278,7 +15752,7 @@ type UpdateCommandRequest struct {
 
 func (x *UpdateCommandRequest) Reset() {
 	*x = UpdateCommandRequest{}
-	mi := &file_api_proto_msgTypes[159]
+	mi := &file_api_proto_msgTypes[164]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15290,7 +15764,7 @@ func (x *UpdateCommandRequest) String() string {
 func (*UpdateCommandRequest) ProtoMessage() {}
 
 func (x *UpdateCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[159]
+	mi := &file_api_proto_msgTypes[164]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15303,7 +15777,7 @@ func (x *UpdateCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCommandRequest.ProtoReflect.Descriptor instead.
 func (*UpdateCommandRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{159}
+	return file_api_proto_rawDescGZIP(), []int{164}
 }
 
 func (x *UpdateCommandRequest) GetKey() uint32 {
@@ -15336,7 +15810,7 @@ type ZWaveProxyFrame struct {
 
 func (x *ZWaveProxyFrame) Reset() {
 	*x = ZWaveProxyFrame{}
-	mi := &file_api_proto_msgTypes[160]
+	mi := &file_api_proto_msgTypes[165]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15348,7 +15822,7 @@ func (x *ZWaveProxyFrame) String() string {
 func (*ZWaveProxyFrame) ProtoMessage() {}
 
 func (x *ZWaveProxyFrame) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[160]
+	mi := &file_api_proto_msgTypes[165]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15361,7 +15835,7 @@ func (x *ZWaveProxyFrame) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ZWaveProxyFrame.ProtoReflect.Descriptor instead.
 func (*ZWaveProxyFrame) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{160}
+	return file_api_proto_rawDescGZIP(), []int{165}
 }
 
 func (x *ZWaveProxyFrame) GetData() []byte {
@@ -15381,7 +15855,7 @@ type ZWaveProxyRequest struct {
 
 func (x *ZWaveProxyRequest) Reset() {
 	*x = ZWaveProxyRequest{}
-	mi := &file_api_proto_msgTypes[161]
+	mi := &file_api_proto_msgTypes[166]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15393,7 +15867,7 @@ func (x *ZWaveProxyRequest) String() string {
 func (*ZWaveProxyRequest) ProtoMessage() {}
 
 func (x *ZWaveProxyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[161]
+	mi := &file_api_proto_msgTypes[166]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15406,7 +15880,7 @@ func (x *ZWaveProxyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ZWaveProxyRequest.ProtoReflect.Descriptor instead.
 func (*ZWaveProxyRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{161}
+	return file_api_proto_rawDescGZIP(), []int{166}
 }
 
 func (x *ZWaveProxyRequest) GetType() ZWaveProxyRequestType {
@@ -15434,7 +15908,7 @@ type ZWaveProxyRequestResponse struct {
 
 func (x *ZWaveProxyRequestResponse) Reset() {
 	*x = ZWaveProxyRequestResponse{}
-	mi := &file_api_proto_msgTypes[162]
+	mi := &file_api_proto_msgTypes[167]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15446,7 +15920,7 @@ func (x *ZWaveProxyRequestResponse) String() string {
 func (*ZWaveProxyRequestResponse) ProtoMessage() {}
 
 func (x *ZWaveProxyRequestResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[162]
+	mi := &file_api_proto_msgTypes[167]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15459,7 +15933,7 @@ func (x *ZWaveProxyRequestResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ZWaveProxyRequestResponse.ProtoReflect.Descriptor instead.
 func (*ZWaveProxyRequestResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{162}
+	return file_api_proto_rawDescGZIP(), []int{167}
 }
 
 func (x *ZWaveProxyRequestResponse) GetType() ZWaveProxyRequestType {
@@ -15494,7 +15968,7 @@ type ListEntitiesInfraredResponse struct {
 
 func (x *ListEntitiesInfraredResponse) Reset() {
 	*x = ListEntitiesInfraredResponse{}
-	mi := &file_api_proto_msgTypes[163]
+	mi := &file_api_proto_msgTypes[168]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15506,7 +15980,7 @@ func (x *ListEntitiesInfraredResponse) String() string {
 func (*ListEntitiesInfraredResponse) ProtoMessage() {}
 
 func (x *ListEntitiesInfraredResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[163]
+	mi := &file_api_proto_msgTypes[168]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15519,7 +15993,7 @@ func (x *ListEntitiesInfraredResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntitiesInfraredResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesInfraredResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{163}
+	return file_api_proto_rawDescGZIP(), []int{168}
 }
 
 func (x *ListEntitiesInfraredResponse) GetObjectId() string {
@@ -15600,7 +16074,7 @@ type InfraredRFTransmitRawTimingsRequest struct {
 
 func (x *InfraredRFTransmitRawTimingsRequest) Reset() {
 	*x = InfraredRFTransmitRawTimingsRequest{}
-	mi := &file_api_proto_msgTypes[164]
+	mi := &file_api_proto_msgTypes[169]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15612,7 +16086,7 @@ func (x *InfraredRFTransmitRawTimingsRequest) String() string {
 func (*InfraredRFTransmitRawTimingsRequest) ProtoMessage() {}
 
 func (x *InfraredRFTransmitRawTimingsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[164]
+	mi := &file_api_proto_msgTypes[169]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15625,7 +16099,7 @@ func (x *InfraredRFTransmitRawTimingsRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use InfraredRFTransmitRawTimingsRequest.ProtoReflect.Descriptor instead.
 func (*InfraredRFTransmitRawTimingsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{164}
+	return file_api_proto_rawDescGZIP(), []int{169}
 }
 
 func (x *InfraredRFTransmitRawTimingsRequest) GetDeviceId() uint32 {
@@ -15682,7 +16156,7 @@ type InfraredRFReceiveEvent struct {
 
 func (x *InfraredRFReceiveEvent) Reset() {
 	*x = InfraredRFReceiveEvent{}
-	mi := &file_api_proto_msgTypes[165]
+	mi := &file_api_proto_msgTypes[170]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15694,7 +16168,7 @@ func (x *InfraredRFReceiveEvent) String() string {
 func (*InfraredRFReceiveEvent) ProtoMessage() {}
 
 func (x *InfraredRFReceiveEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[165]
+	mi := &file_api_proto_msgTypes[170]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15707,7 +16181,7 @@ func (x *InfraredRFReceiveEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InfraredRFReceiveEvent.ProtoReflect.Descriptor instead.
 func (*InfraredRFReceiveEvent) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{165}
+	return file_api_proto_rawDescGZIP(), []int{170}
 }
 
 func (x *InfraredRFReceiveEvent) GetDeviceId() uint32 {
@@ -15753,7 +16227,7 @@ type InfraredRFTransmitCompleteResponse struct {
 
 func (x *InfraredRFTransmitCompleteResponse) Reset() {
 	*x = InfraredRFTransmitCompleteResponse{}
-	mi := &file_api_proto_msgTypes[166]
+	mi := &file_api_proto_msgTypes[171]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15765,7 +16239,7 @@ func (x *InfraredRFTransmitCompleteResponse) String() string {
 func (*InfraredRFTransmitCompleteResponse) ProtoMessage() {}
 
 func (x *InfraredRFTransmitCompleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[166]
+	mi := &file_api_proto_msgTypes[171]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15778,7 +16252,7 @@ func (x *InfraredRFTransmitCompleteResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use InfraredRFTransmitCompleteResponse.ProtoReflect.Descriptor instead.
 func (*InfraredRFTransmitCompleteResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{166}
+	return file_api_proto_rawDescGZIP(), []int{171}
 }
 
 func (x *InfraredRFTransmitCompleteResponse) GetDeviceId() uint32 {
@@ -15822,7 +16296,7 @@ type ListEntitiesRadioFrequencyResponse struct {
 
 func (x *ListEntitiesRadioFrequencyResponse) Reset() {
 	*x = ListEntitiesRadioFrequencyResponse{}
-	mi := &file_api_proto_msgTypes[167]
+	mi := &file_api_proto_msgTypes[172]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15834,7 +16308,7 @@ func (x *ListEntitiesRadioFrequencyResponse) String() string {
 func (*ListEntitiesRadioFrequencyResponse) ProtoMessage() {}
 
 func (x *ListEntitiesRadioFrequencyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[167]
+	mi := &file_api_proto_msgTypes[172]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15847,7 +16321,7 @@ func (x *ListEntitiesRadioFrequencyResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use ListEntitiesRadioFrequencyResponse.ProtoReflect.Descriptor instead.
 func (*ListEntitiesRadioFrequencyResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{167}
+	return file_api_proto_rawDescGZIP(), []int{172}
 }
 
 func (x *ListEntitiesRadioFrequencyResponse) GetObjectId() string {
@@ -15943,7 +16417,7 @@ type SerialProxyConfigureRequest struct {
 
 func (x *SerialProxyConfigureRequest) Reset() {
 	*x = SerialProxyConfigureRequest{}
-	mi := &file_api_proto_msgTypes[168]
+	mi := &file_api_proto_msgTypes[173]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15955,7 +16429,7 @@ func (x *SerialProxyConfigureRequest) String() string {
 func (*SerialProxyConfigureRequest) ProtoMessage() {}
 
 func (x *SerialProxyConfigureRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[168]
+	mi := &file_api_proto_msgTypes[173]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15968,7 +16442,7 @@ func (x *SerialProxyConfigureRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SerialProxyConfigureRequest.ProtoReflect.Descriptor instead.
 func (*SerialProxyConfigureRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{168}
+	return file_api_proto_rawDescGZIP(), []int{173}
 }
 
 func (x *SerialProxyConfigureRequest) GetInstance() uint32 {
@@ -16024,7 +16498,7 @@ type SerialProxyDataReceived struct {
 
 func (x *SerialProxyDataReceived) Reset() {
 	*x = SerialProxyDataReceived{}
-	mi := &file_api_proto_msgTypes[169]
+	mi := &file_api_proto_msgTypes[174]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16036,7 +16510,7 @@ func (x *SerialProxyDataReceived) String() string {
 func (*SerialProxyDataReceived) ProtoMessage() {}
 
 func (x *SerialProxyDataReceived) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[169]
+	mi := &file_api_proto_msgTypes[174]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16049,7 +16523,7 @@ func (x *SerialProxyDataReceived) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SerialProxyDataReceived.ProtoReflect.Descriptor instead.
 func (*SerialProxyDataReceived) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{169}
+	return file_api_proto_rawDescGZIP(), []int{174}
 }
 
 func (x *SerialProxyDataReceived) GetInstance() uint32 {
@@ -16078,7 +16552,7 @@ type SerialProxyWriteRequest struct {
 
 func (x *SerialProxyWriteRequest) Reset() {
 	*x = SerialProxyWriteRequest{}
-	mi := &file_api_proto_msgTypes[170]
+	mi := &file_api_proto_msgTypes[175]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16090,7 +16564,7 @@ func (x *SerialProxyWriteRequest) String() string {
 func (*SerialProxyWriteRequest) ProtoMessage() {}
 
 func (x *SerialProxyWriteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[170]
+	mi := &file_api_proto_msgTypes[175]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16103,7 +16577,7 @@ func (x *SerialProxyWriteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SerialProxyWriteRequest.ProtoReflect.Descriptor instead.
 func (*SerialProxyWriteRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{170}
+	return file_api_proto_rawDescGZIP(), []int{175}
 }
 
 func (x *SerialProxyWriteRequest) GetInstance() uint32 {
@@ -16132,7 +16606,7 @@ type SerialProxySetModemPinsRequest struct {
 
 func (x *SerialProxySetModemPinsRequest) Reset() {
 	*x = SerialProxySetModemPinsRequest{}
-	mi := &file_api_proto_msgTypes[171]
+	mi := &file_api_proto_msgTypes[176]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16144,7 +16618,7 @@ func (x *SerialProxySetModemPinsRequest) String() string {
 func (*SerialProxySetModemPinsRequest) ProtoMessage() {}
 
 func (x *SerialProxySetModemPinsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[171]
+	mi := &file_api_proto_msgTypes[176]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16157,7 +16631,7 @@ func (x *SerialProxySetModemPinsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SerialProxySetModemPinsRequest.ProtoReflect.Descriptor instead.
 func (*SerialProxySetModemPinsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{171}
+	return file_api_proto_rawDescGZIP(), []int{176}
 }
 
 func (x *SerialProxySetModemPinsRequest) GetInstance() uint32 {
@@ -16184,7 +16658,7 @@ type SerialProxyGetModemPinsRequest struct {
 
 func (x *SerialProxyGetModemPinsRequest) Reset() {
 	*x = SerialProxyGetModemPinsRequest{}
-	mi := &file_api_proto_msgTypes[172]
+	mi := &file_api_proto_msgTypes[177]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16196,7 +16670,7 @@ func (x *SerialProxyGetModemPinsRequest) String() string {
 func (*SerialProxyGetModemPinsRequest) ProtoMessage() {}
 
 func (x *SerialProxyGetModemPinsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[172]
+	mi := &file_api_proto_msgTypes[177]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16209,7 +16683,7 @@ func (x *SerialProxyGetModemPinsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SerialProxyGetModemPinsRequest.ProtoReflect.Descriptor instead.
 func (*SerialProxyGetModemPinsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{172}
+	return file_api_proto_rawDescGZIP(), []int{177}
 }
 
 func (x *SerialProxyGetModemPinsRequest) GetInstance() uint32 {
@@ -16231,7 +16705,7 @@ type SerialProxyGetModemPinsResponse struct {
 
 func (x *SerialProxyGetModemPinsResponse) Reset() {
 	*x = SerialProxyGetModemPinsResponse{}
-	mi := &file_api_proto_msgTypes[173]
+	mi := &file_api_proto_msgTypes[178]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16243,7 +16717,7 @@ func (x *SerialProxyGetModemPinsResponse) String() string {
 func (*SerialProxyGetModemPinsResponse) ProtoMessage() {}
 
 func (x *SerialProxyGetModemPinsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[173]
+	mi := &file_api_proto_msgTypes[178]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16256,7 +16730,7 @@ func (x *SerialProxyGetModemPinsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SerialProxyGetModemPinsResponse.ProtoReflect.Descriptor instead.
 func (*SerialProxyGetModemPinsResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{173}
+	return file_api_proto_rawDescGZIP(), []int{178}
 }
 
 func (x *SerialProxyGetModemPinsResponse) GetInstance() uint32 {
@@ -16292,7 +16766,7 @@ type SerialProxyRequest struct {
 
 func (x *SerialProxyRequest) Reset() {
 	*x = SerialProxyRequest{}
-	mi := &file_api_proto_msgTypes[174]
+	mi := &file_api_proto_msgTypes[179]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16304,7 +16778,7 @@ func (x *SerialProxyRequest) String() string {
 func (*SerialProxyRequest) ProtoMessage() {}
 
 func (x *SerialProxyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[174]
+	mi := &file_api_proto_msgTypes[179]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16317,7 +16791,7 @@ func (x *SerialProxyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SerialProxyRequest.ProtoReflect.Descriptor instead.
 func (*SerialProxyRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{174}
+	return file_api_proto_rawDescGZIP(), []int{179}
 }
 
 func (x *SerialProxyRequest) GetInstance() uint32 {
@@ -16349,7 +16823,7 @@ type SerialProxyRequestResponse struct {
 
 func (x *SerialProxyRequestResponse) Reset() {
 	*x = SerialProxyRequestResponse{}
-	mi := &file_api_proto_msgTypes[175]
+	mi := &file_api_proto_msgTypes[180]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16361,7 +16835,7 @@ func (x *SerialProxyRequestResponse) String() string {
 func (*SerialProxyRequestResponse) ProtoMessage() {}
 
 func (x *SerialProxyRequestResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[175]
+	mi := &file_api_proto_msgTypes[180]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16374,7 +16848,7 @@ func (x *SerialProxyRequestResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SerialProxyRequestResponse.ProtoReflect.Descriptor instead.
 func (*SerialProxyRequestResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{175}
+	return file_api_proto_rawDescGZIP(), []int{180}
 }
 
 func (x *SerialProxyRequestResponse) GetInstance() uint32 {
@@ -16418,7 +16892,7 @@ type SerialProxySetModeRequest struct {
 
 func (x *SerialProxySetModeRequest) Reset() {
 	*x = SerialProxySetModeRequest{}
-	mi := &file_api_proto_msgTypes[176]
+	mi := &file_api_proto_msgTypes[181]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16430,7 +16904,7 @@ func (x *SerialProxySetModeRequest) String() string {
 func (*SerialProxySetModeRequest) ProtoMessage() {}
 
 func (x *SerialProxySetModeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[176]
+	mi := &file_api_proto_msgTypes[181]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16443,7 +16917,7 @@ func (x *SerialProxySetModeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SerialProxySetModeRequest.ProtoReflect.Descriptor instead.
 func (*SerialProxySetModeRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{176}
+	return file_api_proto_rawDescGZIP(), []int{181}
 }
 
 func (x *SerialProxySetModeRequest) GetInstance() uint32 {
@@ -16471,7 +16945,7 @@ type SubscribeSerialProxyIdentityRequest struct {
 
 func (x *SubscribeSerialProxyIdentityRequest) Reset() {
 	*x = SubscribeSerialProxyIdentityRequest{}
-	mi := &file_api_proto_msgTypes[177]
+	mi := &file_api_proto_msgTypes[182]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16483,7 +16957,7 @@ func (x *SubscribeSerialProxyIdentityRequest) String() string {
 func (*SubscribeSerialProxyIdentityRequest) ProtoMessage() {}
 
 func (x *SubscribeSerialProxyIdentityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[177]
+	mi := &file_api_proto_msgTypes[182]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16496,26 +16970,27 @@ func (x *SubscribeSerialProxyIdentityRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use SubscribeSerialProxyIdentityRequest.ProtoReflect.Descriptor instead.
 func (*SubscribeSerialProxyIdentityRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{177}
+	return file_api_proto_rawDescGZIP(), []int{182}
 }
 
 // The descriptor fields of a USB device as seen by the host stack, and the port's index
 // among those a vendor driver exposes on the interface
 type UsbDeviceDescriptor struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	VendorId        uint32                 `protobuf:"varint,1,opt,name=vendor_id,json=vendorId,proto3" json:"vendor_id,omitempty"`
-	ProductId       uint32                 `protobuf:"varint,2,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
-	BcdDevice       uint32                 `protobuf:"varint,3,opt,name=bcd_device,json=bcdDevice,proto3" json:"bcd_device,omitempty"`
-	InterfaceNumber uint32                 `protobuf:"varint,4,opt,name=interface_number,json=interfaceNumber,proto3" json:"interface_number,omitempty"` // bInterfaceNumber the port is bound through
-	InterfaceClass  uint32                 `protobuf:"varint,5,opt,name=interface_class,json=interfaceClass,proto3" json:"interface_class,omitempty"`    // bInterfaceClass of that interface
-	PortNumber      uint32                 `protobuf:"varint,6,opt,name=port_number,json=portNumber,proto3" json:"port_number,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	VendorId             uint32                 `protobuf:"varint,1,opt,name=vendor_id,json=vendorId,proto3" json:"vendor_id,omitempty"`
+	ProductId            uint32                 `protobuf:"varint,2,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	BcdDevice            uint32                 `protobuf:"varint,3,opt,name=bcd_device,json=bcdDevice,proto3" json:"bcd_device,omitempty"`
+	InterfaceNumber      uint32                 `protobuf:"varint,4,opt,name=interface_number,json=interfaceNumber,proto3" json:"interface_number,omitempty"` // bInterfaceNumber the port is bound through
+	InterfaceClass       uint32                 `protobuf:"varint,5,opt,name=interface_class,json=interfaceClass,proto3" json:"interface_class,omitempty"`    // bInterfaceClass of that interface
+	PortNumber           uint32                 `protobuf:"varint,6,opt,name=port_number,json=portNumber,proto3" json:"port_number,omitempty"`
+	InterfaceDescription string                 `protobuf:"bytes,7,opt,name=interface_description,json=interfaceDescription,proto3" json:"interface_description,omitempty"` // iInterface string of that interface, empty when it has none
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *UsbDeviceDescriptor) Reset() {
 	*x = UsbDeviceDescriptor{}
-	mi := &file_api_proto_msgTypes[178]
+	mi := &file_api_proto_msgTypes[183]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16527,7 +17002,7 @@ func (x *UsbDeviceDescriptor) String() string {
 func (*UsbDeviceDescriptor) ProtoMessage() {}
 
 func (x *UsbDeviceDescriptor) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[178]
+	mi := &file_api_proto_msgTypes[183]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16540,7 +17015,7 @@ func (x *UsbDeviceDescriptor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UsbDeviceDescriptor.ProtoReflect.Descriptor instead.
 func (*UsbDeviceDescriptor) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{178}
+	return file_api_proto_rawDescGZIP(), []int{183}
 }
 
 func (x *UsbDeviceDescriptor) GetVendorId() uint32 {
@@ -16585,6 +17060,13 @@ func (x *UsbDeviceDescriptor) GetPortNumber() uint32 {
 	return 0
 }
 
+func (x *UsbDeviceDescriptor) GetInterfaceDescription() string {
+	if x != nil {
+		return x.InterfaceDescription
+	}
+	return ""
+}
+
 // The identity of the device behind a port. Identifies one physical device among others of
 // the same kind, so a client matches on manufacturer and product regardless of source. The
 // strings are empty for source NONE, and for source USB while nothing is connected
@@ -16604,7 +17086,7 @@ type SerialProxyIdentity struct {
 
 func (x *SerialProxyIdentity) Reset() {
 	*x = SerialProxyIdentity{}
-	mi := &file_api_proto_msgTypes[179]
+	mi := &file_api_proto_msgTypes[184]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16616,7 +17098,7 @@ func (x *SerialProxyIdentity) String() string {
 func (*SerialProxyIdentity) ProtoMessage() {}
 
 func (x *SerialProxyIdentity) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[179]
+	mi := &file_api_proto_msgTypes[184]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16629,7 +17111,7 @@ func (x *SerialProxyIdentity) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SerialProxyIdentity.ProtoReflect.Descriptor instead.
 func (*SerialProxyIdentity) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{179}
+	return file_api_proto_rawDescGZIP(), []int{184}
 }
 
 func (x *SerialProxyIdentity) GetInstance() uint32 {
@@ -16695,7 +17177,7 @@ type BluetoothSetConnectionParamsRequest struct {
 
 func (x *BluetoothSetConnectionParamsRequest) Reset() {
 	*x = BluetoothSetConnectionParamsRequest{}
-	mi := &file_api_proto_msgTypes[180]
+	mi := &file_api_proto_msgTypes[185]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16707,7 +17189,7 @@ func (x *BluetoothSetConnectionParamsRequest) String() string {
 func (*BluetoothSetConnectionParamsRequest) ProtoMessage() {}
 
 func (x *BluetoothSetConnectionParamsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[180]
+	mi := &file_api_proto_msgTypes[185]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16720,7 +17202,7 @@ func (x *BluetoothSetConnectionParamsRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use BluetoothSetConnectionParamsRequest.ProtoReflect.Descriptor instead.
 func (*BluetoothSetConnectionParamsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{180}
+	return file_api_proto_rawDescGZIP(), []int{185}
 }
 
 func (x *BluetoothSetConnectionParamsRequest) GetAddress() uint64 {
@@ -16768,7 +17250,7 @@ type BluetoothSetConnectionParamsResponse struct {
 
 func (x *BluetoothSetConnectionParamsResponse) Reset() {
 	*x = BluetoothSetConnectionParamsResponse{}
-	mi := &file_api_proto_msgTypes[181]
+	mi := &file_api_proto_msgTypes[186]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16780,7 +17262,7 @@ func (x *BluetoothSetConnectionParamsResponse) String() string {
 func (*BluetoothSetConnectionParamsResponse) ProtoMessage() {}
 
 func (x *BluetoothSetConnectionParamsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[181]
+	mi := &file_api_proto_msgTypes[186]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16793,7 +17275,7 @@ func (x *BluetoothSetConnectionParamsResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use BluetoothSetConnectionParamsResponse.ProtoReflect.Descriptor instead.
 func (*BluetoothSetConnectionParamsResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{181}
+	return file_api_proto_rawDescGZIP(), []int{186}
 }
 
 func (x *BluetoothSetConnectionParamsResponse) GetAddress() uint64 {
@@ -16819,7 +17301,7 @@ type SendspinPairingTokenRequest struct {
 
 func (x *SendspinPairingTokenRequest) Reset() {
 	*x = SendspinPairingTokenRequest{}
-	mi := &file_api_proto_msgTypes[182]
+	mi := &file_api_proto_msgTypes[187]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16831,7 +17313,7 @@ func (x *SendspinPairingTokenRequest) String() string {
 func (*SendspinPairingTokenRequest) ProtoMessage() {}
 
 func (x *SendspinPairingTokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[182]
+	mi := &file_api_proto_msgTypes[187]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16844,7 +17326,7 @@ func (x *SendspinPairingTokenRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SendspinPairingTokenRequest.ProtoReflect.Descriptor instead.
 func (*SendspinPairingTokenRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{182}
+	return file_api_proto_rawDescGZIP(), []int{187}
 }
 
 type SendspinPairingTokenResponse struct {
@@ -16858,7 +17340,7 @@ type SendspinPairingTokenResponse struct {
 
 func (x *SendspinPairingTokenResponse) Reset() {
 	*x = SendspinPairingTokenResponse{}
-	mi := &file_api_proto_msgTypes[183]
+	mi := &file_api_proto_msgTypes[188]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16870,7 +17352,7 @@ func (x *SendspinPairingTokenResponse) String() string {
 func (*SendspinPairingTokenResponse) ProtoMessage() {}
 
 func (x *SendspinPairingTokenResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[183]
+	mi := &file_api_proto_msgTypes[188]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16883,7 +17365,7 @@ func (x *SendspinPairingTokenResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SendspinPairingTokenResponse.ProtoReflect.Descriptor instead.
 func (*SendspinPairingTokenResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{183}
+	return file_api_proto_rawDescGZIP(), []int{188}
 }
 
 func (x *SendspinPairingTokenResponse) GetStatus() SendspinPairingTokenStatus {
@@ -16900,6 +17382,107 @@ func (x *SendspinPairingTokenResponse) GetToken() string {
 	return ""
 }
 
+// ==================== STORE YAML ====================
+// Streams the compressed user YAML embedded in firmware; the client decompresses.
+// A GetYamlRequest during an active transfer is ignored; reconnect to restart.
+type GetYamlRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetYamlRequest) Reset() {
+	*x = GetYamlRequest{}
+	mi := &file_api_proto_msgTypes[189]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetYamlRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetYamlRequest) ProtoMessage() {}
+
+func (x *GetYamlRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[189]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetYamlRequest.ProtoReflect.Descriptor instead.
+func (*GetYamlRequest) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{189}
+}
+
+type GetYamlResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// A zstd frame of the EHY1 file envelope, sent from flash
+	Data []byte `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+	Done bool   `protobuf:"varint,2,opt,name=done,proto3" json:"done,omitempty"`
+	// Set on the first chunk only
+	TotalSize     uint32 `protobuf:"varint,3,opt,name=total_size,json=totalSize,proto3" json:"total_size,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetYamlResponse) Reset() {
+	*x = GetYamlResponse{}
+	mi := &file_api_proto_msgTypes[190]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetYamlResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetYamlResponse) ProtoMessage() {}
+
+func (x *GetYamlResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[190]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetYamlResponse.ProtoReflect.Descriptor instead.
+func (*GetYamlResponse) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{190}
+}
+
+func (x *GetYamlResponse) GetData() []byte {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+func (x *GetYamlResponse) GetDone() bool {
+	if x != nil {
+		return x.Done
+	}
+	return false
+}
+
+func (x *GetYamlResponse) GetTotalSize() uint32 {
+	if x != nil {
+		return x.TotalSize
+	}
+	return 0
+}
+
 var File_api_proto protoreflect.FileDescriptor
 
 const file_api_proto_rawDesc = "" +
@@ -16910,13 +17493,14 @@ const file_api_proto_rawDesc = "" +
 	"clientInfo\x12*\n" +
 	"\x11api_version_major\x18\x02 \x01(\rR\x0fapiVersionMajor\x12*\n" +
 	"\x11api_version_minor\x18\x03 \x01(\rR\x0fapiVersionMinor\x12\\\n" +
-	"\x1aoutgoing_connection_target\x18\x04 \x01(\bB\x1e\x92A\x1bUSE_API_OUTGOING_CONNECTIONR\x18outgoingConnectionTarget:\t\xe0@\x01\xe8@\x02\x80A\x01\"\xbb\x01\n" +
+	"\x1aoutgoing_connection_target\x18\x04 \x01(\bB\x1e\x92A\x1bUSE_API_OUTGOING_CONNECTIONR\x18outgoingConnectionTarget:\t\xe0@\x01\xe8@\x02\x80A\x01\"\x8d\x02\n" +
 	"\rHelloResponse\x12*\n" +
 	"\x11api_version_major\x18\x01 \x01(\rR\x0fapiVersionMajor\x12*\n" +
-	"\x11api_version_minor\x18\x02 \x01(\rR\x0fapiVersionMinor\x12)\n" +
-	"\vserver_info\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18 R\n" +
+	"\x11api_version_minor\x18\x02 \x01(\rR\x0fapiVersionMinor\x12-\n" +
+	"\vserver_info\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18 \xa8\xb6\x18\x01R\n" +
 	"serverInfo\x12\x1c\n" +
-	"\x04name\x18\x04 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18\x1fR\x04name:\t\xe0@\x02\xe8@\x01\x80A\x01\"@\n" +
+	"\x04name\x18\x04 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18\x1fR\x04name\x12L\n" +
+	"\x12keepalive_interval\x18\x05 \x01(\rB\x1d\x92A\x1aUSE_API_KEEPALIVE_INTERVALR\x11keepaliveInterval:\t\xe0@\x02\xe8@\x01\x80A\x01\"@\n" +
 	"\x15AuthenticationRequest\x12\x1a\n" +
 	"\bpassword\x18\x01 \x01(\tR\bpassword:\v\xe0@\x03\xe8@\x02\x80A\x01\x18\x01\"P\n" +
 	"\x16AuthenticationResponse\x12)\n" +
@@ -16929,32 +17513,33 @@ const file_api_proto_rawDesc = "" +
 	"\x11DeviceInfoRequest:\x06\xe0@\t\xe8@\x02\"A\n" +
 	"\bAreaInfo\x12\x17\n" +
 	"\aarea_id\x18\x01 \x01(\rR\x06areaId\x12\x1c\n" +
-	"\x04name\x18\x02 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\"`\n" +
+	"\x04name\x18\x02 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\"\x8d\x01\n" +
 	"\n" +
 	"DeviceInfo\x12\x1b\n" +
 	"\tdevice_id\x18\x01 \x01(\rR\bdeviceId\x12\x1c\n" +
 	"\x04name\x18\x02 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12\x17\n" +
-	"\aarea_id\x18\x03 \x01(\rR\x06areaId\"\x8e\x01\n" +
+	"\aarea_id\x18\x03 \x01(\rR\x06areaId\x12+\n" +
+	"\brelation\x18\x04 \x01(\x0e2\x0f.DeviceRelationR\brelation\"\x8e\x01\n" +
 	"\x0fSerialProxyInfo\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x121\n" +
 	"\tport_type\x18\x02 \x01(\x0e2\x14.SerialProxyPortTypeR\bportType\x124\n" +
-	"\x16configured_line_states\x18\x03 \x01(\rR\x14configuredLineStates\"\xaf\x0e\n" +
+	"\x16configured_line_states\x18\x03 \x01(\rR\x14configuredLineStates\"\xc3\x0e\n" +
 	"\x12DeviceInfoResponse\x12'\n" +
 	"\ruses_password\x18\x01 \x01(\bB\x02\x18\x01R\fusesPassword\x12\x1c\n" +
 	"\x04name\x18\x02 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18\x1fR\x04name\x12)\n" +
 	"\vmac_address\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18\x11R\n" +
-	"macAddress\x121\n" +
-	"\x0fesphome_version\x18\x04 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18 R\x0eesphomeVersion\x123\n" +
-	"\x10compilation_time\x18\x05 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18\x19R\x0fcompilationTime\x12\x1e\n" +
-	"\x05model\x18\x06 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18\x7fR\x05model\x127\n" +
-	"\x0ehas_deep_sleep\x18\a \x01(\bB\x11\x92A\x0eUSE_DEEP_SLEEPR\fhasDeepSleep\x12B\n" +
-	"\fproject_name\x18\b \x01(\tB\x1f\x92A\x14ESPHOME_PROJECT_NAME\x80\xb6\x18\x01\x90\xb6\x18\x7fR\vprojectName\x12H\n" +
-	"\x0fproject_version\x18\t \x01(\tB\x1f\x92A\x14ESPHOME_PROJECT_NAME\x80\xb6\x18\x01\x90\xb6\x18\x7fR\x0eprojectVersion\x127\n" +
+	"macAddress\x125\n" +
+	"\x0fesphome_version\x18\x04 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18 \xa8\xb6\x18\x01R\x0eesphomeVersion\x123\n" +
+	"\x10compilation_time\x18\x05 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18\x19R\x0fcompilationTime\x12\"\n" +
+	"\x05model\x18\x06 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18\x7f\xa8\xb6\x18\x01R\x05model\x127\n" +
+	"\x0ehas_deep_sleep\x18\a \x01(\bB\x11\x92A\x0eUSE_DEEP_SLEEPR\fhasDeepSleep\x12F\n" +
+	"\fproject_name\x18\b \x01(\tB#\x92A\x14ESPHOME_PROJECT_NAME\x80\xb6\x18\x01\x90\xb6\x18\x7f\xa8\xb6\x18\x01R\vprojectName\x12L\n" +
+	"\x0fproject_version\x18\t \x01(\tB#\x92A\x14ESPHOME_PROJECT_NAME\x80\xb6\x18\x01\x90\xb6\x18\x7f\xa8\xb6\x18\x01R\x0eprojectVersion\x127\n" +
 	"\x0ewebserver_port\x18\n" +
 	" \x01(\rB\x10\x92A\rUSE_WEBSERVERR\rwebserverPort\x12]\n" +
 	"\x1elegacy_bluetooth_proxy_version\x18\v \x01(\rB\x18\x92A\x13USE_BLUETOOTH_PROXY\x18\x01R\x1blegacyBluetoothProxyVersion\x12Y\n" +
-	"\x1dbluetooth_proxy_feature_flags\x18\x0f \x01(\rB\x16\x92A\x13USE_BLUETOOTH_PROXYR\x1abluetoothProxyFeatureFlags\x12,\n" +
-	"\fmanufacturer\x18\f \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18\x14R\fmanufacturer\x12-\n" +
+	"\x1dbluetooth_proxy_feature_flags\x18\x0f \x01(\rB\x16\x92A\x13USE_BLUETOOTH_PROXYR\x1abluetoothProxyFeatureFlags\x120\n" +
+	"\fmanufacturer\x18\f \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18\x14\xa8\xb6\x18\x01R\fmanufacturer\x12-\n" +
 	"\rfriendly_name\x18\r \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\ffriendlyName\x12]\n" +
 	"\x1elegacy_voice_assistant_version\x18\x0e \x01(\rB\x18\x92A\x13USE_VOICE_ASSISTANT\x18\x01R\x1blegacyVoiceAssistantVersion\x12Y\n" +
 	"\x1dvoice_assistant_feature_flags\x18\x11 \x01(\rB\x16\x92A\x13USE_VOICE_ASSISTANTR\x1avoiceAssistantFeatureFlags\x12;\n" +
@@ -16979,14 +17564,18 @@ const file_api_proto_rawDesc = "" +
 	"\rfeature_flags\x18\x01 \x01(\rR\ffeatureFlags\"V\n" +
 	"\x16ZWaveProxyCapabilities\x12#\n" +
 	"\rfeature_flags\x18\x01 \x01(\rR\ffeatureFlags\x12\x17\n" +
-	"\ahome_id\x18\x02 \x01(\rR\x06homeId\"4\n" +
+	"\ahome_id\x18\x02 \x01(\rR\x06homeId\"5\n" +
+	"\x15StoreYamlCapabilities\x12\x1c\n" +
+	"\tsupported\x18\x01 \x01(\bR\tsupported\"4\n" +
 	"\x12WizardCapabilities\x12\x1e\n" +
 	"\n" +
 	"configured\x18\x01 \x01(\bR\n" +
 	"configured\"^\n" +
 	"\x14SendspinCapabilities\x12#\n" +
 	"\rfeature_flags\x18\x01 \x01(\rR\ffeatureFlags\x12!\n" +
-	"\tclient_id\x18\x02 \x01(\tB\x04\x90\xb6\x18+R\bclientId\"\x97\x04\n" +
+	"\tclient_id\x18\x02 \x01(\tB\x04\x90\xb6\x18+R\bclientId\"/\n" +
+	"\x17CrashReportCapabilities\x12\x14\n" +
+	"\x05flags\x18\x01 \x01(\rR\x05flags\"\xb3\x05\n" +
 	"\x1aDeviceCapabilitiesResponse\x12\\\n" +
 	"\x0fbluetooth_proxy\x18\x01 \x01(\v2\x1b.BluetoothProxyCapabilitiesB\x16\x92A\x13USE_BLUETOOTH_PROXYR\x0ebluetoothProxy\x12\\\n" +
 	"\x0fvoice_assistant\x18\x02 \x01(\v2\x1b.VoiceAssistantCapabilitiesB\x16\x92A\x13USE_VOICE_ASSISTANTR\x0evoiceAssistant\x12L\n" +
@@ -16994,7 +17583,10 @@ const file_api_proto_rawDesc = "" +
 	"zwaveProxy\x12b\n" +
 	"\x0eserial_proxies\x18\x04 \x03(\v2\x10.SerialProxyInfoB)\x92A\x10USE_SERIAL_PROXYҵ\x18\x12SERIAL_PROXY_COUNTR\rserialProxies\x12>\n" +
 	"\x06wizard\x18\x05 \x01(\v2\x13.WizardCapabilitiesB\x11\x92A\x0eUSE_API_WIZARDR\x06wizard\x12B\n" +
-	"\bsendspin\x18\x06 \x01(\v2\x15.SendspinCapabilitiesB\x0f\x92A\fUSE_SENDSPINR\bsendspin:\a\xe0@\x96\x01\xe8@\x01\"/\n" +
+	"\bsendspin\x18\x06 \x01(\v2\x15.SendspinCapabilitiesB\x0f\x92A\fUSE_SENDSPINR\bsendspin\x12H\n" +
+	"\n" +
+	"store_yaml\x18\a \x01(\v2\x16.StoreYamlCapabilitiesB\x11\x92A\x0eUSE_STORE_YAMLR\tstoreYaml\x12P\n" +
+	"\fcrash_report\x18\b \x01(\v2\x18.CrashReportCapabilitiesB\x13\x92A\x10USE_CRASH_REPORTR\vcrashReport:\a\xe0@\x96\x01\xe8@\x01\"/\n" +
 	"\x13DeviceWizardRequest:\x18\xe0@\x9c\x01\xe8@\x02\xf2@\x0eUSE_API_WIZARD\"N\n" +
 	"\x14DeviceWizardResponse\x12\x1c\n" +
 	"\x04data\x18\x01 \x01(\fB\b\xe0\xb5\x18\x01\xa8\xb6\x18\x01R\x04data:\x18\xe0@\x9d\x01\xe8@\x01\xf2@\x0eUSE_API_WIZARD\"n\n" +
@@ -17003,15 +17595,29 @@ const file_api_proto_rawDesc = "" +
 	"\tentity_id\x18\x02 \x01(\tB\x05\x90\xb6\x18\xff\x1fR\bentityId:\x1f\xe0@\x9e\x01\xe8@\x02\xf2@\x15USE_API_WIZARD_INPUTS\"\x1d\n" +
 	"\x13ListEntitiesRequest:\x06\xe0@\v\xe8@\x02\"%\n" +
 	"\x18ListEntitiesDoneResponse:\t\xe0@\x13\xe8@\x01\x80A\x01\" \n" +
-	"\x16SubscribeStatesRequest:\x06\xe0@\x14\xe8@\x02\"\xdf\x03\n" +
+	"\x16SubscribeStatesRequest:\x06\xe0@\x14\xe8@\x02\"0\n" +
+	"\x12CrashReportRequest:\x1a\xe0@\xa3\x01\xe8@\x02\xf2@\x10USE_CRASH_REPORT\"c\n" +
+	"\x0fCrashReportCore\x12\x12\n" +
+	"\x04core\x18\x01 \x01(\rR\x04core\x12<\n" +
+	"\tbacktrace\x18\x02 \x03(\rB\x1eڵ\x18\x1aCRASH_REPORT_MAX_BACKTRACER\tbacktrace\"\xb0\x02\n" +
+	"\x13CrashReportResponse\x12\x14\n" +
+	"\x05flags\x18\x01 \x01(\rR\x05flags\x12\x16\n" +
+	"\x06reason\x18\x02 \x01(\rR\x06reason\x12\x0e\n" +
+	"\x02pc\x18\x03 \x01(\rR\x02pc\x12\x14\n" +
+	"\x05cause\x18\x04 \x01(\rR\x05cause\x12#\n" +
+	"\rfault_address\x18\x05 \x01(\rR\ffaultAddress\x12\x1d\n" +
+	"\n" +
+	"build_time\x18\x06 \x01(\rR\tbuildTime\x12!\n" +
+	"\fcrashed_core\x18\a \x01(\rR\vcrashedCore\x12B\n" +
+	"\x05cores\x18\b \x03(\v2\x10.CrashReportCoreB\x1aڵ\x18\x16CRASH_REPORT_MAX_CORESR\x05cores:\x1a\xe0@\xa4\x01\xe8@\x01\xf2@\x10USE_CRASH_REPORT\"\xeb\x03\n" +
 	" ListEntitiesBinarySensorResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12'\n" +
-	"\fdevice_class\x18\x05 \x01(\tB\x04\x90\xb6\x18/R\vdeviceClass\x125\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12+\n" +
+	"\fdevice_class\x18\x05 \x01(\tB\b\x90\xb6\x18/\xa8\xb6\x18\x01R\vdeviceClass\x125\n" +
 	"\x17is_status_binary_sensor\x18\x06 \x01(\bR\x14isStatusBinarySensor\x12.\n" +
-	"\x13disabled_by_default\x18\a \x01(\bR\x11disabledByDefault\x12*\n" +
-	"\x04icon\x18\b \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x128\n" +
+	"\x13disabled_by_default\x18\a \x01(\bR\x11disabledByDefault\x12.\n" +
+	"\x04icon\x18\b \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x128\n" +
 	"\x0fentity_category\x18\t \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12+\n" +
 	"\tdevice_id\x18\n" +
 	" \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:5\xe0@\f\xe8@\x01\xf2@\x11USE_BINARY_SENSOR\x8aA\x18InfoResponseProtoMessageJ\x04\b\x04\x10\x05\"\xd6\x01\n" +
@@ -17019,28 +17625,30 @@ const file_api_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x14\n" +
 	"\x05state\x18\x02 \x01(\bR\x05state\x12#\n" +
 	"\rmissing_state\x18\x03 \x01(\bR\fmissingState\x12+\n" +
-	"\tdevice_id\x18\x04 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:9\xe0@\x15\xe8@\x01\xf2@\x11USE_BINARY_SENSOR\x80A\x01\x8aA\x19StateResponseProtoMessage\"\xb5\x04\n" +
+	"\tdevice_id\x18\x04 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:9\xe0@\x15\xe8@\x01\xf2@\x11USE_BINARY_SENSOR\x80A\x01\x8aA\x19StateResponseProtoMessage\"\x98\x05\n" +
 	"\x19ListEntitiesCoverResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12#\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12#\n" +
 	"\rassumed_state\x18\x05 \x01(\bR\fassumedState\x12+\n" +
 	"\x11supports_position\x18\x06 \x01(\bR\x10supportsPosition\x12#\n" +
-	"\rsupports_tilt\x18\a \x01(\bR\fsupportsTilt\x12'\n" +
-	"\fdevice_class\x18\b \x01(\tB\x04\x90\xb6\x18/R\vdeviceClass\x12.\n" +
-	"\x13disabled_by_default\x18\t \x01(\bR\x11disabledByDefault\x12*\n" +
+	"\rsupports_tilt\x18\a \x01(\bR\fsupportsTilt\x12+\n" +
+	"\fdevice_class\x18\b \x01(\tB\b\x90\xb6\x18/\xa8\xb6\x18\x01R\vdeviceClass\x12.\n" +
+	"\x13disabled_by_default\x18\t \x01(\bR\x11disabledByDefault\x12.\n" +
 	"\x04icon\x18\n" +
-	" \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x128\n" +
+	" \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x128\n" +
 	"\x0fentity_category\x18\v \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12#\n" +
 	"\rsupports_stop\x18\f \x01(\bR\fsupportsStop\x12+\n" +
-	"\tdevice_id\x18\r \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:-\xe0@\r\xe8@\x01\xf2@\tUSE_COVER\x8aA\x18InfoResponseProtoMessageJ\x04\b\x04\x10\x05\"\xb4\x02\n" +
+	"\tdevice_id\x18\r \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId\x12,\n" +
+	"\x12supports_stop_tilt\x18\x0e \x01(\bR\x10supportsStopTilt\x12'\n" +
+	"\x0fsupports_toggle\x18\x0f \x01(\bR\x0esupportsToggle:-\xe0@\r\xe8@\x01\xf2@\tUSE_COVER\x8aA\x18InfoResponseProtoMessageJ\x04\b\x04\x10\x05\"\xb4\x02\n" +
 	"\x12CoverStateResponse\x12\x16\n" +
 	"\x03key\x18\x01 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x128\n" +
 	"\flegacy_state\x18\x02 \x01(\x0e2\x11.LegacyCoverStateB\x02\x18\x01R\vlegacyState\x12\x1a\n" +
 	"\bposition\x18\x03 \x01(\x02R\bposition\x12\x12\n" +
 	"\x04tilt\x18\x04 \x01(\x02R\x04tilt\x12<\n" +
 	"\x11current_operation\x18\x05 \x01(\x0e2\x0f.CoverOperationR\x10currentOperation\x12+\n" +
-	"\tdevice_id\x18\x06 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:1\xe0@\x16\xe8@\x01\xf2@\tUSE_COVER\x80A\x01\x8aA\x19StateResponseProtoMessage\"\xfb\x02\n" +
+	"\tdevice_id\x18\x06 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:1\xe0@\x16\xe8@\x01\xf2@\tUSE_COVER\x80A\x01\x8aA\x19StateResponseProtoMessage\"\xb0\x03\n" +
 	"\x13CoverCommandRequest\x12\x16\n" +
 	"\x03key\x18\x01 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x120\n" +
 	"\x12has_legacy_command\x18\x02 \x01(\bB\x02\x18\x01R\x10hasLegacyCommand\x12>\n" +
@@ -17050,20 +17658,23 @@ const file_api_proto_rawDesc = "" +
 	"\bhas_tilt\x18\x06 \x01(\bR\ahasTilt\x12\x12\n" +
 	"\x04tilt\x18\a \x01(\x02R\x04tilt\x12\x12\n" +
 	"\x04stop\x18\b \x01(\bR\x04stop\x12+\n" +
-	"\tdevice_id\x18\t \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:+\xe0@\x1e\xe8@\x02\xf2@\tUSE_COVER\x80A\x01\x8aA\x13CommandProtoMessage\"\xfe\x04\n" +
+	"\tdevice_id\x18\t \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId\x12\x1b\n" +
+	"\tstop_tilt\x18\n" +
+	" \x01(\bR\bstopTilt\x12\x16\n" +
+	"\x06toggle\x18\v \x01(\bR\x06toggle:+\xe0@\x1e\xe8@\x02\xf2@\tUSE_COVER\x80A\x01\x8aA\x13CommandProtoMessage\"\x8c\x05\n" +
 	"\x17ListEntitiesFanResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x121\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x121\n" +
 	"\x14supports_oscillation\x18\x05 \x01(\bR\x13supportsOscillation\x12%\n" +
 	"\x0esupports_speed\x18\x06 \x01(\bR\rsupportsSpeed\x12-\n" +
 	"\x12supports_direction\x18\a \x01(\bR\x11supportsDirection\x122\n" +
 	"\x15supported_speed_count\x18\b \x01(\x05R\x13supportedSpeedCount\x12.\n" +
-	"\x13disabled_by_default\x18\t \x01(\bR\x11disabledByDefault\x12*\n" +
+	"\x13disabled_by_default\x18\t \x01(\bR\x11disabledByDefault\x12.\n" +
 	"\x04icon\x18\n" +
-	" \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x128\n" +
-	"\x0fentity_category\x18\v \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12S\n" +
-	"\x16supported_preset_modes\x18\f \x03(\tB\x1d\xf2\xb5\x18\x19std::vector<const char *>R\x14supportedPresetModes\x12+\n" +
+	" \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x128\n" +
+	"\x0fentity_category\x18\v \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12Y\n" +
+	"\x16supported_preset_modes\x18\f \x03(\tB#\xf2\xb5\x18\x1fConstVector<const char *, true>R\x14supportedPresetModes\x12+\n" +
 	"\tdevice_id\x18\r \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:+\xe0@\x0e\xe8@\x01\xf2@\aUSE_FAN\x8aA\x18InfoResponseProtoMessageJ\x04\b\x04\x10\x05\"\xd4\x02\n" +
 	"\x10FanStateResponse\x12\x16\n" +
 	"\x03key\x18\x01 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x14\n" +
@@ -17093,11 +17704,11 @@ const file_api_proto_rawDesc = "" +
 	"\x0fhas_preset_mode\x18\f \x01(\bR\rhasPresetMode\x12\x1f\n" +
 	"\vpreset_mode\x18\r \x01(\tR\n" +
 	"presetMode\x12+\n" +
-	"\tdevice_id\x18\x0e \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:)\xe0@\x1f\xe8@\x02\xf2@\aUSE_FAN\x80A\x01\x8aA\x13CommandProtoMessage\"\xc9\x06\n" +
+	"\tdevice_id\x18\x0e \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:)\xe0@\x1f\xe8@\x02\xf2@\aUSE_FAN\x80A\x01\x8aA\x13CommandProtoMessage\"\xcf\x06\n" +
 	"\x19ListEntitiesLightResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12X\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12X\n" +
 	"\x15supported_color_modes\x18\f \x03(\x0e2\n" +
 	".ColorModeB\x18\xf2\xb5\x18\x14light::ColorModeMaskR\x13supportedColorModes\x12@\n" +
 	"\x1alegacy_supports_brightness\x18\x05 \x01(\bB\x02\x18\x01R\x18legacySupportsBrightness\x122\n" +
@@ -17108,10 +17719,10 @@ const file_api_proto_rawDesc = "" +
 	"min_mireds\x18\t \x01(\x02R\tminMireds\x12\x1d\n" +
 	"\n" +
 	"max_mireds\x18\n" +
-	" \x01(\x02R\tmaxMireds\x127\n" +
-	"\aeffects\x18\v \x03(\tB\x1d\xf2\xb5\x18\x19FixedVector<const char *>R\aeffects\x12.\n" +
-	"\x13disabled_by_default\x18\r \x01(\bR\x11disabledByDefault\x12*\n" +
-	"\x04icon\x18\x0e \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x128\n" +
+	" \x01(\x02R\tmaxMireds\x125\n" +
+	"\aeffects\x18\v \x03(\tB\x1b\xf2\xb5\x18\x17light::LightEffectNamesR\aeffects\x12.\n" +
+	"\x13disabled_by_default\x18\r \x01(\bR\x11disabledByDefault\x12.\n" +
+	"\x04icon\x18\x0e \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x128\n" +
 	"\x0fentity_category\x18\x0f \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12+\n" +
 	"\tdevice_id\x18\x10 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:-\xe0@\x0f\xe8@\x01\xf2@\tUSE_LIGHT\x8aA\x18InfoResponseProtoMessageJ\x04\b\x04\x10\x05\"\xed\x03\n" +
 	"\x12LightStateResponse\x12\x16\n" +
@@ -17172,16 +17783,16 @@ const file_api_proto_rawDesc = "" +
 	"\n" +
 	"has_effect\x18\x12 \x01(\bR\thasEffect\x12\x16\n" +
 	"\x06effect\x18\x13 \x01(\tR\x06effect\x12+\n" +
-	"\tdevice_id\x18\x1c \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:+\xe0@ \xe8@\x02\xf2@\tUSE_LIGHT\x80A\x01\x8aA\x13CommandProtoMessage\"\xa4\x05\n" +
+	"\tdevice_id\x18\x1c \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:+\xe0@ \xe8@\x02\xf2@\tUSE_LIGHT\x80A\x01\x8aA\x13CommandProtoMessage\"\xb0\x05\n" +
 	"\x1aListEntitiesSensorResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x05 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x124\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x05 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x124\n" +
 	"\x13unit_of_measurement\x18\x06 \x01(\tB\x04\x90\xb6\x18?R\x11unitOfMeasurement\x12+\n" +
 	"\x11accuracy_decimals\x18\a \x01(\x05R\x10accuracyDecimals\x12!\n" +
-	"\fforce_update\x18\b \x01(\bR\vforceUpdate\x12'\n" +
-	"\fdevice_class\x18\t \x01(\tB\x04\x90\xb6\x18/R\vdeviceClass\x122\n" +
+	"\fforce_update\x18\b \x01(\bR\vforceUpdate\x12+\n" +
+	"\fdevice_class\x18\t \x01(\tB\b\x90\xb6\x18/\xa8\xb6\x18\x01R\vdeviceClass\x122\n" +
 	"\vstate_class\x18\n" +
 	" \x01(\x0e2\x11.SensorStateClassR\n" +
 	"stateClass\x12M\n" +
@@ -17195,16 +17806,16 @@ const file_api_proto_rawDesc = "" +
 	"\x05state\x18\x02 \x01(\x02R\x05state\x12#\n" +
 	"\rmissing_state\x18\x03 \x01(\bR\fmissingState\x12+\n" +
 	"\tdevice_id\x18\x04 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:5\xe0@\x19\xe8@\x01\xf2@\n" +
-	"USE_SENSOR\x80A\x01\x8aA\x19StateResponseProtoMessage\x98A\x01\"\xc0\x03\n" +
+	"USE_SENSOR\x80A\x01\x8aA\x19StateResponseProtoMessage\x98A\x01\"\xcc\x03\n" +
 	"\x1aListEntitiesSwitchResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x05 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12#\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x05 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12#\n" +
 	"\rassumed_state\x18\x06 \x01(\bR\fassumedState\x12.\n" +
 	"\x13disabled_by_default\x18\a \x01(\bR\x11disabledByDefault\x128\n" +
-	"\x0fentity_category\x18\b \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12'\n" +
-	"\fdevice_class\x18\t \x01(\tB\x04\x90\xb6\x18/R\vdeviceClass\x12+\n" +
+	"\x0fentity_category\x18\b \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12+\n" +
+	"\fdevice_class\x18\t \x01(\tB\b\x90\xb6\x18/\xa8\xb6\x18\x01R\vdeviceClass\x12+\n" +
 	"\tdevice_id\x18\n" +
 	" \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:.\xe0@\x11\xe8@\x01\xf2@\n" +
 	"USE_SWITCH\x8aA\x18InfoResponseProtoMessageJ\x04\b\x04\x10\x05\"\xc9\x01\n" +
@@ -17218,15 +17829,15 @@ const file_api_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x14\n" +
 	"\x05state\x18\x02 \x01(\bR\x05state\x12+\n" +
 	"\tdevice_id\x18\x03 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:,\xe0@!\xe8@\x02\xf2@\n" +
-	"USE_SWITCH\x80A\x01\x8aA\x13CommandProtoMessage\"\xa4\x03\n" +
+	"USE_SWITCH\x80A\x01\x8aA\x13CommandProtoMessage\"\xb0\x03\n" +
 	"\x1eListEntitiesTextSensorResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x05 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12.\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x05 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12.\n" +
 	"\x13disabled_by_default\x18\x06 \x01(\bR\x11disabledByDefault\x128\n" +
-	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12'\n" +
-	"\fdevice_class\x18\b \x01(\tB\x04\x90\xb6\x18/R\vdeviceClass\x12+\n" +
+	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12+\n" +
+	"\fdevice_class\x18\b \x01(\tB\b\x90\xb6\x18/\xa8\xb6\x18\x01R\vdeviceClass\x12+\n" +
 	"\tdevice_id\x18\t \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:3\xe0@\x12\xe8@\x01\xf2@\x0fUSE_TEXT_SENSOR\x8aA\x18InfoResponseProtoMessageJ\x04\b\x04\x10\x05\"\xd2\x01\n" +
 	"\x17TextSensorStateResponse\x12\x16\n" +
 	"\x03key\x18\x01 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x14\n" +
@@ -17244,12 +17855,12 @@ const file_api_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\fR\x03key:\x16\xe0@|\xe8@\x02\xf2@\rUSE_API_NOISE\"Q\n" +
 	"\x1dNoiseEncryptionSetKeyResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess:\x16\xe0@}\xe8@\x01\xf2@\rUSE_API_NOISE\"P\n" +
-	"%SubscribeHomeassistantServicesRequest:'\xe0@\"\xe8@\x02\xf2@\x1eUSE_API_HOMEASSISTANT_SERVICES\"A\n" +
-	"\x17HomeassistantServiceMap\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value\"\xac\x04\n" +
-	"\x1aHomeassistantActionRequest\x12\x18\n" +
-	"\aservice\x18\x01 \x01(\tR\aservice\x122\n" +
+	"%SubscribeHomeassistantServicesRequest:'\xe0@\"\xe8@\x02\xf2@\x1eUSE_API_HOMEASSISTANT_SERVICES\"M\n" +
+	"\x17HomeassistantServiceMap\x12\x16\n" +
+	"\x03key\x18\x01 \x01(\tB\x04\xa8\xb6\x18\x01R\x03key\x12\x1a\n" +
+	"\x05value\x18\x02 \x01(\tB\x04\xa8\xb6\x18\x01R\x05value\"\xb2\x04\n" +
+	"\x1aHomeassistantActionRequest\x12\x1e\n" +
+	"\aservice\x18\x01 \x01(\tB\x04\xa8\xb6\x18\x01R\aservice\x122\n" +
 	"\x04data\x18\x02 \x03(\v2\x18.HomeassistantServiceMapB\x04\xe8\xb5\x18\x01R\x04data\x12C\n" +
 	"\rdata_template\x18\x03 \x03(\v2\x18.HomeassistantServiceMapB\x04\xe8\xb5\x18\x01R\fdataTemplate\x12<\n" +
 	"\tvariables\x18\x04 \x03(\v2\x18.HomeassistantServiceMapB\x04\xe8\xb5\x18\x01R\tvariables\x12\x19\n" +
@@ -17287,18 +17898,20 @@ const file_api_proto_rawDesc = "" +
 	"\x0fGetTimeResponse\x12#\n" +
 	"\repoch_seconds\x18\x01 \x01(\aR\fepochSeconds\x12\x1e\n" +
 	"\btimezone\x18\x02 \x01(\tB\x02\x18\x01R\btimezone\x12>\n" +
-	"\x0fparsed_timezone\x18\x03 \x01(\v2\x0f.ParsedTimezoneB\x04\xa0\xb6\x18\x01R\x0eparsedTimezone:\t\xe0@%\xe8@\x02\x80A\x01\"\x86\x02\n" +
-	"\x1cListEntitiesServicesArgument\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12#\n" +
-	"\x04type\x18\x02 \x01(\x0e2\x0f.ServiceArgTypeR\x04type\x12I\n" +
-	"\vdescription\x18\x03 \x01(\tB'\x92A$USE_API_USER_DEFINED_ACTION_METADATAR\vdescription\x12A\n" +
-	"\aexample\x18\x04 \x01(\tB'\x92A$USE_API_USER_DEFINED_ACTION_METADATAR\aexample:\x1f\xf2@\x1cUSE_API_USER_DEFINED_ACTIONS\"\xb9\x02\n" +
-	"\x1cListEntitiesServicesResponse\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n" +
+	"\x0fparsed_timezone\x18\x03 \x01(\v2\x0f.ParsedTimezoneB\x04\xa0\xb6\x18\x01R\x0eparsedTimezone:\t\xe0@%\xe8@\x02\x80A\x01\"\xb5\x03\n" +
+	"\x1cListEntitiesServicesArgument\x12\x18\n" +
+	"\x04name\x18\x01 \x01(\tB\x04\xa8\xb6\x18\x01R\x04name\x12#\n" +
+	"\x04type\x18\x02 \x01(\x0e2\x0f.ServiceArgTypeR\x04type\x12M\n" +
+	"\vdescription\x18\x03 \x01(\tB+\x92A$USE_API_USER_DEFINED_ACTION_METADATA\xa8\xb6\x18\x01R\vdescription\x12E\n" +
+	"\aexample\x18\x04 \x01(\tB+\x92A$USE_API_USER_DEFINED_ACTION_METADATA\xa8\xb6\x18\x01R\aexample\x12H\n" +
+	"\boptional\x18\x05 \x01(\bB,\x92A)USE_API_USER_DEFINED_ACTION_OPTIONAL_ARGSR\boptional\x12U\n" +
+	"\rdefault_value\x18\x06 \x01(\tB0\x92A)USE_API_USER_DEFINED_ACTION_OPTIONAL_ARGS\xa8\xb6\x18\x01R\fdefaultValue:\x1f\xf2@\x1cUSE_API_USER_DEFINED_ACTIONS\"\xc3\x02\n" +
+	"\x1cListEntitiesServicesResponse\x12\x18\n" +
+	"\x04name\x18\x01 \x01(\tB\x04\xa8\xb6\x18\x01R\x04name\x12\x16\n" +
 	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x127\n" +
 	"\x04args\x18\x03 \x03(\v2\x1d.ListEntitiesServicesArgumentB\x04\xe8\xb5\x18\x01R\x04args\x12B\n" +
-	"\x11supports_response\x18\x04 \x01(\x0e2\x15.SupportsResponseTypeR\x10supportsResponse\x12I\n" +
-	"\vdescription\x18\x05 \x01(\tB'\x92A$USE_API_USER_DEFINED_ACTION_METADATAR\vdescription:%\xe0@)\xe8@\x01\xf2@\x1cUSE_API_USER_DEFINED_ACTIONS\"\xce\x02\n" +
+	"\x11supports_response\x18\x04 \x01(\x0e2\x15.SupportsResponseTypeR\x10supportsResponse\x12M\n" +
+	"\vdescription\x18\x05 \x01(\tB+\x92A$USE_API_USER_DEFINED_ACTION_METADATA\xa8\xb6\x18\x01R\vdescription:%\xe0@)\xe8@\x01\xf2@\x1cUSE_API_USER_DEFINED_ACTIONS\"\xce\x02\n" +
 	"\x16ExecuteServiceArgument\x12\x13\n" +
 	"\x05bool_\x18\x01 \x01(\bR\x04bool\x12\x1d\n" +
 	"\n" +
@@ -17321,13 +17934,13 @@ const file_api_proto_rawDesc = "" +
 	"\acall_id\x18\x01 \x01(\rR\x06callId\x12\x18\n" +
 	"\asuccess\x18\x02 \x01(\bR\asuccess\x12#\n" +
 	"\rerror_message\x18\x03 \x01(\tR\ferrorMessage\x12V\n" +
-	"\rresponse_data\x18\x04 \x01(\fB1\x92A*USE_API_USER_DEFINED_ACTION_RESPONSES_JSON\xe0\xb5\x18\x01R\fresponseData:2\xe0@\x83\x01\xe8@\x01\xf2@%USE_API_USER_DEFINED_ACTION_RESPONSES\x80A\x01\"\xf2\x02\n" +
+	"\rresponse_data\x18\x04 \x01(\fB1\x92A*USE_API_USER_DEFINED_ACTION_RESPONSES_JSON\xe0\xb5\x18\x01R\fresponseData:2\xe0@\x83\x01\xe8@\x01\xf2@%USE_API_USER_DEFINED_ACTION_RESPONSES\x80A\x01\"\xfa\x02\n" +
 	"\x1aListEntitiesCameraResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12.\n" +
-	"\x13disabled_by_default\x18\x05 \x01(\bR\x11disabledByDefault\x12*\n" +
-	"\x04icon\x18\x06 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x128\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x13disabled_by_default\x18\x05 \x01(\bR\x11disabledByDefault\x12.\n" +
+	"\x04icon\x18\x06 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x128\n" +
 	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12+\n" +
 	"\tdevice_id\x18\b \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:.\xe0@+\xe8@\x01\xf2@\n" +
 	"USE_CAMERA\x8aA\x18InfoResponseProtoMessageJ\x04\b\x04\x10\x05\"\xb3\x01\n" +
@@ -17340,11 +17953,11 @@ const file_api_proto_rawDesc = "" +
 	"\x12CameraImageRequest\x12\x16\n" +
 	"\x06single\x18\x01 \x01(\bR\x06single\x12\x16\n" +
 	"\x06stream\x18\x02 \x01(\bR\x06stream:\x16\xe0@-\xe8@\x02\xf2@\n" +
-	"USE_CAMERA\x80A\x01\"\xca\r\n" +
+	"USE_CAMERA\x80A\x01\"\xde\r\n" +
 	"\x1bListEntitiesClimateResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12@\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12@\n" +
 	"\x1csupports_current_temperature\x18\x05 \x01(\bR\x1asupportsCurrentTemperature\x12P\n" +
 	"%supports_two_point_target_temperature\x18\x06 \x01(\bR!supportsTwoPointTargetTemperature\x12S\n" +
 	"\x0fsupported_modes\x18\a \x03(\x0e2\f.ClimateModeB\x1c\xf2\xb5\x18\x18climate::ClimateModeMaskR\x0esupportedModes\x124\n" +
@@ -17355,12 +17968,12 @@ const file_api_proto_rawDesc = "" +
 	"\x14legacy_supports_away\x18\v \x01(\bB\x02\x18\x01R\x12legacySupportsAway\x12'\n" +
 	"\x0fsupports_action\x18\f \x01(\bR\x0esupportsAction\x12`\n" +
 	"\x13supported_fan_modes\x18\r \x03(\x0e2\x0f.ClimateFanModeB\x1f\xf2\xb5\x18\x1bclimate::ClimateFanModeMaskR\x11supportedFanModes\x12h\n" +
-	"\x15supported_swing_modes\x18\x0e \x03(\x0e2\x11.ClimateSwingModeB!\xf2\xb5\x18\x1dclimate::ClimateSwingModeMaskR\x13supportedSwingModes\x12Z\n" +
-	"\x1asupported_custom_fan_modes\x18\x0f \x03(\tB\x1d\xf2\xb5\x18\x19std::vector<const char *>R\x17supportedCustomFanModes\x12[\n" +
-	"\x11supported_presets\x18\x10 \x03(\x0e2\x0e.ClimatePresetB\x1e\xf2\xb5\x18\x1aclimate::ClimatePresetMaskR\x10supportedPresets\x12W\n" +
-	"\x18supported_custom_presets\x18\x11 \x03(\tB\x1d\xf2\xb5\x18\x19std::vector<const char *>R\x16supportedCustomPresets\x12.\n" +
-	"\x13disabled_by_default\x18\x12 \x01(\bR\x11disabledByDefault\x12*\n" +
-	"\x04icon\x18\x13 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x128\n" +
+	"\x15supported_swing_modes\x18\x0e \x03(\x0e2\x11.ClimateSwingModeB!\xf2\xb5\x18\x1dclimate::ClimateSwingModeMaskR\x13supportedSwingModes\x12`\n" +
+	"\x1asupported_custom_fan_modes\x18\x0f \x03(\tB#\xf2\xb5\x18\x1fConstVector<const char *, true>R\x17supportedCustomFanModes\x12[\n" +
+	"\x11supported_presets\x18\x10 \x03(\x0e2\x0e.ClimatePresetB\x1e\xf2\xb5\x18\x1aclimate::ClimatePresetMaskR\x10supportedPresets\x12]\n" +
+	"\x18supported_custom_presets\x18\x11 \x03(\tB#\xf2\xb5\x18\x1fConstVector<const char *, true>R\x16supportedCustomPresets\x12.\n" +
+	"\x13disabled_by_default\x18\x12 \x01(\bR\x11disabledByDefault\x12.\n" +
+	"\x04icon\x18\x13 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x128\n" +
 	"\x0fentity_category\x18\x14 \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12E\n" +
 	"\x1fvisual_current_temperature_step\x18\x15 \x01(\x02R\x1cvisualCurrentTemperatureStep\x12:\n" +
 	"\x19supports_current_humidity\x18\x16 \x01(\bR\x17supportsCurrentHumidity\x128\n" +
@@ -17418,12 +18031,12 @@ const file_api_proto_rawDesc = "" +
 	"\rcustom_preset\x18\x15 \x01(\tR\fcustomPreset\x12.\n" +
 	"\x13has_target_humidity\x18\x16 \x01(\bR\x11hasTargetHumidity\x12'\n" +
 	"\x0ftarget_humidity\x18\x17 \x01(\x02R\x0etargetHumidity\x12+\n" +
-	"\tdevice_id\x18\x18 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:-\xe0@0\xe8@\x02\xf2@\vUSE_CLIMATE\x80A\x01\x8aA\x13CommandProtoMessage\"\xd0\x05\n" +
+	"\tdevice_id\x18\x18 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:-\xe0@0\xe8@\x02\xf2@\vUSE_CLIMATE\x80A\x01\x8aA\x13CommandProtoMessage\"\xd8\x05\n" +
 	"\x1fListEntitiesWaterHeaterResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x04 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12.\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x04 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12.\n" +
 	"\x13disabled_by_default\x18\x05 \x01(\bR\x11disabledByDefault\x128\n" +
 	"\x0fentity_category\x18\x06 \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12+\n" +
 	"\tdevice_id\x18\a \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId\x12'\n" +
@@ -17453,12 +18066,12 @@ const file_api_proto_rawDesc = "" +
 	"\tdevice_id\x18\x05 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId\x12\x14\n" +
 	"\x05state\x18\x06 \x01(\rR\x05state\x124\n" +
 	"\x16target_temperature_low\x18\a \x01(\x02R\x14targetTemperatureLow\x126\n" +
-	"\x17target_temperature_high\x18\b \x01(\x02R\x15targetTemperatureHigh:3\xe0@\x86\x01\xe8@\x02\xf2@\x10USE_WATER_HEATER\x80A\x01\x8aA\x13CommandProtoMessage\"\xc0\x04\n" +
+	"\x17target_temperature_high\x18\b \x01(\x02R\x15targetTemperatureHigh:3\xe0@\x86\x01\xe8@\x02\xf2@\x10USE_WATER_HEATER\x80A\x01\x8aA\x13CommandProtoMessage\"\xcc\x04\n" +
 	"\x1aListEntitiesNumberResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x05 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12\x1b\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x05 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12\x1b\n" +
 	"\tmin_value\x18\x06 \x01(\x02R\bminValue\x12\x1b\n" +
 	"\tmax_value\x18\a \x01(\x02R\bmaxValue\x12\x12\n" +
 	"\x04step\x18\b \x01(\x02R\x04step\x12.\n" +
@@ -17466,8 +18079,8 @@ const file_api_proto_rawDesc = "" +
 	"\x0fentity_category\x18\n" +
 	" \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x124\n" +
 	"\x13unit_of_measurement\x18\v \x01(\tB\x04\x90\xb6\x18?R\x11unitOfMeasurement\x12\x1f\n" +
-	"\x04mode\x18\f \x01(\x0e2\v.NumberModeR\x04mode\x12'\n" +
-	"\fdevice_class\x18\r \x01(\tB\x04\x90\xb6\x18/R\vdeviceClass\x12+\n" +
+	"\x04mode\x18\f \x01(\x0e2\v.NumberModeR\x04mode\x12+\n" +
+	"\fdevice_class\x18\r \x01(\tB\b\x90\xb6\x18/\xa8\xb6\x18\x01R\vdeviceClass\x12+\n" +
 	"\tdevice_id\x18\x0e \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:.\xe0@1\xe8@\x01\xf2@\n" +
 	"USE_NUMBER\x8aA\x18InfoResponseProtoMessageJ\x04\b\x04\x10\x05\"\xc9\x01\n" +
 	"\x13NumberStateResponse\x12\x16\n" +
@@ -17480,12 +18093,12 @@ const file_api_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x14\n" +
 	"\x05state\x18\x02 \x01(\x02R\x05state\x12+\n" +
 	"\tdevice_id\x18\x03 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:,\xe0@3\xe8@\x02\xf2@\n" +
-	"USE_NUMBER\x80A\x01\x8aA\x13CommandProtoMessage\"\xae\x03\n" +
+	"USE_NUMBER\x80A\x01\x8aA\x13CommandProtoMessage\"\xb6\x03\n" +
 	"\x1aListEntitiesSelectResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x05 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12:\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x05 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12:\n" +
 	"\aoptions\x18\x06 \x03(\tB \xf2\xb5\x18\x1cstd::span<const char *const>R\aoptions\x12.\n" +
 	"\x13disabled_by_default\x18\a \x01(\bR\x11disabledByDefault\x128\n" +
 	"\x0fentity_category\x18\b \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12+\n" +
@@ -17501,12 +18114,12 @@ const file_api_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x14\n" +
 	"\x05state\x18\x02 \x01(\tR\x05state\x12+\n" +
 	"\tdevice_id\x18\x03 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:,\xe0@6\xe8@\x02\xf2@\n" +
-	"USE_SELECT\x80A\x01\x8aA\x13CommandProtoMessage\"\xfb\x03\n" +
+	"USE_SELECT\x80A\x01\x8aA\x13CommandProtoMessage\"\x83\x04\n" +
 	"\x19ListEntitiesSirenResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x05 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12.\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x05 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12.\n" +
 	"\x13disabled_by_default\x18\x06 \x01(\bR\x11disabledByDefault\x123\n" +
 	"\x05tones\x18\a \x03(\tB\x1d\xf2\xb5\x18\x19FixedVector<const char *>R\x05tones\x12+\n" +
 	"\x11supports_duration\x18\b \x01(\bR\x10supportsDuration\x12'\n" +
@@ -17530,12 +18143,12 @@ const file_api_proto_rawDesc = "" +
 	"has_volume\x18\b \x01(\bR\thasVolume\x12\x16\n" +
 	"\x06volume\x18\t \x01(\x02R\x06volume\x12+\n" +
 	"\tdevice_id\x18\n" +
-	" \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:+\xe0@9\xe8@\x02\xf2@\tUSE_SIREN\x80A\x01\x8aA\x13CommandProtoMessage\"\xfe\x03\n" +
+	" \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:+\xe0@9\xe8@\x02\xf2@\tUSE_SIREN\x80A\x01\x8aA\x13CommandProtoMessage\"\x86\x04\n" +
 	"\x18ListEntitiesLockResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x05 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12.\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x05 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12.\n" +
 	"\x13disabled_by_default\x18\x06 \x01(\bR\x11disabledByDefault\x128\n" +
 	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12#\n" +
 	"\rassumed_state\x18\b \x01(\bR\fassumedState\x12#\n" +
@@ -17555,33 +18168,34 @@ const file_api_proto_rawDesc = "" +
 	"\acommand\x18\x02 \x01(\x0e2\f.LockCommandR\acommand\x12\x19\n" +
 	"\bhas_code\x18\x03 \x01(\bR\ahasCode\x12\x12\n" +
 	"\x04code\x18\x04 \x01(\tR\x04code\x12+\n" +
-	"\tdevice_id\x18\x05 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:*\xe0@<\xe8@\x02\xf2@\bUSE_LOCK\x80A\x01\x8aA\x13CommandProtoMessage\"\x9b\x03\n" +
+	"\tdevice_id\x18\x05 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:*\xe0@<\xe8@\x02\xf2@\bUSE_LOCK\x80A\x01\x8aA\x13CommandProtoMessage\"\xa7\x03\n" +
 	"\x1aListEntitiesButtonResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x05 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12.\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x05 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12.\n" +
 	"\x13disabled_by_default\x18\x06 \x01(\bR\x11disabledByDefault\x128\n" +
-	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12'\n" +
-	"\fdevice_class\x18\b \x01(\tB\x04\x90\xb6\x18/R\vdeviceClass\x12+\n" +
+	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12+\n" +
+	"\fdevice_class\x18\b \x01(\tB\b\x90\xb6\x18/\xa8\xb6\x18\x01R\vdeviceClass\x12+\n" +
 	"\tdevice_id\x18\t \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:.\xe0@=\xe8@\x01\xf2@\n" +
 	"USE_BUTTON\x8aA\x18InfoResponseProtoMessageJ\x04\b\x04\x10\x05\"\x89\x01\n" +
 	"\x14ButtonCommandRequest\x12\x16\n" +
 	"\x03key\x18\x01 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12+\n" +
 	"\tdevice_id\x18\x02 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:,\xe0@>\xe8@\x02\xf2@\n" +
-	"USE_BUTTON\x80A\x01\x8aA\x13CommandProtoMessage\"\xe5\x01\n" +
+	"USE_BUTTON\x80A\x01\x8aA\x13CommandProtoMessage\"\xff\x01\n" +
 	"\x1aMediaPlayerSupportedFormat\x12\x16\n" +
 	"\x06format\x18\x01 \x01(\tR\x06format\x12\x1f\n" +
 	"\vsample_rate\x18\x02 \x01(\rR\n" +
 	"sampleRate\x12!\n" +
 	"\fnum_channels\x18\x03 \x01(\rR\vnumChannels\x123\n" +
 	"\apurpose\x18\x04 \x01(\x0e2\x19.MediaPlayerFormatPurposeR\apurpose\x12!\n" +
-	"\fsample_bytes\x18\x05 \x01(\rR\vsampleBytes:\x13\xf2@\x10USE_MEDIA_PLAYER\"\x97\x04\n" +
+	"\fsample_bytes\x18\x05 \x01(\rR\vsampleBytes\x12\x18\n" +
+	"\abitrate\x18\x06 \x01(\rR\abitrate:\x13\xf2@\x10USE_MEDIA_PLAYER\"\x9f\x04\n" +
 	"\x1fListEntitiesMediaPlayerResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x05 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12.\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x05 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12.\n" +
 	"\x13disabled_by_default\x18\x06 \x01(\bR\x11disabledByDefault\x128\n" +
 	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12)\n" +
 	"\x0esupports_pause\x18\b \x01(\bB\x02\x18\x01R\rsupportsPause\x12H\n" +
@@ -17735,13 +18349,20 @@ const file_api_proto_rawDesc = "" +
 	"\x1bVoiceAssistantAudioSettings\x126\n" +
 	"\x17noise_suppression_level\x18\x01 \x01(\rR\x15noiseSuppressionLevel\x12\x1b\n" +
 	"\tauto_gain\x18\x02 \x01(\rR\bautoGain\x12+\n" +
-	"\x11volume_multiplier\x18\x03 \x01(\x02R\x10volumeMultiplier\"\xf9\x01\n" +
+	"\x11volume_multiplier\x18\x03 \x01(\x02R\x10volumeMultiplier\"\xf8\x03\n" +
 	"\x15VoiceAssistantRequest\x12\x14\n" +
 	"\x05start\x18\x01 \x01(\bR\x05start\x12'\n" +
 	"\x0fconversation_id\x18\x02 \x01(\tR\x0econversationId\x12\x14\n" +
 	"\x05flags\x18\x03 \x01(\rR\x05flags\x12C\n" +
 	"\x0eaudio_settings\x18\x04 \x01(\v2\x1c.VoiceAssistantAudioSettingsR\raudioSettings\x12(\n" +
-	"\x10wake_word_phrase\x18\x05 \x01(\tR\x0ewakeWordPhrase:\x1c\xe0@Z\xe8@\x01\xf2@\x13USE_VOICE_ASSISTANT\"`\n" +
+	"\x10wake_word_phrase\x18\x05 \x01(\tR\x0ewakeWordPhrase\x12 \n" +
+	"\fwake_word_id\x18\x06 \x01(\tR\n" +
+	"wakeWordId\x121\n" +
+	"\x15wake_word_audio_bytes\x18\a \x01(\rR\x12wakeWordAudioBytes\x122\n" +
+	"\x15wake_word_probability\x18\b \x01(\x02R\x13wakeWordProbability\x12?\n" +
+	"\x1cwake_word_probability_cutoff\x18\t \x01(\x02R\x19wakeWordProbabilityCutoff\x123\n" +
+	"\x16wake_word_audio_bytes2\x18\n" +
+	" \x01(\rR\x13wakeWordAudioBytes2:\x1c\xe0@Z\xe8@\x01\xf2@\x13USE_VOICE_ASSISTANT\"`\n" +
 	"\x16VoiceAssistantResponse\x12\x12\n" +
 	"\x04port\x18\x01 \x01(\rR\x04port\x12\x14\n" +
 	"\x05error\x18\x02 \x01(\bR\x05error:\x1c\xe0@[\xe8@\x02\xf2@\x13USE_VOICE_ASSISTANT\"C\n" +
@@ -17793,12 +18414,12 @@ const file_api_proto_rawDesc = "" +
 	"\x11active_wake_words\x18\x02 \x03(\tB\x0f\x8a\xb5\x18\vstd::vectorR\x0factiveWakeWords\x121\n" +
 	"\x15max_active_wake_words\x18\x03 \x01(\rR\x12maxActiveWakeWords:\x1c\xe0@z\xe8@\x01\xf2@\x13USE_VOICE_ASSISTANT\"j\n" +
 	"\x1eVoiceAssistantSetConfiguration\x12*\n" +
-	"\x11active_wake_words\x18\x01 \x03(\tR\x0factiveWakeWords:\x1c\xe0@{\xe8@\x02\xf2@\x13USE_VOICE_ASSISTANT\"\x8f\x04\n" +
+	"\x11active_wake_words\x18\x01 \x03(\tR\x0factiveWakeWords:\x1c\xe0@{\xe8@\x02\xf2@\x13USE_VOICE_ASSISTANT\"\x97\x04\n" +
 	"%ListEntitiesAlarmControlPanelResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x05 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12.\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x05 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12.\n" +
 	"\x13disabled_by_default\x18\x06 \x01(\bR\x11disabledByDefault\x128\n" +
 	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12-\n" +
 	"\x12supported_features\x18\b \x01(\rR\x11supportedFeatures\x12#\n" +
@@ -17814,12 +18435,12 @@ const file_api_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x128\n" +
 	"\acommand\x18\x02 \x01(\x0e2\x1e.AlarmControlPanelStateCommandR\acommand\x12\x12\n" +
 	"\x04code\x18\x03 \x01(\tR\x04code\x12+\n" +
-	"\tdevice_id\x18\x04 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:9\xe0@`\xe8@\x02\xf2@\x17USE_ALARM_CONTROL_PANEL\x80A\x01\x8aA\x13CommandProtoMessage\"\xe5\x03\n" +
+	"\tdevice_id\x18\x04 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:9\xe0@`\xe8@\x02\xf2@\x17USE_ALARM_CONTROL_PANEL\x80A\x01\x8aA\x13CommandProtoMessage\"\xed\x03\n" +
 	"\x18ListEntitiesTextResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x05 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12.\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x05 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12.\n" +
 	"\x13disabled_by_default\x18\x06 \x01(\bR\x11disabledByDefault\x128\n" +
 	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12\x1d\n" +
 	"\n" +
@@ -17838,12 +18459,12 @@ const file_api_proto_rawDesc = "" +
 	"\x12TextCommandRequest\x12\x16\n" +
 	"\x03key\x18\x01 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x14\n" +
 	"\x05state\x18\x02 \x01(\tR\x05state\x12+\n" +
-	"\tdevice_id\x18\x03 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:*\xe0@c\xe8@\x02\xf2@\bUSE_TEXT\x80A\x01\x8aA\x13CommandProtoMessage\"\xf7\x02\n" +
+	"\tdevice_id\x18\x03 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:*\xe0@c\xe8@\x02\xf2@\bUSE_TEXT\x80A\x01\x8aA\x13CommandProtoMessage\"\xff\x02\n" +
 	"\x18ListEntitiesDateResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x05 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12.\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x05 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12.\n" +
 	"\x13disabled_by_default\x18\x06 \x01(\bR\x11disabledByDefault\x128\n" +
 	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12+\n" +
 	"\tdevice_id\x18\b \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:5\xe0@d\xe8@\x01\xf2@\x11USE_DATETIME_DATE\x8aA\x18InfoResponseProtoMessageJ\x04\b\x04\x10\x05\"\xf4\x01\n" +
@@ -17859,12 +18480,12 @@ const file_api_proto_rawDesc = "" +
 	"\x04year\x18\x02 \x01(\rR\x04year\x12\x14\n" +
 	"\x05month\x18\x03 \x01(\rR\x05month\x12\x10\n" +
 	"\x03day\x18\x04 \x01(\rR\x03day\x12+\n" +
-	"\tdevice_id\x18\x05 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:3\xe0@f\xe8@\x02\xf2@\x11USE_DATETIME_DATE\x80A\x01\x8aA\x13CommandProtoMessage\"\xf7\x02\n" +
+	"\tdevice_id\x18\x05 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:3\xe0@f\xe8@\x02\xf2@\x11USE_DATETIME_DATE\x80A\x01\x8aA\x13CommandProtoMessage\"\xff\x02\n" +
 	"\x18ListEntitiesTimeResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x05 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12.\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x05 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12.\n" +
 	"\x13disabled_by_default\x18\x06 \x01(\bR\x11disabledByDefault\x128\n" +
 	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12+\n" +
 	"\tdevice_id\x18\b \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:5\xe0@g\xe8@\x01\xf2@\x11USE_DATETIME_TIME\x8aA\x18InfoResponseProtoMessageJ\x04\b\x04\x10\x05\"\xfc\x01\n" +
@@ -17880,16 +18501,16 @@ const file_api_proto_rawDesc = "" +
 	"\x04hour\x18\x02 \x01(\rR\x04hour\x12\x16\n" +
 	"\x06minute\x18\x03 \x01(\rR\x06minute\x12\x16\n" +
 	"\x06second\x18\x04 \x01(\rR\x06second\x12+\n" +
-	"\tdevice_id\x18\x05 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:3\xe0@i\xe8@\x02\xf2@\x11USE_DATETIME_TIME\x80A\x01\x8aA\x13CommandProtoMessage\"\xd9\x03\n" +
+	"\tdevice_id\x18\x05 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:3\xe0@i\xe8@\x02\xf2@\x11USE_DATETIME_TIME\x80A\x01\x8aA\x13CommandProtoMessage\"\xeb\x03\n" +
 	"\x19ListEntitiesEventResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x05 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12.\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x05 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12.\n" +
 	"\x13disabled_by_default\x18\x06 \x01(\bR\x11disabledByDefault\x128\n" +
-	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12'\n" +
-	"\fdevice_class\x18\b \x01(\tB\x04\x90\xb6\x18/R\vdeviceClass\x12>\n" +
-	"\vevent_types\x18\t \x03(\tB\x1d\xf2\xb5\x18\x19FixedVector<const char *>R\n" +
+	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12+\n" +
+	"\fdevice_class\x18\b \x01(\tB\b\x90\xb6\x18/\xa8\xb6\x18\x01R\vdeviceClass\x12D\n" +
+	"\vevent_types\x18\t \x03(\tB#\xf2\xb5\x18\x1fConstVector<const char *, true>R\n" +
 	"eventTypes\x12+\n" +
 	"\tdevice_id\x18\n" +
 	" \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:-\xe0@k\xe8@\x01\xf2@\tUSE_EVENT\x8aA\x18InfoResponseProtoMessageJ\x04\b\x04\x10\x05\"\xa3\x01\n" +
@@ -17897,15 +18518,15 @@ const file_api_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1d\n" +
 	"\n" +
 	"event_type\x18\x02 \x01(\tR\teventType\x12+\n" +
-	"\tdevice_id\x18\x03 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:.\xe0@l\xe8@\x01\xf2@\tUSE_EVENT\x8aA\x19StateResponseProtoMessage\"\x90\x04\n" +
+	"\tdevice_id\x18\x03 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:.\xe0@l\xe8@\x01\xf2@\tUSE_EVENT\x8aA\x19StateResponseProtoMessage\"\x9c\x04\n" +
 	"\x19ListEntitiesValveResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x05 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12.\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x05 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12.\n" +
 	"\x13disabled_by_default\x18\x06 \x01(\bR\x11disabledByDefault\x128\n" +
-	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12'\n" +
-	"\fdevice_class\x18\b \x01(\tB\x04\x90\xb6\x18/R\vdeviceClass\x12#\n" +
+	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12+\n" +
+	"\fdevice_class\x18\b \x01(\tB\b\x90\xb6\x18/\xa8\xb6\x18\x01R\vdeviceClass\x12#\n" +
 	"\rassumed_state\x18\t \x01(\bR\fassumedState\x12+\n" +
 	"\x11supports_position\x18\n" +
 	" \x01(\bR\x10supportsPosition\x12#\n" +
@@ -17921,12 +18542,12 @@ const file_api_proto_rawDesc = "" +
 	"\fhas_position\x18\x02 \x01(\bR\vhasPosition\x12\x1a\n" +
 	"\bposition\x18\x03 \x01(\x02R\bposition\x12\x12\n" +
 	"\x04stop\x18\x04 \x01(\bR\x04stop\x12+\n" +
-	"\tdevice_id\x18\x05 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:+\xe0@o\xe8@\x02\xf2@\tUSE_VALVE\x80A\x01\x8aA\x13CommandProtoMessage\"\xff\x02\n" +
+	"\tdevice_id\x18\x05 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:+\xe0@o\xe8@\x02\xf2@\tUSE_VALVE\x80A\x01\x8aA\x13CommandProtoMessage\"\x87\x03\n" +
 	"\x1cListEntitiesDateTimeResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x05 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12.\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x05 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12.\n" +
 	"\x13disabled_by_default\x18\x06 \x01(\bR\x11disabledByDefault\x128\n" +
 	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12+\n" +
 	"\tdevice_id\x18\b \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:9\xe0@p\xe8@\x01\xf2@\x15USE_DATETIME_DATETIME\x8aA\x18InfoResponseProtoMessageJ\x04\b\x04\x10\x05\"\xe5\x01\n" +
@@ -17938,15 +18559,15 @@ const file_api_proto_rawDesc = "" +
 	"\x16DateTimeCommandRequest\x12\x16\n" +
 	"\x03key\x18\x01 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12#\n" +
 	"\repoch_seconds\x18\x02 \x01(\aR\fepochSeconds\x12+\n" +
-	"\tdevice_id\x18\x03 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:7\xe0@r\xe8@\x02\xf2@\x15USE_DATETIME_DATETIME\x80A\x01\x8aA\x13CommandProtoMessage\"\x9b\x03\n" +
+	"\tdevice_id\x18\x03 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:7\xe0@r\xe8@\x02\xf2@\x15USE_DATETIME_DATETIME\x80A\x01\x8aA\x13CommandProtoMessage\"\xa7\x03\n" +
 	"\x1aListEntitiesUpdateResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x05 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12.\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x05 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12.\n" +
 	"\x13disabled_by_default\x18\x06 \x01(\bR\x11disabledByDefault\x128\n" +
-	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12'\n" +
-	"\fdevice_class\x18\b \x01(\tB\x04\x90\xb6\x18/R\vdeviceClass\x12+\n" +
+	"\x0fentity_category\x18\a \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12+\n" +
+	"\fdevice_class\x18\b \x01(\tB\b\x90\xb6\x18/\xa8\xb6\x18\x01R\vdeviceClass\x12+\n" +
 	"\tdevice_id\x18\t \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId:.\xe0@t\xe8@\x01\xf2@\n" +
 	"USE_UPDATE\x8aA\x18InfoResponseProtoMessageJ\x04\b\x04\x10\x05\"\xc3\x03\n" +
 	"\x13UpdateStateResponse\x12\x16\n" +
@@ -17977,12 +18598,12 @@ const file_api_proto_rawDesc = "" +
 	"\x04data\x18\x02 \x01(\fR\x04data:\x19\xe0@\x81\x01\xe8@\x00\xf2@\x0fUSE_ZWAVE_PROXY\"\x8d\x01\n" +
 	"\x19ZWaveProxyRequestResponse\x12*\n" +
 	"\x04type\x18\x01 \x01(\x0e2\x16.ZWaveProxyRequestTypeR\x04type\x12)\n" +
-	"\x06status\x18\x02 \x01(\x0e2\x11.ZWaveProxyStatusR\x06status:\x19\xe0@\x97\x01\xe8@\x01\xf2@\x0fUSE_ZWAVE_PROXY\"\xc4\x03\n" +
+	"\x06status\x18\x02 \x01(\x0e2\x11.ZWaveProxyStatusR\x06status:\x19\xe0@\x97\x01\xe8@\x01\xf2@\x0fUSE_ZWAVE_PROXY\"\xcc\x03\n" +
 	"\x1cListEntitiesInfraredResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x04 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12.\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x04 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12.\n" +
 	"\x13disabled_by_default\x18\x05 \x01(\bR\x11disabledByDefault\x128\n" +
 	"\x0fentity_category\x18\x06 \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12+\n" +
 	"\tdevice_id\x18\a \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId\x12\"\n" +
@@ -17996,20 +18617,20 @@ const file_api_proto_rawDesc = "" +
 	"\atimings\x18\x05 \x03(\x11B\x06\xf8\xb5\x18\x01\x10\x01R\atimings\x12\x1e\n" +
 	"\n" +
 	"modulation\x18\x06 \x01(\rR\n" +
-	"modulation:\x13\xe0@\x88\x01\xe8@\x02\xf2@\tUSE_IR_RF\"\xae\x01\n" +
+	"modulation:\x13\xe0@\x88\x01\xe8@\x02\xf2@\tUSE_IR_RF\"\xb2\x01\n" +
 	"\x16InfraredRFReceiveEvent\x12+\n" +
 	"\tdevice_id\x18\x01 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x124\n" +
-	"\atimings\x18\x03 \x03(\x11B\x1a\xf2\xb5\x18\x14std::vector<int32_t>\x10\x01R\atimings:\x19\xe0@\x89\x01\xe8@\x01\xf2@\tUSE_IR_RF\x80A\x01\x98A\x01\"\x9b\x01\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x128\n" +
+	"\atimings\x18\x03 \x03(\x11B\x1e\xf2\xb5\x18\x18std::span<const int32_t>\x10\x01R\atimings:\x19\xe0@\x89\x01\xe8@\x01\xf2@\tUSE_IR_RF\x80A\x01\x98A\x01\"\x9b\x01\n" +
 	"\"InfraredRFTransmitCompleteResponse\x12+\n" +
 	"\tdevice_id\x18\x01 \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId\x12\x16\n" +
 	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x18\n" +
-	"\asuccess\x18\x03 \x01(\bR\asuccess:\x16\xe0@\x99\x01\xe8@\x01\xf2@\tUSE_IR_RF\x80A\x01\"\xa1\x04\n" +
+	"\asuccess\x18\x03 \x01(\bR\asuccess:\x16\xe0@\x99\x01\xe8@\x01\xf2@\tUSE_IR_RF\x80A\x01\"\xa9\x04\n" +
 	"\"ListEntitiesRadioFrequencyResponse\x12%\n" +
 	"\tobject_id\x18\x01 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\bobjectId\x12\x16\n" +
-	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12\x1c\n" +
-	"\x04name\x18\x03 \x01(\tB\b\x80\xb6\x18\x01\x90\xb6\x18xR\x04name\x12*\n" +
-	"\x04icon\x18\x04 \x01(\tB\x16\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?R\x04icon\x12.\n" +
+	"\x03key\x18\x02 \x01(\aB\x04\x80\xb6\x18\x01R\x03key\x12 \n" +
+	"\x04name\x18\x03 \x01(\tB\f\x80\xb6\x18\x01\x90\xb6\x18x\xa8\xb6\x18\x01R\x04name\x12.\n" +
+	"\x04icon\x18\x04 \x01(\tB\x1a\x92A\x0fUSE_ENTITY_ICON\x90\xb6\x18?\xa8\xb6\x18\x01R\x04icon\x12.\n" +
 	"\x13disabled_by_default\x18\x05 \x01(\bR\x11disabledByDefault\x128\n" +
 	"\x0fentity_category\x18\x06 \x01(\x0e2\x0f.EntityCategoryR\x0eentityCategory\x12+\n" +
 	"\tdevice_id\x18\a \x01(\rB\x0e\x92A\vUSE_DEVICESR\bdeviceId\x12\"\n" +
@@ -18053,7 +18674,7 @@ const file_api_proto_rawDesc = "" +
 	"\x19SerialProxySetModeRequest\x12\x1a\n" +
 	"\binstance\x18\x01 \x01(\rR\binstance\x12$\n" +
 	"\x04mode\x18\x02 \x01(\x0e2\x10.SerialProxyModeR\x04mode:\x1a\xe0@\x98\x01\xe8@\x02\xf2@\x10USE_SERIAL_PROXY\"A\n" +
-	"#SubscribeSerialProxyIdentityRequest:\x1a\xe0@\x9a\x01\xe8@\x02\xf2@\x10USE_SERIAL_PROXY\"\xe5\x01\n" +
+	"#SubscribeSerialProxyIdentityRequest:\x1a\xe0@\x9a\x01\xe8@\x02\xf2@\x10USE_SERIAL_PROXY\"\x9a\x02\n" +
 	"\x13UsbDeviceDescriptor\x12\x1b\n" +
 	"\tvendor_id\x18\x01 \x01(\rR\bvendorId\x12\x1d\n" +
 	"\n" +
@@ -18063,7 +18684,8 @@ const file_api_proto_rawDesc = "" +
 	"\x10interface_number\x18\x04 \x01(\rR\x0finterfaceNumber\x12'\n" +
 	"\x0finterface_class\x18\x05 \x01(\rR\x0einterfaceClass\x12\x1f\n" +
 	"\vport_number\x18\x06 \x01(\rR\n" +
-	"portNumber\"\xa2\x02\n" +
+	"portNumber\x123\n" +
+	"\x15interface_description\x18\a \x01(\tR\x14interfaceDescription\"\xa2\x02\n" +
 	"\x13SerialProxyIdentity\x12\x1a\n" +
 	"\binstance\x18\x01 \x01(\rR\binstance\x122\n" +
 	"\x06source\x18\x02 \x01(\x0e2\x1a.SerialProxyIdentitySourceR\x06source\x12\x14\n" +
@@ -18084,10 +18706,19 @@ const file_api_proto_rawDesc = "" +
 	"\x1bSendspinPairingTokenRequest:\x16\xe0@\x9f\x01\xe8@\x02\xf2@\fUSE_SENDSPIN\"\x87\x01\n" +
 	"\x1cSendspinPairingTokenResponse\x123\n" +
 	"\x06status\x18\x01 \x01(\x0e2\x1b.SendspinPairingTokenStatusR\x06status\x12\x1a\n" +
-	"\x05token\x18\x02 \x01(\tB\x04\x90\xb6\x18\x7fR\x05token:\x16\xe0@\xa0\x01\xe8@\x01\xf2@\fUSE_SENDSPIN*`\n" +
+	"\x05token\x18\x02 \x01(\tB\x04\x90\xb6\x18\x7fR\x05token:\x16\xe0@\xa0\x01\xe8@\x01\xf2@\fUSE_SENDSPIN\"-\n" +
+	"\x0eGetYamlRequest:\x1b\xe0@\xa1\x01\xe8@\x02\xf2@\x0eUSE_STORE_YAML\x80A\x01\"\x86\x01\n" +
+	"\x0fGetYamlResponse\x12 \n" +
+	"\x04data\x18\x01 \x01(\fB\f\xe0\xb5\x18\x01\x80\xb6\x18\x01\xa8\xb6\x18\x01R\x04data\x12\x18\n" +
+	"\x04done\x18\x02 \x01(\bB\x04\x80\xb6\x18\x01R\x04done\x12\x1d\n" +
+	"\n" +
+	"total_size\x18\x03 \x01(\rR\ttotalSize:\x18\xe0@\xa2\x01\xe8@\x01\xf2@\x0eUSE_STORE_YAML*`\n" +
 	"\x10DisconnectReason\x12!\n" +
 	"\x1dDISCONNECT_REASON_UNSPECIFIED\x10\x00\x12)\n" +
-	"%DISCONNECT_REASON_PROVISIONING_CLOSED\x10\x01*\xa0\x01\n" +
+	"%DISCONNECT_REASON_PROVISIONING_CLOSED\x10\x01*D\n" +
+	"\x0eDeviceRelation\x12\x17\n" +
+	"\x13DEVICE_RELATION_VIA\x10\x00\x12\x19\n" +
+	"\x15DEVICE_RELATION_CHILD\x10\x01*\xa0\x01\n" +
 	"\x13SerialProxyPortType\x12\x1e\n" +
 	"\x1aSERIAL_PROXY_PORT_TYPE_TTL\x10\x00\x12 \n" +
 	"\x1cSERIAL_PROXY_PORT_TYPE_RS232\x10\x01\x12 \n" +
@@ -18289,14 +18920,15 @@ const file_api_proto_rawDesc = "" +
 	"\x1fBLUETOOTH_SCANNER_STATE_STOPPED\x10\x05*]\n" +
 	"\x14BluetoothScannerMode\x12\"\n" +
 	"\x1eBLUETOOTH_SCANNER_MODE_PASSIVE\x10\x00\x12!\n" +
-	"\x1dBLUETOOTH_SCANNER_MODE_ACTIVE\x10\x01*j\n" +
+	"\x1dBLUETOOTH_SCANNER_MODE_ACTIVE\x10\x01*\x99\x01\n" +
 	"\x1bVoiceAssistantSubscribeFlag\x12\"\n" +
 	"\x1eVOICE_ASSISTANT_SUBSCRIBE_NONE\x10\x00\x12'\n" +
-	"#VOICE_ASSISTANT_SUBSCRIBE_API_AUDIO\x10\x01*\x8d\x01\n" +
+	"#VOICE_ASSISTANT_SUBSCRIBE_API_AUDIO\x10\x01\x12-\n" +
+	")VOICE_ASSISTANT_SUBSCRIBE_WAKE_WORD_AUDIO\x10\b*\x8d\x01\n" +
 	"\x19VoiceAssistantRequestFlag\x12 \n" +
 	"\x1cVOICE_ASSISTANT_REQUEST_NONE\x10\x00\x12#\n" +
 	"\x1fVOICE_ASSISTANT_REQUEST_USE_VAD\x10\x01\x12)\n" +
-	"%VOICE_ASSISTANT_REQUEST_USE_WAKE_WORD\x10\x02*\xa1\x04\n" +
+	"%VOICE_ASSISTANT_REQUEST_USE_WAKE_WORD\x10\x02*\xc9\x04\n" +
 	"\x13VoiceAssistantEvent\x12\x19\n" +
 	"\x15VOICE_ASSISTANT_ERROR\x10\x00\x12\x1d\n" +
 	"\x19VOICE_ASSISTANT_RUN_START\x10\x01\x12\x1b\n" +
@@ -18311,7 +18943,8 @@ const file_api_proto_rawDesc = "" +
 	"\x1dVOICE_ASSISTANT_WAKE_WORD_END\x10\n" +
 	"\x12!\n" +
 	"\x1dVOICE_ASSISTANT_STT_VAD_START\x10\v\x12\x1f\n" +
-	"\x1bVOICE_ASSISTANT_STT_VAD_END\x10\f\x12$\n" +
+	"\x1bVOICE_ASSISTANT_STT_VAD_END\x10\f\x12&\n" +
+	"\"VOICE_ASSISTANT_WAKE_WORD_REJECTED\x10\r\x12$\n" +
 	" VOICE_ASSISTANT_TTS_STREAM_START\x10b\x12\"\n" +
 	"\x1eVOICE_ASSISTANT_TTS_STREAM_END\x10c\x12#\n" +
 	"\x1fVOICE_ASSISTANT_INTENT_PROGRESS\x10d*\xa9\x01\n" +
@@ -18393,7 +19026,7 @@ const file_api_proto_rawDesc = "" +
 	" SENDSPIN_PAIRING_TOKEN_STATUS_OK\x10\x01\x125\n" +
 	"1SENDSPIN_PAIRING_TOKEN_STATUS_ENCRYPTION_REQUIRED\x10\x02\x12*\n" +
 	"&SENDSPIN_PAIRING_TOKEN_STATUS_DISABLED\x10\x03\x12(\n" +
-	"$SENDSPIN_PAIRING_TOKEN_STATUS_FAILED\x10\x042\xb6\x1e\n" +
+	"$SENDSPIN_PAIRING_TOKEN_STATUS_FAILED\x10\x042\x99\x1f\n" +
 	"\rAPIConnection\x12.\n" +
 	"\x05hello\x12\r.HelloRequest\x1a\x0e.HelloResponse\"\x06\xf0@\x00\xf8@\x00\x12=\n" +
 	"\n" +
@@ -18402,7 +19035,8 @@ const file_api_proto_rawDesc = "" +
 	"\vdevice_info\x12\x12.DeviceInfoRequest\x1a\x13.DeviceInfoResponse\"\x03\xf8@\x00\x12P\n" +
 	"\x13device_capabilities\x12\x1a.DeviceCapabilitiesRequest\x1a\x1b.DeviceCapabilitiesResponse\"\x00\x12>\n" +
 	"\rdevice_wizard\x12\x14.DeviceWizardRequest\x1a\x15.DeviceWizardResponse\"\x00\x123\n" +
-	"\x10wizard_input_set\x12\x16.WizardInputSetRequest\x1a\x05.void\"\x00\x12.\n" +
+	"\x10wizard_input_set\x12\x16.WizardInputSetRequest\x1a\x05.void\"\x00\x12;\n" +
+	"\fcrash_report\x12\x13.CrashReportRequest\x1a\x14.CrashReportResponse\"\x00\x12.\n" +
 	"\rlist_entities\x12\x14.ListEntitiesRequest\x1a\x05.void\"\x00\x124\n" +
 	"\x10subscribe_states\x12\x17.SubscribeStatesRequest\x1a\x05.void\"\x00\x120\n" +
 	"\x0esubscribe_logs\x12\x15.SubscribeLogsRequest\x1a\x05.void\"\x00\x12S\n" +
@@ -18455,7 +19089,8 @@ const file_api_proto_rawDesc = "" +
 	"\x1fsubscribe_serial_proxy_identity\x12$.SubscribeSerialProxyIdentityRequest\x1a\x05.void\"\x00\x124\n" +
 	"\x14serial_proxy_request\x12\x13.SerialProxyRequest\x1a\x05.void\"\x00\x12<\n" +
 	"\x15serial_proxy_set_mode\x12\x1a.SerialProxySetModeRequest\x1a\x05.void\"\x00\x12W\n" +
-	"\x16sendspin_pairing_token\x12\x1c.SendspinPairingTokenRequest\x1a\x1d.SendspinPairingTokenResponse\"\x00b\x06proto3"
+	"\x16sendspin_pairing_token\x12\x1c.SendspinPairingTokenRequest\x1a\x1d.SendspinPairingTokenResponse\"\x00\x12$\n" +
+	"\bget_yaml\x12\x0f.GetYamlRequest\x1a\x05.void\"\x00b\x06proto3"
 
 var (
 	file_api_proto_rawDescOnce sync.Once
@@ -18469,493 +19104,509 @@ func file_api_proto_rawDescGZIP() []byte {
 	return file_api_proto_rawDescData
 }
 
-var file_api_proto_enumTypes = make([]protoimpl.EnumInfo, 50)
-var file_api_proto_msgTypes = make([]protoimpl.MessageInfo, 184)
+var file_api_proto_enumTypes = make([]protoimpl.EnumInfo, 51)
+var file_api_proto_msgTypes = make([]protoimpl.MessageInfo, 191)
 var file_api_proto_goTypes = []any{
 	(DisconnectReason)(0),                               // 0: DisconnectReason
-	(SerialProxyPortType)(0),                            // 1: SerialProxyPortType
-	(EntityCategory)(0),                                 // 2: EntityCategory
-	(LegacyCoverState)(0),                               // 3: LegacyCoverState
-	(CoverOperation)(0),                                 // 4: CoverOperation
-	(LegacyCoverCommand)(0),                             // 5: LegacyCoverCommand
-	(FanSpeed)(0),                                       // 6: FanSpeed
-	(FanDirection)(0),                                   // 7: FanDirection
-	(ColorMode)(0),                                      // 8: ColorMode
-	(SensorStateClass)(0),                               // 9: SensorStateClass
-	(SensorLastResetType)(0),                            // 10: SensorLastResetType
-	(LogLevel)(0),                                       // 11: LogLevel
-	(DSTRuleType)(0),                                    // 12: DSTRuleType
-	(ServiceArgType)(0),                                 // 13: ServiceArgType
-	(SupportsResponseType)(0),                           // 14: SupportsResponseType
-	(TemperatureUnit)(0),                                // 15: TemperatureUnit
-	(ClimateMode)(0),                                    // 16: ClimateMode
-	(ClimateFanMode)(0),                                 // 17: ClimateFanMode
-	(ClimateSwingMode)(0),                               // 18: ClimateSwingMode
-	(ClimateAction)(0),                                  // 19: ClimateAction
-	(ClimatePreset)(0),                                  // 20: ClimatePreset
-	(WaterHeaterMode)(0),                                // 21: WaterHeaterMode
-	(WaterHeaterCommandHasField)(0),                     // 22: WaterHeaterCommandHasField
-	(NumberMode)(0),                                     // 23: NumberMode
-	(LockState)(0),                                      // 24: LockState
-	(LockCommand)(0),                                    // 25: LockCommand
-	(MediaPlayerState)(0),                               // 26: MediaPlayerState
-	(MediaPlayerCommand)(0),                             // 27: MediaPlayerCommand
-	(MediaPlayerFormatPurpose)(0),                       // 28: MediaPlayerFormatPurpose
-	(BluetoothDeviceRequestType)(0),                     // 29: BluetoothDeviceRequestType
-	(BluetoothScannerState)(0),                          // 30: BluetoothScannerState
-	(BluetoothScannerMode)(0),                           // 31: BluetoothScannerMode
-	(VoiceAssistantSubscribeFlag)(0),                    // 32: VoiceAssistantSubscribeFlag
-	(VoiceAssistantRequestFlag)(0),                      // 33: VoiceAssistantRequestFlag
-	(VoiceAssistantEvent)(0),                            // 34: VoiceAssistantEvent
-	(VoiceAssistantTimerEvent)(0),                       // 35: VoiceAssistantTimerEvent
-	(AlarmControlPanelState)(0),                         // 36: AlarmControlPanelState
-	(AlarmControlPanelStateCommand)(0),                  // 37: AlarmControlPanelStateCommand
-	(TextMode)(0),                                       // 38: TextMode
-	(ValveOperation)(0),                                 // 39: ValveOperation
-	(UpdateCommand)(0),                                  // 40: UpdateCommand
-	(ZWaveProxyRequestType)(0),                          // 41: ZWaveProxyRequestType
-	(ZWaveProxyStatus)(0),                               // 42: ZWaveProxyStatus
-	(SerialProxyParity)(0),                              // 43: SerialProxyParity
-	(SerialProxyRequestType)(0),                         // 44: SerialProxyRequestType
-	(SerialProxyStatus)(0),                              // 45: SerialProxyStatus
-	(SerialProxyMode)(0),                                // 46: SerialProxyMode
-	(SerialProxyIdentitySource)(0),                      // 47: SerialProxyIdentitySource
-	(SerialProxyIdentityFlag)(0),                        // 48: SerialProxyIdentityFlag
-	(SendspinPairingTokenStatus)(0),                     // 49: SendspinPairingTokenStatus
-	(*HelloRequest)(nil),                                // 50: HelloRequest
-	(*HelloResponse)(nil),                               // 51: HelloResponse
-	(*AuthenticationRequest)(nil),                       // 52: AuthenticationRequest
-	(*AuthenticationResponse)(nil),                      // 53: AuthenticationResponse
-	(*DisconnectRequest)(nil),                           // 54: DisconnectRequest
-	(*DisconnectResponse)(nil),                          // 55: DisconnectResponse
-	(*PingRequest)(nil),                                 // 56: PingRequest
-	(*PingResponse)(nil),                                // 57: PingResponse
-	(*DeviceInfoRequest)(nil),                           // 58: DeviceInfoRequest
-	(*AreaInfo)(nil),                                    // 59: AreaInfo
-	(*DeviceInfo)(nil),                                  // 60: DeviceInfo
-	(*SerialProxyInfo)(nil),                             // 61: SerialProxyInfo
-	(*DeviceInfoResponse)(nil),                          // 62: DeviceInfoResponse
-	(*DeviceCapabilitiesRequest)(nil),                   // 63: DeviceCapabilitiesRequest
-	(*BluetoothProxyCapabilities)(nil),                  // 64: BluetoothProxyCapabilities
-	(*VoiceAssistantCapabilities)(nil),                  // 65: VoiceAssistantCapabilities
-	(*ZWaveProxyCapabilities)(nil),                      // 66: ZWaveProxyCapabilities
-	(*WizardCapabilities)(nil),                          // 67: WizardCapabilities
-	(*SendspinCapabilities)(nil),                        // 68: SendspinCapabilities
-	(*DeviceCapabilitiesResponse)(nil),                  // 69: DeviceCapabilitiesResponse
-	(*DeviceWizardRequest)(nil),                         // 70: DeviceWizardRequest
-	(*DeviceWizardResponse)(nil),                        // 71: DeviceWizardResponse
-	(*WizardInputSetRequest)(nil),                       // 72: WizardInputSetRequest
-	(*ListEntitiesRequest)(nil),                         // 73: ListEntitiesRequest
-	(*ListEntitiesDoneResponse)(nil),                    // 74: ListEntitiesDoneResponse
-	(*SubscribeStatesRequest)(nil),                      // 75: SubscribeStatesRequest
-	(*ListEntitiesBinarySensorResponse)(nil),            // 76: ListEntitiesBinarySensorResponse
-	(*BinarySensorStateResponse)(nil),                   // 77: BinarySensorStateResponse
-	(*ListEntitiesCoverResponse)(nil),                   // 78: ListEntitiesCoverResponse
-	(*CoverStateResponse)(nil),                          // 79: CoverStateResponse
-	(*CoverCommandRequest)(nil),                         // 80: CoverCommandRequest
-	(*ListEntitiesFanResponse)(nil),                     // 81: ListEntitiesFanResponse
-	(*FanStateResponse)(nil),                            // 82: FanStateResponse
-	(*FanCommandRequest)(nil),                           // 83: FanCommandRequest
-	(*ListEntitiesLightResponse)(nil),                   // 84: ListEntitiesLightResponse
-	(*LightStateResponse)(nil),                          // 85: LightStateResponse
-	(*LightCommandRequest)(nil),                         // 86: LightCommandRequest
-	(*ListEntitiesSensorResponse)(nil),                  // 87: ListEntitiesSensorResponse
-	(*SensorStateResponse)(nil),                         // 88: SensorStateResponse
-	(*ListEntitiesSwitchResponse)(nil),                  // 89: ListEntitiesSwitchResponse
-	(*SwitchStateResponse)(nil),                         // 90: SwitchStateResponse
-	(*SwitchCommandRequest)(nil),                        // 91: SwitchCommandRequest
-	(*ListEntitiesTextSensorResponse)(nil),              // 92: ListEntitiesTextSensorResponse
-	(*TextSensorStateResponse)(nil),                     // 93: TextSensorStateResponse
-	(*SubscribeLogsRequest)(nil),                        // 94: SubscribeLogsRequest
-	(*SubscribeLogsResponse)(nil),                       // 95: SubscribeLogsResponse
-	(*NoiseEncryptionSetKeyRequest)(nil),                // 96: NoiseEncryptionSetKeyRequest
-	(*NoiseEncryptionSetKeyResponse)(nil),               // 97: NoiseEncryptionSetKeyResponse
-	(*SubscribeHomeassistantServicesRequest)(nil),       // 98: SubscribeHomeassistantServicesRequest
-	(*HomeassistantServiceMap)(nil),                     // 99: HomeassistantServiceMap
-	(*HomeassistantActionRequest)(nil),                  // 100: HomeassistantActionRequest
-	(*HomeassistantActionResponse)(nil),                 // 101: HomeassistantActionResponse
-	(*SubscribeHomeAssistantStatesRequest)(nil),         // 102: SubscribeHomeAssistantStatesRequest
-	(*SubscribeHomeAssistantStateResponse)(nil),         // 103: SubscribeHomeAssistantStateResponse
-	(*HomeAssistantStateResponse)(nil),                  // 104: HomeAssistantStateResponse
-	(*GetTimeRequest)(nil),                              // 105: GetTimeRequest
-	(*DSTRule)(nil),                                     // 106: DSTRule
-	(*ParsedTimezone)(nil),                              // 107: ParsedTimezone
-	(*GetTimeResponse)(nil),                             // 108: GetTimeResponse
-	(*ListEntitiesServicesArgument)(nil),                // 109: ListEntitiesServicesArgument
-	(*ListEntitiesServicesResponse)(nil),                // 110: ListEntitiesServicesResponse
-	(*ExecuteServiceArgument)(nil),                      // 111: ExecuteServiceArgument
-	(*ExecuteServiceRequest)(nil),                       // 112: ExecuteServiceRequest
-	(*ExecuteServiceResponse)(nil),                      // 113: ExecuteServiceResponse
-	(*ListEntitiesCameraResponse)(nil),                  // 114: ListEntitiesCameraResponse
-	(*CameraImageResponse)(nil),                         // 115: CameraImageResponse
-	(*CameraImageRequest)(nil),                          // 116: CameraImageRequest
-	(*ListEntitiesClimateResponse)(nil),                 // 117: ListEntitiesClimateResponse
-	(*ClimateStateResponse)(nil),                        // 118: ClimateStateResponse
-	(*ClimateCommandRequest)(nil),                       // 119: ClimateCommandRequest
-	(*ListEntitiesWaterHeaterResponse)(nil),             // 120: ListEntitiesWaterHeaterResponse
-	(*WaterHeaterStateResponse)(nil),                    // 121: WaterHeaterStateResponse
-	(*WaterHeaterCommandRequest)(nil),                   // 122: WaterHeaterCommandRequest
-	(*ListEntitiesNumberResponse)(nil),                  // 123: ListEntitiesNumberResponse
-	(*NumberStateResponse)(nil),                         // 124: NumberStateResponse
-	(*NumberCommandRequest)(nil),                        // 125: NumberCommandRequest
-	(*ListEntitiesSelectResponse)(nil),                  // 126: ListEntitiesSelectResponse
-	(*SelectStateResponse)(nil),                         // 127: SelectStateResponse
-	(*SelectCommandRequest)(nil),                        // 128: SelectCommandRequest
-	(*ListEntitiesSirenResponse)(nil),                   // 129: ListEntitiesSirenResponse
-	(*SirenStateResponse)(nil),                          // 130: SirenStateResponse
-	(*SirenCommandRequest)(nil),                         // 131: SirenCommandRequest
-	(*ListEntitiesLockResponse)(nil),                    // 132: ListEntitiesLockResponse
-	(*LockStateResponse)(nil),                           // 133: LockStateResponse
-	(*LockCommandRequest)(nil),                          // 134: LockCommandRequest
-	(*ListEntitiesButtonResponse)(nil),                  // 135: ListEntitiesButtonResponse
-	(*ButtonCommandRequest)(nil),                        // 136: ButtonCommandRequest
-	(*MediaPlayerSupportedFormat)(nil),                  // 137: MediaPlayerSupportedFormat
-	(*ListEntitiesMediaPlayerResponse)(nil),             // 138: ListEntitiesMediaPlayerResponse
-	(*MediaPlayerStateResponse)(nil),                    // 139: MediaPlayerStateResponse
-	(*MediaPlayerCommandRequest)(nil),                   // 140: MediaPlayerCommandRequest
-	(*SubscribeBluetoothLEAdvertisementsRequest)(nil),   // 141: SubscribeBluetoothLEAdvertisementsRequest
-	(*BluetoothServiceData)(nil),                        // 142: BluetoothServiceData
-	(*BluetoothLEAdvertisementResponse)(nil),            // 143: BluetoothLEAdvertisementResponse
-	(*BluetoothLERawAdvertisement)(nil),                 // 144: BluetoothLERawAdvertisement
-	(*BluetoothLERawAdvertisementsResponse)(nil),        // 145: BluetoothLERawAdvertisementsResponse
-	(*BluetoothDeviceRequest)(nil),                      // 146: BluetoothDeviceRequest
-	(*BluetoothDeviceConnectionResponse)(nil),           // 147: BluetoothDeviceConnectionResponse
-	(*BluetoothGATTGetServicesRequest)(nil),             // 148: BluetoothGATTGetServicesRequest
-	(*BluetoothGATTDescriptor)(nil),                     // 149: BluetoothGATTDescriptor
-	(*BluetoothGATTCharacteristic)(nil),                 // 150: BluetoothGATTCharacteristic
-	(*BluetoothGATTService)(nil),                        // 151: BluetoothGATTService
-	(*BluetoothGATTGetServicesResponse)(nil),            // 152: BluetoothGATTGetServicesResponse
-	(*BluetoothGATTGetServicesDoneResponse)(nil),        // 153: BluetoothGATTGetServicesDoneResponse
-	(*BluetoothGATTReadRequest)(nil),                    // 154: BluetoothGATTReadRequest
-	(*BluetoothGATTReadResponse)(nil),                   // 155: BluetoothGATTReadResponse
-	(*BluetoothGATTWriteRequest)(nil),                   // 156: BluetoothGATTWriteRequest
-	(*BluetoothGATTReadDescriptorRequest)(nil),          // 157: BluetoothGATTReadDescriptorRequest
-	(*BluetoothGATTWriteDescriptorRequest)(nil),         // 158: BluetoothGATTWriteDescriptorRequest
-	(*BluetoothGATTNotifyRequest)(nil),                  // 159: BluetoothGATTNotifyRequest
-	(*BluetoothGATTNotifyDataResponse)(nil),             // 160: BluetoothGATTNotifyDataResponse
-	(*SubscribeBluetoothConnectionsFreeRequest)(nil),    // 161: SubscribeBluetoothConnectionsFreeRequest
-	(*BluetoothConnectionsFreeResponse)(nil),            // 162: BluetoothConnectionsFreeResponse
-	(*BluetoothGATTErrorResponse)(nil),                  // 163: BluetoothGATTErrorResponse
-	(*BluetoothGATTWriteResponse)(nil),                  // 164: BluetoothGATTWriteResponse
-	(*BluetoothGATTNotifyResponse)(nil),                 // 165: BluetoothGATTNotifyResponse
-	(*BluetoothDevicePairingResponse)(nil),              // 166: BluetoothDevicePairingResponse
-	(*BluetoothDeviceUnpairingResponse)(nil),            // 167: BluetoothDeviceUnpairingResponse
-	(*UnsubscribeBluetoothLEAdvertisementsRequest)(nil), // 168: UnsubscribeBluetoothLEAdvertisementsRequest
-	(*BluetoothDeviceClearCacheResponse)(nil),           // 169: BluetoothDeviceClearCacheResponse
-	(*BluetoothScannerStateResponse)(nil),               // 170: BluetoothScannerStateResponse
-	(*BluetoothScannerSetModeRequest)(nil),              // 171: BluetoothScannerSetModeRequest
-	(*SubscribeVoiceAssistantRequest)(nil),              // 172: SubscribeVoiceAssistantRequest
-	(*VoiceAssistantAudioSettings)(nil),                 // 173: VoiceAssistantAudioSettings
-	(*VoiceAssistantRequest)(nil),                       // 174: VoiceAssistantRequest
-	(*VoiceAssistantResponse)(nil),                      // 175: VoiceAssistantResponse
-	(*VoiceAssistantEventData)(nil),                     // 176: VoiceAssistantEventData
-	(*VoiceAssistantEventResponse)(nil),                 // 177: VoiceAssistantEventResponse
-	(*VoiceAssistantAudio)(nil),                         // 178: VoiceAssistantAudio
-	(*VoiceAssistantTimerEventResponse)(nil),            // 179: VoiceAssistantTimerEventResponse
-	(*VoiceAssistantAnnounceRequest)(nil),               // 180: VoiceAssistantAnnounceRequest
-	(*VoiceAssistantAnnounceFinished)(nil),              // 181: VoiceAssistantAnnounceFinished
-	(*VoiceAssistantWakeWord)(nil),                      // 182: VoiceAssistantWakeWord
-	(*VoiceAssistantExternalWakeWord)(nil),              // 183: VoiceAssistantExternalWakeWord
-	(*VoiceAssistantConfigurationRequest)(nil),          // 184: VoiceAssistantConfigurationRequest
-	(*VoiceAssistantConfigurationResponse)(nil),         // 185: VoiceAssistantConfigurationResponse
-	(*VoiceAssistantSetConfiguration)(nil),              // 186: VoiceAssistantSetConfiguration
-	(*ListEntitiesAlarmControlPanelResponse)(nil),       // 187: ListEntitiesAlarmControlPanelResponse
-	(*AlarmControlPanelStateResponse)(nil),              // 188: AlarmControlPanelStateResponse
-	(*AlarmControlPanelCommandRequest)(nil),             // 189: AlarmControlPanelCommandRequest
-	(*ListEntitiesTextResponse)(nil),                    // 190: ListEntitiesTextResponse
-	(*TextStateResponse)(nil),                           // 191: TextStateResponse
-	(*TextCommandRequest)(nil),                          // 192: TextCommandRequest
-	(*ListEntitiesDateResponse)(nil),                    // 193: ListEntitiesDateResponse
-	(*DateStateResponse)(nil),                           // 194: DateStateResponse
-	(*DateCommandRequest)(nil),                          // 195: DateCommandRequest
-	(*ListEntitiesTimeResponse)(nil),                    // 196: ListEntitiesTimeResponse
-	(*TimeStateResponse)(nil),                           // 197: TimeStateResponse
-	(*TimeCommandRequest)(nil),                          // 198: TimeCommandRequest
-	(*ListEntitiesEventResponse)(nil),                   // 199: ListEntitiesEventResponse
-	(*EventResponse)(nil),                               // 200: EventResponse
-	(*ListEntitiesValveResponse)(nil),                   // 201: ListEntitiesValveResponse
-	(*ValveStateResponse)(nil),                          // 202: ValveStateResponse
-	(*ValveCommandRequest)(nil),                         // 203: ValveCommandRequest
-	(*ListEntitiesDateTimeResponse)(nil),                // 204: ListEntitiesDateTimeResponse
-	(*DateTimeStateResponse)(nil),                       // 205: DateTimeStateResponse
-	(*DateTimeCommandRequest)(nil),                      // 206: DateTimeCommandRequest
-	(*ListEntitiesUpdateResponse)(nil),                  // 207: ListEntitiesUpdateResponse
-	(*UpdateStateResponse)(nil),                         // 208: UpdateStateResponse
-	(*UpdateCommandRequest)(nil),                        // 209: UpdateCommandRequest
-	(*ZWaveProxyFrame)(nil),                             // 210: ZWaveProxyFrame
-	(*ZWaveProxyRequest)(nil),                           // 211: ZWaveProxyRequest
-	(*ZWaveProxyRequestResponse)(nil),                   // 212: ZWaveProxyRequestResponse
-	(*ListEntitiesInfraredResponse)(nil),                // 213: ListEntitiesInfraredResponse
-	(*InfraredRFTransmitRawTimingsRequest)(nil),         // 214: InfraredRFTransmitRawTimingsRequest
-	(*InfraredRFReceiveEvent)(nil),                      // 215: InfraredRFReceiveEvent
-	(*InfraredRFTransmitCompleteResponse)(nil),          // 216: InfraredRFTransmitCompleteResponse
-	(*ListEntitiesRadioFrequencyResponse)(nil),          // 217: ListEntitiesRadioFrequencyResponse
-	(*SerialProxyConfigureRequest)(nil),                 // 218: SerialProxyConfigureRequest
-	(*SerialProxyDataReceived)(nil),                     // 219: SerialProxyDataReceived
-	(*SerialProxyWriteRequest)(nil),                     // 220: SerialProxyWriteRequest
-	(*SerialProxySetModemPinsRequest)(nil),              // 221: SerialProxySetModemPinsRequest
-	(*SerialProxyGetModemPinsRequest)(nil),              // 222: SerialProxyGetModemPinsRequest
-	(*SerialProxyGetModemPinsResponse)(nil),             // 223: SerialProxyGetModemPinsResponse
-	(*SerialProxyRequest)(nil),                          // 224: SerialProxyRequest
-	(*SerialProxyRequestResponse)(nil),                  // 225: SerialProxyRequestResponse
-	(*SerialProxySetModeRequest)(nil),                   // 226: SerialProxySetModeRequest
-	(*SubscribeSerialProxyIdentityRequest)(nil),         // 227: SubscribeSerialProxyIdentityRequest
-	(*UsbDeviceDescriptor)(nil),                         // 228: UsbDeviceDescriptor
-	(*SerialProxyIdentity)(nil),                         // 229: SerialProxyIdentity
-	(*BluetoothSetConnectionParamsRequest)(nil),         // 230: BluetoothSetConnectionParamsRequest
-	(*BluetoothSetConnectionParamsResponse)(nil),        // 231: BluetoothSetConnectionParamsResponse
-	(*SendspinPairingTokenRequest)(nil),                 // 232: SendspinPairingTokenRequest
-	(*SendspinPairingTokenResponse)(nil),                // 233: SendspinPairingTokenResponse
-	(*Void)(nil),                                        // 234: void
+	(DeviceRelation)(0),                                 // 1: DeviceRelation
+	(SerialProxyPortType)(0),                            // 2: SerialProxyPortType
+	(EntityCategory)(0),                                 // 3: EntityCategory
+	(LegacyCoverState)(0),                               // 4: LegacyCoverState
+	(CoverOperation)(0),                                 // 5: CoverOperation
+	(LegacyCoverCommand)(0),                             // 6: LegacyCoverCommand
+	(FanSpeed)(0),                                       // 7: FanSpeed
+	(FanDirection)(0),                                   // 8: FanDirection
+	(ColorMode)(0),                                      // 9: ColorMode
+	(SensorStateClass)(0),                               // 10: SensorStateClass
+	(SensorLastResetType)(0),                            // 11: SensorLastResetType
+	(LogLevel)(0),                                       // 12: LogLevel
+	(DSTRuleType)(0),                                    // 13: DSTRuleType
+	(ServiceArgType)(0),                                 // 14: ServiceArgType
+	(SupportsResponseType)(0),                           // 15: SupportsResponseType
+	(TemperatureUnit)(0),                                // 16: TemperatureUnit
+	(ClimateMode)(0),                                    // 17: ClimateMode
+	(ClimateFanMode)(0),                                 // 18: ClimateFanMode
+	(ClimateSwingMode)(0),                               // 19: ClimateSwingMode
+	(ClimateAction)(0),                                  // 20: ClimateAction
+	(ClimatePreset)(0),                                  // 21: ClimatePreset
+	(WaterHeaterMode)(0),                                // 22: WaterHeaterMode
+	(WaterHeaterCommandHasField)(0),                     // 23: WaterHeaterCommandHasField
+	(NumberMode)(0),                                     // 24: NumberMode
+	(LockState)(0),                                      // 25: LockState
+	(LockCommand)(0),                                    // 26: LockCommand
+	(MediaPlayerState)(0),                               // 27: MediaPlayerState
+	(MediaPlayerCommand)(0),                             // 28: MediaPlayerCommand
+	(MediaPlayerFormatPurpose)(0),                       // 29: MediaPlayerFormatPurpose
+	(BluetoothDeviceRequestType)(0),                     // 30: BluetoothDeviceRequestType
+	(BluetoothScannerState)(0),                          // 31: BluetoothScannerState
+	(BluetoothScannerMode)(0),                           // 32: BluetoothScannerMode
+	(VoiceAssistantSubscribeFlag)(0),                    // 33: VoiceAssistantSubscribeFlag
+	(VoiceAssistantRequestFlag)(0),                      // 34: VoiceAssistantRequestFlag
+	(VoiceAssistantEvent)(0),                            // 35: VoiceAssistantEvent
+	(VoiceAssistantTimerEvent)(0),                       // 36: VoiceAssistantTimerEvent
+	(AlarmControlPanelState)(0),                         // 37: AlarmControlPanelState
+	(AlarmControlPanelStateCommand)(0),                  // 38: AlarmControlPanelStateCommand
+	(TextMode)(0),                                       // 39: TextMode
+	(ValveOperation)(0),                                 // 40: ValveOperation
+	(UpdateCommand)(0),                                  // 41: UpdateCommand
+	(ZWaveProxyRequestType)(0),                          // 42: ZWaveProxyRequestType
+	(ZWaveProxyStatus)(0),                               // 43: ZWaveProxyStatus
+	(SerialProxyParity)(0),                              // 44: SerialProxyParity
+	(SerialProxyRequestType)(0),                         // 45: SerialProxyRequestType
+	(SerialProxyStatus)(0),                              // 46: SerialProxyStatus
+	(SerialProxyMode)(0),                                // 47: SerialProxyMode
+	(SerialProxyIdentitySource)(0),                      // 48: SerialProxyIdentitySource
+	(SerialProxyIdentityFlag)(0),                        // 49: SerialProxyIdentityFlag
+	(SendspinPairingTokenStatus)(0),                     // 50: SendspinPairingTokenStatus
+	(*HelloRequest)(nil),                                // 51: HelloRequest
+	(*HelloResponse)(nil),                               // 52: HelloResponse
+	(*AuthenticationRequest)(nil),                       // 53: AuthenticationRequest
+	(*AuthenticationResponse)(nil),                      // 54: AuthenticationResponse
+	(*DisconnectRequest)(nil),                           // 55: DisconnectRequest
+	(*DisconnectResponse)(nil),                          // 56: DisconnectResponse
+	(*PingRequest)(nil),                                 // 57: PingRequest
+	(*PingResponse)(nil),                                // 58: PingResponse
+	(*DeviceInfoRequest)(nil),                           // 59: DeviceInfoRequest
+	(*AreaInfo)(nil),                                    // 60: AreaInfo
+	(*DeviceInfo)(nil),                                  // 61: DeviceInfo
+	(*SerialProxyInfo)(nil),                             // 62: SerialProxyInfo
+	(*DeviceInfoResponse)(nil),                          // 63: DeviceInfoResponse
+	(*DeviceCapabilitiesRequest)(nil),                   // 64: DeviceCapabilitiesRequest
+	(*BluetoothProxyCapabilities)(nil),                  // 65: BluetoothProxyCapabilities
+	(*VoiceAssistantCapabilities)(nil),                  // 66: VoiceAssistantCapabilities
+	(*ZWaveProxyCapabilities)(nil),                      // 67: ZWaveProxyCapabilities
+	(*StoreYamlCapabilities)(nil),                       // 68: StoreYamlCapabilities
+	(*WizardCapabilities)(nil),                          // 69: WizardCapabilities
+	(*SendspinCapabilities)(nil),                        // 70: SendspinCapabilities
+	(*CrashReportCapabilities)(nil),                     // 71: CrashReportCapabilities
+	(*DeviceCapabilitiesResponse)(nil),                  // 72: DeviceCapabilitiesResponse
+	(*DeviceWizardRequest)(nil),                         // 73: DeviceWizardRequest
+	(*DeviceWizardResponse)(nil),                        // 74: DeviceWizardResponse
+	(*WizardInputSetRequest)(nil),                       // 75: WizardInputSetRequest
+	(*ListEntitiesRequest)(nil),                         // 76: ListEntitiesRequest
+	(*ListEntitiesDoneResponse)(nil),                    // 77: ListEntitiesDoneResponse
+	(*SubscribeStatesRequest)(nil),                      // 78: SubscribeStatesRequest
+	(*CrashReportRequest)(nil),                          // 79: CrashReportRequest
+	(*CrashReportCore)(nil),                             // 80: CrashReportCore
+	(*CrashReportResponse)(nil),                         // 81: CrashReportResponse
+	(*ListEntitiesBinarySensorResponse)(nil),            // 82: ListEntitiesBinarySensorResponse
+	(*BinarySensorStateResponse)(nil),                   // 83: BinarySensorStateResponse
+	(*ListEntitiesCoverResponse)(nil),                   // 84: ListEntitiesCoverResponse
+	(*CoverStateResponse)(nil),                          // 85: CoverStateResponse
+	(*CoverCommandRequest)(nil),                         // 86: CoverCommandRequest
+	(*ListEntitiesFanResponse)(nil),                     // 87: ListEntitiesFanResponse
+	(*FanStateResponse)(nil),                            // 88: FanStateResponse
+	(*FanCommandRequest)(nil),                           // 89: FanCommandRequest
+	(*ListEntitiesLightResponse)(nil),                   // 90: ListEntitiesLightResponse
+	(*LightStateResponse)(nil),                          // 91: LightStateResponse
+	(*LightCommandRequest)(nil),                         // 92: LightCommandRequest
+	(*ListEntitiesSensorResponse)(nil),                  // 93: ListEntitiesSensorResponse
+	(*SensorStateResponse)(nil),                         // 94: SensorStateResponse
+	(*ListEntitiesSwitchResponse)(nil),                  // 95: ListEntitiesSwitchResponse
+	(*SwitchStateResponse)(nil),                         // 96: SwitchStateResponse
+	(*SwitchCommandRequest)(nil),                        // 97: SwitchCommandRequest
+	(*ListEntitiesTextSensorResponse)(nil),              // 98: ListEntitiesTextSensorResponse
+	(*TextSensorStateResponse)(nil),                     // 99: TextSensorStateResponse
+	(*SubscribeLogsRequest)(nil),                        // 100: SubscribeLogsRequest
+	(*SubscribeLogsResponse)(nil),                       // 101: SubscribeLogsResponse
+	(*NoiseEncryptionSetKeyRequest)(nil),                // 102: NoiseEncryptionSetKeyRequest
+	(*NoiseEncryptionSetKeyResponse)(nil),               // 103: NoiseEncryptionSetKeyResponse
+	(*SubscribeHomeassistantServicesRequest)(nil),       // 104: SubscribeHomeassistantServicesRequest
+	(*HomeassistantServiceMap)(nil),                     // 105: HomeassistantServiceMap
+	(*HomeassistantActionRequest)(nil),                  // 106: HomeassistantActionRequest
+	(*HomeassistantActionResponse)(nil),                 // 107: HomeassistantActionResponse
+	(*SubscribeHomeAssistantStatesRequest)(nil),         // 108: SubscribeHomeAssistantStatesRequest
+	(*SubscribeHomeAssistantStateResponse)(nil),         // 109: SubscribeHomeAssistantStateResponse
+	(*HomeAssistantStateResponse)(nil),                  // 110: HomeAssistantStateResponse
+	(*GetTimeRequest)(nil),                              // 111: GetTimeRequest
+	(*DSTRule)(nil),                                     // 112: DSTRule
+	(*ParsedTimezone)(nil),                              // 113: ParsedTimezone
+	(*GetTimeResponse)(nil),                             // 114: GetTimeResponse
+	(*ListEntitiesServicesArgument)(nil),                // 115: ListEntitiesServicesArgument
+	(*ListEntitiesServicesResponse)(nil),                // 116: ListEntitiesServicesResponse
+	(*ExecuteServiceArgument)(nil),                      // 117: ExecuteServiceArgument
+	(*ExecuteServiceRequest)(nil),                       // 118: ExecuteServiceRequest
+	(*ExecuteServiceResponse)(nil),                      // 119: ExecuteServiceResponse
+	(*ListEntitiesCameraResponse)(nil),                  // 120: ListEntitiesCameraResponse
+	(*CameraImageResponse)(nil),                         // 121: CameraImageResponse
+	(*CameraImageRequest)(nil),                          // 122: CameraImageRequest
+	(*ListEntitiesClimateResponse)(nil),                 // 123: ListEntitiesClimateResponse
+	(*ClimateStateResponse)(nil),                        // 124: ClimateStateResponse
+	(*ClimateCommandRequest)(nil),                       // 125: ClimateCommandRequest
+	(*ListEntitiesWaterHeaterResponse)(nil),             // 126: ListEntitiesWaterHeaterResponse
+	(*WaterHeaterStateResponse)(nil),                    // 127: WaterHeaterStateResponse
+	(*WaterHeaterCommandRequest)(nil),                   // 128: WaterHeaterCommandRequest
+	(*ListEntitiesNumberResponse)(nil),                  // 129: ListEntitiesNumberResponse
+	(*NumberStateResponse)(nil),                         // 130: NumberStateResponse
+	(*NumberCommandRequest)(nil),                        // 131: NumberCommandRequest
+	(*ListEntitiesSelectResponse)(nil),                  // 132: ListEntitiesSelectResponse
+	(*SelectStateResponse)(nil),                         // 133: SelectStateResponse
+	(*SelectCommandRequest)(nil),                        // 134: SelectCommandRequest
+	(*ListEntitiesSirenResponse)(nil),                   // 135: ListEntitiesSirenResponse
+	(*SirenStateResponse)(nil),                          // 136: SirenStateResponse
+	(*SirenCommandRequest)(nil),                         // 137: SirenCommandRequest
+	(*ListEntitiesLockResponse)(nil),                    // 138: ListEntitiesLockResponse
+	(*LockStateResponse)(nil),                           // 139: LockStateResponse
+	(*LockCommandRequest)(nil),                          // 140: LockCommandRequest
+	(*ListEntitiesButtonResponse)(nil),                  // 141: ListEntitiesButtonResponse
+	(*ButtonCommandRequest)(nil),                        // 142: ButtonCommandRequest
+	(*MediaPlayerSupportedFormat)(nil),                  // 143: MediaPlayerSupportedFormat
+	(*ListEntitiesMediaPlayerResponse)(nil),             // 144: ListEntitiesMediaPlayerResponse
+	(*MediaPlayerStateResponse)(nil),                    // 145: MediaPlayerStateResponse
+	(*MediaPlayerCommandRequest)(nil),                   // 146: MediaPlayerCommandRequest
+	(*SubscribeBluetoothLEAdvertisementsRequest)(nil),   // 147: SubscribeBluetoothLEAdvertisementsRequest
+	(*BluetoothServiceData)(nil),                        // 148: BluetoothServiceData
+	(*BluetoothLEAdvertisementResponse)(nil),            // 149: BluetoothLEAdvertisementResponse
+	(*BluetoothLERawAdvertisement)(nil),                 // 150: BluetoothLERawAdvertisement
+	(*BluetoothLERawAdvertisementsResponse)(nil),        // 151: BluetoothLERawAdvertisementsResponse
+	(*BluetoothDeviceRequest)(nil),                      // 152: BluetoothDeviceRequest
+	(*BluetoothDeviceConnectionResponse)(nil),           // 153: BluetoothDeviceConnectionResponse
+	(*BluetoothGATTGetServicesRequest)(nil),             // 154: BluetoothGATTGetServicesRequest
+	(*BluetoothGATTDescriptor)(nil),                     // 155: BluetoothGATTDescriptor
+	(*BluetoothGATTCharacteristic)(nil),                 // 156: BluetoothGATTCharacteristic
+	(*BluetoothGATTService)(nil),                        // 157: BluetoothGATTService
+	(*BluetoothGATTGetServicesResponse)(nil),            // 158: BluetoothGATTGetServicesResponse
+	(*BluetoothGATTGetServicesDoneResponse)(nil),        // 159: BluetoothGATTGetServicesDoneResponse
+	(*BluetoothGATTReadRequest)(nil),                    // 160: BluetoothGATTReadRequest
+	(*BluetoothGATTReadResponse)(nil),                   // 161: BluetoothGATTReadResponse
+	(*BluetoothGATTWriteRequest)(nil),                   // 162: BluetoothGATTWriteRequest
+	(*BluetoothGATTReadDescriptorRequest)(nil),          // 163: BluetoothGATTReadDescriptorRequest
+	(*BluetoothGATTWriteDescriptorRequest)(nil),         // 164: BluetoothGATTWriteDescriptorRequest
+	(*BluetoothGATTNotifyRequest)(nil),                  // 165: BluetoothGATTNotifyRequest
+	(*BluetoothGATTNotifyDataResponse)(nil),             // 166: BluetoothGATTNotifyDataResponse
+	(*SubscribeBluetoothConnectionsFreeRequest)(nil),    // 167: SubscribeBluetoothConnectionsFreeRequest
+	(*BluetoothConnectionsFreeResponse)(nil),            // 168: BluetoothConnectionsFreeResponse
+	(*BluetoothGATTErrorResponse)(nil),                  // 169: BluetoothGATTErrorResponse
+	(*BluetoothGATTWriteResponse)(nil),                  // 170: BluetoothGATTWriteResponse
+	(*BluetoothGATTNotifyResponse)(nil),                 // 171: BluetoothGATTNotifyResponse
+	(*BluetoothDevicePairingResponse)(nil),              // 172: BluetoothDevicePairingResponse
+	(*BluetoothDeviceUnpairingResponse)(nil),            // 173: BluetoothDeviceUnpairingResponse
+	(*UnsubscribeBluetoothLEAdvertisementsRequest)(nil), // 174: UnsubscribeBluetoothLEAdvertisementsRequest
+	(*BluetoothDeviceClearCacheResponse)(nil),           // 175: BluetoothDeviceClearCacheResponse
+	(*BluetoothScannerStateResponse)(nil),               // 176: BluetoothScannerStateResponse
+	(*BluetoothScannerSetModeRequest)(nil),              // 177: BluetoothScannerSetModeRequest
+	(*SubscribeVoiceAssistantRequest)(nil),              // 178: SubscribeVoiceAssistantRequest
+	(*VoiceAssistantAudioSettings)(nil),                 // 179: VoiceAssistantAudioSettings
+	(*VoiceAssistantRequest)(nil),                       // 180: VoiceAssistantRequest
+	(*VoiceAssistantResponse)(nil),                      // 181: VoiceAssistantResponse
+	(*VoiceAssistantEventData)(nil),                     // 182: VoiceAssistantEventData
+	(*VoiceAssistantEventResponse)(nil),                 // 183: VoiceAssistantEventResponse
+	(*VoiceAssistantAudio)(nil),                         // 184: VoiceAssistantAudio
+	(*VoiceAssistantTimerEventResponse)(nil),            // 185: VoiceAssistantTimerEventResponse
+	(*VoiceAssistantAnnounceRequest)(nil),               // 186: VoiceAssistantAnnounceRequest
+	(*VoiceAssistantAnnounceFinished)(nil),              // 187: VoiceAssistantAnnounceFinished
+	(*VoiceAssistantWakeWord)(nil),                      // 188: VoiceAssistantWakeWord
+	(*VoiceAssistantExternalWakeWord)(nil),              // 189: VoiceAssistantExternalWakeWord
+	(*VoiceAssistantConfigurationRequest)(nil),          // 190: VoiceAssistantConfigurationRequest
+	(*VoiceAssistantConfigurationResponse)(nil),         // 191: VoiceAssistantConfigurationResponse
+	(*VoiceAssistantSetConfiguration)(nil),              // 192: VoiceAssistantSetConfiguration
+	(*ListEntitiesAlarmControlPanelResponse)(nil),       // 193: ListEntitiesAlarmControlPanelResponse
+	(*AlarmControlPanelStateResponse)(nil),              // 194: AlarmControlPanelStateResponse
+	(*AlarmControlPanelCommandRequest)(nil),             // 195: AlarmControlPanelCommandRequest
+	(*ListEntitiesTextResponse)(nil),                    // 196: ListEntitiesTextResponse
+	(*TextStateResponse)(nil),                           // 197: TextStateResponse
+	(*TextCommandRequest)(nil),                          // 198: TextCommandRequest
+	(*ListEntitiesDateResponse)(nil),                    // 199: ListEntitiesDateResponse
+	(*DateStateResponse)(nil),                           // 200: DateStateResponse
+	(*DateCommandRequest)(nil),                          // 201: DateCommandRequest
+	(*ListEntitiesTimeResponse)(nil),                    // 202: ListEntitiesTimeResponse
+	(*TimeStateResponse)(nil),                           // 203: TimeStateResponse
+	(*TimeCommandRequest)(nil),                          // 204: TimeCommandRequest
+	(*ListEntitiesEventResponse)(nil),                   // 205: ListEntitiesEventResponse
+	(*EventResponse)(nil),                               // 206: EventResponse
+	(*ListEntitiesValveResponse)(nil),                   // 207: ListEntitiesValveResponse
+	(*ValveStateResponse)(nil),                          // 208: ValveStateResponse
+	(*ValveCommandRequest)(nil),                         // 209: ValveCommandRequest
+	(*ListEntitiesDateTimeResponse)(nil),                // 210: ListEntitiesDateTimeResponse
+	(*DateTimeStateResponse)(nil),                       // 211: DateTimeStateResponse
+	(*DateTimeCommandRequest)(nil),                      // 212: DateTimeCommandRequest
+	(*ListEntitiesUpdateResponse)(nil),                  // 213: ListEntitiesUpdateResponse
+	(*UpdateStateResponse)(nil),                         // 214: UpdateStateResponse
+	(*UpdateCommandRequest)(nil),                        // 215: UpdateCommandRequest
+	(*ZWaveProxyFrame)(nil),                             // 216: ZWaveProxyFrame
+	(*ZWaveProxyRequest)(nil),                           // 217: ZWaveProxyRequest
+	(*ZWaveProxyRequestResponse)(nil),                   // 218: ZWaveProxyRequestResponse
+	(*ListEntitiesInfraredResponse)(nil),                // 219: ListEntitiesInfraredResponse
+	(*InfraredRFTransmitRawTimingsRequest)(nil),         // 220: InfraredRFTransmitRawTimingsRequest
+	(*InfraredRFReceiveEvent)(nil),                      // 221: InfraredRFReceiveEvent
+	(*InfraredRFTransmitCompleteResponse)(nil),          // 222: InfraredRFTransmitCompleteResponse
+	(*ListEntitiesRadioFrequencyResponse)(nil),          // 223: ListEntitiesRadioFrequencyResponse
+	(*SerialProxyConfigureRequest)(nil),                 // 224: SerialProxyConfigureRequest
+	(*SerialProxyDataReceived)(nil),                     // 225: SerialProxyDataReceived
+	(*SerialProxyWriteRequest)(nil),                     // 226: SerialProxyWriteRequest
+	(*SerialProxySetModemPinsRequest)(nil),              // 227: SerialProxySetModemPinsRequest
+	(*SerialProxyGetModemPinsRequest)(nil),              // 228: SerialProxyGetModemPinsRequest
+	(*SerialProxyGetModemPinsResponse)(nil),             // 229: SerialProxyGetModemPinsResponse
+	(*SerialProxyRequest)(nil),                          // 230: SerialProxyRequest
+	(*SerialProxyRequestResponse)(nil),                  // 231: SerialProxyRequestResponse
+	(*SerialProxySetModeRequest)(nil),                   // 232: SerialProxySetModeRequest
+	(*SubscribeSerialProxyIdentityRequest)(nil),         // 233: SubscribeSerialProxyIdentityRequest
+	(*UsbDeviceDescriptor)(nil),                         // 234: UsbDeviceDescriptor
+	(*SerialProxyIdentity)(nil),                         // 235: SerialProxyIdentity
+	(*BluetoothSetConnectionParamsRequest)(nil),         // 236: BluetoothSetConnectionParamsRequest
+	(*BluetoothSetConnectionParamsResponse)(nil),        // 237: BluetoothSetConnectionParamsResponse
+	(*SendspinPairingTokenRequest)(nil),                 // 238: SendspinPairingTokenRequest
+	(*SendspinPairingTokenResponse)(nil),                // 239: SendspinPairingTokenResponse
+	(*GetYamlRequest)(nil),                              // 240: GetYamlRequest
+	(*GetYamlResponse)(nil),                             // 241: GetYamlResponse
+	(*Void)(nil),                                        // 242: void
 }
 var file_api_proto_depIdxs = []int32{
 	0,   // 0: DisconnectRequest.reason:type_name -> DisconnectReason
-	1,   // 1: SerialProxyInfo.port_type:type_name -> SerialProxyPortType
-	60,  // 2: DeviceInfoResponse.devices:type_name -> DeviceInfo
-	59,  // 3: DeviceInfoResponse.areas:type_name -> AreaInfo
-	59,  // 4: DeviceInfoResponse.area:type_name -> AreaInfo
-	61,  // 5: DeviceInfoResponse.serial_proxies:type_name -> SerialProxyInfo
-	64,  // 6: DeviceCapabilitiesResponse.bluetooth_proxy:type_name -> BluetoothProxyCapabilities
-	65,  // 7: DeviceCapabilitiesResponse.voice_assistant:type_name -> VoiceAssistantCapabilities
-	66,  // 8: DeviceCapabilitiesResponse.zwave_proxy:type_name -> ZWaveProxyCapabilities
-	61,  // 9: DeviceCapabilitiesResponse.serial_proxies:type_name -> SerialProxyInfo
-	67,  // 10: DeviceCapabilitiesResponse.wizard:type_name -> WizardCapabilities
-	68,  // 11: DeviceCapabilitiesResponse.sendspin:type_name -> SendspinCapabilities
-	2,   // 12: ListEntitiesBinarySensorResponse.entity_category:type_name -> EntityCategory
-	2,   // 13: ListEntitiesCoverResponse.entity_category:type_name -> EntityCategory
-	3,   // 14: CoverStateResponse.legacy_state:type_name -> LegacyCoverState
-	4,   // 15: CoverStateResponse.current_operation:type_name -> CoverOperation
-	5,   // 16: CoverCommandRequest.legacy_command:type_name -> LegacyCoverCommand
-	2,   // 17: ListEntitiesFanResponse.entity_category:type_name -> EntityCategory
-	6,   // 18: FanStateResponse.speed:type_name -> FanSpeed
-	7,   // 19: FanStateResponse.direction:type_name -> FanDirection
-	6,   // 20: FanCommandRequest.speed:type_name -> FanSpeed
-	7,   // 21: FanCommandRequest.direction:type_name -> FanDirection
-	8,   // 22: ListEntitiesLightResponse.supported_color_modes:type_name -> ColorMode
-	2,   // 23: ListEntitiesLightResponse.entity_category:type_name -> EntityCategory
-	8,   // 24: LightStateResponse.color_mode:type_name -> ColorMode
-	8,   // 25: LightCommandRequest.color_mode:type_name -> ColorMode
-	9,   // 26: ListEntitiesSensorResponse.state_class:type_name -> SensorStateClass
-	10,  // 27: ListEntitiesSensorResponse.legacy_last_reset_type:type_name -> SensorLastResetType
-	2,   // 28: ListEntitiesSensorResponse.entity_category:type_name -> EntityCategory
-	2,   // 29: ListEntitiesSwitchResponse.entity_category:type_name -> EntityCategory
-	2,   // 30: ListEntitiesTextSensorResponse.entity_category:type_name -> EntityCategory
-	11,  // 31: SubscribeLogsRequest.level:type_name -> LogLevel
-	11,  // 32: SubscribeLogsResponse.level:type_name -> LogLevel
-	99,  // 33: HomeassistantActionRequest.data:type_name -> HomeassistantServiceMap
-	99,  // 34: HomeassistantActionRequest.data_template:type_name -> HomeassistantServiceMap
-	99,  // 35: HomeassistantActionRequest.variables:type_name -> HomeassistantServiceMap
-	12,  // 36: DSTRule.type:type_name -> DSTRuleType
-	106, // 37: ParsedTimezone.dst_start:type_name -> DSTRule
-	106, // 38: ParsedTimezone.dst_end:type_name -> DSTRule
-	107, // 39: GetTimeResponse.parsed_timezone:type_name -> ParsedTimezone
-	13,  // 40: ListEntitiesServicesArgument.type:type_name -> ServiceArgType
-	109, // 41: ListEntitiesServicesResponse.args:type_name -> ListEntitiesServicesArgument
-	14,  // 42: ListEntitiesServicesResponse.supports_response:type_name -> SupportsResponseType
-	111, // 43: ExecuteServiceRequest.args:type_name -> ExecuteServiceArgument
-	2,   // 44: ListEntitiesCameraResponse.entity_category:type_name -> EntityCategory
-	16,  // 45: ListEntitiesClimateResponse.supported_modes:type_name -> ClimateMode
-	17,  // 46: ListEntitiesClimateResponse.supported_fan_modes:type_name -> ClimateFanMode
-	18,  // 47: ListEntitiesClimateResponse.supported_swing_modes:type_name -> ClimateSwingMode
-	20,  // 48: ListEntitiesClimateResponse.supported_presets:type_name -> ClimatePreset
-	2,   // 49: ListEntitiesClimateResponse.entity_category:type_name -> EntityCategory
-	15,  // 50: ListEntitiesClimateResponse.temperature_unit:type_name -> TemperatureUnit
-	16,  // 51: ClimateStateResponse.mode:type_name -> ClimateMode
-	19,  // 52: ClimateStateResponse.action:type_name -> ClimateAction
-	17,  // 53: ClimateStateResponse.fan_mode:type_name -> ClimateFanMode
-	18,  // 54: ClimateStateResponse.swing_mode:type_name -> ClimateSwingMode
-	20,  // 55: ClimateStateResponse.preset:type_name -> ClimatePreset
-	16,  // 56: ClimateCommandRequest.mode:type_name -> ClimateMode
-	17,  // 57: ClimateCommandRequest.fan_mode:type_name -> ClimateFanMode
-	18,  // 58: ClimateCommandRequest.swing_mode:type_name -> ClimateSwingMode
-	20,  // 59: ClimateCommandRequest.preset:type_name -> ClimatePreset
-	2,   // 60: ListEntitiesWaterHeaterResponse.entity_category:type_name -> EntityCategory
-	21,  // 61: ListEntitiesWaterHeaterResponse.supported_modes:type_name -> WaterHeaterMode
-	15,  // 62: ListEntitiesWaterHeaterResponse.temperature_unit:type_name -> TemperatureUnit
-	21,  // 63: WaterHeaterStateResponse.mode:type_name -> WaterHeaterMode
-	21,  // 64: WaterHeaterCommandRequest.mode:type_name -> WaterHeaterMode
-	2,   // 65: ListEntitiesNumberResponse.entity_category:type_name -> EntityCategory
-	23,  // 66: ListEntitiesNumberResponse.mode:type_name -> NumberMode
-	2,   // 67: ListEntitiesSelectResponse.entity_category:type_name -> EntityCategory
-	2,   // 68: ListEntitiesSirenResponse.entity_category:type_name -> EntityCategory
-	2,   // 69: ListEntitiesLockResponse.entity_category:type_name -> EntityCategory
-	24,  // 70: LockStateResponse.state:type_name -> LockState
-	25,  // 71: LockCommandRequest.command:type_name -> LockCommand
-	2,   // 72: ListEntitiesButtonResponse.entity_category:type_name -> EntityCategory
-	28,  // 73: MediaPlayerSupportedFormat.purpose:type_name -> MediaPlayerFormatPurpose
-	2,   // 74: ListEntitiesMediaPlayerResponse.entity_category:type_name -> EntityCategory
-	137, // 75: ListEntitiesMediaPlayerResponse.supported_formats:type_name -> MediaPlayerSupportedFormat
-	26,  // 76: MediaPlayerStateResponse.state:type_name -> MediaPlayerState
-	27,  // 77: MediaPlayerCommandRequest.command:type_name -> MediaPlayerCommand
-	142, // 78: BluetoothLEAdvertisementResponse.service_data:type_name -> BluetoothServiceData
-	142, // 79: BluetoothLEAdvertisementResponse.manufacturer_data:type_name -> BluetoothServiceData
-	144, // 80: BluetoothLERawAdvertisementsResponse.advertisements:type_name -> BluetoothLERawAdvertisement
-	29,  // 81: BluetoothDeviceRequest.request_type:type_name -> BluetoothDeviceRequestType
-	149, // 82: BluetoothGATTCharacteristic.descriptors:type_name -> BluetoothGATTDescriptor
-	150, // 83: BluetoothGATTService.characteristics:type_name -> BluetoothGATTCharacteristic
-	151, // 84: BluetoothGATTGetServicesResponse.services:type_name -> BluetoothGATTService
-	30,  // 85: BluetoothScannerStateResponse.state:type_name -> BluetoothScannerState
-	31,  // 86: BluetoothScannerStateResponse.mode:type_name -> BluetoothScannerMode
-	31,  // 87: BluetoothScannerStateResponse.configured_mode:type_name -> BluetoothScannerMode
-	31,  // 88: BluetoothScannerSetModeRequest.mode:type_name -> BluetoothScannerMode
-	173, // 89: VoiceAssistantRequest.audio_settings:type_name -> VoiceAssistantAudioSettings
-	34,  // 90: VoiceAssistantEventResponse.event_type:type_name -> VoiceAssistantEvent
-	176, // 91: VoiceAssistantEventResponse.data:type_name -> VoiceAssistantEventData
-	35,  // 92: VoiceAssistantTimerEventResponse.event_type:type_name -> VoiceAssistantTimerEvent
-	183, // 93: VoiceAssistantConfigurationRequest.external_wake_words:type_name -> VoiceAssistantExternalWakeWord
-	182, // 94: VoiceAssistantConfigurationResponse.available_wake_words:type_name -> VoiceAssistantWakeWord
-	2,   // 95: ListEntitiesAlarmControlPanelResponse.entity_category:type_name -> EntityCategory
-	36,  // 96: AlarmControlPanelStateResponse.state:type_name -> AlarmControlPanelState
-	37,  // 97: AlarmControlPanelCommandRequest.command:type_name -> AlarmControlPanelStateCommand
-	2,   // 98: ListEntitiesTextResponse.entity_category:type_name -> EntityCategory
-	38,  // 99: ListEntitiesTextResponse.mode:type_name -> TextMode
-	2,   // 100: ListEntitiesDateResponse.entity_category:type_name -> EntityCategory
-	2,   // 101: ListEntitiesTimeResponse.entity_category:type_name -> EntityCategory
-	2,   // 102: ListEntitiesEventResponse.entity_category:type_name -> EntityCategory
-	2,   // 103: ListEntitiesValveResponse.entity_category:type_name -> EntityCategory
-	39,  // 104: ValveStateResponse.current_operation:type_name -> ValveOperation
-	2,   // 105: ListEntitiesDateTimeResponse.entity_category:type_name -> EntityCategory
-	2,   // 106: ListEntitiesUpdateResponse.entity_category:type_name -> EntityCategory
-	40,  // 107: UpdateCommandRequest.command:type_name -> UpdateCommand
-	41,  // 108: ZWaveProxyRequest.type:type_name -> ZWaveProxyRequestType
-	41,  // 109: ZWaveProxyRequestResponse.type:type_name -> ZWaveProxyRequestType
-	42,  // 110: ZWaveProxyRequestResponse.status:type_name -> ZWaveProxyStatus
-	2,   // 111: ListEntitiesInfraredResponse.entity_category:type_name -> EntityCategory
-	2,   // 112: ListEntitiesRadioFrequencyResponse.entity_category:type_name -> EntityCategory
-	43,  // 113: SerialProxyConfigureRequest.parity:type_name -> SerialProxyParity
-	45,  // 114: SerialProxyGetModemPinsResponse.status:type_name -> SerialProxyStatus
-	44,  // 115: SerialProxyRequest.type:type_name -> SerialProxyRequestType
-	44,  // 116: SerialProxyRequestResponse.type:type_name -> SerialProxyRequestType
-	45,  // 117: SerialProxyRequestResponse.status:type_name -> SerialProxyStatus
-	46,  // 118: SerialProxySetModeRequest.mode:type_name -> SerialProxyMode
-	47,  // 119: SerialProxyIdentity.source:type_name -> SerialProxyIdentitySource
-	228, // 120: SerialProxyIdentity.usb:type_name -> UsbDeviceDescriptor
-	49,  // 121: SendspinPairingTokenResponse.status:type_name -> SendspinPairingTokenStatus
-	50,  // 122: APIConnection.hello:input_type -> HelloRequest
-	54,  // 123: APIConnection.disconnect:input_type -> DisconnectRequest
-	56,  // 124: APIConnection.ping:input_type -> PingRequest
-	58,  // 125: APIConnection.device_info:input_type -> DeviceInfoRequest
-	63,  // 126: APIConnection.device_capabilities:input_type -> DeviceCapabilitiesRequest
-	70,  // 127: APIConnection.device_wizard:input_type -> DeviceWizardRequest
-	72,  // 128: APIConnection.wizard_input_set:input_type -> WizardInputSetRequest
-	73,  // 129: APIConnection.list_entities:input_type -> ListEntitiesRequest
-	75,  // 130: APIConnection.subscribe_states:input_type -> SubscribeStatesRequest
-	94,  // 131: APIConnection.subscribe_logs:input_type -> SubscribeLogsRequest
-	98,  // 132: APIConnection.subscribe_homeassistant_services:input_type -> SubscribeHomeassistantServicesRequest
-	102, // 133: APIConnection.subscribe_home_assistant_states:input_type -> SubscribeHomeAssistantStatesRequest
-	112, // 134: APIConnection.execute_service:input_type -> ExecuteServiceRequest
-	96,  // 135: APIConnection.noise_encryption_set_key:input_type -> NoiseEncryptionSetKeyRequest
-	136, // 136: APIConnection.button_command:input_type -> ButtonCommandRequest
-	116, // 137: APIConnection.camera_image:input_type -> CameraImageRequest
-	119, // 138: APIConnection.climate_command:input_type -> ClimateCommandRequest
-	80,  // 139: APIConnection.cover_command:input_type -> CoverCommandRequest
-	195, // 140: APIConnection.date_command:input_type -> DateCommandRequest
-	206, // 141: APIConnection.datetime_command:input_type -> DateTimeCommandRequest
-	83,  // 142: APIConnection.fan_command:input_type -> FanCommandRequest
-	86,  // 143: APIConnection.light_command:input_type -> LightCommandRequest
-	134, // 144: APIConnection.lock_command:input_type -> LockCommandRequest
-	140, // 145: APIConnection.media_player_command:input_type -> MediaPlayerCommandRequest
-	125, // 146: APIConnection.number_command:input_type -> NumberCommandRequest
-	128, // 147: APIConnection.select_command:input_type -> SelectCommandRequest
-	131, // 148: APIConnection.siren_command:input_type -> SirenCommandRequest
-	91,  // 149: APIConnection.switch_command:input_type -> SwitchCommandRequest
-	192, // 150: APIConnection.text_command:input_type -> TextCommandRequest
-	198, // 151: APIConnection.time_command:input_type -> TimeCommandRequest
-	209, // 152: APIConnection.update_command:input_type -> UpdateCommandRequest
-	203, // 153: APIConnection.valve_command:input_type -> ValveCommandRequest
-	122, // 154: APIConnection.water_heater_command:input_type -> WaterHeaterCommandRequest
-	141, // 155: APIConnection.subscribe_bluetooth_le_advertisements:input_type -> SubscribeBluetoothLEAdvertisementsRequest
-	146, // 156: APIConnection.bluetooth_device_request:input_type -> BluetoothDeviceRequest
-	148, // 157: APIConnection.bluetooth_gatt_get_services:input_type -> BluetoothGATTGetServicesRequest
-	154, // 158: APIConnection.bluetooth_gatt_read:input_type -> BluetoothGATTReadRequest
-	156, // 159: APIConnection.bluetooth_gatt_write:input_type -> BluetoothGATTWriteRequest
-	157, // 160: APIConnection.bluetooth_gatt_read_descriptor:input_type -> BluetoothGATTReadDescriptorRequest
-	158, // 161: APIConnection.bluetooth_gatt_write_descriptor:input_type -> BluetoothGATTWriteDescriptorRequest
-	159, // 162: APIConnection.bluetooth_gatt_notify:input_type -> BluetoothGATTNotifyRequest
-	161, // 163: APIConnection.subscribe_bluetooth_connections_free:input_type -> SubscribeBluetoothConnectionsFreeRequest
-	168, // 164: APIConnection.unsubscribe_bluetooth_le_advertisements:input_type -> UnsubscribeBluetoothLEAdvertisementsRequest
-	171, // 165: APIConnection.bluetooth_scanner_set_mode:input_type -> BluetoothScannerSetModeRequest
-	230, // 166: APIConnection.bluetooth_set_connection_params:input_type -> BluetoothSetConnectionParamsRequest
-	172, // 167: APIConnection.subscribe_voice_assistant:input_type -> SubscribeVoiceAssistantRequest
-	184, // 168: APIConnection.voice_assistant_get_configuration:input_type -> VoiceAssistantConfigurationRequest
-	186, // 169: APIConnection.voice_assistant_set_configuration:input_type -> VoiceAssistantSetConfiguration
-	189, // 170: APIConnection.alarm_control_panel_command:input_type -> AlarmControlPanelCommandRequest
-	210, // 171: APIConnection.zwave_proxy_frame:input_type -> ZWaveProxyFrame
-	211, // 172: APIConnection.zwave_proxy_request:input_type -> ZWaveProxyRequest
-	214, // 173: APIConnection.infrared_rf_transmit_raw_timings:input_type -> InfraredRFTransmitRawTimingsRequest
-	218, // 174: APIConnection.serial_proxy_configure:input_type -> SerialProxyConfigureRequest
-	220, // 175: APIConnection.serial_proxy_write:input_type -> SerialProxyWriteRequest
-	221, // 176: APIConnection.serial_proxy_set_modem_pins:input_type -> SerialProxySetModemPinsRequest
-	222, // 177: APIConnection.serial_proxy_get_modem_pins:input_type -> SerialProxyGetModemPinsRequest
-	227, // 178: APIConnection.subscribe_serial_proxy_identity:input_type -> SubscribeSerialProxyIdentityRequest
-	224, // 179: APIConnection.serial_proxy_request:input_type -> SerialProxyRequest
-	226, // 180: APIConnection.serial_proxy_set_mode:input_type -> SerialProxySetModeRequest
-	232, // 181: APIConnection.sendspin_pairing_token:input_type -> SendspinPairingTokenRequest
-	51,  // 182: APIConnection.hello:output_type -> HelloResponse
-	55,  // 183: APIConnection.disconnect:output_type -> DisconnectResponse
-	57,  // 184: APIConnection.ping:output_type -> PingResponse
-	62,  // 185: APIConnection.device_info:output_type -> DeviceInfoResponse
-	69,  // 186: APIConnection.device_capabilities:output_type -> DeviceCapabilitiesResponse
-	71,  // 187: APIConnection.device_wizard:output_type -> DeviceWizardResponse
-	234, // 188: APIConnection.wizard_input_set:output_type -> void
-	234, // 189: APIConnection.list_entities:output_type -> void
-	234, // 190: APIConnection.subscribe_states:output_type -> void
-	234, // 191: APIConnection.subscribe_logs:output_type -> void
-	234, // 192: APIConnection.subscribe_homeassistant_services:output_type -> void
-	234, // 193: APIConnection.subscribe_home_assistant_states:output_type -> void
-	234, // 194: APIConnection.execute_service:output_type -> void
-	97,  // 195: APIConnection.noise_encryption_set_key:output_type -> NoiseEncryptionSetKeyResponse
-	234, // 196: APIConnection.button_command:output_type -> void
-	234, // 197: APIConnection.camera_image:output_type -> void
-	234, // 198: APIConnection.climate_command:output_type -> void
-	234, // 199: APIConnection.cover_command:output_type -> void
-	234, // 200: APIConnection.date_command:output_type -> void
-	234, // 201: APIConnection.datetime_command:output_type -> void
-	234, // 202: APIConnection.fan_command:output_type -> void
-	234, // 203: APIConnection.light_command:output_type -> void
-	234, // 204: APIConnection.lock_command:output_type -> void
-	234, // 205: APIConnection.media_player_command:output_type -> void
-	234, // 206: APIConnection.number_command:output_type -> void
-	234, // 207: APIConnection.select_command:output_type -> void
-	234, // 208: APIConnection.siren_command:output_type -> void
-	234, // 209: APIConnection.switch_command:output_type -> void
-	234, // 210: APIConnection.text_command:output_type -> void
-	234, // 211: APIConnection.time_command:output_type -> void
-	234, // 212: APIConnection.update_command:output_type -> void
-	234, // 213: APIConnection.valve_command:output_type -> void
-	234, // 214: APIConnection.water_heater_command:output_type -> void
-	234, // 215: APIConnection.subscribe_bluetooth_le_advertisements:output_type -> void
-	234, // 216: APIConnection.bluetooth_device_request:output_type -> void
-	234, // 217: APIConnection.bluetooth_gatt_get_services:output_type -> void
-	234, // 218: APIConnection.bluetooth_gatt_read:output_type -> void
-	234, // 219: APIConnection.bluetooth_gatt_write:output_type -> void
-	234, // 220: APIConnection.bluetooth_gatt_read_descriptor:output_type -> void
-	234, // 221: APIConnection.bluetooth_gatt_write_descriptor:output_type -> void
-	234, // 222: APIConnection.bluetooth_gatt_notify:output_type -> void
-	162, // 223: APIConnection.subscribe_bluetooth_connections_free:output_type -> BluetoothConnectionsFreeResponse
-	234, // 224: APIConnection.unsubscribe_bluetooth_le_advertisements:output_type -> void
-	234, // 225: APIConnection.bluetooth_scanner_set_mode:output_type -> void
-	231, // 226: APIConnection.bluetooth_set_connection_params:output_type -> BluetoothSetConnectionParamsResponse
-	234, // 227: APIConnection.subscribe_voice_assistant:output_type -> void
-	185, // 228: APIConnection.voice_assistant_get_configuration:output_type -> VoiceAssistantConfigurationResponse
-	234, // 229: APIConnection.voice_assistant_set_configuration:output_type -> void
-	234, // 230: APIConnection.alarm_control_panel_command:output_type -> void
-	234, // 231: APIConnection.zwave_proxy_frame:output_type -> void
-	234, // 232: APIConnection.zwave_proxy_request:output_type -> void
-	234, // 233: APIConnection.infrared_rf_transmit_raw_timings:output_type -> void
-	234, // 234: APIConnection.serial_proxy_configure:output_type -> void
-	234, // 235: APIConnection.serial_proxy_write:output_type -> void
-	234, // 236: APIConnection.serial_proxy_set_modem_pins:output_type -> void
-	234, // 237: APIConnection.serial_proxy_get_modem_pins:output_type -> void
-	234, // 238: APIConnection.subscribe_serial_proxy_identity:output_type -> void
-	234, // 239: APIConnection.serial_proxy_request:output_type -> void
-	234, // 240: APIConnection.serial_proxy_set_mode:output_type -> void
-	233, // 241: APIConnection.sendspin_pairing_token:output_type -> SendspinPairingTokenResponse
-	182, // [182:242] is the sub-list for method output_type
-	122, // [122:182] is the sub-list for method input_type
-	122, // [122:122] is the sub-list for extension type_name
-	122, // [122:122] is the sub-list for extension extendee
-	0,   // [0:122] is the sub-list for field type_name
+	1,   // 1: DeviceInfo.relation:type_name -> DeviceRelation
+	2,   // 2: SerialProxyInfo.port_type:type_name -> SerialProxyPortType
+	61,  // 3: DeviceInfoResponse.devices:type_name -> DeviceInfo
+	60,  // 4: DeviceInfoResponse.areas:type_name -> AreaInfo
+	60,  // 5: DeviceInfoResponse.area:type_name -> AreaInfo
+	62,  // 6: DeviceInfoResponse.serial_proxies:type_name -> SerialProxyInfo
+	65,  // 7: DeviceCapabilitiesResponse.bluetooth_proxy:type_name -> BluetoothProxyCapabilities
+	66,  // 8: DeviceCapabilitiesResponse.voice_assistant:type_name -> VoiceAssistantCapabilities
+	67,  // 9: DeviceCapabilitiesResponse.zwave_proxy:type_name -> ZWaveProxyCapabilities
+	62,  // 10: DeviceCapabilitiesResponse.serial_proxies:type_name -> SerialProxyInfo
+	69,  // 11: DeviceCapabilitiesResponse.wizard:type_name -> WizardCapabilities
+	70,  // 12: DeviceCapabilitiesResponse.sendspin:type_name -> SendspinCapabilities
+	68,  // 13: DeviceCapabilitiesResponse.store_yaml:type_name -> StoreYamlCapabilities
+	71,  // 14: DeviceCapabilitiesResponse.crash_report:type_name -> CrashReportCapabilities
+	80,  // 15: CrashReportResponse.cores:type_name -> CrashReportCore
+	3,   // 16: ListEntitiesBinarySensorResponse.entity_category:type_name -> EntityCategory
+	3,   // 17: ListEntitiesCoverResponse.entity_category:type_name -> EntityCategory
+	4,   // 18: CoverStateResponse.legacy_state:type_name -> LegacyCoverState
+	5,   // 19: CoverStateResponse.current_operation:type_name -> CoverOperation
+	6,   // 20: CoverCommandRequest.legacy_command:type_name -> LegacyCoverCommand
+	3,   // 21: ListEntitiesFanResponse.entity_category:type_name -> EntityCategory
+	7,   // 22: FanStateResponse.speed:type_name -> FanSpeed
+	8,   // 23: FanStateResponse.direction:type_name -> FanDirection
+	7,   // 24: FanCommandRequest.speed:type_name -> FanSpeed
+	8,   // 25: FanCommandRequest.direction:type_name -> FanDirection
+	9,   // 26: ListEntitiesLightResponse.supported_color_modes:type_name -> ColorMode
+	3,   // 27: ListEntitiesLightResponse.entity_category:type_name -> EntityCategory
+	9,   // 28: LightStateResponse.color_mode:type_name -> ColorMode
+	9,   // 29: LightCommandRequest.color_mode:type_name -> ColorMode
+	10,  // 30: ListEntitiesSensorResponse.state_class:type_name -> SensorStateClass
+	11,  // 31: ListEntitiesSensorResponse.legacy_last_reset_type:type_name -> SensorLastResetType
+	3,   // 32: ListEntitiesSensorResponse.entity_category:type_name -> EntityCategory
+	3,   // 33: ListEntitiesSwitchResponse.entity_category:type_name -> EntityCategory
+	3,   // 34: ListEntitiesTextSensorResponse.entity_category:type_name -> EntityCategory
+	12,  // 35: SubscribeLogsRequest.level:type_name -> LogLevel
+	12,  // 36: SubscribeLogsResponse.level:type_name -> LogLevel
+	105, // 37: HomeassistantActionRequest.data:type_name -> HomeassistantServiceMap
+	105, // 38: HomeassistantActionRequest.data_template:type_name -> HomeassistantServiceMap
+	105, // 39: HomeassistantActionRequest.variables:type_name -> HomeassistantServiceMap
+	13,  // 40: DSTRule.type:type_name -> DSTRuleType
+	112, // 41: ParsedTimezone.dst_start:type_name -> DSTRule
+	112, // 42: ParsedTimezone.dst_end:type_name -> DSTRule
+	113, // 43: GetTimeResponse.parsed_timezone:type_name -> ParsedTimezone
+	14,  // 44: ListEntitiesServicesArgument.type:type_name -> ServiceArgType
+	115, // 45: ListEntitiesServicesResponse.args:type_name -> ListEntitiesServicesArgument
+	15,  // 46: ListEntitiesServicesResponse.supports_response:type_name -> SupportsResponseType
+	117, // 47: ExecuteServiceRequest.args:type_name -> ExecuteServiceArgument
+	3,   // 48: ListEntitiesCameraResponse.entity_category:type_name -> EntityCategory
+	17,  // 49: ListEntitiesClimateResponse.supported_modes:type_name -> ClimateMode
+	18,  // 50: ListEntitiesClimateResponse.supported_fan_modes:type_name -> ClimateFanMode
+	19,  // 51: ListEntitiesClimateResponse.supported_swing_modes:type_name -> ClimateSwingMode
+	21,  // 52: ListEntitiesClimateResponse.supported_presets:type_name -> ClimatePreset
+	3,   // 53: ListEntitiesClimateResponse.entity_category:type_name -> EntityCategory
+	16,  // 54: ListEntitiesClimateResponse.temperature_unit:type_name -> TemperatureUnit
+	17,  // 55: ClimateStateResponse.mode:type_name -> ClimateMode
+	20,  // 56: ClimateStateResponse.action:type_name -> ClimateAction
+	18,  // 57: ClimateStateResponse.fan_mode:type_name -> ClimateFanMode
+	19,  // 58: ClimateStateResponse.swing_mode:type_name -> ClimateSwingMode
+	21,  // 59: ClimateStateResponse.preset:type_name -> ClimatePreset
+	17,  // 60: ClimateCommandRequest.mode:type_name -> ClimateMode
+	18,  // 61: ClimateCommandRequest.fan_mode:type_name -> ClimateFanMode
+	19,  // 62: ClimateCommandRequest.swing_mode:type_name -> ClimateSwingMode
+	21,  // 63: ClimateCommandRequest.preset:type_name -> ClimatePreset
+	3,   // 64: ListEntitiesWaterHeaterResponse.entity_category:type_name -> EntityCategory
+	22,  // 65: ListEntitiesWaterHeaterResponse.supported_modes:type_name -> WaterHeaterMode
+	16,  // 66: ListEntitiesWaterHeaterResponse.temperature_unit:type_name -> TemperatureUnit
+	22,  // 67: WaterHeaterStateResponse.mode:type_name -> WaterHeaterMode
+	22,  // 68: WaterHeaterCommandRequest.mode:type_name -> WaterHeaterMode
+	3,   // 69: ListEntitiesNumberResponse.entity_category:type_name -> EntityCategory
+	24,  // 70: ListEntitiesNumberResponse.mode:type_name -> NumberMode
+	3,   // 71: ListEntitiesSelectResponse.entity_category:type_name -> EntityCategory
+	3,   // 72: ListEntitiesSirenResponse.entity_category:type_name -> EntityCategory
+	3,   // 73: ListEntitiesLockResponse.entity_category:type_name -> EntityCategory
+	25,  // 74: LockStateResponse.state:type_name -> LockState
+	26,  // 75: LockCommandRequest.command:type_name -> LockCommand
+	3,   // 76: ListEntitiesButtonResponse.entity_category:type_name -> EntityCategory
+	29,  // 77: MediaPlayerSupportedFormat.purpose:type_name -> MediaPlayerFormatPurpose
+	3,   // 78: ListEntitiesMediaPlayerResponse.entity_category:type_name -> EntityCategory
+	143, // 79: ListEntitiesMediaPlayerResponse.supported_formats:type_name -> MediaPlayerSupportedFormat
+	27,  // 80: MediaPlayerStateResponse.state:type_name -> MediaPlayerState
+	28,  // 81: MediaPlayerCommandRequest.command:type_name -> MediaPlayerCommand
+	148, // 82: BluetoothLEAdvertisementResponse.service_data:type_name -> BluetoothServiceData
+	148, // 83: BluetoothLEAdvertisementResponse.manufacturer_data:type_name -> BluetoothServiceData
+	150, // 84: BluetoothLERawAdvertisementsResponse.advertisements:type_name -> BluetoothLERawAdvertisement
+	30,  // 85: BluetoothDeviceRequest.request_type:type_name -> BluetoothDeviceRequestType
+	155, // 86: BluetoothGATTCharacteristic.descriptors:type_name -> BluetoothGATTDescriptor
+	156, // 87: BluetoothGATTService.characteristics:type_name -> BluetoothGATTCharacteristic
+	157, // 88: BluetoothGATTGetServicesResponse.services:type_name -> BluetoothGATTService
+	31,  // 89: BluetoothScannerStateResponse.state:type_name -> BluetoothScannerState
+	32,  // 90: BluetoothScannerStateResponse.mode:type_name -> BluetoothScannerMode
+	32,  // 91: BluetoothScannerStateResponse.configured_mode:type_name -> BluetoothScannerMode
+	32,  // 92: BluetoothScannerSetModeRequest.mode:type_name -> BluetoothScannerMode
+	179, // 93: VoiceAssistantRequest.audio_settings:type_name -> VoiceAssistantAudioSettings
+	35,  // 94: VoiceAssistantEventResponse.event_type:type_name -> VoiceAssistantEvent
+	182, // 95: VoiceAssistantEventResponse.data:type_name -> VoiceAssistantEventData
+	36,  // 96: VoiceAssistantTimerEventResponse.event_type:type_name -> VoiceAssistantTimerEvent
+	189, // 97: VoiceAssistantConfigurationRequest.external_wake_words:type_name -> VoiceAssistantExternalWakeWord
+	188, // 98: VoiceAssistantConfigurationResponse.available_wake_words:type_name -> VoiceAssistantWakeWord
+	3,   // 99: ListEntitiesAlarmControlPanelResponse.entity_category:type_name -> EntityCategory
+	37,  // 100: AlarmControlPanelStateResponse.state:type_name -> AlarmControlPanelState
+	38,  // 101: AlarmControlPanelCommandRequest.command:type_name -> AlarmControlPanelStateCommand
+	3,   // 102: ListEntitiesTextResponse.entity_category:type_name -> EntityCategory
+	39,  // 103: ListEntitiesTextResponse.mode:type_name -> TextMode
+	3,   // 104: ListEntitiesDateResponse.entity_category:type_name -> EntityCategory
+	3,   // 105: ListEntitiesTimeResponse.entity_category:type_name -> EntityCategory
+	3,   // 106: ListEntitiesEventResponse.entity_category:type_name -> EntityCategory
+	3,   // 107: ListEntitiesValveResponse.entity_category:type_name -> EntityCategory
+	40,  // 108: ValveStateResponse.current_operation:type_name -> ValveOperation
+	3,   // 109: ListEntitiesDateTimeResponse.entity_category:type_name -> EntityCategory
+	3,   // 110: ListEntitiesUpdateResponse.entity_category:type_name -> EntityCategory
+	41,  // 111: UpdateCommandRequest.command:type_name -> UpdateCommand
+	42,  // 112: ZWaveProxyRequest.type:type_name -> ZWaveProxyRequestType
+	42,  // 113: ZWaveProxyRequestResponse.type:type_name -> ZWaveProxyRequestType
+	43,  // 114: ZWaveProxyRequestResponse.status:type_name -> ZWaveProxyStatus
+	3,   // 115: ListEntitiesInfraredResponse.entity_category:type_name -> EntityCategory
+	3,   // 116: ListEntitiesRadioFrequencyResponse.entity_category:type_name -> EntityCategory
+	44,  // 117: SerialProxyConfigureRequest.parity:type_name -> SerialProxyParity
+	46,  // 118: SerialProxyGetModemPinsResponse.status:type_name -> SerialProxyStatus
+	45,  // 119: SerialProxyRequest.type:type_name -> SerialProxyRequestType
+	45,  // 120: SerialProxyRequestResponse.type:type_name -> SerialProxyRequestType
+	46,  // 121: SerialProxyRequestResponse.status:type_name -> SerialProxyStatus
+	47,  // 122: SerialProxySetModeRequest.mode:type_name -> SerialProxyMode
+	48,  // 123: SerialProxyIdentity.source:type_name -> SerialProxyIdentitySource
+	234, // 124: SerialProxyIdentity.usb:type_name -> UsbDeviceDescriptor
+	50,  // 125: SendspinPairingTokenResponse.status:type_name -> SendspinPairingTokenStatus
+	51,  // 126: APIConnection.hello:input_type -> HelloRequest
+	55,  // 127: APIConnection.disconnect:input_type -> DisconnectRequest
+	57,  // 128: APIConnection.ping:input_type -> PingRequest
+	59,  // 129: APIConnection.device_info:input_type -> DeviceInfoRequest
+	64,  // 130: APIConnection.device_capabilities:input_type -> DeviceCapabilitiesRequest
+	73,  // 131: APIConnection.device_wizard:input_type -> DeviceWizardRequest
+	75,  // 132: APIConnection.wizard_input_set:input_type -> WizardInputSetRequest
+	79,  // 133: APIConnection.crash_report:input_type -> CrashReportRequest
+	76,  // 134: APIConnection.list_entities:input_type -> ListEntitiesRequest
+	78,  // 135: APIConnection.subscribe_states:input_type -> SubscribeStatesRequest
+	100, // 136: APIConnection.subscribe_logs:input_type -> SubscribeLogsRequest
+	104, // 137: APIConnection.subscribe_homeassistant_services:input_type -> SubscribeHomeassistantServicesRequest
+	108, // 138: APIConnection.subscribe_home_assistant_states:input_type -> SubscribeHomeAssistantStatesRequest
+	118, // 139: APIConnection.execute_service:input_type -> ExecuteServiceRequest
+	102, // 140: APIConnection.noise_encryption_set_key:input_type -> NoiseEncryptionSetKeyRequest
+	142, // 141: APIConnection.button_command:input_type -> ButtonCommandRequest
+	122, // 142: APIConnection.camera_image:input_type -> CameraImageRequest
+	125, // 143: APIConnection.climate_command:input_type -> ClimateCommandRequest
+	86,  // 144: APIConnection.cover_command:input_type -> CoverCommandRequest
+	201, // 145: APIConnection.date_command:input_type -> DateCommandRequest
+	212, // 146: APIConnection.datetime_command:input_type -> DateTimeCommandRequest
+	89,  // 147: APIConnection.fan_command:input_type -> FanCommandRequest
+	92,  // 148: APIConnection.light_command:input_type -> LightCommandRequest
+	140, // 149: APIConnection.lock_command:input_type -> LockCommandRequest
+	146, // 150: APIConnection.media_player_command:input_type -> MediaPlayerCommandRequest
+	131, // 151: APIConnection.number_command:input_type -> NumberCommandRequest
+	134, // 152: APIConnection.select_command:input_type -> SelectCommandRequest
+	137, // 153: APIConnection.siren_command:input_type -> SirenCommandRequest
+	97,  // 154: APIConnection.switch_command:input_type -> SwitchCommandRequest
+	198, // 155: APIConnection.text_command:input_type -> TextCommandRequest
+	204, // 156: APIConnection.time_command:input_type -> TimeCommandRequest
+	215, // 157: APIConnection.update_command:input_type -> UpdateCommandRequest
+	209, // 158: APIConnection.valve_command:input_type -> ValveCommandRequest
+	128, // 159: APIConnection.water_heater_command:input_type -> WaterHeaterCommandRequest
+	147, // 160: APIConnection.subscribe_bluetooth_le_advertisements:input_type -> SubscribeBluetoothLEAdvertisementsRequest
+	152, // 161: APIConnection.bluetooth_device_request:input_type -> BluetoothDeviceRequest
+	154, // 162: APIConnection.bluetooth_gatt_get_services:input_type -> BluetoothGATTGetServicesRequest
+	160, // 163: APIConnection.bluetooth_gatt_read:input_type -> BluetoothGATTReadRequest
+	162, // 164: APIConnection.bluetooth_gatt_write:input_type -> BluetoothGATTWriteRequest
+	163, // 165: APIConnection.bluetooth_gatt_read_descriptor:input_type -> BluetoothGATTReadDescriptorRequest
+	164, // 166: APIConnection.bluetooth_gatt_write_descriptor:input_type -> BluetoothGATTWriteDescriptorRequest
+	165, // 167: APIConnection.bluetooth_gatt_notify:input_type -> BluetoothGATTNotifyRequest
+	167, // 168: APIConnection.subscribe_bluetooth_connections_free:input_type -> SubscribeBluetoothConnectionsFreeRequest
+	174, // 169: APIConnection.unsubscribe_bluetooth_le_advertisements:input_type -> UnsubscribeBluetoothLEAdvertisementsRequest
+	177, // 170: APIConnection.bluetooth_scanner_set_mode:input_type -> BluetoothScannerSetModeRequest
+	236, // 171: APIConnection.bluetooth_set_connection_params:input_type -> BluetoothSetConnectionParamsRequest
+	178, // 172: APIConnection.subscribe_voice_assistant:input_type -> SubscribeVoiceAssistantRequest
+	190, // 173: APIConnection.voice_assistant_get_configuration:input_type -> VoiceAssistantConfigurationRequest
+	192, // 174: APIConnection.voice_assistant_set_configuration:input_type -> VoiceAssistantSetConfiguration
+	195, // 175: APIConnection.alarm_control_panel_command:input_type -> AlarmControlPanelCommandRequest
+	216, // 176: APIConnection.zwave_proxy_frame:input_type -> ZWaveProxyFrame
+	217, // 177: APIConnection.zwave_proxy_request:input_type -> ZWaveProxyRequest
+	220, // 178: APIConnection.infrared_rf_transmit_raw_timings:input_type -> InfraredRFTransmitRawTimingsRequest
+	224, // 179: APIConnection.serial_proxy_configure:input_type -> SerialProxyConfigureRequest
+	226, // 180: APIConnection.serial_proxy_write:input_type -> SerialProxyWriteRequest
+	227, // 181: APIConnection.serial_proxy_set_modem_pins:input_type -> SerialProxySetModemPinsRequest
+	228, // 182: APIConnection.serial_proxy_get_modem_pins:input_type -> SerialProxyGetModemPinsRequest
+	233, // 183: APIConnection.subscribe_serial_proxy_identity:input_type -> SubscribeSerialProxyIdentityRequest
+	230, // 184: APIConnection.serial_proxy_request:input_type -> SerialProxyRequest
+	232, // 185: APIConnection.serial_proxy_set_mode:input_type -> SerialProxySetModeRequest
+	238, // 186: APIConnection.sendspin_pairing_token:input_type -> SendspinPairingTokenRequest
+	240, // 187: APIConnection.get_yaml:input_type -> GetYamlRequest
+	52,  // 188: APIConnection.hello:output_type -> HelloResponse
+	56,  // 189: APIConnection.disconnect:output_type -> DisconnectResponse
+	58,  // 190: APIConnection.ping:output_type -> PingResponse
+	63,  // 191: APIConnection.device_info:output_type -> DeviceInfoResponse
+	72,  // 192: APIConnection.device_capabilities:output_type -> DeviceCapabilitiesResponse
+	74,  // 193: APIConnection.device_wizard:output_type -> DeviceWizardResponse
+	242, // 194: APIConnection.wizard_input_set:output_type -> void
+	81,  // 195: APIConnection.crash_report:output_type -> CrashReportResponse
+	242, // 196: APIConnection.list_entities:output_type -> void
+	242, // 197: APIConnection.subscribe_states:output_type -> void
+	242, // 198: APIConnection.subscribe_logs:output_type -> void
+	242, // 199: APIConnection.subscribe_homeassistant_services:output_type -> void
+	242, // 200: APIConnection.subscribe_home_assistant_states:output_type -> void
+	242, // 201: APIConnection.execute_service:output_type -> void
+	103, // 202: APIConnection.noise_encryption_set_key:output_type -> NoiseEncryptionSetKeyResponse
+	242, // 203: APIConnection.button_command:output_type -> void
+	242, // 204: APIConnection.camera_image:output_type -> void
+	242, // 205: APIConnection.climate_command:output_type -> void
+	242, // 206: APIConnection.cover_command:output_type -> void
+	242, // 207: APIConnection.date_command:output_type -> void
+	242, // 208: APIConnection.datetime_command:output_type -> void
+	242, // 209: APIConnection.fan_command:output_type -> void
+	242, // 210: APIConnection.light_command:output_type -> void
+	242, // 211: APIConnection.lock_command:output_type -> void
+	242, // 212: APIConnection.media_player_command:output_type -> void
+	242, // 213: APIConnection.number_command:output_type -> void
+	242, // 214: APIConnection.select_command:output_type -> void
+	242, // 215: APIConnection.siren_command:output_type -> void
+	242, // 216: APIConnection.switch_command:output_type -> void
+	242, // 217: APIConnection.text_command:output_type -> void
+	242, // 218: APIConnection.time_command:output_type -> void
+	242, // 219: APIConnection.update_command:output_type -> void
+	242, // 220: APIConnection.valve_command:output_type -> void
+	242, // 221: APIConnection.water_heater_command:output_type -> void
+	242, // 222: APIConnection.subscribe_bluetooth_le_advertisements:output_type -> void
+	242, // 223: APIConnection.bluetooth_device_request:output_type -> void
+	242, // 224: APIConnection.bluetooth_gatt_get_services:output_type -> void
+	242, // 225: APIConnection.bluetooth_gatt_read:output_type -> void
+	242, // 226: APIConnection.bluetooth_gatt_write:output_type -> void
+	242, // 227: APIConnection.bluetooth_gatt_read_descriptor:output_type -> void
+	242, // 228: APIConnection.bluetooth_gatt_write_descriptor:output_type -> void
+	242, // 229: APIConnection.bluetooth_gatt_notify:output_type -> void
+	168, // 230: APIConnection.subscribe_bluetooth_connections_free:output_type -> BluetoothConnectionsFreeResponse
+	242, // 231: APIConnection.unsubscribe_bluetooth_le_advertisements:output_type -> void
+	242, // 232: APIConnection.bluetooth_scanner_set_mode:output_type -> void
+	237, // 233: APIConnection.bluetooth_set_connection_params:output_type -> BluetoothSetConnectionParamsResponse
+	242, // 234: APIConnection.subscribe_voice_assistant:output_type -> void
+	191, // 235: APIConnection.voice_assistant_get_configuration:output_type -> VoiceAssistantConfigurationResponse
+	242, // 236: APIConnection.voice_assistant_set_configuration:output_type -> void
+	242, // 237: APIConnection.alarm_control_panel_command:output_type -> void
+	242, // 238: APIConnection.zwave_proxy_frame:output_type -> void
+	242, // 239: APIConnection.zwave_proxy_request:output_type -> void
+	242, // 240: APIConnection.infrared_rf_transmit_raw_timings:output_type -> void
+	242, // 241: APIConnection.serial_proxy_configure:output_type -> void
+	242, // 242: APIConnection.serial_proxy_write:output_type -> void
+	242, // 243: APIConnection.serial_proxy_set_modem_pins:output_type -> void
+	242, // 244: APIConnection.serial_proxy_get_modem_pins:output_type -> void
+	242, // 245: APIConnection.subscribe_serial_proxy_identity:output_type -> void
+	242, // 246: APIConnection.serial_proxy_request:output_type -> void
+	242, // 247: APIConnection.serial_proxy_set_mode:output_type -> void
+	239, // 248: APIConnection.sendspin_pairing_token:output_type -> SendspinPairingTokenResponse
+	242, // 249: APIConnection.get_yaml:output_type -> void
+	188, // [188:250] is the sub-list for method output_type
+	126, // [126:188] is the sub-list for method input_type
+	126, // [126:126] is the sub-list for extension type_name
+	126, // [126:126] is the sub-list for extension extendee
+	0,   // [0:126] is the sub-list for field type_name
 }
 
 func init() { file_api_proto_init() }
@@ -18969,8 +19620,8 @@ func file_api_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_proto_rawDesc), len(file_api_proto_rawDesc)),
-			NumEnums:      50,
-			NumMessages:   184,
+			NumEnums:      51,
+			NumMessages:   191,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

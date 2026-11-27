@@ -470,7 +470,7 @@ var (
 	//
 	// optional bool track_presence = 50020;
 	E_TrackPresence = &file_api_options_proto_extTypes[24]
-	// progmem: The pointer_to_buffer bytes field points into flash (PROGMEM).
+	// progmem: The string field, or pointer_to_buffer bytes field, points into flash (PROGMEM).
 	// The generated encode and dump copy it with progmem_memcpy, as ESP8266
 	// cannot read flash with ordinary loads.
 	//

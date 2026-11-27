@@ -377,6 +377,106 @@ func TestAClosedConnectionReleasesTheVoiceAssistant(t *testing.T) {
 	}
 }
 
+func resubscribe(peer *testPeer, flags uint32) {
+	peer.send(&api.SubscribeVoiceAssistantRequest{Subscribe: false})
+	peer.send(&api.SubscribeVoiceAssistantRequest{Subscribe: true, Flags: flags})
+	peer.send(&api.PingRequest{})
+	peer.recv()
+}
+
+func TestVoiceAPIAudioAcceptsTheFlagHomeAssistantSends(t *testing.T) {
+	v := &VoiceSatellite{}
+	peer := subscribedSatellite(t, v)
+
+	resubscribe(peer, 1<<2)
+	if !v.APIAudio() {
+		t.Error("api audio subscribed as 1<<2 was not negotiated")
+	}
+}
+
+func TestVoiceWakeWordAudioFollowsTheSubscription(t *testing.T) {
+	v := &VoiceSatellite{}
+	peer := subscribedSatellite(t, v)
+	if v.WakeWordAudio() {
+		t.Fatal("wake word audio reported without being asked for")
+	}
+
+	resubscribe(peer, 1<<2|uint32(api.VoiceAssistantSubscribeFlag_VOICE_ASSISTANT_SUBSCRIBE_WAKE_WORD_AUDIO))
+	if !v.WakeWordAudio() {
+		t.Fatal("wake word audio not reported after a subscribe asking for it")
+	}
+
+	resubscribe(peer, 1<<2)
+	if v.WakeWordAudio() {
+		t.Error("wake word audio still reported after a subscribe without it")
+	}
+}
+
+func TestVoiceStartTurnFromWakeWordSendsTheDetection(t *testing.T) {
+	v := &VoiceSatellite{}
+	peer := subscribedSatellite(t, v)
+	resubscribe(peer, uint32(api.VoiceAssistantSubscribeFlag_VOICE_ASSISTANT_SUBSCRIBE_WAKE_WORD_AUDIO))
+
+	w := WakeWordAudio{ID: "okay_nabu", Probability: 0.97, Cutoff: 0.85, Bytes: 48000, Bytes2: 47680}
+	if err := v.StartTurnFromWakeWord("Okay Nabu", nil, w); err != nil {
+		t.Fatalf("start turn: %v", err)
+	}
+
+	msg, ok := peer.recv().(*api.VoiceAssistantRequest)
+	if !ok {
+		t.Fatal("expected a VoiceAssistantRequest")
+	}
+	if !msg.GetStart() || msg.GetWakeWordPhrase() != "Okay Nabu" {
+		t.Errorf("start = %v, phrase = %q", msg.GetStart(), msg.GetWakeWordPhrase())
+	}
+	got := WakeWordAudio{
+		ID:          msg.GetWakeWordId(),
+		Probability: msg.GetWakeWordProbability(),
+		Cutoff:      msg.GetWakeWordProbabilityCutoff(),
+		Bytes:       msg.GetWakeWordAudioBytes(),
+		Bytes2:      msg.GetWakeWordAudioBytes2(),
+	}
+	if got != w {
+		t.Errorf("detection = %+v, want %+v", got, w)
+	}
+}
+
+func TestVoiceStartTurnFromWakeWordNeedsTheSubscriptionFlag(t *testing.T) {
+	v := &VoiceSatellite{}
+	subscribedSatellite(t, v)
+
+	err := v.StartTurnFromWakeWord("Okay Nabu", nil, WakeWordAudio{ID: "okay_nabu", Bytes: 320})
+	if err != ErrWakeWordAudioUnasked {
+		t.Fatalf("err = %v, want ErrWakeWordAudioUnasked", err)
+	}
+	if err := v.StartTurn("Okay Nabu", nil); err != nil {
+		t.Errorf("a refused wake word turn left a turn open: %v", err)
+	}
+}
+
+func TestVoiceWakeWordRejectedClearsTurn(t *testing.T) {
+	v := &VoiceSatellite{}
+	events := make(chan PipelineEvent, 4)
+	v.OnPipelineEvent = func(e PipelineEvent) { events <- e }
+	peer := subscribedSatellite(t, v)
+	resubscribe(peer, uint32(api.VoiceAssistantSubscribeFlag_VOICE_ASSISTANT_SUBSCRIBE_WAKE_WORD_AUDIO))
+
+	if err := v.StartTurnFromWakeWord("Okay Nabu", nil, WakeWordAudio{ID: "okay_nabu", Bytes: 320}); err != nil {
+		t.Fatalf("start: %v", err)
+	}
+	peer.recv()
+
+	peer.send(&api.VoiceAssistantEventResponse{
+		EventType: api.VoiceAssistantEvent_VOICE_ASSISTANT_WAKE_WORD_REJECTED,
+	})
+	if e := <-events; e.Type != api.VoiceAssistantEvent_VOICE_ASSISTANT_WAKE_WORD_REJECTED {
+		t.Fatalf("event = %v", e.Type)
+	}
+	if err := v.StartTurn("Okay Nabu", nil); err != nil {
+		t.Errorf("a new turn should be allowed after WAKE_WORD_REJECTED, got %v", err)
+	}
+}
+
 func TestSubscribedFiresOnChange(t *testing.T) {
 	v := &VoiceSatellite{}
 	got := make(chan bool, 4)
